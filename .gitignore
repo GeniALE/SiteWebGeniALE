@@ -19,6 +19,7 @@ atlassian-ide-plugin.xml
 
 # Virtualenv
 *-env/
+env/
 
 # Eggs that occur when installing through pip install -e
 *.egg

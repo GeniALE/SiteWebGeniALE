@@ -21,13 +21,18 @@ What things you need to install?
 
 ### Installing
 
-1. Clone the repo 'git clone https://github.com/GeniALE/SiteWebGeniALE.git'
-2. Go into the directory 'cd SiteWebGeniALE'
-3. Create your virtual environment 'virtualenv env' You must specify python3 if you have multiple Python versions on your system.
-4. Activate the env 'source env/bin/activate'(OSX/POSIX) or 'env\Scripts\activate'(Windows).
-5. Install dependencies 'pip install -r requirements.txt' 
-6. Run migrations 'python manage.py migrate'
-7. Start the website 'python manage.py runserver'
+1. Clone the repo `git clone https://github.com/GeniALE/SiteWebGeniALE.git`
+2. Go into the directory `cd SiteWebGeniALE`
+3. Create your virtual environment: `virtualenv env` 
+
+   **Note**: You must specify python3 if you have multiple Python versions on your system.
+4. Activate the env:
+
+    -  `source env/bin/activate` (OSX|POSIX)
+    -  `env\Scripts\activate` (Windows).
+5. Install dependencies: `pip install -r requirements.txt`
+6. Run migrations: `python manage.py migrate`
+7. Start the website: `python manage.py runserver`
 
 You can use the following admin by default:
 
@@ -54,7 +59,7 @@ To be seen
 
 * **Mathieu Chan Yee Choy** - *Front-line commandant of the semi-colon squad* - [Bazooo](https://github.com/Bazooo)
 * **Alexis Côté** - *Do* - [popojargo](https://github.com/popojargo)
-* **Cédric St-Onge** - *you* -
+* **Cena John** - *you* -
 * **Gabriel Bergeron** - *believe* - [gabrielbergeron](https://github.com/gabrielbergeron)
 * **Hugo Parent-Leduc** - *in* -
 * **Kristian Agbogba** - *Magic?* - [kpucc](https://github.com/kpucc)
