@@ -1,5 +1,9 @@
 # SiteWebGeniALE
 
+__Production:__ [![Build Status](https://travis-ci.org/GeniALE/SiteWebGeniALE.svg?branch=master)](https://travis-ci.org/GeniALE/SiteWebGeniALE)
+
+__Development:__ [![Build Status](https://travis-ci.org/GeniALE/SiteWebGeniALE.svg?branch=develop)](https://travis-ci.org/GeniALE/SiteWebGeniALE)
+
 The new website of GeniALE. :beers:
 This repository is comprised with two parts, the Content Management System (CMS) and the front-end library for its components. We use *some alien code* and [emojicode](http://www.emojicode.org/).
 
