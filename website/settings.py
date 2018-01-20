@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 gettext = lambda s: s
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 """
@@ -30,7 +31,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "enigmatic-beach-73172.herokuapp.com",
-    "web.geniale.ca"
+    "web.geniale.ca",
+    "localhost",
+    "127.0.0.1"
 ]
 
 
@@ -188,17 +191,23 @@ CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
 
+
+
+
 DATABASES = {
     'default': {
-        'CONN_MAX_AGE': 0,
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('POSTGRES_DB', 'postgres'),
+        'USER': os.getenv('POSTGRES_USER','postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD','geniale'),
         'HOST': 'localhost',
-        'NAME': 'project.db',
-        'PASSWORD': '',
-        'PORT': '',
-        'USER': ''
+        'PORT': '5432',
     }
 }
+
+db_url = os.getenv('DATABASE_URL', False)
+if db_url:
+    DATABASES['default'] = dj_database_url.parse(db_url)
 
 MIGRATION_MODULES = {
     
