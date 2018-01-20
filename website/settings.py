@@ -28,7 +28,10 @@ SECRET_KEY = '_*e5#vmms*t78k^670ze(sw33k(!8e27!wd8^9#wmi&npfacw*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "enigmatic-beach-73172.herokuapp.com",
+    "web.geniale.ca"
+]
 
 
 # Application definition
