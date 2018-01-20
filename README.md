@@ -34,10 +34,14 @@ What things you need to install?
 6. Run migrations: `python manage.py migrate`
 7. Start the website: `python manage.py runserver`
 
-You can use the following admin by default:
+You can use the following credentials by default:
 
 - Username: admin
 - Password: admin
+
+If it doesn't work, you can always create a super user like this:
+
+`python manage.py createsuperuser`
 
 ## Deployment
 
