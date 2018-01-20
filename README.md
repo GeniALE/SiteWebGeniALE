@@ -35,6 +35,23 @@ What things you need to install?
     -  `source env/bin/activate` (OSX|POSIX)
     -  `env\Scripts\activate` (Windows).
 5. Install dependencies: `pip install -r requirements.txt`
+6. Start your **PostgreSQL** database.
+
+    **Note:** If you're using docker, you can run:
+     
+     - `python cmd.py dockerup` to start the database and 
+     - `python cmd.py dockerdown` to stop it.
+    
+    Local database can be configured with:
+     
+    - DATABASE_URL
+   
+   **OR**  
+   
+    - POSTGRES_USER
+    - POSTGRES_DB
+    - POSTGRES_PASSWORD
+    
 6. Run migrations: `python manage.py migrate`
 7. Start the website: `python manage.py runserver`
 
