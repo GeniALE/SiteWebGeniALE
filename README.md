@@ -1,5 +1,9 @@
 # SiteWebGeniALE
 
+__Production:__ [![Build Status](https://travis-ci.org/GeniALE/SiteWebGeniALE.svg?branch=master)](https://travis-ci.org/GeniALE/SiteWebGeniALE)
+
+__Development:__ [![Build Status](https://travis-ci.org/GeniALE/SiteWebGeniALE.svg?branch=develop)](https://travis-ci.org/GeniALE/SiteWebGeniALE)
+
 The new website of GeniALE. :beers:
 This repository is comprised with two parts, the Content Management System (CMS) and the front-end library for its components. We use *some alien code* and [emojicode](http://www.emojicode.org/).
 
@@ -31,6 +35,23 @@ What things you need to install?
     -  `source env/bin/activate` (OSX|POSIX)
     -  `env\Scripts\activate` (Windows).
 5. Install dependencies: `pip install -r requirements.txt`
+6. Start your **PostgreSQL** database.
+
+    **Note:** If you're using docker, you can run:
+     
+     - `python cmd.py dockerup` to start the database and 
+     - `python cmd.py dockerdown` to stop it.
+    
+    Local database can be configured with:
+     
+    - DATABASE_URL
+   
+   **OR**  
+   
+    - POSTGRES_USER
+    - POSTGRES_DB
+    - POSTGRES_PASSWORD
+    
 6. Run migrations: `python manage.py migrate`
 7. Start the website: `python manage.py runserver`
 
