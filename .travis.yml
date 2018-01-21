@@ -1,0 +1,21 @@
+language: python
+python:
+  - "3.6"
+  - "nightly"
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: jG4u95JddReAzGYDM7y7zVE3lUR1OoTPg8svBnseOCg1rXj6azpZHRn7bQbg8OCwNX93ulBlzZZssaZR45iPeE3RaP6L87q3z/O5HeH1/2q1hPZseT16rr6wVndhqq0EG+9i4M6qHAhbPehfmWPJpWu//wzqkqMusylg45X2x0vElaV+8wuCXK3PjZzmzwysMkskGKz3yrUUuyBCnsDN9grI2Ffg8sZy1/KdKU3sl2GTiSTpRzQgQmL24/cVadNzRejP3TqxiwsUFf2jXLqVC6TNwZkzD6+cXUy8piz510gIUpUsDdIBNrPsSRE5WfrS9zmKdgrsPER7OXzs679LUiKy+6uEdmiubscaNXSxYVfXbuiQ9vh8STohhR8cteXEz+ukUiWK8dmUNvEnDC2tBkE6gDFTSfnX+JU6078XQXj6b/ljmY9ffZfwbeYoENpn3TuGr7Pqbf10LPTZIPEWRgb8zk2BXPUW/90Qwyx6ykzRXlENy0FY8xMS84GQUXUJzJHa+HDAlDB6ioP3uzW+jPQxqbfG027LfL0q9Vd2EqxI21WZeQScknaemwSGSFVcFnToQTkDlgl0BXpoSEdiy/9skrxR90bBUyJb4XsagteLsjep/noiS7cPSal8ES/R8nepLPXdGZ/6wzHHvntdht+L64FvgwCus/d3+cwBaC8=
+  app:
+    develop: geniale-dev
+    master: geniale-prod
+
+install:
+ - pip install -r requirements.txt
+
+script:
+ - python manage.py test
+
+allow_failures:
+  - "nightly"
