@@ -3,9 +3,16 @@ version: '3.3'
 services:
     db:
         image: postgres
+        restart: always
+        environment:
+            # Make sure the credentials are the same as the default one in the settings.py
+            POSTGRES_PASSWORD: 'geniale'
+            POSTGRES_USER: 'postgres'
+        ports:
+          - 5432:5432
     web:
         build: .
-        command: python manage.py runserver 0.0.0.0:8000
+        command: python3 manage.py runserver 0.0.0.0:8000
         volumes:
             - .:/code
         ports:
