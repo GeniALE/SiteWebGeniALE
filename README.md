@@ -29,43 +29,19 @@ git clone git@github.com:GeniALE/SiteWebGeniALE.git
 
 ## Prerequisites
 
-A [RocketChat](https://rocket.chat/) account to join our chat platform.
+A [Slack](https://slack.com/) account to join our chat platform.
 Be in the [Trello Website Board](https://trello.com/b/t7NT6LjO/page-web-g%C3%A9niale), where we have all the tasks there.
 
 What things you need to install?
-  - Python3 and virtualenv
+  - Docker & docker-compose
 
 ## Installing
 
 1. Clone the repo `git clone https://github.com/GeniALE/SiteWebGeniALE.git`
 2. Go into the directory `cd SiteWebGeniALE`
-3. Create your virtual environment: `virtualenv env` 
-
-   **Note**: You must specify python3 if you have multiple Python versions on your system.
-4. Activate the env:
-
-    -  `source env/bin/activate` (OSX|POSIX)
-    -  `env\Scripts\activate` (Windows).
-5. Install dependencies: `pip install -r requirements.txt`
-6. Start your **PostgreSQL** database.
-
-    **Note:** If you're using docker, you can run:
-     
-     - `python cmd.py dockerup` to start the database and 
-     - `python cmd.py dockerdown` to stop it.
-    
-    Local database can be configured with:
-     
-    - DATABASE_URL
-   
-   **OR**  
-   
-    - POSTGRES_USER
-    - POSTGRES_DB
-    - POSTGRES_PASSWORD
-    
-6. Run migrations: `python manage.py migrate`
-7. Start the website: `python manage.py runserver`
+3. Build the docker containers `docker-compose build`
+4. Run the docker services `docker-compose up`
+5. The DjangoCMS should be running at [](localhost:8000)
 
 You can use the following credentials by default:
 
@@ -74,11 +50,11 @@ You can use the following credentials by default:
 
 If it doesn't work, you can always create a super user like this:
 
-`python manage.py createsuperuser`
+6. `docker-compose run web python manage.py createsuperuser`
 
 ## Branching model
 
-For this project, we are using Git Flow. 
+For this project, we are using Git Flow.
 
 Basically, you have those type of branches :
 
