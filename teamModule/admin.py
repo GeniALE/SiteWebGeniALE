@@ -1,22 +1,21 @@
 from django.contrib import admin
-from cms.extensions import PageExtensionAdmin
 from .models import Formation, Team, Project, Member
 
 
 # Register your models here.
-class PageTeamAdmin(PageExtensionAdmin):
+class PageTeamAdmin(admin.ModelAdmin):
     pass
 
 
-class PageProjectsAdmin(PageExtensionAdmin):
+class PageProjectsAdmin(admin.ModelAdmin):
     pass
 
 
-class PageMemberAdmin(PageExtensionAdmin):
+class PageMemberAdmin(admin.ModelAdmin):
     pass
 
 
-class PageFormationAdmin(PageExtensionAdmin):
+class PageFormationAdmin(admin.ModelAdmin):
     pass
 
 

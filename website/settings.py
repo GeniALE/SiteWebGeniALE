@@ -199,8 +199,8 @@ CMS_PLACEHOLDER_CONF = {}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('POSTGRES_DB', 'comets'),
-        'USER': os.getenv('POSTGRES_USER','genialeadmin'),
+        'NAME': os.getenv('POSTGRES_DB', 'postgres'),
+        'USER': os.getenv('POSTGRES_USER','postgres'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD','geniale'),
         'HOST': 'localhost',
         'PORT': '5432',
