@@ -41,7 +41,7 @@ What things you need to install?
 2. Go into the directory `cd SiteWebGeniALE`
 3. Build the docker containers `docker-compose build`
 4. Run the docker services `docker-compose up`
-5. The DjangoCMS should be running at [](localhost:8000)
+5. The DjangoCMS should be running at [http://localhost:8000](localhost:8000)
 
 You can use the following credentials by default:
 
@@ -68,8 +68,17 @@ For more details, look [at this amazing cheatsheet](https://danielkummer.github.
 
 # Deployment
 
-To be announced
+At the moment, the website is deployed at: http://geniale-prod.herokuapp.com/
 
+## Docker deployment
+
+1. Pull the repository
+2. Build docker compose 
+    
+    `docker-compose -f docker-compose.yml -f docker-compose.prod.yml build`
+3. Start docker compose 
+
+    `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up`
 
 # Contributing
 
@@ -81,12 +90,11 @@ To be seen
 
 # Authors
 
-* **Mathieu Chan Yee Choy** - *Front-line commandant of the semi-colon squad* - [Bazooo](https://github.com/Bazooo)
-* **Alexis Côté** - *Do* - [popojargo](https://github.com/popojargo)
-* **Cena John** - *you* -
-* **Gabriel Bergeron** - *believe* - [gabrielbergeron](https://github.com/gabrielbergeron)
-* **Hugo Parent-Leduc** - *in* -
-* **Kristian Agbogba** - *Magic?* - [kpucc](https://github.com/kpucc)
+* **Mathieu Chan Yee Choy** [Bazooo](https://github.com/Bazooo)
+* **Alexis Côté** [popojargo](https://github.com/popojargo)
+* **Gabriel Bergeron** [gabrielbergeron](https://github.com/gabrielbergeron)
+* **Hugo Parent-Leduc** [hugoparent](https://github.com/hugoparent)
+* **Kristian Agbogba** [kpucc](https://github.com/kpucc)
 
 See also the list of [contributors](https://github.com/GeniALE/SiteWebGeniALE/contributors) who participated in this project.
 

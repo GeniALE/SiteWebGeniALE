@@ -3,6 +3,9 @@
 import os
 import click
 
+"""
+Python script will some command shortcut. 
+"""
 
 @click.group()
 def cli():

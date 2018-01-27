@@ -29,6 +29,8 @@ env/
 *.sqlite
 *.sql
 *.db
+/pgdata/*
+!/pgdata/.ini
 
 # Version file for source distribution
 RELEASE-VERSION
