@@ -19,3 +19,6 @@ script:
 
 allow_failures:
   - "nightly"
+
+env:
+ - POSTGRES_HOST=localhost
