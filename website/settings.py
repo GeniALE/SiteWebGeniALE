@@ -155,7 +155,8 @@ INSTALLED_APPS = (
     'djangocms_snippet',
     'djangocms_googlemap',
     'djangocms_video',
-    'website'
+    'website',
+    'teamModule'
 )
 
 LANGUAGES = (
@@ -198,8 +199,8 @@ CMS_PLACEHOLDER_CONF = {}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('POSTGRES_DB', 'postgres'),
-        'USER': os.getenv('POSTGRES_USER','postgres'),
+        'NAME': os.getenv('POSTGRES_DB', 'comets'),
+        'USER': os.getenv('POSTGRES_USER','genialeadmin'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD','geniale'),
         'HOST': 'localhost',
         'PORT': '5432',
