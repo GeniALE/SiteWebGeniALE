@@ -46,11 +46,11 @@ class Project(models.Model):
 class Member(models.Model):
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
-    bio = models.CharField(max_length=400, null=True)
-    email = models.CharField(max_length=75, null=True)
-    linkedInUrl = models.CharField(max_length=200, null=True)
-    profilePicUrl = models.CharField(max_length=200, null=True)
-    formation = models.ForeignKey(Formation, on_delete=models.SET_NULL, null=True)
+    bio = models.CharField(max_length=400, blank=True)
+    email = models.CharField(max_length=75)
+    linkedInUrl = models.CharField(max_length=200, blank=True)
+    profilePicUrl = models.CharField(max_length=200, blank=True)
+    formation = models.ForeignKey(Formation, null=True, on_delete=models.SET_NULL)
     teamRoles = models.ManyToManyField(TeamRole)
     projects = models.ManyToManyField(Project)
 
