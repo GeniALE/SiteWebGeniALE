@@ -4,6 +4,9 @@ FROM python:3.6
 # Force stdin, stdout and stderr to be totally unbuffered
 ENV PYTHONUNBUFFERED 1
 
+# Install psql for scripts
+RUN apt-get update && apt-get install postgresql-client-9.4 -y
+
 # Create directory code in the docker
 RUN mkdir /code
 
@@ -19,3 +22,4 @@ RUN pip install -r requirements.txt
 # Copy the repo files into the WORKDIR
 ADD website /code/
 ADD manage.py /code/
+ADD bin /code/

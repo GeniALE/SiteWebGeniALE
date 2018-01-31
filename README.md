@@ -9,11 +9,14 @@ This repository  contains the CMS and the additionnal modules.
 
 # Table of content
 - [SiteWebGeniALE](#sitewebgeniale)
+- [Table of content](#table-of-content)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installing](#installing)
   - [Branching model](#branching-model)
 - [Deployment](#deployment)
+  - [Production deployment](#production-deployment)
+  - [Docker tools](#docker-tools)
 - [Contributing](#contributing)
 - [Versioning](#versioning)
 - [Authors](#authors)
@@ -70,7 +73,7 @@ For more details, look [at this amazing cheatsheet](https://danielkummer.github.
 
 At the moment, the website is deployed at: http://geniale-prod.herokuapp.com/
 
-## Docker deployment
+## Production deployment
 
 1. Pull the repository
 2. Build docker compose 
@@ -79,6 +82,19 @@ At the moment, the website is deployed at: http://geniale-prod.herokuapp.com/
 3. Start docker compose 
 
     `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up`
+    
+## Docker tools
+
+At the root of the repostiory, you can find a script called `d` 
+
+This script is a shortcut for some of the docker commands.
+
+| Command | Description                         | POSIX              | WIN              |
+|---------|-------------------------------------|--------------------|------------------|
+| shell   | Open a shell into the web container | ./d shell          | d shell          |
+| exec    | Execute something in the container  | ./d exec python -V | d exec python -V |
+
+Eventuall, more commands will be added to automate some tasks.
 
 # Contributing
 
