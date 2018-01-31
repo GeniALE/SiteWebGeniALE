@@ -17,6 +17,5 @@ ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 
 # Copy the repo files into the WORKDIR
-ADD website /code/website
-ADD manage.py /code/manage.py
-ADD requirements.txt /code/requirements.txt
+ADD website /code/
+ADD manage.py /code/
