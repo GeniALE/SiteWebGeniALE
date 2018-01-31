@@ -116,6 +116,6 @@ See also the list of [contributors](https://github.com/GeniALE/SiteWebGeniALE/co
 
 # Acknowledgments
 
-* Cedille
+* [Club Cedille](https://github.com/clubcedille)
 * Inspiration
 * etc
