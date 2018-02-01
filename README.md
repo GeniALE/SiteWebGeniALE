@@ -9,11 +9,14 @@ This repository  contains the CMS and the additionnal modules.
 
 # Table of content
 - [SiteWebGeniALE](#sitewebgeniale)
+- [Table of content](#table-of-content)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installing](#installing)
   - [Branching model](#branching-model)
 - [Deployment](#deployment)
+  - [Production deployment](#production-deployment)
+  - [Docker tools](#docker-tools)
 - [Contributing](#contributing)
 - [Versioning](#versioning)
 - [Authors](#authors)
@@ -29,43 +32,19 @@ git clone git@github.com:GeniALE/SiteWebGeniALE.git
 
 ## Prerequisites
 
-A [RocketChat](https://rocket.chat/) account to join our chat platform.
+A [Slack](https://slack.com/) account to join our chat platform.
 Be in the [Trello Website Board](https://trello.com/b/t7NT6LjO/page-web-g%C3%A9niale), where we have all the tasks there.
 
 What things you need to install?
-  - Python3 and virtualenv
+  - Docker & docker-compose
 
 ## Installing
 
 1. Clone the repo `git clone https://github.com/GeniALE/SiteWebGeniALE.git`
 2. Go into the directory `cd SiteWebGeniALE`
-3. Create your virtual environment: `virtualenv env` 
-
-   **Note**: You must specify python3 if you have multiple Python versions on your system.
-4. Activate the env:
-
-    -  `source env/bin/activate` (OSX|POSIX)
-    -  `env\Scripts\activate` (Windows).
-5. Install dependencies: `pip install -r requirements.txt`
-6. Start your **PostgreSQL** database.
-
-    **Note:** If you're using docker, you can run:
-     
-     - `python cmd.py dockerup` to start the database and 
-     - `python cmd.py dockerdown` to stop it.
-    
-    Local database can be configured with:
-     
-    - DATABASE_URL
-   
-   **OR**  
-   
-    - POSTGRES_USER
-    - POSTGRES_DB
-    - POSTGRES_PASSWORD
-    
-6. Run migrations: `python manage.py migrate`
-7. Start the website: `python manage.py runserver`
+3. Build the docker containers `docker-compose build`
+4. Run the docker services `docker-compose up`
+5. The DjangoCMS should be running at [http://localhost:8000](localhost:8000)
 
 You can use the following credentials by default:
 
@@ -74,11 +53,11 @@ You can use the following credentials by default:
 
 If it doesn't work, you can always create a super user like this:
 
-`python manage.py createsuperuser`
+6. `docker-compose run web python manage.py createsuperuser`
 
 ## Branching model
 
-For this project, we are using Git Flow. 
+For this project, we are using Git Flow.
 
 Basically, you have those type of branches :
 
@@ -92,8 +71,34 @@ For more details, look [at this amazing cheatsheet](https://danielkummer.github.
 
 # Deployment
 
-To be announced
+At the moment, the website is deployed at: http://geniale-prod.herokuapp.com/
 
+## Production deployment
+
+1. Pull the repository
+2. Build docker compose 
+    
+    `docker-compose -f docker-compose.prod.yml build` or `./d.sh prod build`
+3. Start docker compose 
+
+    `docker-compose -f docker-compose.prod.yml up` or `./d.sh prod up`
+    
+## Docker tools
+
+At the root of the repostiory, you can find a script called `d` 
+
+This script is a shortcut for some of the docker commands.
+
+You can always run any command on your docker-compose with: `d <command>`
+
+To run command on production, you need to run: `d prod <command>`
+
+| Command | Description                         | POSIX              | WIN              |
+|---------|-------------------------------------|--------------------|------------------|
+| shell   | Open a shell into the web container | ./d shell          | d shell          |
+| exec    | Execute something in the container  | ./d exec python -V | d exec python -V |
+
+Eventually, more commands will be added to automate some tasks.
 
 # Contributing
 
@@ -105,12 +110,11 @@ To be seen
 
 # Authors
 
-* **Mathieu Chan Yee Choy** - *Front-line commandant of the semi-colon squad* - [Bazooo](https://github.com/Bazooo)
-* **Alexis Côté** - *Do* - [popojargo](https://github.com/popojargo)
-* **Cena John** - *you* -
-* **Gabriel Bergeron** - *believe* - [gabrielbergeron](https://github.com/gabrielbergeron)
-* **Hugo Parent-Leduc** - *in* -
-* **Kristian Agbogba** - *Magic?* - [kpucc](https://github.com/kpucc)
+* **Mathieu Chan Yee Choy** [Bazooo](https://github.com/Bazooo)
+* **Alexis Côté** [popojargo](https://github.com/popojargo)
+* **Gabriel Bergeron** [gabrielbergeron](https://github.com/gabrielbergeron)
+* **Hugo Parent-Leduc** [hugoparent](https://github.com/hugoparent)
+* **Kristian Agbogba** [kpucc](https://github.com/kpucc)
 
 See also the list of [contributors](https://github.com/GeniALE/SiteWebGeniALE/contributors) who participated in this project.
 

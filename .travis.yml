@@ -1,7 +1,6 @@
 language: python
 python:
   - "3.6"
-  - "nightly"
 
 deploy:
   provider: heroku
@@ -17,5 +16,5 @@ install:
 script:
  - python manage.py test
 
-allow_failures:
-  - "nightly"
+env:
+ - POSTGRES_HOST=localhost

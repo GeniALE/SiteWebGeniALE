@@ -1,5 +1,6 @@
 import os
 import dj_database_url
+
 gettext = lambda s: s
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 """
@@ -19,7 +20,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -37,6 +37,10 @@ ALLOWED_HOSTS = [
     "127.0.0.1"
 ]
 
+docker_toolbox = os.getenv("DOCKERHOST")
+
+if docker_toolbox:
+    ALLOWED_HOSTS.append(docker_toolbox)
 
 # Application definition
 
@@ -46,10 +50,7 @@ ALLOWED_HOSTS = [
 
 ROOT_URLCONF = 'website.urls'
 
-
-
 WSGI_APPLICATION = 'website.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -70,7 +71,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -84,11 +84,10 @@ STATICFILES_DIRS = (
 )
 SITE_ID = 1
 
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'website', 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'website', 'templates'), ],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -111,7 +110,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 MIDDLEWARE_CLASSES = (
     'cms.middleware.utils.ApphookReloadMiddleware',
@@ -192,17 +190,14 @@ CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
 
-
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.getenv('POSTGRES_DB', 'postgres'),
-        'USER': os.getenv('POSTGRES_USER','postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD','geniale'),
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'geniale'),
+        'HOST': os.getenv('POSTGRES_HOST', 'db'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
 
@@ -211,7 +206,7 @@ if db_url:
     DATABASES['default'] = dj_database_url.parse(db_url)
 
 MIGRATION_MODULES = {
-    
+
 }
 
 THUMBNAIL_PROCESSORS = (
