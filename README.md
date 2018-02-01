@@ -78,16 +78,20 @@ At the moment, the website is deployed at: http://geniale-prod.herokuapp.com/
 1. Pull the repository
 2. Build docker compose 
     
-    `docker-compose -f docker-compose.prod.yml build`
+    `docker-compose -f docker-compose.prod.yml build` or `./d.sh prod build`
 3. Start docker compose 
 
-    `docker-compose -f docker-compose.prod.yml up`
+    `docker-compose -f docker-compose.prod.yml up` or `./d.sh prod up`
     
 ## Docker tools
 
 At the root of the repostiory, you can find a script called `d` 
 
 This script is a shortcut for some of the docker commands.
+
+You can always run any command on your docker-compose with: `d <command>`
+
+To run command on produciton, you need to run: `d prod <command>`
 
 | Command | Description                         | POSIX              | WIN              |
 |---------|-------------------------------------|--------------------|------------------|
