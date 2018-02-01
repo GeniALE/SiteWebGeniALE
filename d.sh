@@ -6,13 +6,30 @@ action="$1"
 cmds="shell, exec"
 help="You must use one of the follow action: $cmds"
 command="echo $help"
+prefix="docker-compose"
+
+if [ $action == "prod" ]
+then
+  prefix="docker-compose -f docker-compose.prod.yml "
+  shift
+  action="$1"
+fi
 
 if [ $action == "shell" ]
 then
-    command="docker-compose exec web sh"
+    command="exec web sh"
 elif [ $action == "exec" ]
 then
-    command="docker-compose exec web ${*:2}"
+    command="exec web ${*:2}"
+elif [ $action == "up ${*:2}" ]
+then
+    command="up"
+elif [ $action == "down ${*:2}" ]
+then
+    command="down"
+elif [ $action == "build" ]
+then
+    command="build ${*:2}"
 fi
 
-eval $command
+eval $prefix $command

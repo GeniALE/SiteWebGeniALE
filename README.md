@@ -94,7 +94,7 @@ This script is a shortcut for some of the docker commands.
 | shell   | Open a shell into the web container | ./d shell          | d shell          |
 | exec    | Execute something in the container  | ./d exec python -V | d exec python -V |
 
-Eventuall, more commands will be added to automate some tasks.
+Eventually, more commands will be added to automate some tasks.
 
 # Contributing
 
