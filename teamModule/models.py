@@ -32,6 +32,9 @@ class ProjectStatus(models.Model):
     def __str__(self):
         return self.status
 
+    class Meta:
+        verbose_name_plural = "project statuses"
+
 
 class Project(models.Model):
     project_name = models.CharField(max_length=100)
