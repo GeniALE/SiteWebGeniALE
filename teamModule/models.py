@@ -3,23 +3,23 @@ from django.db import models
 
 # Create your models here.
 class Formation(models.Model):
-    name = models.CharField(max_length=100)
-    url = models.CharField(max_length=200, null=True)
+    name = models.CharField(max_length=100, blank=False)
+    url = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
         return self.name
 
 
 class Team(models.Model):
-    team_name = models.CharField(max_length=30)
+    team_name = models.CharField(max_length=30, blank=False)
 
     def __str__(self):
         return self.team_name
 
 
 class TeamRole(models.Model):
-    role = models.CharField(max_length=20)
-    description = models.CharField(max_length=1000, null=True)
+    role = models.CharField(max_length=20, blank=False)
+    description = models.CharField(max_length=1000, blank=True, null=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -27,7 +27,7 @@ class TeamRole(models.Model):
 
 
 class ProjectStatus(models.Model):
-    status = models.CharField(max_length=10)
+    status = models.CharField(max_length=10, blank=False)
 
     def __str__(self):
         return self.status
@@ -37,18 +37,18 @@ class ProjectStatus(models.Model):
 
 
 class Project(models.Model):
-    project_name = models.CharField(max_length=100)
+    project_name = models.CharField(max_length=100, blank=False)
     description = models.CharField(max_length=1000, null=True)
     status = models.ForeignKey(ProjectStatus, default=0, on_delete=models.SET_DEFAULT)
-    website = models.CharField(max_length=200, null=True)
+    website = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return self.project_name
 
 
 class Member(models.Model):
-    first_name = models.CharField(max_length=60)
-    last_name = models.CharField(max_length=60)
+    first_name = models.CharField(max_length=60, blank=False)
+    last_name = models.CharField(max_length=60, blank=False)
     bio = models.CharField(max_length=400, blank=True)
     email = models.CharField(max_length=75)
     linkedInUrl = models.CharField(max_length=200, blank=True)
