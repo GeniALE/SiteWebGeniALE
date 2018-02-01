@@ -37,6 +37,11 @@ ALLOWED_HOSTS = [
     "127.0.0.1"
 ]
 
+docker_toolbox = os.getenv("DOCKERHOST")
+
+if docker_toolbox:
+    ALLOWED_HOSTS.append(docker_toolbox)
+
 # Application definition
 
 
