@@ -91,7 +91,7 @@ This script is a shortcut for some of the docker commands.
 
 You can always run any command on your docker-compose with: `d <command>`
 
-To run command on produciton, you need to run: `d prod <command>`
+To run command on production, you need to run: `d prod <command>`
 
 | Command | Description                         | POSIX              | WIN              |
 |---------|-------------------------------------|--------------------|------------------|
