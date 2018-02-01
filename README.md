@@ -78,10 +78,10 @@ At the moment, the website is deployed at: http://geniale-prod.herokuapp.com/
 1. Pull the repository
 2. Build docker compose 
     
-    `docker-compose -f docker-compose.yml -f docker-compose.prod.yml build`
+    `docker-compose -f docker-compose.prod.yml build`
 3. Start docker compose 
 
-    `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up`
+    `docker-compose -f docker-compose.prod.yml up`
     
 ## Docker tools
 

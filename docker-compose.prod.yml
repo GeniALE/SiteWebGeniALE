@@ -2,7 +2,24 @@ version: '3.3'
 
 services:
     db:
+        image: postgres
+        restart: always
         environment:
+            # Make sure the credentials are the same as the default one in the settings.py
+            POSTGRES_PASSWORD: 'geniale'
+            POSTGRES_USER: 'postgres'
             PGDATA: "/var/lib/postgresql/data/pgdata"
         volumes:
           - ./pgdata:/var/lib/postgresql/data/pgdata:rw
+        ports:
+          - 5432:5432
+    web:
+        build: .
+        command: >
+            bash -c "sh ./bin/wait-for-postgres.sh db
+            && python3 manage.py migrate
+            && python3 manage.py runserver 0.0.0.0:8000"
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
