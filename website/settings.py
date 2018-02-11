@@ -144,19 +144,16 @@ INSTALLED_APPS = (
     'filer',
     'easy_thumbnails',
     'djangocms_column',
+    'djangocms_file',
     'djangocms_link',
-    'cmsplugin_filer_file',
-    'cmsplugin_filer_folder',
-    'cmsplugin_filer_image',
-    'cmsplugin_filer_utils',
+    'djangocms_picture',
     'djangocms_style',
     'djangocms_snippet',
     'djangocms_googlemap',
     'djangocms_video',
     'website',
     'teamModule',
-    'compressor',
-    'reversion'
+    'compressor'
 )
 
 LANGUAGES = (
