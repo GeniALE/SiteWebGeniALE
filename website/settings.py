@@ -154,7 +154,8 @@ INSTALLED_APPS = (
     'djangocms_googlemap',
     'djangocms_video',
     'website',
-    'teamModule'
+    'teamModule',
+    'compressor'
 )
 
 LANGUAGES = (
@@ -215,4 +216,15 @@ THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.autocrop',
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder'
+)
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
 )
