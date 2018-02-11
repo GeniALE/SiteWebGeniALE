@@ -155,7 +155,8 @@ INSTALLED_APPS = (
     'djangocms_video',
     'website',
     'teamModule',
-    'compressor'
+    'compressor',
+    'reversion'
 )
 
 LANGUAGES = (
