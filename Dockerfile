@@ -1,5 +1,5 @@
 # Set the base image for the docker to python v3.6
-FROM python:3.6
+FROM python:3.4
 
 # Force stdin, stdout and stderr to be totally unbuffered
 ENV PYTHONUNBUFFERED 1
