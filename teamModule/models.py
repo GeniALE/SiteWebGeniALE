@@ -59,3 +59,18 @@ class Member(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
+
+
+class MemberExtraInfoType(models.Model):
+    description = models.CharField(max_length=50)
+
+    def __str__(self):
+        return "{}".format(self.description)
+
+class MemberExtraInfo(models.Model):
+    member = models.ForeignKey(Member)
+    info_type = models.ForeignKey(MemberExtraInfoType, default=0, on_delete=models.SET_DEFAULT)
+    value = models.CharField(max_length=500)
+
+    def __str__(self):
+        return "{} {} {}".format(self.member, self.info_type, self.value)
