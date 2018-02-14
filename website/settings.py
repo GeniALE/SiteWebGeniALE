@@ -152,11 +152,9 @@ INSTALLED_APPS = (
     'filer',
     'easy_thumbnails',
     'djangocms_column',
+    'djangocms_file',
     'djangocms_link',
-    'cmsplugin_filer_file',
-    'cmsplugin_filer_folder',
-    'cmsplugin_filer_image',
-    'cmsplugin_filer_utils',
+    'djangocms_picture',
     'djangocms_style',
     'djangocms_snippet',
     'djangocms_googlemap',
@@ -164,6 +162,7 @@ INSTALLED_APPS = (
     'website',
     'adminsortable',
     'cmsplugin_contact_plus',
+    'compressor',
     'teamModule'
 )
 
@@ -225,4 +224,15 @@ THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.autocrop',
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder'
+)
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
 )
