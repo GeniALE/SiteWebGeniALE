@@ -45,16 +45,13 @@ What things you need to install?
 3. Build the docker containers `docker-compose build`
 4. Run the docker services `docker-compose up`
 5. The DjangoCMS should be running at [http://localhost:8000](localhost:8000)
+6. You need to create your super user with:
 
-You can use the following credentials by default:
+    `docker-compose run web python manage.py createsuperuser`
 
-- Username: admin
-- Password: admin
-
-If it doesn't work, you can always create a super user like this:
-
-6. `docker-compose run web python manage.py createsuperuser`
-
+7. If you want, you can create a `.env` file to setup some environment variables.
+ 
+    You can copy the `.env.default` as an example.
 ## Branching model
 
 For this project, we are using Git Flow.
