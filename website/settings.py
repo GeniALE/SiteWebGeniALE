@@ -44,10 +44,9 @@ docker_toolbox = os.getenv("DOCKERHOST")
 if docker_toolbox:
     ALLOWED_HOSTS.append(docker_toolbox)
 
-
 # Email configuration
 
-EMAIL_HOST = os.getenv('EMAIL_HOST','localhost')
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'localhost')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD', '')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_PORT = os.getenv('EMAIL_PORT', 25)
@@ -225,6 +224,11 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
+
+CMSPLUGIN_CONTACT_PLUS_TEMPLATES = [
+    ('components/contact.html', 'Geniale contact form'),
+    ('cmsplugin_contact_plus/contact.html', 'Default contact form'),
+]
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
