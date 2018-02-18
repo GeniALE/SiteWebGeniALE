@@ -1,24 +1,38 @@
 @ECHO OFF
 set done=false
 set prefix=docker-compose
+set suffix=
 IF %1==prod (
     set prefix=docker-compose -f docker-compose.prod.yml
     SHIFT
 )
 IF %1==shell (
-    %prefix% exec web sh
+    set suffix= exec web sh
     set done=true
 )
 
 IF %1==exec (
-    @ECHO ON
-    for /f "tokens=1,* delims= " %%a in ("%*") do @ECHO OFF && set ALL_BUT_FIRST=%%b
-    %prefix% exec web %ALL_BUT_FIRST%
+    @ECHO OFF
+    :ExecLoop
+    IF "%1"=="" GOTO ContinueExec
+    set suffix=%suffix% %1
+    SHIFT
+    GOTO ExecLoop
+    :ContinueExec
+    set suffix=exec web %suffix%
     set done=true
 )
 
 IF %done%==false (
-    @ECHO ON
-    for /f "tokens=1,* delims= " %%a in ("%*") do @ECHO OFF && set ALL_BUT_FIRST=%%b
-    %prefix% %ALL_BUT_FIRST%
+    @ECHO OFF
+    :OtherLoop
+    IF "%1"=="" GOTO ContinueOther
+    set suffix=%suffix% %1
+    SHIFT
+    GOTO OtherLoop
+    :ContinueOther
+    set done=true
 )
+
+@ECHO ON
+%prefix% %suffix%
