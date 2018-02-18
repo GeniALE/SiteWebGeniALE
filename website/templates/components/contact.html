@@ -1,0 +1,25 @@
+{% load l10n compress static %}
+
+{% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static "css/contact.scss" %}"/>
+{% endcompress %}
+
+<div class="contactForm">
+    {% if form %}
+        {% if form.is_multipart %}
+            <form enctype="multipart/form-data" method="POST" action="">
+        {% else %}
+            <form method="POST" action="">
+        {% endif %}
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="contact_plus_form_{{ contact.id|unlocalize }}" {% if contact.submit_button_text %}
+           value="{{ contact.submit_button_text }}"{% endif %} />
+    </form>
+
+    <div class="contactForm__thanks">
+    {% else %}
+        {{ contact.thanks|safe }}
+    {% endif %}
+    </div>
+</div>

@@ -5,9 +5,24 @@ __Production:__ [![Build Status](https://travis-ci.org/GeniALE/SiteWebGeniALE.sv
 __Development:__ [![Build Status](https://travis-ci.org/GeniALE/SiteWebGeniALE.svg?branch=develop)](https://travis-ci.org/GeniALE/SiteWebGeniALE)
 
 The new website of GeniALE. :beers:
-This repository is comprised with two parts, the Content Management System (CMS) and the front-end library for its components. We use *some alien code* and [emojicode](http://www.emojicode.org/).
+This repository  contains the CMS and the additionnal modules.
 
-## Getting Started
+# Table of content
+- [SiteWebGeniALE](#sitewebgeniale)
+- [Table of content](#table-of-content)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installing](#installing)
+  - [Branching model](#branching-model)
+- [Deployment](#deployment)
+  - [Production deployment](#production-deployment)
+  - [Docker tools](#docker-tools)
+- [Contributing](#contributing)
+- [Versioning](#versioning)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgments)
+
+# Getting Started
 
 Clone this repository
 
@@ -15,84 +30,106 @@ Clone this repository
 git clone git@github.com:GeniALE/SiteWebGeniALE.git
 ```
 
-### Prerequisites
+## Prerequisites
 
-A [RocketChat](https://rocket.chat/) account to join our chat platform.
+A [Slack](https://slack.com/) account to join our chat platform.
 Be in the [Trello Website Board](https://trello.com/b/t7NT6LjO/page-web-g%C3%A9niale), where we have all the tasks there.
 
 What things you need to install?
-  - Python3 and virtualenv
+  - Docker & docker-compose
 
-### Installing
+## Installing
 
 1. Clone the repo `git clone https://github.com/GeniALE/SiteWebGeniALE.git`
 2. Go into the directory `cd SiteWebGeniALE`
-3. Create your virtual environment: `virtualenv env` 
+3. Build the docker containers `docker-compose build`
+4. Run the docker services `docker-compose up`
+5. The DjangoCMS should be running at [http://localhost:8000](localhost:8000)
+6. You need to create your super user with:
 
-   **Note**: You must specify python3 if you have multiple Python versions on your system.
-4. Activate the env:
+    `docker-compose run web python manage.py createsuperuser`
 
-    -  `source env/bin/activate` (OSX|POSIX)
-    -  `env\Scripts\activate` (Windows).
-5. Install dependencies: `pip install -r requirements.txt`
-6. Start your **PostgreSQL** database.
+7. If you want, you can create a `.env` file to setup some environment variables.
+ 
+    You can copy the `.env.default` as an example.
+## Branching model
 
-    **Note:** If you're using docker, you can run:
-     
-     - `python cmd.py dockerup` to start the database and 
-     - `python cmd.py dockerdown` to stop it.
+For this project, we are using a branching model that focus on continuous delivery.
+
+Basically, you have those type of branches :
+
+- **master** : Trunk or latest branch
+- **feature** : New feature development based on **master**
+- **fix** : A fix for something in master. 
+
+### Feature workflow
+
+- Create your feature branch from the master with a `feature/` prefix.
+- Do your work
+- Rebase master into your branch
+- Review and test 
+- Create pull request
+- Merge in master when peer reviewed
+
+### Fix workflow
+
+When we find a flaw, we have to respond quickly to fix that bug.
+
+The workflow is pretty much the same.
+ 
+The only difference is the branch prefix: `fix/`.
+
+# Deployment
+
+At the moment, the website is deployed at: http://geniale-prod.herokuapp.com/
+
+## Production deployment
+
+1. Pull the repository
+2. Build docker compose 
     
-    Local database can be configured with:
-     
-    - DATABASE_URL
-   
-   **OR**  
-   
-    - POSTGRES_USER
-    - POSTGRES_DB
-    - POSTGRES_PASSWORD
+    `docker-compose -f docker-compose.prod.yml build` or `./d.sh prod build`
+3. Start docker compose 
+
+    `docker-compose -f docker-compose.prod.yml up` or `./d.sh prod up`
     
-6. Run migrations: `python manage.py migrate`
-7. Start the website: `python manage.py runserver`
+## Docker tools
 
-You can use the following credentials by default:
+At the root of the repostiory, you can find a script called `d` 
 
-- Username: admin
-- Password: admin
+This script is a shortcut for some of the docker commands.
 
-If it doesn't work, you can always create a super user like this:
+You can always run any command on your docker-compose with: `d <command>`
 
-`python manage.py createsuperuser`
+To run command on production, you need to run: `d prod <command>`
 
-## Deployment
+| Command | Description                         | POSIX              | WIN              |
+|---------|-------------------------------------|--------------------|------------------|
+| shell   | Open a shell into the web container | ./d shell          | d shell          |
+| exec    | Execute something in the container  | ./d exec python -V | d exec python -V |
 
-To be announced
+Eventually, more commands will be added to automate some tasks.
 
-## Built With
-
-* [NodeJS](https://nodejs.org) - The web framework used
-
-## Contributing
+# Contributing
 
 Contact the project leader.
 
-## Versioning
+# Versioning
 
 To be seen
 
-## Authors
+# Authors
 
-* **Mathieu Chan Yee Choy** - *Front-line commandant of the semi-colon squad* - [Bazooo](https://github.com/Bazooo)
-* **Alexis Côté** - *Do* - [popojargo](https://github.com/popojargo)
-* **Cena John** - *you* -
-* **Gabriel Bergeron** - *believe* - [gabrielbergeron](https://github.com/gabrielbergeron)
-* **Hugo Parent-Leduc** - *in* -
-* **Kristian Agbogba** - *Magic?* - [kpucc](https://github.com/kpucc)
+* **Mathieu Chan Yee Choy** [Bazooo](https://github.com/Bazooo)
+* **Alexis Côté** [popojargo](https://github.com/popojargo)
+* **Gabriel Bergeron** [gabrielbergeron](https://github.com/gabrielbergeron)
+* **Hugo Parent-Leduc** [hugoparent](https://github.com/hugoparent)
+* **Kristian Agbogba** [kpucc](https://github.com/kpucc)
 
 See also the list of [contributors](https://github.com/GeniALE/SiteWebGeniALE/contributors) who participated in this project.
 
-## Acknowledgments
+# Acknowledgments
 
-* Cedille
+* [Club Cedille](https://github.com/clubcedille)
 * Inspiration
 * etc

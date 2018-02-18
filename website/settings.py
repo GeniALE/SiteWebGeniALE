@@ -1,5 +1,6 @@
 import os
 import dj_database_url
+
 gettext = lambda s: s
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 """
@@ -19,7 +20,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -29,6 +29,8 @@ SECRET_KEY = '_*e5#vmms*t78k^670ze(sw33k(!8e27!wd8^9#wmi&npfacw*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ADMINS = ['root', 'admin']
+
 ALLOWED_HOSTS = [
     "geniale-dev.herokuapp.com",
     "geniale-prod.herokuapp.com",
@@ -37,19 +39,25 @@ ALLOWED_HOSTS = [
     "127.0.0.1"
 ]
 
+docker_toolbox = os.getenv("DOCKERHOST")
+
+if docker_toolbox:
+    ALLOWED_HOSTS.append(docker_toolbox)
+
+# Email configuration
+
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'localhost')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD', '')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+EMAIL_PORT = os.getenv('EMAIL_PORT', 25)
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', False)
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', False)
 
 # Application definition
 
-
-
-
-
 ROOT_URLCONF = 'website.urls'
 
-
-
 WSGI_APPLICATION = 'website.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -70,7 +78,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -84,11 +91,10 @@ STATICFILES_DIRS = (
 )
 SITE_ID = 1
 
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'website', 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'website', 'templates'), ],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -111,7 +117,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 MIDDLEWARE_CLASSES = (
     'cms.middleware.utils.ApphookReloadMiddleware',
@@ -146,16 +151,18 @@ INSTALLED_APPS = (
     'filer',
     'easy_thumbnails',
     'djangocms_column',
+    'djangocms_file',
     'djangocms_link',
-    'cmsplugin_filer_file',
-    'cmsplugin_filer_folder',
-    'cmsplugin_filer_image',
-    'cmsplugin_filer_utils',
+    'djangocms_picture',
     'djangocms_style',
     'djangocms_snippet',
     'djangocms_googlemap',
     'djangocms_video',
-    'website'
+    'website',
+    'adminsortable',
+    'cmsplugin_contact_plus',
+    'compressor',
+    'teamModule'
 )
 
 LANGUAGES = (
@@ -199,10 +206,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.getenv('POSTGRES_DB', 'postgres'),
-        'USER': os.getenv('POSTGRES_USER','postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD','geniale'),
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'geniale'),
+        'HOST': os.getenv('POSTGRES_HOST', 'db'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
 
@@ -211,7 +218,7 @@ if db_url:
     DATABASES['default'] = dj_database_url.parse(db_url)
 
 MIGRATION_MODULES = {
-    
+
 }
 
 THUMBNAIL_PROCESSORS = (
@@ -219,4 +226,20 @@ THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.autocrop',
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
+)
+
+CMSPLUGIN_CONTACT_PLUS_TEMPLATES = [
+    ('components/contact.html', 'Geniale contact form'),
+    ('cmsplugin_contact_plus/contact.html', 'Default contact form'),
+]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder'
+)
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
 )
