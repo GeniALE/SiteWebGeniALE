@@ -53,20 +53,33 @@ What things you need to install?
 7. You need to create your super user with:
 
     `docker-compose run web python manage.py createsuperuser`
-
+    
 ## Branching model
 
-For this project, we are using Git Flow.
+For this project, we are using a branching model that focus on continuous delivery.
 
 Basically, you have those type of branches :
 
-- **master** : Production
-- **release** : Releases are created from **develop** and merged into **master**.
-- **develop** : Features merged but not ready for prod yet.
-- **feature** : New feature development based on **develop**
-- **hotfix** : A fix for something in production. (Merge back to **develop** and **master**
+- **master** : Trunk or latest branch
+- **feature** : New feature development based on **master**
+- **fix** : A fix for something in master. 
 
-For more details, look [at this amazing cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
+### Feature workflow
+
+- Create your feature branch from the master with a `feature/` prefix.
+- Do your work
+- Rebase master into your branch
+- Review and test 
+- Create pull request
+- Merge in master when peer reviewed
+
+### Fix workflow
+
+When we find a flaw, we have to respond quickly to fix that bug.
+
+The workflow is pretty much the same.
+ 
+The only difference is the branch prefix: `fix/`.
 
 # Deployment
 
