@@ -42,16 +42,18 @@ What things you need to install?
 
 1. Clone the repo `git clone https://github.com/GeniALE/SiteWebGeniALE.git`
 2. Go into the directory `cd SiteWebGeniALE`
-3. Build the docker containers `docker-compose build`
-4. Run the docker services `docker-compose up`
-5. The DjangoCMS should be running at [http://localhost:8000](localhost:8000)
-6. You need to create your super user with:
+3. You need to create a `.env` file to store your docker environment.
+    
+    You can also copy `.example.env` to `.env`. It contains some of the default env variables.
+    
+    *Note: As this file is mandatory, you don't have to put variables in it. As long as it exists, it's fine.*
+4. Build the docker containers `docker-compose build`
+5. Run the docker services `docker-compose up`
+6. The DjangoCMS should be running at [http://localhost:8000](localhost:8000)
+7. You need to create your super user with:
 
     `docker-compose run web python manage.py createsuperuser`
-
-7. If you want, you can create a `.env` file to setup some environment variables.
- 
-    You can copy the `.env.default` as an example.
+    
 ## Branching model
 
 For this project, we are using a branching model that focus on continuous delivery.
