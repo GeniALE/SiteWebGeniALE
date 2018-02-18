@@ -1,0 +1,18 @@
+@import "_controls";
+@import "_variables";
+
+.contactForm {
+  padding: 20px;
+
+  .errorlist {
+    color: $primary;
+  }
+
+  input[type=submit] {
+    width: 100%;
+  }
+
+  &__thanks {
+
+  }
+}

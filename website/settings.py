@@ -29,6 +29,8 @@ SECRET_KEY = '_*e5#vmms*t78k^670ze(sw33k(!8e27!wd8^9#wmi&npfacw*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ADMINS = ['root', 'admin']
+
 ALLOWED_HOSTS = [
     "geniale-dev.herokuapp.com",
     "geniale-prod.herokuapp.com",
@@ -42,11 +44,16 @@ docker_toolbox = os.getenv("DOCKERHOST")
 if docker_toolbox:
     ALLOWED_HOSTS.append(docker_toolbox)
 
+# Email configuration
+
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'localhost')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD', '')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+EMAIL_PORT = os.getenv('EMAIL_PORT', 25)
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', False)
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', False)
+
 # Application definition
-
-
-
-
 
 ROOT_URLCONF = 'website.urls'
 
@@ -152,8 +159,10 @@ INSTALLED_APPS = (
     'djangocms_googlemap',
     'djangocms_video',
     'website',
-    'teamModule',
-    'compressor'
+    'adminsortable',
+    'cmsplugin_contact_plus',
+    'compressor',
+    'teamModule'
 )
 
 LANGUAGES = (
@@ -190,6 +199,9 @@ CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
 
+
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -215,6 +227,11 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
+
+CMSPLUGIN_CONTACT_PLUS_TEMPLATES = [
+    ('components/contact.html', 'Geniale contact form'),
+    ('cmsplugin_contact_plus/contact.html', 'Default contact form'),
+]
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
