@@ -81,7 +81,7 @@ The only difference is the branch prefix: `fix/`.
 
 # Deployment
 
-At the moment, the website is deployed at: http://geniale-prod.herokuapp.com/
+At the moment, the website is deployed at: http://geniale-cms.herokuapp.com/
 
 ## Production deployment
 
