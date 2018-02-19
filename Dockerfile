@@ -24,3 +24,6 @@ ADD website /code/website
 ADD teamModule /code/teamModule
 ADD manage.py /code/
 ADD bin /code/bin
+
+# Start the application
+CMD ["bin/start.sh"]
