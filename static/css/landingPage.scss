@@ -1,0 +1,21 @@
+@import "_variables";
+
+.header {
+  &__content {
+
+    &__title {
+      text-transform: uppercase;
+      color: black;
+      font-weight: bold;
+      font-size: $h1;
+      text-shadow: 1px 1px $primary,
+      2px 2px $primary,
+      3px 3px $primary;
+    }
+
+    &__paragraph {
+      text-align: justify;
+    }
+
+  }
+}
