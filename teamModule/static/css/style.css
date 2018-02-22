@@ -1,0 +1,18 @@
+.teamModule {
+    background-color: lightgray;
+    color: white;
+    padding: 1em;
+}
+
+.teamModule__team {
+    padding: 0.5em 0;
+    font-weight: bold;
+}
+
+.teamModule__team:hover{
+    text-shadow: black 1px 1px 1px;
+}
+
+.teamModule__team__title {
+
+}

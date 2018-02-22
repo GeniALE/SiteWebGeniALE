@@ -1,5 +1,5 @@
 from django.db import models
-
+from cms.models.pluginmodel import CMSPlugin
 
 # Create your models here.
 class Formation(models.Model):
@@ -77,3 +77,12 @@ class MemberExtraInfo(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.info_type, self.value)
+
+
+
+"""
+Plugins models
+"""
+
+class TeamDisplay(CMSPlugin):
+    pass

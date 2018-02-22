@@ -1,0 +1,28 @@
+{% load sekizai_tags static %}
+{% addtoblock "js" %}<script type="text/javascript" src="{% static "js/script.js"%}"></script>{% endaddtoblock %}
+{% addtoblock "css" %}<link rel="stylesheet" type="text/css" href="{% static "css/style.css"%}">{% endaddtoblock %}
+{% addtoblock "js" %}
+    <script type="text/javascript">
+
+
+
+    </script>
+{% endaddtoblock %}
+
+<div class="teamModule">
+    <div class="teamModule__teams">
+    <h1 class="teamModule__title">Nos équipes</h1>
+        {% for team in teams %}
+            <div class="teamModule__team">
+                {{ team.team_name }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="teamModule__members">
+
+    </div>
+</div>
+<div class="teamModule__details">
+
+</div>
