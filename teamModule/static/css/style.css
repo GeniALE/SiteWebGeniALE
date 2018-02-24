@@ -9,10 +9,35 @@
     font-weight: bold;
 }
 
-.teamModule__team:hover{
+.teamModule__team--active {
     text-shadow: black 1px 1px 1px;
 }
 
 .teamModule__team__title {
 
+}
+
+.teamModule__team__count {
+    display:none;
+}
+
+.teamModule__team__count--active{
+    display:block;
+}
+
+.teamModule__team__member {
+
+}
+
+.teamModule__team__member--active {
+    text-shadow: black 1px 1px 1px;
+
+}
+
+.teamModule__details {
+
+}
+
+.teamModule__details--hidden {
+    display: none
 }

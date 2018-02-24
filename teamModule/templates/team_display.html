@@ -1,29 +1,69 @@
 {% load sekizai_tags static %}
-{% addtoblock "js" %}
-    <script type="text/javascript" src="{% static "js/script.js" %}"></script>{% endaddtoblock %}
 {% addtoblock "css" %}
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">{% endaddtoblock %}
 {% addtoblock "js" %}
     <script type="text/javascript">
-        var members = {{ members|safe}};
+        function indexArrayByKey(arr, key) {
+            var map = {};
+            for (var i = 0; i < arr.length; i++) {
+                var entry = arr[i];
+                map[entry[key]] = entry;
+            }
+            return map;
+        }
 
+        function groupMembersByTeam(members) {
+            var membersByTeam = {};
+            for (var i = 0; i < members.length; i++) {
+                var member = members[i];
+                for (var j = 0; j < member.teamRoles.length; j++) {
+                    var teamId = member.teamRoles[j].team;
+                    if (!membersByTeam[teamId])
+                        membersByTeam[teamId] = [];
+                    membersByTeam[teamId].push(member);
+                }
+            }
+            return membersByTeam;
+        }
+
+        var members = {{ membersAsJson|safe}};
+        var teams = {{  teamsAsJson|safe }};
+        var membersByTeam = groupMembersByTeam(members);
+        // Add the "all" group
+        membersByTeam[-1] = members; //Deep clone plz
+        var teamsById = indexArrayByKey(members, 'id');
     </script>
 {% endaddtoblock %}
+{% addtoblock "js" %}
+    <script type="text/javascript" src="{% static "js/script.js" %}"></script>{% endaddtoblock %}
 
 <div class="teamModule">
     <div class="teamModule__teams">
-        <h1 class="teamModule__title">Nos équipes</h1>
+        <h1 class="teamModule__title">Our teams</h1>
         {% for team in teams %}
-            <div class="teamModule__team">
+            <div class="teamModule__team" id="{{ prefix }}Team{{ team.id }}"
+                 onclick="teamModule.setActiveTeam({{ team.id }})">
                 {{ team.team_name }}
+                <span class="teamModule__team__count">({{ team.members_count }})</span>
             </div>
         {% endfor %}
     </div>
 
     <div class="teamModule__members">
-
+        <h1 class="teamModule__title">Members</h1>
+        {% for member in members %}
+            <div id="{{ prefix }}Member{{ member.id }}" class="teamModule__team__member"
+                 onclick="teamModule.setActiveMember({{ member.id }})">
+                {{ member.first_name }} {{ member.last_name }}
+            </div>
+        {% endfor %}
     </div>
 </div>
-<div class="teamModule__details">
-
+<div class="{{ prefix }}details--hidden">
+    <h1>Details</h1>
+    <div id="{{ prefix }}MemberDetailFullName"></div>
+    <h4>Projects</h4>
+    <div id="{{ prefix }}MemberDetailProjects"></div>
+    <h4>Formation</h4>
+    <div id="{{ prefix }}MemberDetailFormation"></div>
 </div>
