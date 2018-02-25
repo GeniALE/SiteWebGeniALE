@@ -46,6 +46,21 @@ class Project(models.Model):
         return self.project_name
 
 
+
+class MemberExtraInfoType(models.Model):
+    description = models.CharField(max_length=50)
+
+    def __str__(self):
+        return "{}".format(self.description)
+
+class MemberExtraInfo(models.Model):
+   # member = models.ForeignKey(Member)
+    info_type = models.ForeignKey(MemberExtraInfoType, default=0, on_delete=models.SET_DEFAULT)
+    value = models.CharField(max_length=500)
+
+    def __str__(self):
+        return "{} {}".format(self.info_type, self.value)
+
 class Member(models.Model):
     first_name = models.CharField(max_length=60, blank=False)
     last_name = models.CharField(max_length=60, blank=False)
@@ -56,21 +71,8 @@ class Member(models.Model):
     formation = models.ForeignKey(Formation, null=True, on_delete=models.SET_NULL)
     teamRoles = models.ManyToManyField(TeamRole)
     projects = models.ManyToManyField(Project)
+    extraInfos= models.ManyToManyField(MemberExtraInfo)
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
 
-
-class MemberExtraInfoType(models.Model):
-    description = models.CharField(max_length=50)
-
-    def __str__(self):
-        return "{}".format(self.description)
-
-class MemberExtraInfo(models.Model):
-    member = models.ForeignKey(Member)
-    info_type = models.ForeignKey(MemberExtraInfoType, default=0, on_delete=models.SET_DEFAULT)
-    value = models.CharField(max_length=500)
-
-    def __str__(self):
-        return "{} {} {}".format(self.member, self.info_type, self.value)
