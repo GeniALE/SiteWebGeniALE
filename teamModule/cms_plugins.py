@@ -23,7 +23,8 @@ class TeamModulePlugin(CMSPluginBase):
         teams.insert(0, Team(id=-1, team_name="All"))
 
         members = Member.objects.prefetch_related(
-            'teamRoles__team'
+            'teamRoles__team',
+            'formation'
         )
 
         members_as_dict = []
@@ -43,6 +44,7 @@ class TeamModulePlugin(CMSPluginBase):
                 teams_as_dict[teamRole.team_id]['members_count'] += 1
             new_member['teamRoles'] = [to_dict(teamRole) for teamRole in teamRoles]
             new_member['projects'] = [to_dict(project) for project in member.projects.all()]
+            new_member['formation'] = to_dict(member.formation)
             members_as_dict.append(new_member)
 
         context = super(TeamModulePlugin, self).render(context, instance, placeholder)

@@ -1,69 +1,52 @@
-{% load sekizai_tags static %}
-{% addtoblock "css" %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">{% endaddtoblock %}
-{% addtoblock "js" %}
-    <script type="text/javascript">
-        function indexArrayByKey(arr, key) {
-            var map = {};
-            for (var i = 0; i < arr.length; i++) {
-                var entry = arr[i];
-                map[entry[key]] = entry;
-            }
-            return map;
-        }
-
-        function groupMembersByTeam(members) {
-            var membersByTeam = {};
-            for (var i = 0; i < members.length; i++) {
-                var member = members[i];
-                for (var j = 0; j < member.teamRoles.length; j++) {
-                    var teamId = member.teamRoles[j].team;
-                    if (!membersByTeam[teamId])
-                        membersByTeam[teamId] = [];
-                    membersByTeam[teamId].push(member);
-                }
-            }
-            return membersByTeam;
-        }
-
-        var members = {{ membersAsJson|safe}};
-        var teams = {{  teamsAsJson|safe }};
-        var membersByTeam = groupMembersByTeam(members);
-        // Add the "all" group
-        membersByTeam[-1] = members; //Deep clone plz
-        var teamsById = indexArrayByKey(members, 'id');
-    </script>
-{% endaddtoblock %}
+{% load sekizai_tags compress  static %}
+{% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static "css/teamDisplay.scss" %}">
+{% endcompress %}
 {% addtoblock "js" %}
     <script type="text/javascript" src="{% static "js/script.js" %}"></script>{% endaddtoblock %}
+{% addtoblock "js" %}
+    <script type="text/javascript">
+        //Data from the backend
+        var members = {{ membersAsJson|safe}};
+        var teams = {{  teamsAsJson|safe }};
+        //Init the required modules
+        var teamModule = new TeamModuleClass(members)
+        teamModule.setActiveTeam(-1);
+    </script>
+{% endaddtoblock %}
+
 
 <div class="teamModule">
-    <div class="teamModule__teams">
-        <h1 class="teamModule__title">Our teams</h1>
-        {% for team in teams %}
-            <div class="teamModule__team" id="{{ prefix }}Team{{ team.id }}"
-                 onclick="teamModule.setActiveTeam({{ team.id }})">
-                {{ team.team_name }}
-                <span class="teamModule__team__count">({{ team.members_count }})</span>
-            </div>
-        {% endfor %}
-    </div>
+    <div class="teamModule__panel teamModule__panel--left">
+        <div class="teamModule__teams">
+            <h1 class="teamModule__title">Our teams</h1>
+            {% for team in teams %}
+                <div class="teamModule__team" id="{{ prefix }}Team{{ team.id }}"
+                     onclick="teamModule.setActiveTeam({{ team.id }})">
+                    {{ team.team_name }}
+                    <span class="teamModule__team__count">({{ team.members_count }})</span>
+                </div>
+            {% endfor %}
+        </div>
 
-    <div class="teamModule__members">
-        <h1 class="teamModule__title">Members</h1>
-        {% for member in members %}
-            <div id="{{ prefix }}Member{{ member.id }}" class="teamModule__team__member"
-                 onclick="teamModule.setActiveMember({{ member.id }})">
-                {{ member.first_name }} {{ member.last_name }}
-            </div>
-        {% endfor %}
+        <div class="teamModule__members">
+            <h1 class="teamModule__title">Members</h1>
+            {% for member in members %}
+                <div id="{{ prefix }}Member{{ member.id }}" class="teamModule__team__member"
+                     onclick="teamModule.setActiveMember({{ member.id }})">
+                    {{ member.first_name }} {{ member.last_name }}
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
-<div class="{{ prefix }}details--hidden">
-    <h1>Details</h1>
-    <div id="{{ prefix }}MemberDetailFullName"></div>
-    <h4>Projects</h4>
-    <div id="{{ prefix }}MemberDetailProjects"></div>
-    <h4>Formation</h4>
-    <div id="{{ prefix }}MemberDetailFormation"></div>
+    <div id="{{ prefix }}details__current" class="teamModule__panel teamModule__panel--right {{ prefix }}details teamModule--hidden">
+        <div>
+            <img id="{{ prefix }}MemberDetailProfilePicture" class="teamModule__details__picture" src=""/>
+        </div>
+        <div id="{{ prefix }}MemberDetailFullName"></div>
+        <h4>Projects</h4>
+        <div id="{{ prefix }}MemberDetailProjects"></div>
+        <h4>Formation</h4>
+        <div id="{{ prefix }}MemberDetailFormation"></div>
+    </div>
 </div>

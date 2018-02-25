@@ -1,0 +1,66 @@
+.teamModule {
+  background-color: lightgray;
+  color: white;
+  padding: 1em;
+
+  &__team {
+    padding: 0.5em 0;
+    font-weight: bold;
+
+    &--active {
+      color: black;
+    }
+
+    &--active > &__count{
+      display:inline-block;
+    }
+
+    &__count {
+      display: none;
+      padding: 0 0.2em;
+      background-color: #D50000;
+      border-radius: 0.7em;
+
+
+    }
+
+    &__title {
+
+    }
+
+    &__member {
+      font-weight: bold;
+
+      &--active {
+        color: black;
+      }
+    }
+  }
+
+  &__details {
+    width: 45%;
+    background-color: white;
+    color: black;
+    padding: 1em;
+
+    &__picture {
+      max-width: 200px;
+      max-height: 200px;
+    }
+  }
+
+  &--hidden {
+    display: none !important;
+  }
+
+  &__panel {
+    display: inline-block;
+    &--left {
+      width: 50%;
+    }
+
+    &--right {
+      width: 45%;
+    }
+  }
+}
