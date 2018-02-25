@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from django.forms import model_to_dict
@@ -34,6 +36,7 @@ class TeamModulePlugin(CMSPluginBase):
 
         # All special case
         teams_as_dict[-1]['members_count'] = len(members)
+        teams_as_dict = OrderedDict(sorted(teams_as_dict.items(), key=lambda t: t[0]))
 
         for member in members:
             new_member = to_dict(member)
