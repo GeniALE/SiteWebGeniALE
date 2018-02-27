@@ -1,7 +1,11 @@
 .teamModule {
-  background-color: lightgray;
+  height: 100%;
+  background-color: #bdc3c7;
+    //background: linear-gradient(-45deg, black 25%, transparent 25%, transparent),linear-gradient(45deg, transparent 75%, black 75%);
+
   color: white;
   padding: 1em;
+  font-family: "Georgia", sans-serif;
 
   &__team {
     padding: 0.5em 0;
@@ -18,10 +22,10 @@
     &__count {
       display: none;
       padding: 0 0.2em;
-      background-color: #D50000;
+      background-color: #d24d57;
       border-radius: 0.7em;
-
-
+      min-width: 25px;
+      text-align: center;
     }
 
     &__title {
@@ -63,4 +67,22 @@
       width: 45%;
     }
   }
+
+  &__memberpanel{
+    display: inline-block;
+    &--left {
+      width: 30%;
+    }
+
+    &--right {
+      width: 65%;
+    }
+
+    &__icon{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+  }
+
 }
