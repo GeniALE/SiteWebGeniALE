@@ -103,10 +103,13 @@ TeamModuleClass.prototype.setMemberVisibility = function (teamId) {
         }
 
         var elem = document.getElementById(dataTypeInfo.idPrefix + member.id);
+        var icon = document.getElementById("teamModule__MemberIcon" + member.id);
         if (isPartOfTeam) {
             elem.classList.remove("teamModule--hidden");
+            icon.classList.remove("teamModule--hidden");
         } else {
             elem.classList.add("teamModule--hidden");
+            icon.classList.add("teamModule--hidden");
         }
     }
 };
