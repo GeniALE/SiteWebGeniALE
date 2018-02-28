@@ -131,12 +131,23 @@ TeamModuleClass.prototype._loadMemberDetails = function (id) {
 
         var member = this.membersById[id];
         var mapping = this.detailIdsMapping;
-        //Profile picture
+        //Nicest Profile Picture
         document.getElementById(mapping.picture).setAttribute("src",member.profilePicUrl);
 
         var fullName = member.first_name + " " + member.last_name;
         document.getElementById(mapping.fullName).innerText = fullName;
 
+        var projectElement = document.getElementById(mapping.projects);
+        projectElement.innerHTML = '';
+
+        for (proj of member.projects) {
+          var para = document.createElement('div');
+          var node = document.createTextNode(proj.project_name);
+          para.appendChild(node);
+          projectElement.appendChild(para);
+        }
+
+        //document.getElementById(mapping.projects).innerText = projectName;
         document.getElementById(mapping.formation).innerText = member.formation.name;
     }
 
