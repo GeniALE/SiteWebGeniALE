@@ -18,7 +18,9 @@ function TeamModuleClass(members) {
     this.infoByDataType = {
         member: {
             className: 'teamModule__team__member',
-            idPrefix: 'teamModule__Member'
+            idPrefix: 'teamModule__Member',
+            iconPrefix: 'teamModule__MemberIcon',
+            iconClassName: 'teamModule__memberpanel__icon'
         },
         team: {
             className: 'teamModule__team',
@@ -103,7 +105,7 @@ TeamModuleClass.prototype.setMemberVisibility = function (teamId) {
         }
 
         var elem = document.getElementById(dataTypeInfo.idPrefix + member.id);
-        var icon = document.getElementById("teamModule__MemberIcon" + member.id);
+        var icon = document.getElementById(dataTypeInfo.iconPrefix + member.id);
         if (isPartOfTeam) {
             elem.classList.remove("teamModule--hidden");
             icon.classList.remove("teamModule--hidden");
@@ -143,12 +145,18 @@ TeamModuleClass.prototype._loadMemberDetails = function (id) {
 
 TeamModuleClass.prototype._setActiveDiv = function (id, dataType, activate) {
     var dataTypeInfo = this.infoByDataType[dataType];
+
     var activateClass = dataTypeInfo.className + "--active";
+    var activateIconClass = dataTypeInfo.iconClassName + "--active";
+
     var elem = document.getElementById(dataTypeInfo.idPrefix + id);
+    var icon = document.getElementById("teamModule__MemberIcon" + id);
 
     if (activate) {
         elem.classList.add(activateClass);
+        icon.classList.add(activateIconClass);
     } else {
         elem.classList.remove(activateClass);
+        icon.classList.remove(activateIconClass);
     }
 };
