@@ -165,9 +165,13 @@ TeamModuleClass.prototype._setActiveDiv = function (id, dataType, activate) {
 
     if (activate) {
         elem.classList.add(activateClass);
-        icon.classList.add(activateIconClass);
+        if(icon != null){
+            icon.classList.add(activateIconClass);
+        }
     } else {
         elem.classList.remove(activateClass);
-        icon.classList.remove(activateIconClass);
+        if(icon != null){
+            icon.classList.remove(activateIconClass);
+          }
     }
 };
