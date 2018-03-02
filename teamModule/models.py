@@ -71,7 +71,7 @@ class MemberExtraInfoType(models.Model):
 
 
 class MemberExtraInfo(models.Model):
-    member = models.ForeignKey(Member)
+    member = models.ForeignKey(Member, null=True, on_delete=models.SET_NULL)
     info_type = models.ForeignKey(MemberExtraInfoType, default=0, on_delete=models.SET_DEFAULT)
     value = models.CharField(max_length=500)
 
