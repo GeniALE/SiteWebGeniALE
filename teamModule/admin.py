@@ -1,10 +1,7 @@
 from django.contrib import admin
-from django.forms import BaseInlineFormSet
-
 from .models import Formation, Team, Project, Member, ProjectStatus, TeamRole, MemberExtraInfo, MemberExtraInfoType
 
 
-# Register your models here.
 class PageTeamAdmin(admin.ModelAdmin):
     pass
 
@@ -13,24 +10,10 @@ class PageProjectsAdmin(admin.ModelAdmin):
     pass
 
 
-# class ExtraInfoInline(admin.StackedInline):
-#    model = Member.extraInfos.through
-#   extra = 1
-
-class ExtraInfoFormSet(BaseInlineFormSet):
-    def get_queryset(self):
-        if not hasattr(self, '_queryset'):
-            criteria = {}  # Your criteria here
-            qs = super(ExtraInfoFormSet, self).get_queryset().filter(**criteria)
-            self._queryset = qs
-        return self._queryset
-
-
 class ExtraInfoInline(admin.StackedInline):
     model = MemberExtraInfo
     extra = 0
     fk_name = 'member'
-    formset = ExtraInfoFormSet
 
 
 class PageMemberAdmin(admin.ModelAdmin):
