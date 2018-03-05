@@ -19,7 +19,7 @@ class ExtraInfoInline(admin.StackedInline):
 class PageMemberAdmin(admin.ModelAdmin):
     model = Member
     inlines = (ExtraInfoInline,)
-    filter_horizontal = ("teamRoles","projects",)
+    filter_horizontal = ("teamRoles", "projects",)
 
 
 class PageFormationAdmin(admin.ModelAdmin):
@@ -46,10 +46,7 @@ admin.site.register(ProjectStatus, PageStatusAdmin)
 admin.site.register(Formation, PageFormationAdmin)
 admin.site.register(Team, PageTeamAdmin)
 admin.site.register(Project, PageProjectsAdmin)
-admin.site.register(TeamRole,PageTeamAdmin)
-admin.site.register(Member, PageMemberAdmin)
-admin.site.register(Formation, PageFormationAdmin)
-admin.site.register(ProjectStatus, PageStatusAdmin)
 admin.site.register(TeamRole, PageTeamRoleAdmin)
 admin.site.register(MemberExtraInfo, PageMemberExtraInfoAdmin)
 admin.site.register(MemberExtraInfoType, PageMemberExtraInfoTypeAdmin)
+admin.site.register(Member, PageMemberAdmin)
