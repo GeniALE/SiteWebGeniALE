@@ -57,5 +57,23 @@ class Member(models.Model):
     teamRoles = models.ManyToManyField(TeamRole)
     projects = models.ManyToManyField(Project)
 
+    # extraInfos= models.ManyToManyField(MemberExtraInfo)
+
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
+
+
+class MemberExtraInfoType(models.Model):
+    description = models.CharField(max_length=50)
+
+    def __str__(self):
+        return "{}".format(self.description)
+
+
+class MemberExtraInfo(models.Model):
+    member = models.ForeignKey(Member, null=True, on_delete=models.SET_NULL)
+    info_type = models.ForeignKey(MemberExtraInfoType, default=0, on_delete=models.SET_DEFAULT)
+    value = models.CharField(max_length=500)
+
+    def __str__(self):
+        return "{} {}".format(self.info_type, self.value)
