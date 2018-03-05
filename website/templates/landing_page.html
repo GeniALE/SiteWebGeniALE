@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         {% compress css %}
             <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}">
+            <link rel="stylesheet" type="text/x-scss" href="{% static "style/landing.scss" %}">
         {% endcompress %}
         {% render_block "css" %}
     </head>
@@ -31,14 +32,23 @@
         </nav>
         <main>
             <span class="title">GeniALE</span>
+            <section class="member">
+                <div class="member__background">
+                    <div class="member__bgContainer"></div>
+                </div>
+                <div class="member__content">
+                    <div class="member__ctContainer">
+                        <h3><span class="member__number">{% placeholder "member_number" %}</span>+ {% placeholder "member" %}</h3>
+                        <span>{% placeholder "member_desc" %}</span>
+                        <span>
+                            <a href="." class="button button--white button--large">{% placeholder "member_button" %}</a>
+                        </span>
+                    </div>
+                </div>
+            </section>
         </main>
-        <div class="container">
-            <ul class="nav">
-                {% show_menu 0 100 100 100 %}
-            </ul>
-            {% block content %}{% endblock content %}
-        </div>
         {% render_block "js" %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="{% static "script/landing.js" %}"></script>
     </body>
 </html>
