@@ -33,6 +33,7 @@ ADMINS = ['root', 'admin']
 
 ALLOWED_HOSTS = [
     "geniale-dev.herokuapp.com",
+    "geniale-cms.herokuapp.com",
     "geniale-prod.herokuapp.com",
     "web.geniale.ca",
     "localhost",
