@@ -17,6 +17,7 @@ This repository  contains the CMS and the additionnal modules.
 - [Deployment](#deployment)
   - [Production deployment](#production-deployment)
   - [Docker tools](#docker-tools)
+- [Plugins](#plugins)
 - [Contributing](#contributing)
 - [Versioning](#versioning)
 - [Authors](#authors)
@@ -111,6 +112,11 @@ To run command on production, you need to run: `d prod <command>`
 | exec    | Execute something in the container  | ./d exec python -V | d exec python -V |
 
 Eventually, more commands will be added to automate some tasks.
+
+# Plugins
+
+- [TeamModule](/teamModule/README.md)
+
 
 # Contributing
 
