@@ -83,7 +83,6 @@ class MemberExtraInfo(models.Model):
         return "{} {}".format(self.info_type, self.value)
 
 
-
 """
 Plugins models
 """
