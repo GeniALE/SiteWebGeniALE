@@ -1,3 +1,4 @@
+//Look, this is how we do a class in ES5
 function TeamModuleHelper() {
 
 }
@@ -13,25 +14,24 @@ TeamModuleHelper.prototype.indexArrayByKey = function (arr, key) {
 
 var TeamModuleHelper = new TeamModuleHelper();
 
-
-function TeamModuleClass(members) {
+function TeamModuleClass(members, idSuffix, cssPrefix) {
     this.infoByDataType = {
         member: {
-            className: 'teamModule__team__member',
-            idPrefix: 'teamModule__Member',
-            iconPrefix: 'teamModule__MemberIcon',
-            iconClassName: 'teamModule__memberpanel__icon'
+            className: cssPrefix + 'teamModule__team__member',
+            idPrefix: 'teamModule__Member' + idSuffix,
+            iconIdPrefix: 'teamModule__MemberIcon' + idSuffix,
+            iconClassName: cssPrefix + 'teamModule__memberpanel__icon'
         },
         team: {
-            className: 'teamModule__team',
-            idPrefix: 'teamModule__Team'
+            className: cssPrefix + 'teamModule__team',
+            idPrefix: 'teamModule__Team' + idSuffix
         }
     };
     this.detailIdsMapping = {
-        picture: "teamModule__MemberDetailProfilePicture",
-        fullName: "teamModule__MemberDetailFullName",
-        projects: "teamModule__MemberDetailProjects",
-        formation: "teamModule__MemberDetailFormation"
+        picture: "teamModule__MemberDetailProfilePicture" + idSuffix,
+        fullName: "teamModule__MemberDetailFullName" + idSuffix,
+        projects: "teamModule__MemberDetailProjects" + idSuffix,
+        formation: "teamModule__MemberDetailFormation" + idSuffix
     };
 
     this.activeDataTypes = {
@@ -41,6 +41,10 @@ function TeamModuleClass(members) {
 
     this.members = members;
     this.membersById = TeamModuleHelper.indexArrayByKey(members, 'id');
+
+    //Misc
+    this.currentDetailId = "teamModule__details__current" + idSuffix;
+    this.hiddenClass = cssPrefix + "teamModule--hidden";
 
     //This binding
     this.setActiveMember = this.setActiveMember.bind(this);
@@ -105,13 +109,13 @@ TeamModuleClass.prototype.setMemberVisibility = function (teamId) {
         }
 
         var elem = document.getElementById(dataTypeInfo.idPrefix + member.id);
-        var icon = document.getElementById(dataTypeInfo.iconPrefix + member.id);
+        var icon = document.getElementById(dataTypeInfo.iconIdPrefix + member.id);
         if (isPartOfTeam) {
-            elem.classList.remove("teamModule--hidden");
-            icon.classList.remove("teamModule--hidden");
+            elem.classList.remove(this.hiddenClass);
+            icon.classList.remove(this.hiddenClass);
         } else {
-            elem.classList.add("teamModule--hidden");
-            icon.classList.add("teamModule--hidden");
+            elem.classList.add(this.hiddenClass);
+            icon.classList.add(this.hiddenClass);
         }
     }
 };
@@ -123,35 +127,30 @@ TeamModuleClass.prototype.setMemberVisibility = function (teamId) {
  */
 TeamModuleClass.prototype._loadMemberDetails = function (id) {
 
-    var detailsElem = document.getElementById("teamModule__details__current");
+    var detailsElem = document.getElementById(this.currentDetailId);
     if (id === null) {
-        detailsElem.classList.add("teamModule--hidden");
+        detailsElem.classList.add(this.hiddenClass);
     } else {
-        detailsElem.classList.remove("teamModule--hidden");
+        detailsElem.classList.remove(this.hiddenClass);
 
         var member = this.membersById[id];
         var mapping = this.detailIdsMapping;
         //Nicest Profile Picture
-        document.getElementById(mapping.picture).setAttribute("src",member.profilePicUrl);
-
-        var fullName = member.first_name + " " + member.last_name;
-        document.getElementById(mapping.fullName).innerText = fullName;
+        document.getElementById(mapping.picture).setAttribute("src", member.profilePicUrl);
+        document.getElementById(mapping.fullName).innerText = member.first_name + " " + member.last_name;
 
         var projectElement = document.getElementById(mapping.projects);
         projectElement.innerHTML = '';
 
-        for (proj of member.projects) {
-          var para = document.createElement('div');
-          var node = document.createTextNode(proj.project_name);
-          para.appendChild(node);
-          projectElement.appendChild(para);
+        for (var i = 0; i < member.projects.length; i++) {
+            var proj = member.projects[i];
+            var projectContainer = document.createElement('div');
+            var node = document.createTextNode(proj.project_name);
+            projectContainer.appendChild(node);
+            projectElement.appendChild(projectContainer);
         }
-
-        //document.getElementById(mapping.projects).innerText = projectName;
         document.getElementById(mapping.formation).innerText = member.formation.name;
     }
-
-
 };
 
 TeamModuleClass.prototype._setActiveDiv = function (id, dataType, activate) {
@@ -161,17 +160,17 @@ TeamModuleClass.prototype._setActiveDiv = function (id, dataType, activate) {
     var activateIconClass = dataTypeInfo.iconClassName + "--active";
 
     var elem = document.getElementById(dataTypeInfo.idPrefix + id);
-    var icon = document.getElementById("teamModule__MemberIcon" + id);
+    var icon = document.getElementById(dataTypeInfo.iconIdPrefix + id);
 
     if (activate) {
         elem.classList.add(activateClass);
-        if(icon != null){
+        if (icon != null) {
             icon.classList.add(activateIconClass);
         }
     } else {
         elem.classList.remove(activateClass);
-        if(icon != null){
+        if (icon != null) {
             icon.classList.remove(activateIconClass);
-          }
+        }
     }
 };

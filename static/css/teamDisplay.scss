@@ -1,11 +1,12 @@
 .teamModule {
   height: 100%;
   background-color: #bdc3c7;
-    //background: linear-gradient(-45deg, black 25%, transparent 25%, transparent),linear-gradient(45deg, transparent 75%, black 75%);
-
+  //background: linear-gradient(-45deg, black 25%, transparent 25%, transparent),linear-gradient(45deg, transparent 75%, black 75%);
+  min-height: 460px;
   color: white;
   padding: 1em;
   font-family: "Georgia", sans-serif;
+  display: flex;
 
   &__team {
     padding: 0.5em 0;
@@ -15,8 +16,8 @@
       color: black;
     }
 
-    &--active > &__count{
-      display:inline-block;
+    &--active > &__count {
+      display: inline-block;
     }
 
     &:hover {
@@ -31,7 +32,7 @@
       border-radius: 0.7em;
       min-width: 25px;
       text-align: center;
-      vertical-align:center;
+      vertical-align: center;
     }
 
     &__title {
@@ -69,17 +70,17 @@
   &__panel {
     display: inline-block;
     &--left {
-      width: 50%;
+      flex: 0 0 50%;
     }
 
     &--right {
-      width: 45%;
+      flex: 1;
     }
   }
 
-  &__memberpanel{
+  &__memberpanel {
     display: inline-block;
-    vertical-align:top;
+    vertical-align: top;
     &--left {
       width: 30%;
     }
@@ -88,7 +89,7 @@
       width: 65%;
     }
 
-    &__icon{
+    &__icon {
       object-fit: cover;
       width: 100px;
       height: 100px;
@@ -96,7 +97,7 @@
       opacity: 0.5;
 
       &--active {
-        opacity: 1.0!important;
+        opacity: 1.0 !important;
       }
       &:hover {
         cursor: pointer;

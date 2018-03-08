@@ -1,7 +1,11 @@
 from django.db import models
 from cms.models.pluginmodel import CMSPlugin
+from django.utils.encoding import python_2_unicode_compatible
 
 # Create your models here.
+from teamModule import local_settings
+
+
 class Formation(models.Model):
     name = models.CharField(max_length=100, blank=False)
     url = models.CharField(max_length=200, null=True, blank=True)
@@ -84,5 +88,20 @@ class MemberExtraInfo(models.Model):
 Plugins models
 """
 
-class TeamDisplay(CMSPlugin):
-    pass
+
+@python_2_unicode_compatible
+class TeamDisplayView(CMSPlugin):
+    template = models.CharField(
+        max_length=255,
+        choices=local_settings.TEAMMODULE_TEAMDISPLAY_TEMPLATES,
+        default='teamModule/team_display.html',
+        editable=len(local_settings.TEAMMODULE_TEAMDISPLAY_TEMPLATES) > 1)
+    css_class_prefix = models.CharField(
+        max_length=100,
+        default="",
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = "TeamModule Team Display"
+        verbose_name_plural = "TeamModule Team Displays"
