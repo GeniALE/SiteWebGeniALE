@@ -1,54 +1,31 @@
-{% load cms_tags menu_tags sekizai_tags compress static %}
-<!doctype html>
-<html>
-    <head>
-        <title>{% block title %}This is my new project home page{% endblock title %}</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        {% compress css %}
-            <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}">
-            <link rel="stylesheet" type="text/x-scss" href="{% static "style/landing.scss" %}">
-        {% endcompress %}
-        {% render_block "css" %}
-    </head>
-    <body>
-        {% cms_toolbar %}
-        <header class="header--hidden">
-            <div class="logo">
-                <img class="logo__img" src="http://logo.geniale.ca" alt="">
-                <div class="logo__text">
-                    <span>Géni</span><span>ALE</span>
-                </div>
+{% extends "base.html" %}
+{% load cms_tags compress static %}
+{% block style %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "style/landing.scss" %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <span class="title">GeniALE</span>
+    <section class="member">
+        <div class="member__background">
+            <div class="member__bgContainer"></div>
+        </div>
+        <div class="member__content">
+            <div class="member__ctContainer">
+                <h3><span class="member__number">{% placeholder "member_number" %}</span>+ {% placeholder "member" %}</h3>
+                <span>{% placeholder "member_desc" %}</span>
+                <span>
+                    <a href="." class="button button--white button--large">{% placeholder "member_button" %}</a>
+                </span>
             </div>
-            <div class="menu">
-                <div class="button__hamburger">
-                    <span class="button__hamburger-bar"></span>
-                    <span class="button__hamburger-bar"></span>
-                    <span class="button__hamburger-bar"></span>
-                </div>
-            </div>
-        </header>
-        <nav class="nav--close">
-            {% show_menu 0 100 100 100 %}
-        </nav>
-        <main>
-            <span class="title">GeniALE</span>
-            <section class="member">
-                <div class="member__background">
-                    <div class="member__bgContainer"></div>
-                </div>
-                <div class="member__content">
-                    <div class="member__ctContainer">
-                        <h3><span class="member__number">{% placeholder "member_number" %}</span>+ {% placeholder "member" %}</h3>
-                        <span>{% placeholder "member_desc" %}</span>
-                        <span>
-                            <a href="." class="button button--white button--large">{% placeholder "member_button" %}</a>
-                        </span>
-                    </div>
-                </div>
-            </section>
-        </main>
-        {% render_block "js" %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="{% static "script/landing.js" %}"></script>
-    </body>
-</html>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    {% compress js %}
+        <script src="{% static "script/landing.js" %}" type="text/javascript" charset="utf-8"></script>
+    {% endcompress %}
+{% endblock %}

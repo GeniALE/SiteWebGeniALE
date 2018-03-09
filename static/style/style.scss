@@ -1,5 +1,7 @@
+@import "./basic/normalize";
 @import "./basic/_variables";
-@import "./basic/fonts";
+@import "./basic/_fonts";
+@import "./components/_header";
 
 body {
     background-color: $background-color;
@@ -12,15 +14,10 @@ body {
     font-size: $title-big;
 }
 
-.button__hamburger {
-    &-bar {
-        display: block;
-        width: 30px;
-        height: 3px;
-        background: black;
+div[class*="button"] {
+    cursor: pointer;
+}
 
-        &:not(:last-child) {
-            margin-bottom: 6px;
-        }
-    }
+main {
+    padding-top: 60px;
 }

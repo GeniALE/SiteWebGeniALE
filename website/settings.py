@@ -239,6 +239,12 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder'
 )
 
+COMPRESS_ENABLED = True
+
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.SlimItFilter'
+]
+
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
