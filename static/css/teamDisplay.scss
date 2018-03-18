@@ -1,0 +1,107 @@
+.teamModule {
+  height: 100%;
+  background-color: #bdc3c7;
+  //background: linear-gradient(-45deg, black 25%, transparent 25%, transparent),linear-gradient(45deg, transparent 75%, black 75%);
+  min-height: 460px;
+  color: white;
+  padding: 1em;
+  font-family: "Georgia", sans-serif;
+  display: flex;
+
+  &__team {
+    padding: 0.5em 0;
+    font-weight: bold;
+
+    &--active {
+      color: black;
+    }
+
+    &--active > &__count {
+      display: inline-block;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &__count {
+      color: white !important;
+      display: none;
+      padding: 0 0.2em;
+      background-color: #d24d57;
+      border-radius: 0.7em;
+      min-width: 25px;
+      text-align: center;
+      vertical-align: center;
+    }
+
+    &__title {
+
+    }
+
+    &__member {
+      margin: 8px;
+      &--active {
+        color: black;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__details {
+    width: 45%;
+    background-color: white;
+    color: black;
+    padding: 1em;
+
+    &__picture {
+      object-fit: cover;
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  &--hidden {
+    display: none !important;
+  }
+
+  &__panel {
+    display: inline-block;
+    &--left {
+      flex: 0 0 50%;
+    }
+
+    &--right {
+      flex: 1;
+    }
+  }
+
+  &__memberpanel {
+    display: inline-block;
+    vertical-align: top;
+    &--left {
+      width: 30%;
+    }
+
+    &--right {
+      width: 65%;
+    }
+
+    &__icon {
+      object-fit: cover;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      opacity: 0.5;
+
+      &--active {
+        opacity: 1.0 !important;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

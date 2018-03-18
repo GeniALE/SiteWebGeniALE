@@ -1,0 +1,25 @@
+{% load sekizai_tags compress  static %}
+{% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static "css/teamDisplay.scss" %}">
+{% endcompress %}
+{% addtoblock "js" %}
+    <script type="text/javascript" src="{% static "js/script.js" %}"></script>{% endaddtoblock %}
+{% addtoblock "js" %}
+    <script type="text/javascript">
+        //Encapsulate javascript inside a function so it's not accessible from the outside #hackerman
+        var teamModule{{ idPrefix }};
+        (function () {
+            //Data from the backend
+            var members = {{ membersAsJson|safe}};
+            var teams = {{  teamsAsJson|safe }};
+            //Init the required modules
+            teamModule{{ idSuffix }} = new TeamModuleClass(members, "{{ idSuffix }}", "{{ cssPrefix }}");
+            teamModule{{ idSuffix }}.setActiveTeam(-1);
+        })();
+    </script>
+{% endaddtoblock %}
+
+
+<div style="background-color:red;padding:5em;">
+    Nous sommes maintenants {{ members|length }} membres!
+</div>
