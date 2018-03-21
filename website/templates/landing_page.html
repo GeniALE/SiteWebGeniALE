@@ -12,13 +12,22 @@
         <div class="member__background">
             <div class="member__bgContainer"></div>
         </div>
-        <div class="member__content">
-            <div class="member__ctContainer">
-                <h3><span class="member__number">{% placeholder "member_number" %}</span>+ {% placeholder "member" %}</h3>
-                <span>{% placeholder "member_desc" %}</span>
-                <span>
+        <div class="member__content  row">
+            <div class="member__ctContainer center-xs end-md col-md-6 col-xs-12">
+                <div class="box">
+                    <h3><span
+                            class="member__number">{% placeholder "member_number" %}</span>+ {% placeholder "member" %}
+                    </h3>
+                    <span>{% placeholder "member_desc" %}</span>
+                    <span>
                     <a href="." class="button button--white button--large">{% placeholder "member_button" %}</a>
                 </span>
+                </div>
+            </div>
+            <div class="member__imgContainer col-md-6 col-xs-12">
+                <div class="box">
+                {% placeholder "member_img" %}
+                </div>
             </div>
         </div>
     </section>

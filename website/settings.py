@@ -239,6 +239,11 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder'
 )
 
+TEAMMODULE_TEAMDISPLAY_TEMPLATES = [
+    ('teamModule/team_display.html', 'team_display.html'),
+    ('components/member_count.html', 'Total member count')
+]
+
 COMPRESS_ENABLED = True
 
 COMPRESS_JS_FILTERS = [
