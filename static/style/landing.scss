@@ -59,7 +59,7 @@ body {
     position: absolute;
     top: 0;
     color: #ecf0f1;
-    text-shadow: black 0 0 5px;
+    text-shadow: black 0 0 1px;
     font-family: Raleway;
     text-align: right;
     display: flex;
@@ -121,6 +121,7 @@ body {
       &:hover {
         background: #ecf0f1;
         color: black;
+        text-shadow: none;
       }
     }
   }
