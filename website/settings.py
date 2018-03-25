@@ -193,7 +193,8 @@ CMS_TEMPLATES = (
     ## Customize this
     ('fullwidth.html', 'Fullwidth'),
     ('sidebar_left.html', 'Sidebar Left'),
-    ('sidebar_right.html', 'Sidebar Right')
+    ('sidebar_right.html', 'Sidebar Right'),
+    ('landing_page.html', 'Landing Page')
 )
 
 CMS_PERMISSION = True
@@ -237,6 +238,17 @@ STATICFILES_FINDERS = (
     # other finders..
     'compressor.finders.CompressorFinder'
 )
+
+TEAMMODULE_TEAMDISPLAY_TEMPLATES = [
+    ('teamModule/team_display.html', 'team_display.html'),
+    ('components/member_count.html', 'Total member count')
+]
+
+COMPRESS_ENABLED = True
+
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.SlimItFilter'
+]
 
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),

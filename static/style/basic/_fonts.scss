@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:600,600i,900,900i');
+
+// Text font
+$text-font: 'Raleway', arial, sans-serif;
+$text-regular: 15px;
+$text-small: .8em;
+$text-big: 1.2em;
+
+// Title font
+$title-font: 'Raleway', 'Arial', 'Ubuntu', sans-serif;
+$title-regular: 4em;
+$title-small: 2.4em;
+$title-big: 4.8em;
+
+%text {
+    font-family: $text-font;
+    font-weight: 600;
+}
+
+%title {
+    font-family: $title-font;
+    font-weight: 900;
+}

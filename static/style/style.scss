@@ -1,0 +1,34 @@
+@import "./basic/normalize";
+@import "./basic/_variables";
+@import "./basic/_fonts";
+@import "./components/_header";
+
+body {
+    background-color: $background-color;
+    font-family: $text-font;
+    font-size: $text-regular;
+}
+
+.title {
+    @extend %title;
+    font-size: $title-big;
+}
+
+div[class*="button"] {
+    cursor: pointer;
+}
+
+main {
+    padding-top: 60px;
+}
+
+.col-xs-0, .col-sm-0, .col-md-0,.col-lg-0 {
+  -webkit-flex-basis: 0;
+  -moz-flex-basis: 0;
+  -ms-flex-preferred-size: 0%;
+  flex-basis: 0;
+  max-width: 0; }
+
+.col-xs-offset-0,.col-sm-offset-0, .col-lg-offset-0, .col-lg-offset-0 {
+  margin-left:0; }
+

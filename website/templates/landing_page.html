@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load cms_tags compress static %}
+{% block style %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "style/landing.scss" %}">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <span class="title">GeniALE</span>
+    <section class="member">
+        <div class="member__background">
+            <div class="member__bgContainer"></div>
+        </div>
+        <div class="member__content  row">
+            <div class="member__ctContainer center-xs end-md col-md-6 col-xs-12">
+                <div class="box">
+                    <h3><span
+                            class="member__number">{% placeholder "member_number" %}</span>+ {% placeholder "member" %}
+                    </h3>
+                    <span>{% placeholder "member_desc" %}</span>
+                    <span>
+                    <a href="." class="button button--white button--large">{% placeholder "member_button" %}</a>
+                </span>
+                </div>
+            </div>
+            <div class="member__imgContainer col-md-6 col-xs-0">
+                <div class="box">
+                {% placeholder "member_img" %}
+                </div>
+            </div>
+        </div>
+     {% placeholder "footer" %}
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    {% compress js %}
+        <script src="{% static "script/landing.js" %}" type="text/javascript" charset="utf-8"></script>
+    {% endcompress %}
+{% endblock %}
