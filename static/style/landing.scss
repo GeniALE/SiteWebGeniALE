@@ -59,10 +59,12 @@ body {
     position: absolute;
     top: 0;
     color: #ecf0f1;
+    text-shadow: black 0 0 1px;
     font-family: Raleway;
     text-align: right;
     display: flex;
     align-items: center;
+    margin: 0;
 
     .member__ctContainer {
       min-width: calc(50% - 10px);
@@ -120,6 +122,7 @@ body {
       &:hover {
         background: #ecf0f1;
         color: black;
+        text-shadow: none;
       }
     }
   }

@@ -5,6 +5,7 @@
 # Project
 /public/static
 /public/media
+/media/
 /sql
 /fcgi/django.fcgi
 /static/css/*.css
