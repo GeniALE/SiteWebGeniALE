@@ -10,6 +10,7 @@ from teamModule.helpers import to_dict
 from .models import TeamDisplayView
 from .models import Team
 from .models import Member
+from .models import Project
 
 
 @plugin_pool.register_plugin
@@ -58,6 +59,12 @@ class TeamModulePlugin(CMSPluginBase):
         teams_as_dict = OrderedDict(sorted(teams_as_dict.items(), key=lambda t: t[0]))
         return teams_as_dict
 
+    def get_projects(self):
+        projects = Project.objects.prefetch_related(
+            'status'
+        )
+        return projects
+
     def render(self, context, instance, placeholder):
         if instance and instance.template:
             self.render_template = instance.template
@@ -69,6 +76,7 @@ class TeamModulePlugin(CMSPluginBase):
         teams = self.get_teams()
         members_as_dict = self.members_to_dict(members)
         teams_as_dict = self.teams_to_dict(teams, members)
+        projects = self.get_projects()
 
         context.update({
             'teams': list(teams_as_dict.values()),
@@ -76,6 +84,7 @@ class TeamModulePlugin(CMSPluginBase):
             'teamsAsJson': json.dumps(list(teams_as_dict.values())),
             'membersAsJson': json.dumps(members_as_dict),
             'uniqueName': 'teamModuleDisplay' + '__' + str(instance.id),
-            'cssPrefix': instance.css_class_prefix
+            'cssPrefix': instance.css_class_prefix,
+            'projects': projects
         })
         return context

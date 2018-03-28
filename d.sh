@@ -18,6 +18,9 @@ then
 elif [ $action == "exec" ]
 then
     command="exec web ${*:2}"
+elif [ $action == "bash" ]
+then
+    command="run web bash"
 else
     command=" ${*:1}"
 fi

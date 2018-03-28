@@ -241,7 +241,8 @@ STATICFILES_FINDERS = (
 
 TEAMMODULE_TEAMDISPLAY_TEMPLATES = [
     ('teamModule/team_display.html', 'team_display.html'),
-    ('components/member_count.html', 'Total member count')
+    ('components/member_count.html', 'Total member count'),
+    ('teamModule/project_display.html', 'List projects')
 ]
 
 COMPRESS_ENABLED = True

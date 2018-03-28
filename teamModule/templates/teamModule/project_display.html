@@ -1,0 +1,54 @@
+{% load sekizai_tags compress  static %}
+{% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static "css/projectDisplay.scss" %}">
+{% endcompress %}
+{% addtoblock "js" %}
+    <script type="text/javascript" src="{% static "js/script.js" %}"></script>
+{% endaddtoblock %}
+{% addtoblock "js" %}
+    <script type="text/javascript">
+        //Encapsulate javascript inside a function so it's not accessible from the outside #hackerman
+        //var {{ uniqueName }};
+        (function () {
+            // Data from the backend
+            //var members = {{ membersAsJson|safe}};
+            //var teams = {{  teamsAsJson|safe }};
+            // Init the required modules with unique identifier
+            //{{ uniqueName }} = new TeamModuleClass(members, "{{ uniqueName }}");
+            //var allMembersTeam = {{ uniqueName }}.rootNode.querySelector(".teamModule__team");
+            //{{ uniqueName }}.setActiveTeam(-1,allMembersTeam);
+        })();
+    </script>
+{% endaddtoblock %}
+
+<section class="projectModule" id="{{ uniqueName }}">
+    <div class="projectModule__title">
+        Our Projects
+    </div>
+    <div class="projectModule__projects">
+        {% for project in projects %}
+        <div class="projectModule__projects__project">
+            <div class="projectModule__projects__project__title">
+                <h2>{{ project.project_name }}</h2>
+                {{ project.description }} <br>
+                {{ project.status }}
+            </div>
+            <div class="projectModule__projects__project__picture">
+                <img alt="project image">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="projectModule__description">
+        <div class="projectModule__description__title">
+            <h2>Project title</h2>
+        </div>
+        <div class="projectModule__description__picture">
+            <img alt="project image">
+        </div>
+        <div class="projectModule__description__description">
+            <p>Project description</p>
+        </div>
+    </div>
+</section>
+    
