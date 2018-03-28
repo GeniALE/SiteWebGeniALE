@@ -7,65 +7,61 @@
 {% addtoblock "js" %}
     <script type="text/javascript">
         //Encapsulate javascript inside a function so it's not accessible from the outside #hackerman
-         var teamModule{{ idPrefix }};
+        var {{ uniqueName }};
         (function () {
             //Data from the backend
             var members = {{ membersAsJson|safe}};
             var teams = {{  teamsAsJson|safe }};
-            //Init the required modules
-            teamModule{{ idSuffix }} = new TeamModuleClass(members, "{{ idSuffix }}", "{{ cssPrefix }}");
-            teamModule{{ idSuffix }}.setActiveTeam(-1);
+            //Init the required modules with unique identifier
+            {{ uniqueName }} = new TeamModuleClass(members, "{{ uniqueName }}");
+            var allMembersTeam = {{ uniqueName }}.rootNode.querySelector(".teamModule__team");
+            {{ uniqueName }}.setActiveTeam(-1,allMembersTeam);
         })();
     </script>
 {% endaddtoblock %}
 
 
-<div class="{{ cssPrefix }}teamModule">
-    <div class="{{ cssPrefix }}teamModule__panel {{ cssPrefix }}teamModule__panel--left">
-        <div class="{{ cssPrefix }}teamModule__teams">
-            <h1 class="{{ cssPrefix }}teamModule__title">Our Teams</h1>
+<div class="teamModule" id="{{ uniqueName }}">
+    <div class="teamModule__panel teamModule__panel--left">
+        <div class="teamModule__teams">
+            <h1 class="teamModule__title">Our Teams</h1>
             {% for team in teams %}
-                <div class="{{ cssPrefix }}teamModule__team" id="teamModule__Team{{ idSuffix }}{{ team.id }}"
-                     onclick="teamModule{{ idSuffix }}.setActiveTeam({{ team.id }})">
+                <div class="teamModule__team" onclick="{{ uniqueName }}.setActiveTeam({{ team.id }},this)">
                     {{ team.team_name }}
-                    <span class="{{ cssPrefix }}teamModule__team__count">{{ team.members_count }}</span>
+                    <span class="teamModule__team__count">{{ team.members_count }}</span>
                 </div>
             {% endfor %}
         </div>
 
-        <div class="{{ cssPrefix }}teamModule__members">
-            <h1 class="{{ cssPrefix }}teamModule__title">Members</h1>
-            <div class="{{ cssPrefix }}teamModule__memberpanel {{ cssPrefix }}teamModule__memberpanel--left">
+        <div class="teamModule__members">
+            <h1 class="teamModule__title">Members</h1>
+            <div class="teamModule__memberpanel teamModule__memberpanel--left">
                 {% for member in members %}
-                    <div id="teamModule__Member{{ idSuffix }}{{ member.id }}"
-                         class="{{ cssPrefix }}teamModule__team__member"
-                         onclick="teamModule{{ idSuffix }}.setActiveMember({{ member.id }})">
+                    <div class="teamModule__team__member teamModule__team__member{{ member.id }}"
+                         onclick="{{ uniqueName }}.setActiveMember({{ member.id }},this)">
                         {{ member.first_name }} {{ member.last_name }}
                     </div>
                 {% endfor %}
             </div>
-            <div class="{{ cssPrefix }}teamModule__memberpanel {{ cssPrefix }}teamModule__memberpanel--right">
+            <div class="teamModule__memberpanel teamModule__memberpanel--right">
                 <div class="row">
                     {% for member in members %}
-                        <img id="teamModule__MemberIcon{{ idSuffix }}{{ member.id }}"
-                             class="{{ cssPrefix }}teamModule__memberpanel__icon"
+                        <img class="teamModule__memberpanel__icon teamModule__memberpanel__icon{{ member.id }}"
                              src="{{ member.profilePicUrl }}"
-                             onclick="teamModule{{ idSuffix }}.setActiveMember({{ member.id }})"/>
+                             onclick="{{ uniqueName }}.setActiveMember({{ member.id }},this)"/>
                     {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-    <div id="teamModule__details__current{{ idSuffix }}"
-         class="{{ cssPrefix }}teamModule__panel {{ cssPrefix }}teamModule__panel--right {{ cssPrefix }}teamModule__details {{ cssPrefix }}teamModule--hidden">
+    <div class="teamModule__panel teamModule__panel--right teamModule__details teamModule--hidden">
         <div>
-            <img id="teamModule__MemberDetailProfilePicture{{ idSuffix }}"
-                 class="{{ cssPrefix }}teamModule__details__picture" src=""/>
+            <img class="teamModule__details__picture" src=""/>
         </div>
-        <div id="teamModule__MemberDetailFullName{{ idSuffix }}"></div>
+        <div class="teamModule__details__fullname"></div>
         <h4>Projects</h4>
-        <div id="teamModule__MemberDetailProjects{{ idSuffix }}"></div>
+        <div class="teamModule__details__projects"></div>
         <h4>Formation</h4>
-        <div id="teamModule__MemberDetailFormation{{ idSuffix }}"></div>
+        <div class="teamModule__details__formation"></div>
     </div>
 </div>
