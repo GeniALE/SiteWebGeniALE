@@ -1,3 +1,4 @@
+// Register the instance only if not registered
 if (!window._TeamModuleHelper) {
     function _TeamModuleHelper() {
 
@@ -11,10 +12,10 @@ if (!window._TeamModuleHelper) {
         }
         return map;
     };
-
     TeamModuleHelper = new _TeamModuleHelper();
 }
 
+// Register the instance only if not registered
 if (!window.TeamModuleClass) {
     function TeamModuleClass(members, rootId) {
         //This node is the only thing that makes this module unique
@@ -85,49 +86,38 @@ if (!window.TeamModuleClass) {
     };
 
 
-    TeamModuleClass.prototype.setActiveMember = function (id, elem) {
+    TeamModuleClass.prototype.setActiveMember = function (id, nameElem, iconElem) {
         if (this.activeDataTypes.member.id === id) {
-            var iconElem = this.rootNode.querySelector("." + this.classByType.memberIcon + id);
-            this._setActiveDiv(elem, 'member', false);
+            nameElem = nameElem ? nameElem : this.rootNode.querySelector('.' + this.classByType.member + id);
+            iconElem = iconElem ? iconElem : this.rootNode.querySelector("." + this.classByType.memberIcon + id);
+            this._setActiveDiv(nameElem, 'member', false);
             this._setActiveDiv(iconElem, 'memberIcon', false);
             this.resetActiveDataType('member');
             this._loadMemberDetails(null);
         } else {
             if (this.activeDataTypes.member.id !== null) {
-                var iconElem = this.rootNode.querySelector("." + this.classByType.memberIcon + this.activeDataTypes.member.id);
+                nameElem = nameElem ? nameElem : this.rootNode.querySelector("." + this.classByType.member + this.activeDataTypes.member.id);
+                iconElem = iconElem ? iconElem : this.rootNode.querySelector("." + this.classByType.memberIcon + this.activeDataTypes.member.id);
                 this._setActiveDiv(this.activeDataTypes.member.elem, 'member', false);
                 this._setActiveDiv(iconElem, 'memberIcon', false);
                 this._loadMemberDetails(null);
             }
             if (id !== null) {
-                var iconElem = this.rootNode.querySelector("." + this.classByType.memberIcon + id);
-                this._setActiveDiv(elem, 'member', true);
+                nameElem =  nameElem ? nameElem : this.rootNode.querySelector("." + this.classByType.member + id);
+                iconElem =  iconElem ? iconElem : this.rootNode.querySelector("." + this.classByType.memberIcon + id);
+                this._setActiveDiv(nameElem, 'member', true);
                 this._setActiveDiv(iconElem, 'memberIcon', true);
                 this._loadMemberDetails(id);
             }
             this.activeDataTypes.member.id = id;
-            this.activeDataTypes.member.elem = elem;
+            this.activeDataTypes.member.elem = nameElem;
         }
     };
 
     TeamModuleClass.prototype.setMemberVisibility = function (teamId) {
         for (var i = 0; i < this.members.length; i++) {
             var member = this.members[i];
-
-            var isPartOfTeam = false;
-
-            if (teamId === -1) {
-                isPartOfTeam = true;
-            } else {
-                for (var j = 0; j < member.teamRoles.length; j++) {
-                    var teamRole = member.teamRoles[j];
-                    if (teamRole.team === teamId) {
-                        isPartOfTeam = true;
-                        break;
-                    }
-                }
-            }
-
+            var isPartOfTeam = this.isPartOfTeam(member, teamId);
             var elem = this.rootNode.querySelector("." + this.classByType.member + member.id);
             var icon = this.rootNode.querySelector("." + this.classByType.memberIcon + member.id);
             if (isPartOfTeam) {
@@ -140,31 +130,44 @@ if (!window.TeamModuleClass) {
         }
     };
 
+    TeamModuleClass.prototype.isPartOfTeam = function (member, teamId) {
+        if (teamId === -1) {
+            return true;
+        } else {
+            for (var j = 0; j < member.teamRoles.length; j++) {
+                var teamRole = member.teamRoles[j];
+                if (teamRole.team === teamId) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    };
+
     /**
-     *
-     * @param id The identifier of the member to show. Pass null or hide the detail window.
      * @private
      */
-    TeamModuleClass.prototype._loadMemberDetails = function (id) {
-
+    TeamModuleClass.prototype._loadMemberDetails = function (memberId) {
         var detailsElem = this.rootNode.querySelector(".teamModule__details");
-        if (id === null) {
+        if (memberId === null) {
             detailsElem.classList.add(this.hiddenClass);
         } else {
             detailsElem.classList.remove(this.hiddenClass);
 
-            var member = this.membersById[id];
+            var member = this.membersById[memberId];
             var mapping = this.details;
-            //Nicest Profile Picture
+
             mapping.picture.setAttribute("src", member.profilePicUrl);
             mapping.fullName.innerText = member.first_name + " " + member.last_name;
+
             var projectElement = mapping.projects;
             projectElement.innerHTML = '';
 
+            //Add projects
             for (var i = 0; i < member.projects.length; i++) {
-                var proj = member.projects[i];
+                var project = member.projects[i];
                 var projectContainer = document.createElement('div');
-                var node = document.createTextNode(proj.project_name);
+                var node = document.createTextNode(project.project_name);
                 projectContainer.appendChild(node);
                 projectElement.appendChild(projectContainer);
             }
