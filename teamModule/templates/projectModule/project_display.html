@@ -7,21 +7,11 @@
 {% endaddtoblock %}
 {% addtoblock "js" %}
     <script type="text/javascript">
-        //Encapsulate javascript inside a function so it's not accessible from the outside #hackerman
-        //var {{ uniqueName }};
-        (function () {
-            // Data from the backend
-            //var members = {{ membersAsJson|safe}};
-            //var teams = {{  teamsAsJson|safe }};
-            // Init the required modules with unique identifier
-            //{{ uniqueName }} = new TeamModuleClass(members, "{{ uniqueName }}");
-            //var allMembersTeam = {{ uniqueName }}.rootNode.querySelector(".teamModule__team");
-            //{{ uniqueName }}.setActiveTeam(-1,allMembersTeam);
-        })();
+        
     </script>
 {% endaddtoblock %}
 
-<section class="projectModule" id="{{ uniqueName }}">
+<section class="projectModule" id="uniqueName">
     <div class="projectModule__title">
         Our Projects
     </div>
@@ -39,15 +29,15 @@
         </div>
         {% endfor %}
     </div>
-    <div class="projectModule__description">
-        <div class="projectModule__description__title">
-            <h2>Project title</h2>
+    <div class="projectModule__detail">
+        <div class="projectModule__detail__title">
+            <h2 class="projectModule__detail__title__h">Project title</h2>
         </div>
-        <div class="projectModule__description__picture">
-            <img alt="project image">
+        <div class="projectModule__detail__picture">
+            <img alt="project image" class="projectModule__detail__picture__img">
         </div>
-        <div class="projectModule__description__description">
-            <p>Project description</p>
+        <div class="projectModule__detail__description">
+            <p class="projectModule__detail__description_p"></p>
         </div>
     </div>
 </section>

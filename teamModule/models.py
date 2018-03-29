@@ -104,3 +104,21 @@ class TeamDisplayView(CMSPlugin):
     class Meta:
         verbose_name = "TeamModule Team Display"
         verbose_name_plural = "TeamModule Team Displays"
+
+
+@python_2_unicode_compatible
+class ProjectDisplayView(CMSPlugin):
+    template = models.CharField(
+        max_length=255,
+        choices=local_settings.TEAMMODULE_PROJECTDISPLAY_TEMPLATES,
+        default='projectModule/project_display.html',
+        editable=len(local_settings.TEAMMODULE_PROJECTDISPLAY_TEMPLATES) > 1)
+    css_class_prefix = models.CharField(
+        max_length=100,
+        default="",
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = "TeamModule Project Display"
+        verbose_name_plural = "TeamModule Project Displays"

@@ -242,6 +242,9 @@ STATICFILES_FINDERS = (
 TEAMMODULE_TEAMDISPLAY_TEMPLATES = [
     ('teamModule/team_display.html', 'team_display.html'),
     ('components/member_count.html', 'Total member count'),
+]
+
+TEAMMODULE_PROJECTDISPLAY_TEMPLATES = [
     ('teamModule/project_display.html', 'List projects')
 ]
 
