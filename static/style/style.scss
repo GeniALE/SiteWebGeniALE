@@ -1,4 +1,5 @@
-@import "./basic/normalize";
+@import "./basic/_normalize";
+@import "./basic/_flexboxgrid";
 @import "./basic/_variables";
 @import "./basic/_fonts";
 @import "./components/_header";
@@ -31,4 +32,3 @@ main {
 
 .col-xs-offset-0,.col-sm-offset-0, .col-lg-offset-0, .col-lg-offset-0 {
   margin-left:0; }
-
