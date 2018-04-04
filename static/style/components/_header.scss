@@ -98,6 +98,7 @@ header {
         left: -100%;
         transition: left 300ms;
         overflow-y: scroll;
+        z-index: 98;
 
         @media (max-height: 750px) {
             overflow-y: scroll;

@@ -240,6 +240,7 @@ STATICFILES_FINDERS = (
 )
 
 TEAMMODULE_TEAMDISPLAY_TEMPLATES = [
+    ('teamModule/team_display.html', 'Default'),
     ('components/member_count.html', 'Total member count')
 ]
 
