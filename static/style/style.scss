@@ -32,3 +32,29 @@ main {
 
 .col-xs-offset-0,.col-sm-offset-0, .col-lg-offset-0, .col-lg-offset-0 {
   margin-left:0; }
+
+
+.header {
+
+  &__content {
+    @extend .col-xs-10;
+    @extend .col-sm-10;
+    @extend .col-md-10;
+    margin: auto;
+    &__title {
+      text-transform: uppercase;
+      color: black;
+      font-weight: bold;
+      font-size: $h1;
+      text-shadow: 1px 1px $primary,
+      2px 2px $primary,
+      3px 3px $primary;
+      padding: 0 0 0.5em 0;
+    }
+
+    &__paragraph {
+      text-align: justify;
+    }
+
+  }
+}

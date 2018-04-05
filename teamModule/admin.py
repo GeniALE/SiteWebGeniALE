@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Formation, Team, Project, Member, ProjectStatus, TeamRole, MemberExtraInfo, MemberExtraInfoType, TeamDisplayView
+from .models import Formation, Team, Project, Member, ProjectStatus, TeamRole, MemberExtraInfo, MemberExtraInfoType, \
+    TeamDisplayView, TeamBannerModel, TeamBannerTranslationModel
+from hvad.admin import TranslatableAdmin
 
 
 class PageTeamAdmin(admin.ModelAdmin):
@@ -40,7 +42,15 @@ Plugins admins
 
 
 class TeamDisplayViewAdmin(admin.ModelAdmin):
-    model = TeamDisplayView
+    pass
+
+
+class TeamBannerAdmin(admin.ModelAdmin):
+    pass
+
+
+class TeamBannerTranslationModelAdmin(TranslatableAdmin, admin.ModelAdmin):
+    pass
 
 
 class PageMemberExtraInfoAdmin(admin.ModelAdmin):
@@ -61,3 +71,5 @@ admin.site.register(MemberExtraInfoType, PageMemberExtraInfoTypeAdmin)
 admin.site.register(Member, PageMemberAdmin)
 
 admin.site.register(TeamDisplayView, TeamDisplayViewAdmin)
+admin.site.register(TeamBannerModel, TeamBannerAdmin)
+admin.site.register(TeamBannerTranslationModel, TeamBannerTranslationModelAdmin)
