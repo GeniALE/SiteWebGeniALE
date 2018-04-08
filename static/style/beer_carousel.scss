@@ -1,0 +1,68 @@
+$beerBottleWidth: 200px;
+
+section.beercarousel {
+
+    .beercarousel {
+        &__title {
+            font-size: 60px;
+            font-weight: 700;
+        }
+
+        &__container {
+
+        }
+
+        &__bottlecontainer {
+            position: absolute;
+        }
+
+        &__bottle {
+            width: $beerBottleWidth;
+            position: relative;
+            left: -10000px;
+
+            &--bottle {
+                svg {
+
+                    path {
+                        fill: #96281b;
+                    }
+                }
+            }
+
+            &--active {
+                left: 0;
+            }
+        }
+
+        &__beers {
+            display: flex;
+
+            .beer {
+                width: 100vw;
+                display: flex;
+
+                &__image {
+                    img {
+                        width: $beerBottleWidth;
+                    }
+                }
+
+                &__info {
+
+                }
+
+                &__detail {
+
+                    &name {
+
+                    }
+
+                    &value {
+
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 {% load cms_tags sekizai_tags compress static %}
-
-{% block content %}
-
 {% addtoblock 'css' %}
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "style/beer_carousel.scss" %}">
     {% endcompress %}
 {% endaddtoblock %}
+
 <section class="beercarousel">
     <div class="beercarousel__title">
         <span>nos bières (placeholder)</span>
@@ -145,4 +143,3 @@
         <script src="{% static "script/member_banner.js" %}" type="text/javascript" charset="utf-8"></script>
     {% endcompress %}
 {% endaddtoblock %}
-{% endblock %}
