@@ -69,7 +69,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'America/Montreal'
 
@@ -170,10 +170,21 @@ INSTALLED_APPS = (
 LANGUAGES = (
     ## Customize this
     ('en', gettext('en')),
+    ('fr', gettext('fr')),
 )
 
 CMS_LANGUAGES = {
     ## Customize this
+    2: [
+        {
+            'code': 'fr',
+            'name': gettext('fr'),
+            'fallbacks': ['en'],
+            'redirect_on_fallback': True,
+            'public': True,
+            'hide_untranslated': False,
+        },
+    ],
     1: [
         {
             'code': 'en',
