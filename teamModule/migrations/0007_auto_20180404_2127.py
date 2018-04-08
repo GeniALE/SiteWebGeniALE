@@ -10,7 +10,6 @@ import django.db.models.manager
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cms', '0019_auto_20180404_2127'),
         ('teamModule', '0006_merge_20180317_1759'),
     ]
 
