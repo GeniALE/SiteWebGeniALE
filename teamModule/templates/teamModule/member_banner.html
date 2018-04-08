@@ -1,7 +1,7 @@
 {% load cms_tags sekizai_tags compress  static %}
 {% block style %}
     {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "style/landing.scss" %}">
+        <link rel="stylesheet" type="text/x-scss" href="{% static "style/member_banner.scss" %}">
     {% endcompress %}
 {% endblock %}
 
@@ -34,6 +34,6 @@
 
 {% block scripts %}
     {% compress js %}
-        <script src="{% static "script/landing.js" %}" type="text/javascript" charset="utf-8"></script>
+        <script src="{% static "script/member_banner.js" %}" type="text/javascript" charset="utf-8"></script>
     {% endcompress %}
 {% endblock %}

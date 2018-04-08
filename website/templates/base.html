@@ -53,13 +53,11 @@
 <main>
     {% block content %}{% endblock %}
 </main>
-{% render_block "js" %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{% render_block "scripts" %}
+{% render_block "js" %}
 {% compress js %}
     <script src="{% static "script/base.js" %}" type="text/javascript" charset="utf-8"></script>
-{% endcompress %}
-{% compress js %}
-    <script src="{% static "script/landing.js" %}" type="text/javascript" charset="utf-8"></script>
 {% endcompress %}
 {% block scripts %}{% endblock %}
 </body>
