@@ -26,7 +26,7 @@ class TeamModulePlugin(CMSPluginBase):
 
     def get_teams(self,instance):
         teams = list(Team.objects.all().order_by("team_name"))
-        all_text = instance.select_all_text
+        all_text = instance.translations.all
         teams.insert(0, Team(id=-1, team_name=all_text))
         return teams
 

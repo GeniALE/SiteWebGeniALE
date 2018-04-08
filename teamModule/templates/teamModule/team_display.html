@@ -24,7 +24,7 @@
 <div class="teamModule" id="{{ uniqueName }}">
     <div class="teamModule__panel teamModule__panel--left">
         <div class="teamModule__teams">
-            <h1 class="teamModule__title">Our Teams</h1>
+            <h1 class="teamModule__title">{{ translations.teams_title }}</h1>
             {% for team in teams %}
                 <div class="teamModule__team" onclick="{{ uniqueName }}.setActiveTeam({{ team.id }},this)">
                     {{ team.team_name }}
@@ -34,7 +34,7 @@
         </div>
 
         <div class="teamModule__members">
-            <h1 class="teamModule__title">Members</h1>
+            <h1 class="teamModule__title">{{ translations.members_title }}</h1>
             <div class="teamModule__memberpanel teamModule__memberpanel--left">
                 {% for member in members %}
                     <div class="teamModule__team__member teamModule__team__member{{ member.id }}"
@@ -59,9 +59,9 @@
             <img class="teamModule__details__picture" src=""/>
         </div>
         <div class="teamModule__details__fullname"></div>
-        <h4>Projects</h4>
+        <h4>{{ translations.projects_title }}</h4>
         <div class="teamModule__details__projects"></div>
-        <h4>Formation</h4>
+        <h4>{{ translations.formation_title }}</h4>
         <div class="teamModule__details__formation"></div>
     </div>
 </div>
