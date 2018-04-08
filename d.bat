@@ -11,6 +11,11 @@ IF %1==shell (
     set done=true
 )
 
+IF %1==bash (
+    set suffix= exec web bash
+    set done=true
+)
+
 IF %1==exec (
     @ECHO OFF
     :ExecLoop
