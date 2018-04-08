@@ -52,7 +52,7 @@ class BeerCarouselPluginModel(CMSPlugin):
         default='beer_carousel/default.html',
         editable=len(local_settings.BEER_CAROUSEL_TEMPLATES_TEMPLATES) > 1)
 
-    translations = models.ForeignKey(BeerCarouselPluginTranslationModel, null=True)
+    translations = models.ForeignKey(BeerCarouselPluginTranslationModel)
 
     class Meta:
         verbose_name = "Beer carousel plugin"
