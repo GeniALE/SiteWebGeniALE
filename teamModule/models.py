@@ -1,10 +1,8 @@
 from django.db import models
 from cms.models.pluginmodel import CMSPlugin
 from django.utils.encoding import python_2_unicode_compatible
-from cms.models.fields import PlaceholderField
 from hvad.models import TranslatableModel, TranslatedFields
 
-# Create your models here.
 from teamModule import local_settings
 
 
