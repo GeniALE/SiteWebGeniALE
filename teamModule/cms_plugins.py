@@ -24,9 +24,10 @@ class TeamModulePlugin(CMSPluginBase):
         )
         return members
 
-    def get_teams(self):
+    def get_teams(self,instance):
         teams = list(Team.objects.all().order_by("team_name"))
-        teams.insert(0, Team(id=-1, team_name="All"))
+        all_text = instance.select_all_text
+        teams.insert(0, Team(id=-1, team_name=all_text))
         return teams
 
     def members_to_dict(self, members):
@@ -64,7 +65,7 @@ class TeamModulePlugin(CMSPluginBase):
 
         # Get some data
         members = self.get_members()
-        teams = self.get_teams()
+        teams = self.get_teams(instance)
         members_as_dict = self.members_to_dict(members)
         teams_as_dict = self.teams_to_dict(teams, members)
 

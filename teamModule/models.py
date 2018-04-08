@@ -17,23 +17,23 @@ class Formation(models.Model):
 
 
 class Team(models.Model):
-    team_name = models.CharField(max_length=30, blank=False)
+    team_name = models.CharField(max_length=100, blank=False)
 
     def __str__(self):
         return self.team_name
 
 
 class TeamRole(models.Model):
-    role = models.CharField(max_length=20, blank=False)
+    role = models.CharField(max_length=100, blank=False)
     description = models.CharField(max_length=1000, blank=True, null=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.role
+        return self.role + ' (' + self.team.team_name + ')'
 
 
 class ProjectStatus(models.Model):
-    status = models.CharField(max_length=10, blank=False)
+    status = models.CharField(max_length=20, blank=False)
 
     def __str__(self):
         return self.status
@@ -101,6 +101,11 @@ class TeamDisplayView(CMSPlugin):
         max_length=100,
         default="",
         blank=True
+    )
+
+    select_all_text = models.CharField(
+        max_length=100,
+        default="All"
     )
 
     class Meta:
