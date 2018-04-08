@@ -163,6 +163,7 @@ INSTALLED_APPS = (
     'adminsortable',
     'cmsplugin_contact_plus',
     'compressor',
+    'hvad',
     'teamModule'
 )
 
@@ -241,7 +242,12 @@ STATICFILES_FINDERS = (
 
 TEAMMODULE_TEAMDISPLAY_TEMPLATES = [
     ('teamModule/team_display.html', 'Default'),
-    ('components/member_count.html', 'Total member count')
+    ('components/member_count.html', 'Total member count'),
+]
+
+TEAMMODULE_TEAMBANNER_TEMPLATES = [
+    ('teamModule/member_banner.html', 'Default'),
+    ('components/member_banner.html', 'Team banner'),
 ]
 
 COMPRESS_ENABLED = True
@@ -269,7 +275,7 @@ LOGGING = {
             'propagate': True,
         },
         'django.db.backends': {
-            'level': 'DEBUG',
+            'level': 'INFO',
         },
     }
 }

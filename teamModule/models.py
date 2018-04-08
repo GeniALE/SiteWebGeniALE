@@ -1,6 +1,8 @@
 from django.db import models
 from cms.models.pluginmodel import CMSPlugin
 from django.utils.encoding import python_2_unicode_compatible
+from cms.models.fields import PlaceholderField
+from hvad.models import TranslatableModel, TranslatedFields
 
 # Create your models here.
 from teamModule import local_settings
@@ -104,3 +106,31 @@ class TeamDisplayView(CMSPlugin):
     class Meta:
         verbose_name = "TeamModule Team Display"
         verbose_name_plural = "TeamModule Team Displays"
+
+
+@python_2_unicode_compatible
+class TeamBannerTranslationModel(TranslatableModel):
+    translations = TranslatedFields(
+        members=models.CharField(max_length=255),
+        member_description=models.CharField(max_length=255),
+        member_more_detail=models.CharField(max_length=255),
+    )
+
+    class Meta:
+        verbose_name = "Translation"
+        verbose_name_plural = "Translations"
+
+
+@python_2_unicode_compatible
+class TeamBannerModel(CMSPlugin):
+    template = models.CharField(
+        max_length=255,
+        choices=local_settings.TEAMMODULE_TEAMBANNER_TEMPLATES,
+        default='teamModule/member_banner.html',
+        editable=len(local_settings.TEAMMODULE_TEAMBANNER_TEMPLATES) > 1)
+    translations = models.ForeignKey(TeamBannerTranslationModel)
+    team_image = models.ImageField(upload_to='media/')
+
+    class Meta:
+        verbose_name = "TeamModule Team Banner"
+        verbose_name_plural = "TeamModule Team Banners"

@@ -7,9 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 import json
 
 from teamModule.helpers import to_dict
-from .models import TeamDisplayView
-from .models import Team
-from .models import Member
+from .models import TeamBannerModel, Team, Member, TeamDisplayView
 
 
 @plugin_pool.register_plugin
@@ -77,5 +75,32 @@ class TeamModulePlugin(CMSPluginBase):
             'membersAsJson': json.dumps(members_as_dict),
             'uniqueName': 'teamModuleDisplay' + '__' + str(instance.id),
             'cssPrefix': instance.css_class_prefix
+        })
+        return context
+
+
+@plugin_pool.register_plugin
+class TeamBannerPlugin(CMSPluginBase):
+    name = _("Team banner plugin")
+    model = TeamBannerModel
+    render_template = "teamModule/member_banner.html"
+    cache = False
+
+    def get_member_count(self):
+        return Member.objects.count()
+
+    def render(self, context, instance, placeholder):
+        if instance and instance.template:
+            self.render_template = instance.template
+
+        context = super(TeamBannerPlugin, self).render(context, instance, placeholder)
+
+        # Get some data
+        member_count = self.get_member_count()
+
+        context.update({
+            'member_count': json.dumps(member_count),
+            'translations': instance.translations,
+            'image': instance.team_image
         })
         return context

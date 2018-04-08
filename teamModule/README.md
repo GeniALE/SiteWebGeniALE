@@ -1,16 +1,36 @@
-# Custom templates
+# TeamModule
 
-This plugin allow you to define your own templates.
-Templates are highly customizable.
+TeamModule is a plugin that let you manage your team and your projects.
 
-By default, they are injected with:
+Some plugins are available to display:
+
+- Your members (team_display)
+- Your team (team_banner)
+
+Each plugins's template can be customize.
+
+# Team display
+
+By default, the following variables are injected with:
 
 - members: An array of members objects
 - teams: An array of teams objects
-- idSuffix: A suffix for all your id. This is used to use the same plugin twice on the same page.
 - cssPrefix: A CSS prefix for all your CSS classes. This is ideal to customize the actual CSS.
 
-## Configuration
+To customize the template, simply copy paste the default template into your website.
+
+# Team banner
+
+For this plugin, you'll have to configure:
+
+- A team image
+- Some translations (member, member description, team description, button text)
+
+The member count displayed will be fetch from the database.
+
+To customize the template, simply copy paste the default template into your website.
+
+# Template configuration
 
 In your `settings.py`, add the following entry:
 
@@ -19,7 +39,12 @@ In your `settings.py`, add the following entry:
 TEAMMODULE_TEAMDISPLAY_TEMPLATES = [
     ('teamModule/team_display.html', 'team_display.html'),
     ('my_custom_template.html', 'Team banner')
-]
+];
+
+TEAMMODULE_TEAMBANNER_TEMPLATES = [
+    ('teamModule/member_banner.html', 'Default'),
+    ('my_custom_template.html','Custom banner')
+];
 ```
 
-You must have atleast two templates to  be able to change it in the UI.
+You must have atleast two templates to be able to change it in the UI.
