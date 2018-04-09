@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}"/>
-        <link rel="stylesheet" type="text/css" href="{% static "css/flexboxgrid.scss" %}" />
-    {% endcompress %}
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "style/landing.scss" %}">
     {% endcompress %}
     {% block style %}{% endblock %}
     {% render_block "css" %}
@@ -18,15 +14,31 @@
 {% cms_toolbar %}
 <header>
     {% block header %}
+        <nav class="nav--fullscreen">
+            <div class="nav__container">
+                <div class="nav__logo">
+                    <img src="http://logo.geniale.ca" alt="GeniALE logo" class="logo__img">
+                    <div class="logo__title">
+                        <span>Géni</span>
+                        <span>ALE</span>
+                    </div>
+                    <div class="logo__text">
+                        <p>développement</p>
+                        <p>brassicole</p>
+                    </div>
+                </div>
+                {% show_menu 0 0 %}
+            </div>
+        </nav>
         <div class="menu">
-            <div class="logo">
+            <!-- <div class="logo">
                 <a href="">
                     <img class="logo__img" src="http://logo.geniale.ca" alt="">
                     <div class="logo__text">
                         <span>Géni</span><span>ALE</span>
                     </div>
                 </a>
-            </div>
+            </div> -->
 
             <div class="button__hamburger">
                 <span class="button__hamburger-bar"></span>
@@ -36,23 +48,16 @@
                 <span class="button__hamburger-bar button__hamburger-bar--close"></span>
             </div>
         </div>
-        <nav class="nav--fullscreen">
-            <div class="nav__container">
-                {% show_menu 0 0 %}
-            </div>
-        </nav>
     {% endblock %}
 </header>
 <main>
     {% block content %}{% endblock %}
 </main>
-{% render_block "js" %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{% render_block "scripts" %}
+{% render_block "js" %}
 {% compress js %}
     <script src="{% static "script/base.js" %}" type="text/javascript" charset="utf-8"></script>
-{% endcompress %}
-{% compress js %}
-    <script src="{% static "script/landing.js" %}" type="text/javascript" charset="utf-8"></script>
 {% endcompress %}
 {% block scripts %}{% endblock %}
 </body>

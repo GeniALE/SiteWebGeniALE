@@ -1,6 +1,8 @@
 from django.db import models
 from cms.models.pluginmodel import CMSPlugin
 from django.utils.encoding import python_2_unicode_compatible
+from cms.models.fields import PlaceholderField
+from hvad.models import TranslatableModel, TranslatedFields
 
 # Create your models here.
 from teamModule import local_settings
@@ -15,23 +17,23 @@ class Formation(models.Model):
 
 
 class Team(models.Model):
-    team_name = models.CharField(max_length=30, blank=False)
+    team_name = models.CharField(max_length=100, blank=False)
 
     def __str__(self):
         return self.team_name
 
 
 class TeamRole(models.Model):
-    role = models.CharField(max_length=20, blank=False)
+    role = models.CharField(max_length=100, blank=False)
     description = models.CharField(max_length=1000, blank=True, null=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.role
+        return self.role + ' (' + self.team.team_name + ')'
 
 
 class ProjectStatus(models.Model):
-    status = models.CharField(max_length=10, blank=False)
+    status = models.CharField(max_length=20, blank=False)
 
     def __str__(self):
         return self.status
@@ -89,6 +91,34 @@ Plugins models
 
 
 @python_2_unicode_compatible
+class TeamDisplayTranslationModel(TranslatableModel):
+    translations = TranslatedFields(
+        teams_title=models.CharField(max_length=255),
+        all=models.CharField(max_length=255),
+        members_title=models.CharField(max_length=255),
+        projects_title=models.CharField(max_length=255),
+        formation_title=models.CharField(max_length=255),
+    )
+
+    class Meta:
+        verbose_name = "Translation"
+        verbose_name_plural = "Translations"
+
+
+@python_2_unicode_compatible
+class TeamBannerTranslationModel(TranslatableModel):
+    translations = TranslatedFields(
+        members=models.CharField(max_length=255),
+        member_description=models.CharField(max_length=255),
+        member_more_detail=models.CharField(max_length=255),
+    )
+
+    class Meta:
+        verbose_name = "Translation"
+        verbose_name_plural = "Translations"
+
+
+@python_2_unicode_compatible
 class TeamDisplayView(CMSPlugin):
     template = models.CharField(
         max_length=255,
@@ -101,24 +131,42 @@ class TeamDisplayView(CMSPlugin):
         blank=True
     )
 
+    translations = models.ForeignKey(TeamDisplayTranslationModel, null=True)
+
     class Meta:
         verbose_name = "TeamModule Team Display"
         verbose_name_plural = "TeamModule Team Displays"
 
 
 @python_2_unicode_compatible
-class ProjectDisplayView(CMSPlugin):
+class TeamBannerModel(CMSPlugin):
     template = models.CharField(
         max_length=255,
-        choices=local_settings.TEAMMODULE_PROJECTDISPLAY_TEMPLATES,
-        default='projectModule/project_display.html',
-        editable=len(local_settings.TEAMMODULE_PROJECTDISPLAY_TEMPLATES) > 1)
+        choices=local_settings.TEAMMODULE_TEAMBANNER_TEMPLATES,
+        default='teamModule/member_banner.html',
+        editable=len(local_settings.TEAMMODULE_TEAMBANNER_TEMPLATES) > 1)
+    translations = models.ForeignKey(TeamBannerTranslationModel)
+    team_image = models.ImageField(upload_to='media/')
+
+    class Meta:
+        verbose_name = "TeamModule Team Banner"
+        verbose_name_plural = "TeamModule Team Banners"
+
+@python_2_unicode_compatible
+class TeamDisplayView(CMSPlugin):
+    template = models.CharField(
+        max_length=255,
+        choices=local_settings.TEAMMODULE_TEAMDISPLAY_TEMPLATES,
+        default='teamModule/team_display.html',
+        editable=len(local_settings.TEAMMODULE_TEAMDISPLAY_TEMPLATES) > 1)
     css_class_prefix = models.CharField(
         max_length=100,
         default="",
         blank=True
     )
 
+    translations = models.ForeignKey(TeamDisplayTranslationModel, null=True)
+
     class Meta:
-        verbose_name = "TeamModule Project Display"
-        verbose_name_plural = "TeamModule Project Displays"
+        verbose_name = "TeamModule Team Display"
+        verbose_name_plural = "TeamModule Team Displays"

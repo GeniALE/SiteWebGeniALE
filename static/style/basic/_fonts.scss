@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:600,600i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Raleway:500,500i,700,700i,900,900i');
 
 // Text font
 $text-font: 'Raleway', arial, sans-serif;
@@ -14,7 +14,7 @@ $title-big: 4.8em;
 
 %text {
     font-family: $text-font;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 %title {

@@ -4,6 +4,10 @@ TEAMMODULE_TEAMDISPLAY_TEMPLATES = getattr(settings, 'TEAMMODULE_TEAMDISPLAY_TEM
     ('teamModule/team_display.html', 'team_display.html'),
 ])
 
-TEAMMODULE_PROJECTDISPLAY_TEMPLATES = getattr(settings, 'TEAMMODULE_PROJECTDISPLAY_TEMPLATES', [
-    ('teamModule/project_display.html', 'project_display.html'),
+TEAMMODULE_TEAMBANNER_TEMPLATES = getattr(settings, 'TEAMMODULE_TEAMBANNER_TEMPLATES', [
+    ('teamModule/member_banner.html', 'Default'),
+])
+
+TEAMMODULE_TEAMDISPLAY_TEMPLATES = getattr(settings, 'TEAMMODULE_TEAMDISPLAY_TEMPLATES', [
+    ('teamModule/team_display.html', 'team_display.html'),
 ])

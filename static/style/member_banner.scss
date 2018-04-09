@@ -10,11 +10,6 @@
   @return $x1;
 }
 
-body {
-  background: #ecf0f1;
-  position: relative;
-}
-
 .member {
   position: relative;
   .member__background {
@@ -58,13 +53,13 @@ body {
     width: 100%;
     position: absolute;
     top: 0;
+    right:0;
     color: #ecf0f1;
-    text-shadow: black 0 0 1px;
     font-family: Raleway;
     text-align: right;
     display: flex;
+    text-shadow: #000 0 0 6px;
     align-items: center;
-    margin: 0;
 
     .member__ctContainer {
       min-width: calc(50% - 10px);

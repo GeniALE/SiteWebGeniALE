@@ -69,7 +69,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'America/Montreal'
 
@@ -163,16 +163,28 @@ INSTALLED_APPS = (
     'adminsortable',
     'cmsplugin_contact_plus',
     'compressor',
+    'hvad',
     'teamModule'
 )
 
 LANGUAGES = (
     ## Customize this
     ('en', gettext('en')),
+    ('fr', gettext('fr')),
 )
 
 CMS_LANGUAGES = {
     ## Customize this
+    2: [
+        {
+            'code': 'fr',
+            'name': gettext('fr'),
+            'fallbacks': ['en'],
+            'redirect_on_fallback': True,
+            'public': True,
+            'hide_untranslated': False,
+        },
+    ],
     1: [
         {
             'code': 'en',
@@ -240,8 +252,14 @@ STATICFILES_FINDERS = (
 )
 
 TEAMMODULE_TEAMDISPLAY_TEMPLATES = [
-    ('teamModule/team_display.html', 'team_display.html'),
+    ('teamModule/team_display.html', 'Default'),
     ('components/member_count.html', 'Total member count'),
+    ('components/team_display.html', 'Team member display')
+]
+
+TEAMMODULE_TEAMBANNER_TEMPLATES = [
+    ('teamModule/member_banner.html', 'Default'),
+    ('components/member_banner.html', 'Team banner'),
 ]
 
 TEAMMODULE_PROJECTDISPLAY_TEMPLATES = [
@@ -273,7 +291,7 @@ LOGGING = {
             'propagate': True,
         },
         'django.db.backends': {
-            'level': 'DEBUG',
+            'level': 'INFO',
         },
     }
 }

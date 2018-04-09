@@ -7,11 +7,15 @@ from django.utils.translation import ugettext_lazy as _
 import json
 
 from teamModule.helpers import to_dict
+<<<<<<< HEAD
 from .models import TeamDisplayView
 from .models import Team
 from .models import Member
 from .models import ProjectDisplayView
 from .models import Project
+=======
+from .models import TeamBannerModel, Team, Member, TeamDisplayView
+>>>>>>> final-team-display
 
 
 @plugin_pool.register_plugin
@@ -28,9 +32,10 @@ class TeamModulePlugin(CMSPluginBase):
         )
         return members
 
-    def get_teams(self):
+    def get_teams(self,instance):
         teams = list(Team.objects.all().order_by("team_name"))
-        teams.insert(0, Team(id=-1, team_name="All"))
+        all_text = instance.translations.all
+        teams.insert(0, Team(id=-1, team_name=all_text))
         return teams
 
     def members_to_dict(self, members):
@@ -68,7 +73,7 @@ class TeamModulePlugin(CMSPluginBase):
 
         # Get some data
         members = self.get_members()
-        teams = self.get_teams()
+        teams = self.get_teams(instance)
         members_as_dict = self.members_to_dict(members)
         teams_as_dict = self.teams_to_dict(teams, members)
 
@@ -78,6 +83,7 @@ class TeamModulePlugin(CMSPluginBase):
             'teamsAsJson': json.dumps(list(teams_as_dict.values())),
             'membersAsJson': json.dumps(members_as_dict),
             'uniqueName': 'teamModuleDisplay' + '__' + str(instance.id),
+<<<<<<< HEAD
             'cssPrefix': instance.css_class_prefix,
         })
         return context
@@ -106,5 +112,35 @@ class ProjectModulePlugin(CMSPluginBase):
 
         context.update({
             'projects': projects
+=======
+            'cssPrefix': instance.css_class_prefix
+>>>>>>> final-team-display
+        })
+        return context
+
+
+@plugin_pool.register_plugin
+class TeamBannerPlugin(CMSPluginBase):
+    name = _("Team banner plugin")
+    model = TeamBannerModel
+    render_template = "teamModule/member_banner.html"
+    cache = False
+
+    def get_member_count(self):
+        return Member.objects.count()
+
+    def render(self, context, instance, placeholder):
+        if instance and instance.template:
+            self.render_template = instance.template
+
+        context = super(TeamBannerPlugin, self).render(context, instance, placeholder)
+
+        # Get some data
+        member_count = self.get_member_count()
+
+        context.update({
+            'member_count': json.dumps(member_count),
+            'translations': instance.translations,
+            'image': instance.team_image
         })
         return context
