@@ -12,6 +12,9 @@ class BeerTranslationsModel(TranslatableModel):
         description=models.CharField(max_length=255, null=True, blank=True),
     )
 
+    def __str__(self):
+        return "Beer's translations ({})".format(self.instance.id)
+
 
 class BeerModel(models.Model):
     name = models.CharField(max_length=100, blank=False)
@@ -38,6 +41,9 @@ class BeerCarouselPluginTranslationModel(TranslatableModel):
         service_temperature=models.CharField(max_length=255, default="Service temperature"),
         ibu=models.CharField(max_length=255, default="IBU"),
     )
+
+    def __str__(self):
+        return "Beer carousel's translations({})".format(self.instance.id)
 
     class Meta:
         verbose_name = "Beer carousel's translations"
