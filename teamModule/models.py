@@ -1,7 +1,6 @@
 from django.db import models
 from cms.models.pluginmodel import CMSPlugin
 from django.utils.encoding import python_2_unicode_compatible
-from cms.models.fields import PlaceholderField
 from hvad.models import TranslatableModel, TranslatedFields
 
 # Create your models here.
@@ -63,8 +62,6 @@ class Member(models.Model):
     teamRoles = models.ManyToManyField(TeamRole)
     projects = models.ManyToManyField(Project)
 
-    # extraInfos= models.ManyToManyField(MemberExtraInfo)
-
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
 
@@ -93,29 +90,35 @@ Plugins models
 @python_2_unicode_compatible
 class TeamDisplayTranslationModel(TranslatableModel):
     translations = TranslatedFields(
-        teams_title=models.CharField(max_length=255),
-        all=models.CharField(max_length=255),
-        members_title=models.CharField(max_length=255),
-        projects_title=models.CharField(max_length=255),
-        formation_title=models.CharField(max_length=255),
+        teams_title=models.CharField(max_length=255, default="Teams"),
+        all=models.CharField(max_length=255, default="All"),
+        members_title=models.CharField(max_length=255, default="Members"),
+        projects_title=models.CharField(max_length=255, default="Projects"),
+        formation_title=models.CharField(max_length=255, default="Formation"),
     )
 
+    def __str__(self):
+        return "Team display's translations({})".format(self.id)
+
     class Meta:
-        verbose_name = "Translation"
-        verbose_name_plural = "Translations"
+        verbose_name = "TeamDisplay Translation model"
+        verbose_name_plural = "TeamDisplay Translation models"
 
 
 @python_2_unicode_compatible
 class TeamBannerTranslationModel(TranslatableModel):
     translations = TranslatedFields(
-        members=models.CharField(max_length=255),
+        members=models.CharField(max_length=255, default="members"),
         member_description=models.CharField(max_length=255),
-        member_more_detail=models.CharField(max_length=255),
+        member_more_detail=models.CharField(max_length=255, default="More details"),
     )
 
+    def __str__(self):
+        return "Team banner's translations({})".format(self.id)
+
     class Meta:
-        verbose_name = "Translation"
-        verbose_name_plural = "Translations"
+        verbose_name = "TeamBanner Translation model"
+        verbose_name_plural = "TeamBanner Translation models"
 
 
 @python_2_unicode_compatible
