@@ -1,43 +1,65 @@
 {% load sekizai_tags compress  static %}
-{% compress css %}
-    <link rel="stylesheet" type="text/x-scss" href="{% static "css/projectDisplay.scss" %}">
-{% endcompress %}
+{% block style %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "style/project_display.scss" %}">
+    {% endcompress %}
+{% endblock %}
 {% addtoblock "js" %}
-    <script type="text/javascript" src="{% static "js/script.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/project.js" %}"></script>
 {% endaddtoblock %}
 {% addtoblock "js" %}
     <script type="text/javascript">
-        
+        //Encapsulate javascript inside a function so it's not accessible from the outside #hackerman
+        var {{ uniqueName }};
+        (function () {
+            //Data from the backend
+            var projects = {{ projectsAsJson|safe}};
+            //Init the required modules with unique identifier
+            {{ uniqueName }} = new ProjectModuleClass(projects, "{{ uniqueName }}");
+            //var allMembersTeam = {{ uniqueName }}.rootNode.querySelector(".teamModule__team");
+            //{{ uniqueName }}.setActiveTeam(-1,allMembersTeam);
+        })();
     </script>
 {% endaddtoblock %}
 
-<section class="projectModule" id="uniqueName">
+<section class="projectModule" id="{{ uniqueName }}">
     <div class="projectModule__title">
         Our Projects
     </div>
     <div class="projectModule__projects">
-        {% for project in projects %}
-        <div class="projectModule__projects__project">
-            <div class="projectModule__projects__project__title">
-                <h2>{{ project.project_name }}</h2>
-                {{ project.description }} <br>
-                {{ project.status }}
+        {% if projects %}
+            {% for project in projects %}
+            <div class="projectModule__projects__project" onclick="{{ uniqueName }}.setActiveProject({{project.id}})">
+                <div class="projectModule__projects__project__title">
+                    {{ project.name }}
+                </div>
+                <div class="projectModule__projects__project__picture">
+                    {% if project.images %}
+                    <img alt="project image" class="projectModule__projects__project__picture__img" src="{{ project.images.all.0 }}">
+                    {% else %}
+                    no picture
+                    {% endif %}
+                </div>
             </div>
-            <div class="projectModule__projects__project__picture">
-                <img alt="project image">
-            </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            No Projects
+        {% endif %}
     </div>
-    <div class="projectModule__detail">
-        <div class="projectModule__detail__title">
-            <h2 class="projectModule__detail__title__h">Project title</h2>
-        </div>
+    <div class="projectModule__detail" tabindex="10000" onblur="{{ uniqueName }}.onBlurDetail()" onfocus="console.log('focus')">
+        <div class="projectModule__detail__pictures">
         <div class="projectModule__detail__picture">
             <img alt="project image" class="projectModule__detail__picture__img">
         </div>
-        <div class="projectModule__detail__description">
-            <p class="projectModule__detail__description_p"></p>
+        </div>
+        <div class="projectModule__detail__right">
+            <div class="projectModule__detail__title">
+                <h2 class="projectModule__detail__title__h">Project title</h2>
+            </div>
+            <div class="projectModule__detail__description">
+                <p class="projectModule__detail__description_p"></p>
+            </div>
+            <div class="projectModule__detail__status"></div>
         </div>
     </div>
 </section>

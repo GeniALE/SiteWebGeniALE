@@ -1,15 +1,21 @@
 from django.contrib import admin
 from .models import Formation, Team, Project, Member, ProjectStatus, TeamRole, MemberExtraInfo, MemberExtraInfoType, \
-    TeamDisplayView, TeamBannerModel, TeamBannerTranslationModel, TeamDisplayTranslationModel
+    TeamDisplayView, TeamBannerModel, TeamBannerTranslationModel, TeamDisplayTranslationModel, ProjectImage
 from hvad.admin import TranslatableAdmin
 
 
 class PageTeamAdmin(admin.ModelAdmin):
     pass
 
+class ProjectPictureInline(admin.StackedInline):
+    model = ProjectImage
+    extra = 0
+    fk_name = 'project'
+    
 
 class PageProjectsAdmin(admin.ModelAdmin):
-    pass
+    model = Member
+    inlines = (ProjectPictureInline,)
 
 
 class ExtraInfoInline(admin.StackedInline):

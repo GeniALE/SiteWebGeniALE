@@ -1,0 +1,83 @@
+@import "./basic/_flexboxgrid";
+
+.projectModule {
+    width: 100%;
+    &__title {
+
+    }
+    &__projects {
+        @extend .col-xs-12;
+        @extend .col-sm-12;
+        @extend .col-md-12;
+        display: flex; 
+        &__project {
+            @extend .col-xs-4;
+            @extend .col-sm-4;
+            @extend .col-md-4;
+            padding: 20px;
+            //float: left;
+            &__title {
+                //float: left;
+                width: 100%;
+                text-align: center;
+            }
+            &__picture {
+                width: 100%;
+                &__img {
+                    max-width: 100%;
+                    //margin-left: auto;
+                    //margin-right: auto;
+                }
+            }
+        }
+    }
+    &__detail {
+        @extend .col-xs-10;
+        @extend .col-sm-10;
+        @extend .col-md-10;
+        display: none; //flex
+        flex-direction: row;
+        position: absolute;
+        top: 8%;//calc(10 / 12 * 100%);
+        left: 8%;//calc(10 / 12 * 100%);
+        width: 80vw;
+        height: 80vh;
+        background-color: lightgray;
+        border-radius: 20px;
+        &__title {
+            &__h {
+
+            }
+        }
+        &__picture {
+            /*@extend .col-xs-6;
+            @extend .col-sm-6;
+            @extend .col-md-6;*/
+            &__img {
+                width: 90%;
+                margin: 10px;
+            }
+        }
+        &__description {
+            @extend .col-xs-6;
+            @extend .col-sm-6;
+            @extend .col-md-6;
+            &__p {
+
+            }
+        }
+        &__status {
+
+        }
+    }
+    &__detail > div {
+        flex: 1;
+
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+}
+.projectModule * {
+    box-sizing:border-box;
+}

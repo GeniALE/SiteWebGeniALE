@@ -43,13 +43,20 @@ class ProjectStatus(models.Model):
 
 
 class Project(models.Model):
-    project_name = models.CharField(max_length=100, blank=False)
+    name = models.CharField(max_length=100, blank=False)
     description = models.CharField(max_length=1000, null=True)
     status = models.ForeignKey(ProjectStatus, default=0, on_delete=models.SET_DEFAULT)
     website = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
-        return self.project_name
+        return self.name
+
+class ProjectImage(models.Model):
+    project = models.ForeignKey(Project, related_name='images')
+    image = models.ImageField(upload_to='media/')
+
+    def __str__(self):
+        return self.image.url
 
 
 class Member(models.Model):
@@ -170,3 +177,22 @@ class TeamDisplayView(CMSPlugin):
     class Meta:
         verbose_name = "TeamModule Team Display"
         verbose_name_plural = "TeamModule Team Displays"
+
+@python_2_unicode_compatible
+class ProjectDisplayView(CMSPlugin):
+    template = models.CharField(
+        max_length=255,
+        choices=local_settings.TEAMMODULE_PROJECTDISPLAY_TEMPLATES,
+        default='projectModule/project_display.html',
+        editable=len(local_settings.TEAMMODULE_PROJECTDISPLAY_TEMPLATES) > 1)
+    css_class_prefix = models.CharField(
+        max_length=100,
+        default="",
+        blank=True
+    )
+
+    #translations = models.ForeignKey(TeamDisplayTranslationModel, null=True)
+
+    class Meta:
+        verbose_name = "TeamModule Project Display"
+        verbose_name_plural = "TeamModule Project Displays"

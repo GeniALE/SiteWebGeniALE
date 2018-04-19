@@ -7,15 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 import json
 
 from teamModule.helpers import to_dict
-<<<<<<< HEAD
-from .models import TeamDisplayView
-from .models import Team
-from .models import Member
-from .models import ProjectDisplayView
-from .models import Project
-=======
-from .models import TeamBannerModel, Team, Member, TeamDisplayView
->>>>>>> final-team-display
+from .models import TeamBannerModel, Team, Member, TeamDisplayView, Project, ProjectDisplayView
 
 
 @plugin_pool.register_plugin
@@ -83,10 +75,10 @@ class TeamModulePlugin(CMSPluginBase):
             'teamsAsJson': json.dumps(list(teams_as_dict.values())),
             'membersAsJson': json.dumps(members_as_dict),
             'uniqueName': 'teamModuleDisplay' + '__' + str(instance.id),
-<<<<<<< HEAD
             'cssPrefix': instance.css_class_prefix,
         })
         return context
+
 
 @plugin_pool.register_plugin
 class ProjectModulePlugin(CMSPluginBase):
@@ -97,9 +89,26 @@ class ProjectModulePlugin(CMSPluginBase):
 
     def get_projects(self):
         projects = Project.objects.prefetch_related(
-            'status'
+            'status', 'images'
         )
         return projects
+
+    def projects_to_dict(self, projects):
+        #projects_as_dict = {project.id: model_to_dict(project) for project in projects}
+
+        projects_as_dict = []
+        for project in projects:
+            new_project = to_dict(project)
+            images = project.images.all()
+            new_images = []
+            for image_obj in images:
+                new_image = str(image_obj)
+                new_images.append(new_image)
+            new_project['images'] = new_images
+            new_project['status_text'] = project.status.status
+            projects_as_dict.append(new_project)
+
+        return projects_as_dict
 
     def render(self, context, instance, placeholder):
         if instance and instance.template:
@@ -109,12 +118,14 @@ class ProjectModulePlugin(CMSPluginBase):
 
         # Get some data
         projects = self.get_projects()
+        projects_to_dict = self.projects_to_dict(projects)
 
         context.update({
-            'projects': projects
-=======
-            'cssPrefix': instance.css_class_prefix
->>>>>>> final-team-display
+            'projects': projects,
+            #'projectsAsJson': json.dumps(list(projects_to_dict.values())),
+            'projectsAsJson': json.dumps(projects_to_dict),
+            'uniqueName': 'projectModuleDisplay' + '__' + str(instance.id),
+            'cssPrefix': instance.css_class_prefix,
         })
         return context
 
