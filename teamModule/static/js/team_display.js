@@ -67,8 +67,8 @@ if (!window.TeamModuleClass) {
         }
     };
 
-    TeamModuleClass.prototype.setActiveTeam = function (id, elem) {
-        if (this.activeDataTypes.team.id === id) {
+    TeamModuleClass.prototype.setActiveTeam = function (teamId, elem) {
+        if (this.activeDataTypes.team.id === teamId) {
             this._setActiveDiv(this.activeDataTypes.team.elem, 'team', false);
             this.setMemberVisibility(-1);
             this.resetActiveDataType('team');
@@ -76,12 +76,17 @@ if (!window.TeamModuleClass) {
             if (this.activeDataTypes.team.id !== null) {
                 this._setActiveDiv(this.activeDataTypes.team.elem, 'team', false);
             }
-            if (id !== null) {
+            if (teamId !== null) {
                 this._setActiveDiv(elem, 'team', true);
-                this.setMemberVisibility(id);
+                this.setMemberVisibility(teamId);
             }
-            this.activeDataTypes.team.id = id;
+            this.activeDataTypes.team.id = teamId;
             this.activeDataTypes.team.elem = elem;
+        }
+
+        //Reset active member
+        if(this.activeDataTypes.member.id){
+            this.setActiveMember(this.activeDataTypes.member.id);
         }
     };
 
@@ -96,10 +101,9 @@ if (!window.TeamModuleClass) {
             this._loadMemberDetails(null);
         } else {
             if (this.activeDataTypes.member.id !== null) {
-                nameElem = nameElem ? nameElem : this.rootNode.querySelector("." + this.classByType.member + this.activeDataTypes.member.id);
-                iconElem = iconElem ? iconElem : this.rootNode.querySelector("." + this.classByType.memberIcon + this.activeDataTypes.member.id);
+                var currentIconElem = this.rootNode.querySelector("." + this.classByType.memberIcon + this.activeDataTypes.member.id);
                 this._setActiveDiv(this.activeDataTypes.member.elem, 'member', false);
-                this._setActiveDiv(iconElem, 'memberIcon', false);
+                this._setActiveDiv(currentIconElem, 'memberIcon', false);
                 this._loadMemberDetails(null);
             }
             if (id !== null) {

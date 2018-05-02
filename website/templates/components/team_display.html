@@ -1,0 +1,74 @@
+{% load sekizai_tags compress  static %}
+{% addtoblock "css" %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "style/team_display.scss" %}">
+    {% endcompress %}
+{% endaddtoblock %}
+{% addtoblock "js" %}
+    <script type="text/javascript" src="{% static "js/team_display.js" %}"></script>
+    {% compress js %}
+        <script type="text/javascript">
+            //Encapsulate javascript inside a function so it's not accessible from the outside #hackerman
+            var team_{{ uniqueName }};
+            (function () {
+                //Data from the backend
+                var members = {{ membersAsJson|safe}};
+                var teams = {{  teamsAsJson|safe }};
+                //Init the required modules with unique identifier
+                team_{{ uniqueName }} = new TeamModuleClass(members, "{{ uniqueName }}");
+                var allMembersTeam = team_{{ uniqueName }}.rootNode.querySelector(".teamModule__team");
+                team_{{ uniqueName }}.setActiveTeam(-1, allMembersTeam);
+            })();
+        </script>
+    {% endcompress %}
+{% endaddtoblock %}
+
+<div class="teamModule row" id="{{ uniqueName }}">
+    <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8 ">
+        <div class="teamModule__teams">
+            <h1 class="teamModule__title">{{ translations.teams_title }}</h1>
+            {% for team in teams %}
+                <div class="teamModule__team" onclick="team_{{ uniqueName }}.setActiveTeam({{ team.id }},this)">
+                    {{ team.team_name }}
+                    <span class="teamModule__team__count">{{ team.members_count }}</span>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="teamModule__members">
+            <h1 class="teamModule__title">{{ translations.members_title }}</h1>
+            <div class="row">
+
+                <div class="teamModule__memberpanel col-xs-0 col-md-4">
+                    {% for member in members %}
+                        <div class="teamModule__team__member teamModule__team__member{{ member.id }}"
+                             onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},this)">
+                            {{ member.first_name }} {{ member.last_name }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="teamModule__memberpanel col-md-8 col-xs-12">
+                        {% for member in members %}
+                            <img class="teamModule__memberpanel__icon teamModule__memberpanel__icon{{ member.id }}"
+                                 src="{{ member.profilePicUrl }}"
+                                 onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},null,this)"/>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="teamModule__details teamModule--hidden col-xs-12 col-sm-5 col-md-3 col-lg-2">
+        <div class="center-xs start-sm">
+        <div>
+            <img class="teamModule__details__picture" src=""/>
+        </div>
+        <div class="teamModule__details__fullname"></div>
+        <h4>{{ translations.projects_title }}</h4>
+        <div class="teamModule__details__projects"></div>
+        <h4>{{ translations.formation_title }}</h4>
+        <div class="teamModule__details__formation"></div>
+            </div>
+    </div>
+    <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+</div>
