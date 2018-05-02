@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Formation, Team, Project, Member, ProjectStatus, TeamRole, MemberExtraInfo, MemberExtraInfoType, \
-    TeamDisplayView, TeamBannerModel, TeamBannerTranslationModel
+    TeamDisplayView, TeamBannerModel, TeamBannerTranslationModel, TeamDisplayTranslationModel
 from hvad.admin import TranslatableAdmin
 
 
@@ -53,6 +53,10 @@ class TeamBannerTranslationModelAdmin(TranslatableAdmin, admin.ModelAdmin):
     pass
 
 
+class TeamDisplayTranslationModelAdmin(TranslatableAdmin, admin.ModelAdmin):
+    pass
+
+
 class PageMemberExtraInfoAdmin(admin.ModelAdmin):
     pass
 
@@ -73,3 +77,4 @@ admin.site.register(Member, PageMemberAdmin)
 admin.site.register(TeamDisplayView, TeamDisplayViewAdmin)
 admin.site.register(TeamBannerModel, TeamBannerAdmin)
 admin.site.register(TeamBannerTranslationModel, TeamBannerTranslationModelAdmin)
+admin.site.register(TeamDisplayTranslationModel, TeamDisplayTranslationModelAdmin)

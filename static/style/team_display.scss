@@ -1,16 +1,13 @@
 .teamModule {
   height: 100%;
-  background-color: #bdc3c7;
   //background: linear-gradient(-45deg, black 25%, transparent 25%, transparent),linear-gradient(45deg, transparent 75%, black 75%);
   min-height: 460px;
-  color: white;
+  color: black;
   padding: 1em;
-  font-family: "Georgia", sans-serif;
-  display: flex;
 
   &__team {
     padding: 0.5em 0;
-    font-weight: bold;
+    color:lightgray;
 
     &--active {
       color: black;
@@ -51,8 +48,7 @@
   }
 
   &__details {
-    width: 45%;
-    background-color: white;
+   /* background-color: white;*/
     color: black;
     padding: 1em;
 
@@ -63,7 +59,7 @@
     }
 
     &__fullname{
-
+      font-size:1.5em;
     }
 
     &__projects{
@@ -79,27 +75,9 @@
     display: none !important;
   }
 
-  &__panel {
-    display: inline-block;
-    &--left {
-      flex: 0 0 50%;
-    }
-
-    &--right {
-      flex: 1;
-    }
-  }
-
   &__memberpanel {
-    display: inline-block;
     vertical-align: top;
-    &--left {
-      width: 30%;
-    }
-
-    &--right {
-      width: 65%;
-    }
+    color:lightgray;
 
     &__icon {
       object-fit: cover;

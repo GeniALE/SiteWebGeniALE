@@ -69,6 +69,8 @@
   -ms-flex-preferred-size: 0%;
   flex-basis: 0;
   max-width: 0;
+  overflow:hidden;
+  padding:0;
 }
 
 .col-xs-offset-0, .col-sm-offset-0, .col-lg-offset-0, .col-lg-offset-0 {
