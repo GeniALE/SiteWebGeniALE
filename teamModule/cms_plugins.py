@@ -75,6 +75,7 @@ class TeamModulePlugin(CMSPluginBase):
             'teamsAsJson': json.dumps(list(teams_as_dict.values())),
             'membersAsJson': json.dumps(members_as_dict),
             'uniqueName': 'teamModuleDisplay' + '__' + str(instance.id),
+            'translations': instance.translations,
             'cssPrefix': instance.css_class_prefix
         })
         return context

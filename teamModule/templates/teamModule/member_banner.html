@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block content %}
-    <span class="title">GeniALE</span>
     <section class="member">
         <div class="member__background">
             <div class="member__bgContainer"></div>
@@ -32,8 +31,8 @@
     </section>
 {% endblock %}
 
-{% block scripts %}
+{% addtoblock "js" %}
     {% compress js %}
         <script src="{% static "script/member_banner.js" %}" type="text/javascript" charset="utf-8"></script>
     {% endcompress %}
-{% endblock %}
+{% endaddtoblock %}
