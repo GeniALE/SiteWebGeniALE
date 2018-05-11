@@ -83,7 +83,7 @@ if (!window.ProjectModuleClass) {
     }
 
     ProjectModuleClass.prototype.onBlurDetail = function(){
-        //this.setActiveProject(null);
+        this.setActiveProject(null);
         //this._stopSlider();
     }
 

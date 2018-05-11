@@ -76,6 +76,7 @@
         }
         &__pictures {
             position: relative;
+            max-width: 50%;
             .owl-stage{
                 display: flex;
             }

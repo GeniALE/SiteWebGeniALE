@@ -9,7 +9,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cms', '0019_auto_20180411_2100'),
+        #('cms', '0019_auto_20180411_2100'),
         ('teamModule', '0009_auto_20180408_1540'),
     ]
 
