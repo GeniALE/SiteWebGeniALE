@@ -1,7 +1,9 @@
 @import "./basic/_flexboxgrid";
 
 .projectModule {
+    color: black;
     width: 100%;
+    padding: 1em;
     &__title {
 
     }
@@ -56,10 +58,10 @@
             }
         }
         &__picture {
-            /*@extend .col-xs-6;
+            @extend .col-xs-6;
             @extend .col-sm-6;
-            @extend .col-md-6;*/
-            /*display: none;
+            @extend .col-md-6;
+            display: none;
             max-height: 100%;
             &__img {
                 max-width: 90%;
@@ -72,19 +74,17 @@
             }
             &__active {
                 display: block;
-            }*/
+            }
         }
         &__pictures {
-            position: relative;
-            max-width: 50%;
+            display: flex;
+            max-width: 50% !important;
             .owl-stage{
                 display: flex;
             }
         }
         &__description {
-            @extend .col-xs-6;
-            @extend .col-sm-6;
-            @extend .col-md-6;
+
             &__p {
 
             }
@@ -95,7 +95,7 @@
     }
     &__detail > div {
         flex: 1;
-
+        padding: 1em;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -143,8 +143,8 @@ i {
 }
 
 .arrow.left {
-    left: 0; 
+    left: 0;
 }
 .arrow.right {
-    right: 0; 
+    right: 0;
 }*/

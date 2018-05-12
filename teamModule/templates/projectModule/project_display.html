@@ -22,10 +22,12 @@
     </script>
 {% endaddtoblock %}
 
-<section class="projectModule" id="{{ uniqueName }}">
-    <div class="projectModule__title">
-        Our Projects
-    </div>
+<section class="projectModule row" id="{{ uniqueName }}">
+  <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+      <h1 class="projectModule__title">
+        {{ translations.projectModule__title }}
+          Our Projects
+      </h1>
     <div class="projectModule__projects">
         {% if projects %}
             {% for project in projects %}
@@ -47,20 +49,25 @@
         {% endif %}
     </div>
     <div class="projectModule__detail" tabindex="10000" onblur="{{ uniqueName }}.onBlurDetail()" onfocus="console.log('focus')">
-        <div class="projectModule__detail__pictures owl-theme">
+        <div class="projectModule__detail__pictures owl-theme owl-carousel">
             <!--<div class="projectModule__detail__picture">
                 <img alt="project image" class="projectModule__detail__picture__img">
             </div>-->
         </div>
+
+
         <div class="projectModule__detail__right">
             <div class="projectModule__detail__title">
                 <h2 class="projectModule__detail__title__h">Project title</h2>
             </div>
+
             <div class="projectModule__detail__description">
+              <h4> Description </h4>
                 <p class="projectModule__detail__description_p"></p>
             </div>
-            <div class="projectModule__detail__status"></div>
-        </div>
+            <h4> Status </h4>
+            <div class="projectModule__detail__status">
+            </div>
+      </div>
     </div>
 </section>
-    
