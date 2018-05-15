@@ -7,6 +7,9 @@
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}"/>
     {% endcompress %}
+    <link rel="stylesheet" type="text/css" href="{% static "lib/owlcarousel/assets/owl.carousel.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "lib/owlcarousel/assets/owl.theme.default.min.css" %}">
+
     {% block style %}{% endblock %}
     {% render_block "css" %}
 </head>
@@ -55,8 +58,7 @@
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{% static "lib/owlcarousel/owl.carousel.min.js" %}"></script>
-<link rel="stylesheet" href="{% static "lib/owlcarousel/assets/owl.carousel.min.css" %}">
-<link rel="stylesheet" href="{% static "lib/owlcarousel/assets/owl.theme.default.min.css" %}">
+
 {% render_block "scripts" %}
 {% render_block "js" %}
 {% compress js %}

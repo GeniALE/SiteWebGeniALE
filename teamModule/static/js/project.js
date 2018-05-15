@@ -76,10 +76,7 @@ if (!window.ProjectModuleClass) {
         this.detailNode.style.display = "flex";
         this.detailNode.focus();
 
-        if(project.images.length > 1){
-            //this._startSlider();
-            this.buildCarousel();
-        }
+        this.buildCarousel();
     }
 
     ProjectModuleClass.prototype.onBlurDetail = function(){
@@ -87,6 +84,7 @@ if (!window.ProjectModuleClass) {
         //this._stopSlider();
     }
 
+//dead code
     ProjectModuleClass.prototype.previousImage = function(){
         var images = this.detail.pictures.getElementsByClassName(this.detail.pictureDivStr);
         var activeIndex = this._getActiveDetailPictureId(images);
@@ -95,13 +93,14 @@ if (!window.ProjectModuleClass) {
         }
         images[activeIndex].classList.remove(this.detail.pictureActiveStr);
         if(activeIndex == 0){
-            activeIndex = (images.length - 1); 
+            activeIndex = (images.length - 1);
         } else {
             activeIndex -= 1;
         }
         images[activeIndex].classList.add(this.detail.pictureActiveStr);
     }
 
+//dead code
     ProjectModuleClass.prototype.nextImage = function(){
         var images = this.detail.pictures.getElementsByClassName(this.detail.pictureDivStr);
         var activeIndex = this._getActiveDetailPictureId(images);
@@ -110,7 +109,7 @@ if (!window.ProjectModuleClass) {
         }
         images[activeIndex].classList.remove(this.detail.pictureActiveStr);
         if(activeIndex == (images.length - 1)){
-            activeIndex = 0; 
+            activeIndex = 0;
         } else {
             activeIndex += 1;
         }
@@ -131,6 +130,7 @@ if (!window.ProjectModuleClass) {
         return null;
     }
 
+//dead code
     ProjectModuleClass.prototype._getActiveDetailPictureId = function(images){
         var activeIndex = null;
         for(var i = 0; i < images.length; i++){
@@ -148,7 +148,7 @@ if (!window.ProjectModuleClass) {
         if(active){
             //div.classList.add(this.detail.pictureActiveStr);
         }
-        
+
         var img = document.createElement("img");
         img.src = imageUrl;
         img.className = this.detail.pictureImgStr;
@@ -163,16 +163,21 @@ if (!window.ProjectModuleClass) {
             //loop: true,
             items:1,
             autoWidth:true,
+            navigation: true, // Show next and prev buttons
+            slideSpeed: 300,
+            paginationSpeed: 400,
+            margin: 1
+
         });
     }
-
+// dead code
     ProjectModuleClass.prototype._startSlider = function(){
         var _this = this;
         this.sliderTimer = setInterval(function(){
             _this.nextImage();
         }, 3000);
     }
-
+// dead code
     ProjectModuleClass.prototype._stopSlider = function(){
         if(this.sliderTimer){
             clearInterval(this.sliderTimer);

@@ -11,7 +11,7 @@
         @extend .col-xs-12;
         @extend .col-sm-12;
         @extend .col-md-12;
-        display: flex; 
+        display: flex;
         &__project {
             @extend .col-xs-4;
             @extend .col-sm-4;
@@ -62,25 +62,26 @@
             @extend .col-sm-6;
             @extend .col-md-6;
             display: none;
+            position: relative;
             max-height: 100%;
             &__img {
-                max-width: 90%;
-                max-height: 100%;
-                margin: 10px;
                 display: block;
-                margin: 0 auto;
-                width: auto;
+                object-fit: cover;
+                width: 90%;
+                max-width: 90%;
+                max-height: 90%;
                 height: auto;
             }
             &__active {
-                display: block;
+
             }
         }
         &__pictures {
+            vertical-align: middle;
+            overflow: hidden;
             display: flex;
-            max-width: 50% !important;
             .owl-stage{
-                display: flex;
+
             }
         }
         &__description {
