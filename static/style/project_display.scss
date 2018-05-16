@@ -58,10 +58,16 @@
             }
         }
         &__picture {
-            @extend .col-xs-6;
+            height: 100%;
+            &__img {
+                height: 100%;
+                width: auto;
+                margin: 0 auto;
+            }
+            /*@extend .col-xs-6;
             @extend .col-sm-6;
             @extend .col-md-6;
-            display: none;
+            //display: none;
             position: relative;
             max-height: 100%;
             &__img {
@@ -74,7 +80,7 @@
             }
             &__active {
 
-            }
+            }*/
         }
         &__pictures {
             vertical-align: middle;
@@ -104,6 +110,16 @@
 }
 .projectModule * {
     box-sizing:border-box;
+}
+.owl-stage-outer{
+    height: 90% !important;
+    display: block;
+    & .owl-stage, & .owl-item{
+        display: flex;
+        height: 100% !important;
+        width: 100% !important;
+        display: block;
+    }
 }
 
 /*

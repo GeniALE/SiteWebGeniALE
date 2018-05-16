@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         #('cms', '0019_auto_20180411_2100'),
-        ('teamModule', '0009_auto_20180408_1540'),
+        ('teamModule', '0009_auto_20180410_2136'),
     ]
 
     operations = [
