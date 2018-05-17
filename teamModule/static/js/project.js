@@ -15,6 +15,7 @@ if (!window.ProjectModuleClass) {
             pictures: this.detailNode.querySelector(".projectModule__detail__pictures"),
             description: this.detailNode.querySelector(".projectModule__detail__description_p"),
             status: this.detailNode.querySelector(".projectModule__detail__status"),
+            link: this.detailNode.querySelector(".projectModule__detail__link__a"),
             pictureDivStr : "projectModule__detail__picture",
             pictureActiveStr : "projectModule__detail__picture__active",
             pictureImgStr : "projectModule__detail__picture__img"
@@ -50,6 +51,8 @@ if (!window.ProjectModuleClass) {
             this.detail.pictures.innerHTML = '';
             this.detail.description.innerText = '';
             this.detail.status.innerText = '';
+            this.detail.link.href = '';
+            this.detail.link.innerText = '';
             this.detailNode.style.display = "none";
             return;
         }
@@ -58,6 +61,8 @@ if (!window.ProjectModuleClass) {
         this.detail.title.innerText = project.name;
         this.detail.description.innerText = project.description;
         this.detail.status.innerText = project.status_text;
+        this.detail.link.href = project.website;
+        this.detail.link.innerText = project.website;
 
         for(var i = 0; i < project.images.length; i++){
             this._insertPicture(this.detail.pictures, project.images[i]);
@@ -65,9 +70,7 @@ if (!window.ProjectModuleClass) {
         var _this = this;
         this.detailNode.style.display = "flex";
         this.detailNode.focus();
-        setTimeout(() => {
-            this.buildCarousel();
-        }, 100);
+        this.buildCarousel();
     }
 
     ProjectModuleClass.prototype.onBlurDetail = function(){
@@ -90,12 +93,15 @@ if (!window.ProjectModuleClass) {
     ProjectModuleClass.prototype.buildCarousel = function(){
         $(this.detail.pictures).owlCarousel({
             center: true,
-            //loop: true,
+            loop: true,
             items:1,
             navigation: true, // Show next and prev buttons
             slideSpeed: 300,
             paginationSpeed: 400,
-            //margin: 1,
+            margin: 1,
+            //autoplay:true,
+            autoplayTimeout:4000,
+            autoplayHoverPause:true
         });
     }
 }
