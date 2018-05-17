@@ -1,9 +1,9 @@
 {% load sekizai_tags compress  static %}
-{% block style %}
+{% addtoblock "css" %}
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "style/project_display.scss" %}">
     {% endcompress %}
-{% endblock %}
+{% endaddtoblock %}
 {% addtoblock "js" %}
     <script type="text/javascript" src="{% static "js/project.js" %}"></script>
 {% endaddtoblock %}

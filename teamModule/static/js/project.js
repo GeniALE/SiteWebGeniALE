@@ -92,19 +92,10 @@ if (!window.ProjectModuleClass) {
             center: true,
             //loop: true,
             items:1,
-            //autoWidth:true,
-            //autoWidthClass:'owl-width',
-            //autoHeight:true,
-            //autoHeightClass:'owl-height',
             navigation: true, // Show next and prev buttons
             slideSpeed: 300,
             paginationSpeed: 400,
             //margin: 1,
-
-            /*itemsDesktop : false,
-            itemsDesktopSmall : false,
-            itemsTablet: false,
-            itemsMobile : false */
         });
     }
 }
