@@ -25,18 +25,16 @@
             }
             &__picture {
                 width: 100%;
-                height: 100%;
                 &__img {
                     display: block;
-                    width: 100%;
-                    height: auto;
+                    max-width: 100%;
                     max-height: 100%;
                     //margin-left: auto;
                     //margin-right: auto;
                     display: block;
                     margin: 0 auto;
-                    //width: auto;
-                    //height: auto;
+                    width: auto;
+                    height: auto;
                 }
             }
         }
@@ -61,15 +59,29 @@
         }
         &__picture {
             height: 100%;
-            width: 100%;
-            display: inline-block;
             .owl-carousel .owl-item &__img {
                 max-height: 100%;
                 width: auto;
                 max-width: 100%;
-                margin: auto;
-                vertical-align: middle;
+                margin: 0 auto;
             }
+            /*@extend .col-xs-6;
+            @extend .col-sm-6;
+            @extend .col-md-6;
+            //display: none;
+            position: relative;
+            max-height: 100%;
+            &__img {
+                display: block;
+                object-fit: cover;
+                width: 90%;
+                max-width: 90%;
+                max-height: 90%;
+                height: auto;
+            }
+            &__active {
+
+            }*/
         }
         &__pictures {
             vertical-align: middle;
@@ -77,13 +89,20 @@
             display: flex;
             .owl-stage-outer{
                 height: 90% !important;
-                & .owl-stage{
-                    height: 100%;
-                    & .owl-item{
-                        height: 100%;
-                    }
-                }
             }
+            /*&.owl-carousel{
+                max-height: 100%;
+                overflow: hidden;
+                display: inline-block;
+            }
+            .owl-stage-outer{
+                height: 90% !important;
+                display: block;
+                & .owl-stage, & .owl-item{
+                    height: 100%;
+                    width: auto;
+                }
+            }*/
         }
         &__description {
 
