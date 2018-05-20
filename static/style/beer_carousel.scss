@@ -54,6 +54,16 @@ section.beercarousel {
                         }
 
                         &--can {
+                            background-image: url('../image/can.svg');
+
+                            &::after {
+                                padding-bottom: 182%;
+                            }
+
+                            & ~ .beer__imagetagwrapper {
+                                width: 100%;
+                                top: 17%;
+                            }
                         }
                     }
 
