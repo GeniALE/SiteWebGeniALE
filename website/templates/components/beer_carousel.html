@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load cms_tags sekizai_tags compress static %}
+
 {% addtoblock 'css' %}
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "style/beer_carousel.scss" %}">
@@ -7,27 +8,15 @@
 {% endaddtoblock %}
 
 <section class="beercarousel">
-    <div class="beercarousel__title">
-        <span>nos bières (placeholder)</span>
-    </div>
+    <h1 class="beercarousel__title">nos bières (placeholder)</h1>
     <div class="beercarousel__container">
-        <div class="beercarousel__bottlecontainer">
-            <div class="beercarousel__bottle beercarousel__bottle--bottle beercarousel__bottle--active">
-                <svg viewBox="0 0 150 420">
-                    <!--
-                        fill: #96281b;
-                  -->
-                     <path d="M110,120,100,20V0H50V20L40,120c-22.09,0-40,34.91-40,57V405a15,15,0,0,0,15,15H135a15,15,0,0,0,15-15V177C150,154.91,132.09,120,110,120Z"/>
-                </svg>
-            </div>
-            <div class="beercarousel__bottle beercarousel__bottle--can">
-                <!-- can svg -->
-            </div>
-        </div>
-        <div class="beercarousel__beers">
+        <div class="beercarousel__beers" style="width: 300vw">
             <div class="beer">
                 <div class="beer__image">
-                    <img src="https://i.pinimg.com/originals/16/f5/14/16f5140dbb6637c93d3db847f437f4e6.png" alt="placeholder pilsner beer">
+                    <span class="beer__imagecontainer beer__imagecontainer--bottle"></span>
+                    <div class="beer__imagetagwrapper">
+                        <span class="beer__imagetag" style="background-image: url(https://static1.squarespace.com/static/56b23c68356fb0d2454d6659/t/5a60c2ce4192023fc53b793d/1516297390074/WOLF_AND_MAN_preview-01.png); left: -707%; background-size: 33%;"></span>
+                    </div>
                 </div>
                 <div class="beer__info">
                     <div class="beer__title">
@@ -60,7 +49,10 @@
             </div>
             <div class="beer">
                 <div class="beer__image">
-                    <img src="https://i.pinimg.com/originals/16/f5/14/16f5140dbb6637c93d3db847f437f4e6.png" alt="placeholder pilsner beer">
+                    <span class="beer__imagecontainer beer__imagecontainer--bottle"></span>
+                    <div class="beer__imagetagwrapper">
+                        <span class="beer__imagetag" style="background-image: url(http://www.brighton-designers.co.uk/bigs/beer_bottle_label_dragon.jpg); left: -705%; background-size: 30%;"></span>
+                    </div>
                 </div>
                 <div class="beer__info">
                     <div class="beer__title">
@@ -93,7 +85,10 @@
             </div>
             <div class="beer">
                 <div class="beer__image">
-                    <img src="https://i.pinimg.com/originals/16/f5/14/16f5140dbb6637c93d3db847f437f4e6.png" alt="placeholder pilsner beer">
+                    <span class="beer__imagecontainer beer__imagecontainer--bottle"></span>
+                    <div class="beer__imagetagwrapper">
+                        <span class="beer__imagetag" style="background-image: url(https://images.template.net/150/Beer-Bottle-Label-Template.jpg); left: -669%; background-size: 32%;"></span>
+                    </div>
                 </div>
                 <div class="beer__info">
                     <div class="beer__title">
@@ -126,20 +121,20 @@
             </div>
         </div>
         <div class="beercarousel__controls">
-            <div class="beercarousel__button">
+            <button class="beercarousel__button">
                 <span class="beercarousel__buttonname">la pilsner</span>
-            </div>
-            <div class="beercarousel__button">
+            </button>
+            <button class="beercarousel__button">
                 <span class="beercarousel__buttonname">la bière avec un nom super fuckin long</span>
-            </div>
-            <div class="beercarousel__button">
+            </button>
+            <button class="beercarousel__button">
                 <span class="beercarousel__buttonname">la biêreavecunnomsansespace</span>
-            </div>
+            </button>
         </div>
 </section>
 
 {% addtoblock 'js' %}
     {% compress js %}
-        <script src="{% static "script/member_banner.js" %}" type="text/javascript" charset="utf-8"></script>
+        <script src="{% static "script/beer_carousel.js" %}" type="text/javascript" charset="utf-8"></script>
     {% endcompress %}
 {% endaddtoblock %}
