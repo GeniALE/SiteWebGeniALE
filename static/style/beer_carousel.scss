@@ -1,7 +1,7 @@
 $beerBottleWidth: 200px;
 $time-short: 300ms;
 $time-normal: 600ms;
-$time-long: 900ms;
+$time-long: 1500ms;
 
 section.beercarousel {
     overflow: hidden;
@@ -70,11 +70,12 @@ section.beercarousel {
 
                     // .beer__imagetag
                     &tag {
-                        width: 900%;
+                        width: 300%;
                         height: 100%;
+                        transform-origin: 0 0;
+                        background-size: calc(100%/3);
                         background-repeat: repeat no-repeat;
                         position: relative;
-                        transition: left $time-long;
 
                         // .beer__imagetagwrapper (its parent)
                         &wrapper {
@@ -133,13 +134,13 @@ section.beercarousel {
                     }
                 }
 
-                &:not(.beer--active) {
-                    & .beer {
-                        &__imagetag {
-                            left: 0 !important;
-                        }
-                    }
-                }
+                // &:not(.beer--active) {
+                //     & .beer {
+                //         &__imagetag {
+                //             left: -600% !important;
+                //         }
+                //     }
+                // }
             }
         }
 
