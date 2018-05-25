@@ -150,6 +150,7 @@ class TeamBannerModel(CMSPlugin):
         editable=len(local_settings.TEAMMODULE_TEAMBANNER_TEMPLATES) > 1)
     translations = models.ForeignKey(TeamBannerTranslationModel)
     team_image = models.ImageField(upload_to='media/')
+    details_button_link = models.CharField(max_length=255, default="#")
 
     class Meta:
         verbose_name = "TeamModule Team Banner"
