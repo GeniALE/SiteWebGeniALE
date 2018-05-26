@@ -164,8 +164,7 @@ INSTALLED_APPS = (
     'cmsplugin_contact_plus',
     'compressor',
     'hvad',
-    'teamModule',
-    'beer_carousel'
+    'teamModule'
 )
 
 LANGUAGES = (

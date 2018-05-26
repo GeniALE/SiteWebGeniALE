@@ -116,7 +116,6 @@ Eventually, more commands will be added to automate some tasks.
 # Plugins
 
 - [TeamModule](/teamModule/README.md)
-- [beer_carousel](/beer_carousel/README.md)
 
 
 # Contributing

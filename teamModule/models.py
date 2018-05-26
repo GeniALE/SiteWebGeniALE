@@ -3,6 +3,7 @@ from cms.models.pluginmodel import CMSPlugin
 from django.utils.encoding import python_2_unicode_compatible
 from hvad.models import TranslatableModel, TranslatedFields
 
+# Create your models here.
 from teamModule import local_settings
 
 
