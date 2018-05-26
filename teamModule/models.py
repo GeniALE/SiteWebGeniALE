@@ -128,6 +128,7 @@ class TeamBannerTranslationModel(TranslatableModel):
         verbose_name_plural = "TeamBanner Translation models"
 
 
+
 @python_2_unicode_compatible
 class TeamDisplayView(CMSPlugin):
     template = models.CharField(
@@ -182,6 +183,22 @@ class TeamDisplayView(CMSPlugin):
         verbose_name_plural = "TeamModule Team Displays"
 
 @python_2_unicode_compatible
+class ProjectDisplayTranslationModel(TranslatableModel):
+    translations = TranslatedFields(
+        projects_title= models.CharField(max_length=255, default="Our Projects"),
+        project_title = models.CharField(max_length=255, default="Project Title"),
+        project_description_title = models.CharField(max_length=255, default="Project Title"),
+        project_status_title = models.CharField(max_length=255, default="Status"),
+        project_website_title = models.CharField(max_length=255, default="Website"),
+    )
+    def __str__(self):
+        return "Project display's translations({})".format(self.id)
+
+    class Meta:
+        verbose_name = "ProjectDisplay Translation model"
+        verbose_name_plural = "ProjectDisplay Translation models"
+
+@python_2_unicode_compatible
 class ProjectDisplayView(CMSPlugin):
     template = models.CharField(
         max_length=255,
@@ -194,7 +211,7 @@ class ProjectDisplayView(CMSPlugin):
         blank=True
     )
 
-    #translations = models.ForeignKey(TeamDisplayTranslationModel, null=True)
+    translations = models.ForeignKey(ProjectDisplayTranslationModel, null=True)
 
     class Meta:
         verbose_name = "TeamModule Project Display"
