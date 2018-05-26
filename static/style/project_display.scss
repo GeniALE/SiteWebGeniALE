@@ -31,12 +31,8 @@
                     width: 100%;
                     height: auto;
                     max-height: 100%;
-                    //margin-left: auto;
-                    //margin-right: auto;
                     display: block;
                     margin: 0 auto;
-                    //width: auto;
-                    //height: auto;
                 }
             }
         }
@@ -65,10 +61,12 @@
             display: inline-block;
             .owl-carousel .owl-item &__img {
                 max-height: 100%;
-                width: auto;
                 max-width: 100%;
-                margin: auto;
                 vertical-align: middle;
+                position: relative;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
         }
         &__pictures {

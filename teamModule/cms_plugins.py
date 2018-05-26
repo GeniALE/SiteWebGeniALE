@@ -123,7 +123,6 @@ class ProjectModulePlugin(CMSPluginBase):
 
         context.update({
             'projects': projects,
-            #'projectsAsJson': json.dumps(list(projects_to_dict.values())),
             'projectsAsJson': json.dumps(projects_to_dict),
             'uniqueName': 'projectModuleDisplay' + '__' + str(instance.id),
             'cssPrefix': instance.css_class_prefix,
