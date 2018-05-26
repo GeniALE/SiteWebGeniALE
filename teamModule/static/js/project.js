@@ -11,20 +11,22 @@ if (!window.ProjectModuleClass) {
         };
 
         this.detail = {
-            title: this.detailNode.querySelector(".projectModule__detail__title__h"),
+            title_parent : this.detailNode.querySelector(".projectModule__detail__title"),
+            title: this.detailNode.querySelector(".projectModule__detail__title__container"),
+            pictures_parent : this.detailNode.querySelector(".projectModule__detail__pictures"),
             pictures: this.detailNode.querySelector(".projectModule__detail__pictures"),
-            description: this.detailNode.querySelector(".projectModule__detail__description_p"),
-            status: this.detailNode.querySelector(".projectModule__detail__status"),
-            link: this.detailNode.querySelector(".projectModule__detail__link__a"),
+            description_parent : this.detailNode.querySelector(".projectModule__detail__description"),
+            description: this.detailNode.querySelector(".projectModule__detail__description__container"),
+            status_parent: this.detailNode.querySelector(".projectModule__detail__status"),
+            status: this.detailNode.querySelector(".projectModule__detail__status__container"),
+            link_parent: this.detailNode.querySelector(".projectModule__detail__link"),
+            link: this.detailNode.querySelector(".projectModule__detail__link__container"),
             pictureDivStr : "projectModule__detail__picture",
             pictureActiveStr : "projectModule__detail__picture__active",
-            pictureImgStr : "projectModule__detail__picture__img"
+            pictureImgStr : "projectModule__detail__picture__container"
         }
 
         this.projects = projects || [];
-
-        //this.activeProjectDetail = null;
-        this.sliderTimer = null;
     }
 
     ProjectModuleClass.prototype._getProjectById = function(projectId){ 
@@ -53,29 +55,60 @@ if (!window.ProjectModuleClass) {
             this.detail.status.innerText = '';
             this.detail.link.href = '';
             this.detail.link.innerText = '';
-            this.detailNode.style.display = "none";
+            this.detailNode.style.visibility = "hidden";
             return;
         }
 
         this.detail.pictures.innerHTML = '';
         this.detail.title.innerText = project.name;
         this.detail.description.innerText = project.description;
+        this.showHideInfo(this.detail.description_parent, !this.empty(project.description));
         this.detail.status.innerText = project.status_text;
+        this.showHideInfo(this.detail.status_parent, !this.empty(project.status_text));
         this.detail.link.href = project.website;
         this.detail.link.innerText = project.website;
+        this.showHideInfo(this.detail.link_parent, !this.empty(project.website));
 
         for(var i = 0; i < project.images.length; i++){
             this._insertPicture(this.detail.pictures, project.images[i]);
         }
         var _this = this;
-        this.detailNode.style.display = "flex";
+        this.detailNode.style.visibility = "inherit";
         this.detailNode.focus();
         this.buildCarousel();
     }
 
+    ProjectModuleClass.prototype.showHideInfo = function(component, show){
+        if(show){
+            component.style.visibility = "inherit";
+        } else {
+            component.style.visibility = "hidden";
+        }
+    }
+    ProjectModuleClass.prototype.empty = function(data)
+    {
+      if(typeof(data) == 'number' || typeof(data) == 'boolean'){ 
+        return false; 
+      }
+      if(typeof(data) == 'undefined' || data === null){
+        return true; 
+      }
+      if(typeof(data.length) != 'undefined'){
+        return data.length == 0;
+      }
+      var count = 0;
+      for(var i in data){
+        if(data.hasOwnProperty(i))
+        {
+          count ++;
+        }
+      }
+      return count == 0;
+    }
+
     ProjectModuleClass.prototype.onBlurDetail = function(){
-        //$(this.detail.pictures).owlCarousel('destroy');
-        //this.setActiveProject(null);
+        $(this.detail.pictures).owlCarousel('destroy');
+        this.setActiveProject(null);
     }
 
     ProjectModuleClass.prototype._insertPicture = function(parentNode, imageUrl){
@@ -99,7 +132,7 @@ if (!window.ProjectModuleClass) {
             slideSpeed: 300,
             paginationSpeed: 400,
             margin: 1,
-            //autoplay:true,
+            autoplay:true,
             autoplayTimeout:4000,
             autoplayHoverPause:true
         });

@@ -42,7 +42,7 @@
                 </div>
                 <div class="projectModule__projects__project__picture">
                     {% if project.images %}
-                    <img alt="project image" class="projectModule__projects__project__picture__img" src="{{ project.images.all.0 }}">
+                    <img alt="project image" class="projectModule__projects__project__picture__container" src="{{ project.images.all.0 }}">
                     {% else %}
                     no picture
                     {% endif %}
@@ -58,27 +58,31 @@
     <div class="projectModule__detail" tabindex="10000" onblur="{{ uniqueName }}.onBlurDetail()" onfocus="console.log('focus')">
 
         <div class="projectModule__detail__pictures owl-carousel owl-theme">
-            <!--<div class="projectModule__detail__picture">
-                <img alt="project image" class="projectModule__detail__picture__img">
-            </div>-->
+            {% comment %}
+            {# This is an example of the html that is generated in js #}
+            <div class="projectModule__detail__picture">
+                <img alt="project image" class="projectModule__detail__picture__container">
+            </div>
+            {% endcomment %}
         </div>
 
 
         <div class="projectModule__detail__right">
             <div class="projectModule__detail__title">
-                <h2 class="projectModule__detail__title__h">Project title</h2>
+                <h2 class="projectModule__detail__title__container">Project title</h2>
             </div>
 
             <div class="projectModule__detail__description">
               <h4> Description </h4>
-                <p class="projectModule__detail__description_p"></p>
+                <p class="projectModule__detail__description__container"></p>
             </div>
-            <h4> Status </h4>
             <div class="projectModule__detail__status">
+                <h4> Status </h4>
+                <div class="projectModule__detail__status__container"></div>
             </div>
             <div class="projectModule__detail__link">
                 <h4> Website </h4>
-                <a href="" class="projectModule__detail__link__a" />
+                <a href="" class="projectModule__detail__link__container" />
             </div>
       </div>
     </div>
