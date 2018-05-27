@@ -12,7 +12,7 @@ class ProjectPictureInline(admin.StackedInline):
     model = ProjectImage
     extra = 0
     fk_name = 'project'
-    
+
 
 class PageProjectsAdmin(admin.ModelAdmin):
     model = Member
@@ -90,4 +90,4 @@ admin.site.register(TeamBannerModel, TeamBannerAdmin)
 admin.site.register(TeamBannerTranslationModel, TeamBannerTranslationModelAdmin)
 admin.site.register(TeamDisplayTranslationModel, TeamDisplayTranslationModelAdmin)
 
-#admin.site.register(ProjectDisplayTranslationModel, ProjectTranslationModelAdmin)
+admin.site.register(ProjectDisplayTranslationModel, ProjectTranslationModelAdmin)

@@ -31,7 +31,8 @@
   <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
       <h1 class="projectModule__title">
         {{ translations.projectModule__title }}
-          Our Projects
+          Our Projects --
+          {{ translations.projects_title }}
       </h1>
     <div class="projectModule__projects">
         {% if projects %}
@@ -50,7 +51,7 @@
             </div>
             {% endfor %}
         {% else %}
-            No Projects
+            No Projects To Show
         {% endif %}
     </div>
 
@@ -66,18 +67,20 @@
 
         <div class="projectModule__detail__right">
             <div class="projectModule__detail__title">
-                <h2 class="projectModule__detail__title__h">Project title</h2>
+                <h2 class="projectModule__detail__title__h">
+                  {{ translations.project_title }}
+                  </h2>
             </div>
 
             <div class="projectModule__detail__description">
-              <h4> Description </h4>
+              <h4> {{ translations.project_description_title }} </h4>
                 <p class="projectModule__detail__description_p"></p>
             </div>
-            <h4> Status </h4>
+            <h4> {{ translations.project_status_title }} </h4>
             <div class="projectModule__detail__status">
             </div>
             <div class="projectModule__detail__link">
-                <h4> Website </h4>
+                <h4> {{ translations.project_website_title }} </h4>
                 <a href="" class="projectModule__detail__link__a" />
             </div>
       </div>
