@@ -164,25 +164,6 @@ class TeamBannerModel(CMSPlugin):
         verbose_name_plural = "TeamModule Team Banners"
 
 @python_2_unicode_compatible
-class TeamDisplayView(CMSPlugin):
-    template = models.CharField(
-        max_length=255,
-        choices=local_settings.TEAMMODULE_TEAMDISPLAY_TEMPLATES,
-        default='teamModule/team_display.html',
-        editable=len(local_settings.TEAMMODULE_TEAMDISPLAY_TEMPLATES) > 1)
-    css_class_prefix = models.CharField(
-        max_length=100,
-        default="",
-        blank=True
-    )
-
-    translations = models.ForeignKey(TeamDisplayTranslationModel, null=True)
-
-    class Meta:
-        verbose_name = "TeamModule Team Display"
-        verbose_name_plural = "TeamModule Team Displays"
-
-@python_2_unicode_compatible
 class ProjectDisplayTranslationModel(TranslatableModel):
     translations = TranslatedFields(
         projects_title= models.CharField(max_length=255, default="Our Projects"),
