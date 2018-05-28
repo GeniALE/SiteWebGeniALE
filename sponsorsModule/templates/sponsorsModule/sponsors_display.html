@@ -19,7 +19,7 @@
 
 <div class="sponsorsModule">
     <div class="sponsorsModule__panel sponsorsModule__panel--left">
-        <div class="sponsorsModule__teams">
+        <div class="sponsorsModule__sponsors">
             <h1 class="sponsorsModule__title">Sponsors</h1>
             {% for sponsor in sponsors%}
                 <div class="sponsorsModule__team">
@@ -27,5 +27,17 @@
                 </div>
             {% endfor %}
         </div>
+
     </div>
+    <div class="sponsorsModule__sponsors">
+            <h1 class="sponsorsModule__title">Categories</h1>
+            {% for category in category_sponsors %}
+                <div class="sponsorsModule__team">
+                    {% for sponsor in category.sponsors%}
+
+                    <img src="{{sponsor.image}}">
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
 </div>

@@ -21,36 +21,41 @@ class SponsorsModulePlugin(CMSPluginBase):
         sponsors = list(Sponsor.objects.all().order_by("title"))
         return sponsors
 
-    def get_categories(self,instance):
+    def get_categories(self, instance):
         categories = list(Category.objects.all().order_by("scoreMin"))
         return categories
 
-    # def sponsors_to_dict(self, sponsors):
-    #     sponsors_as_dict = []
-    #     for sponsor in members:
-    #         new_sponsor = to_dict(member)
-    #         team_roles = member.teamRoles.all()
-    #         new_sponsor['title'] = [to_dict(teamRole) for teamRole in team_roles]
-    #         new_sponsor['url'] = [to_dict(project) for project in member.projects.all()]
-    #         new_sponsor['image'] = to_dict(member.formation)
-    #         sponsors_as_dict.append(new_member)
-    #
-    #     return sponsors_as_dict
-    #
-    # def teams_to_dict(self, teams, members):
-    #     teams_as_dict = {team.id: model_to_dict(team) for team in teams}
-    #     for (team_id, team) in teams_as_dict.items():
-    #         teams_as_dict[team_id]['members_count'] = 0
-    #
-    #     for member in members:
-    #         team_roles = member.teamRoles.all()
-    #         for teamRole in team_roles:
-    #             teams_as_dict[teamRole.team_id]['members_count'] += 1
-    #
-    #     # All special case
-    #     teams_as_dict[-1]['members_count'] = len(members)
-    #     teams_as_dict = OrderedDict(sorted(teams_as_dict.items(), key=lambda t: t[0]))
-    #     return teams_as_dict
+    def add_category_to_sponsor(self, sponsors, category):
+        for sponsor in sponsors:
+            sponsor.category = []
+            for c in category:
+                if c.scoreMax is not None:
+                    if c.scoreMin <= sponsor.score <= c.scoreMax:
+                        sponsor.category.append(c)
+                else:
+                    if sponsor.score >= c.scoreMin:
+                        sponsor.category.append(c)
+        return sponsors
+
+    def add_sponsors_to_categories(self, sponsors, category):
+        # sortedcategories = sorted(category,key = lambda x: x.scoreMin)
+
+        for c in category:
+            c.sponsors = []
+            for sponsor in sponsors:
+                c.sponsors.append(sponsors)
+                if c.scoreMax is not None:
+                    if c.scoreMin <= sponsor.score <= c.scoreMax:
+                        c.sponsors.append(sponsor)
+                else:
+                    if sponsor.score >= c.scoreMin:
+                        c.sponsors.append(sponsor)
+        return category
+
+    def get_image_url(self,sponsors):
+        for sponsor in sponsors:
+            sponsor.image = "/media/" + str(sponsor.image)
+        return sponsors
 
     def render(self, context, instance, placeholder):
         if instance and instance.template:
@@ -59,38 +64,15 @@ class SponsorsModulePlugin(CMSPluginBase):
         context = super(SponsorsModulePlugin, self).render(context, instance, placeholder)
 
         # Get some data
-        sponsors= self.get_sponsors()
+        sponsors = self.get_sponsors()
+        sponsors = self.get_image_url(sponsors)
         categories = self.get_categories(instance)
-
+        # sponsors_category = self.add_category_to_sponsor(sponsors, categories)
+        category_sponsors = self.add_sponsors_to_categories(sponsors, categories)
         context.update({
             'sponsors': sponsors,
+            'categories': categories,
+            'category_sponsors': category_sponsors,
             'cssPrefix': instance.css_class_prefix
         })
         return context
-
-#
-# @plugin_pool.register_plugin
-# class SponsorsBannerPlugin(CMSPluginBase):
-#     name = _("Team banner plugin")
-#     model = SponsorsBannerModel
-#     render_template = "sponsorsModule/sponsors_banner.html"
-#     cache = False
-#
-#     def get_member_count(self):
-#         return Member.objects.count()
-#
-#     def render(self, context, instance, placeholder):
-#         if instance and instance.template:
-#             self.render_template = instance.template
-#
-#         context = super(TeamBannerPlugin, self).render(context, instance, placeholder)
-#
-#         # Get some data
-#         member_count = self.get_member_count()
-#
-#         context.update({
-#             'member_count': json.dumps(member_count),
-#             'translations': instance.translations,
-#             'image': instance.team_image
-#         })
-#         return context
