@@ -126,7 +126,7 @@ if (!window.ProjectModuleClass) {
     ProjectModuleClass.prototype.buildCarousel = function(){
         $(this.detail.pictures).owlCarousel({
             center: true,
-            loop: true,
+            //loop: true,
             items:1,
             navigation: true, // Show next and prev buttons
             slideSpeed: 300,
