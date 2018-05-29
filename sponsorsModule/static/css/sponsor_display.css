@@ -1,1 +1,9 @@
-.sponsorModule_img{width:100%}
+.sponsorModule_img{
+    width:100%;
+    mix-blend-mode: multiply;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}

@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="{% static "css/sponsor_display.css" %}">
 {% endcompress %}
 {% addtoblock "js" %}
-<script type="text/javascript" src="{% static " js/script.js" %}"></script>
+<!--<script type="text/javascript" src="{% static " js/script.js" %}"></script>-->
 {% endaddtoblock %}
 {% addtoblock "js" %}
     <script type="text/javascript">
@@ -19,23 +19,15 @@
 
 <div class="sponsorsModule">
     <div class="sponsorsModule__panel sponsorsModule__panel--left">
-        <div class="sponsorsModule__sponsors">
-            <h1 class="sponsorsModule__title">Sponsors</h1>
-            {% for sponsor in sponsors%}
-            <div class="sponsorsModule__team">
-                {{ sponsor.title }}
-            </div>
-            {% endfor %}
-        </div>
 
     </div>
     <div class="sponsorsModule__sponsors">
-        <h1 class="sponsorsModule__title">Categories</h1>
+        <h1 class="sponsorsModule__title">Sponsors</h1>
         {% for category in category_sponsors %}
         <h2>{{category.name}}</h2>
         <div class="row">
             {% for sponsor in category.sponsors%}
-            <div class="col-xs-4">
+            <div class="col-xs-2 col-centered">
                 <img src={{sponsor.image}} class="sponsorModule_img">
                 <!--<p>u{{sponsor.title}}</p>-->
             </div>
