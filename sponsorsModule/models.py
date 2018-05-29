@@ -25,6 +25,8 @@ class Sponsor(models.Model):
     url = models.URLField(max_length=200)
     image = models.ImageField(upload_to='media/')
     score = models.IntegerField()
+    def __str__(self):
+        return self.title
 
 """
 Plugins models

@@ -22,7 +22,7 @@ class SponsorsModulePlugin(CMSPluginBase):
         return sponsors
 
     def get_categories(self, instance):
-        categories = list(Category.objects.all().order_by("scoreMin"))
+        categories = list(Category.objects.all().order_by("-scoreMin"))
         return categories
 
     def add_category_to_sponsor(self, sponsors, category):
@@ -43,7 +43,6 @@ class SponsorsModulePlugin(CMSPluginBase):
         for c in category:
             c.sponsors = []
             for sponsor in sponsors:
-                c.sponsors.append(sponsors)
                 if c.scoreMax is not None:
                     if c.scoreMin <= sponsor.score <= c.scoreMax:
                         c.sponsors.append(sponsor)
@@ -52,7 +51,7 @@ class SponsorsModulePlugin(CMSPluginBase):
                         c.sponsors.append(sponsor)
         return category
 
-    def get_image_url(self,sponsors):
+    def get_image_url(self, sponsors):
         for sponsor in sponsors:
             sponsor.image = "/media/" + str(sponsor.image)
         return sponsors
