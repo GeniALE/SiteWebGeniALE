@@ -23,7 +23,8 @@ if (!window.ProjectModuleClass) {
             link: this.detailNode.querySelector(".projectModule__detail__link__container"),
             pictureDivStr : "projectModule__detail__picture",
             pictureActiveStr : "projectModule__detail__picture__active",
-            pictureImgStr : "projectModule__detail__picture__container"
+            pictureImgStr : "projectModule__detail__picture__container",
+            blurContainer : this.rootNode.querySelector(".projectModule__detail__blur")
         }
 
         this.projects = projects || [];
@@ -49,6 +50,7 @@ if (!window.ProjectModuleClass) {
         this.activeProjectDetail = project;
         console.log("setActiveProject", projectId);
         if(project == null){
+            $(this.detail.pictures).owlCarousel('destroy');
             this.detail.title.innerText = '';
             this.detail.pictures.innerHTML = '';
             this.detail.description.innerText = '';
@@ -56,6 +58,8 @@ if (!window.ProjectModuleClass) {
             this.detail.link.href = '';
             this.detail.link.innerText = '';
             this.detailNode.style.visibility = "hidden";
+            //hide blur
+            this.detail.blurContainer.style.display = "none";
             return;
         }
 
@@ -76,13 +80,18 @@ if (!window.ProjectModuleClass) {
         this.detailNode.style.visibility = "inherit";
         this.detailNode.focus();
         this.buildCarousel();
+        this.detail.blurContainer.style.display = "block";
     }
 
     ProjectModuleClass.prototype.showHideInfo = function(component, show){
-        if(show){
-            component.style.visibility = "inherit";
+        if(show && component == this.detail.description_parent){
+            component.style.display = "contents";
+        } else if(show){
+            //component.style.visibility = "inherit";
+            component.style.display = "block";
         } else {
-            component.style.visibility = "hidden";
+            //component.style.visibility = "hidden";
+            component.style.display = "none";
         }
     }
     ProjectModuleClass.prototype.empty = function(data)
@@ -106,8 +115,7 @@ if (!window.ProjectModuleClass) {
       return count == 0;
     }
 
-    ProjectModuleClass.prototype.onBlurDetail = function(){
-        $(this.detail.pictures).owlCarousel('destroy');
+    ProjectModuleClass.prototype.closeModal = function(){
         this.setActiveProject(null);
     }
 
