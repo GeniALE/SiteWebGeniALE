@@ -128,6 +128,7 @@ class TeamBannerTranslationModel(TranslatableModel):
         verbose_name_plural = "TeamBanner Translation models"
 
 
+
 @python_2_unicode_compatible
 class TeamDisplayView(CMSPlugin):
     template = models.CharField(
@@ -163,23 +164,20 @@ class TeamBannerModel(CMSPlugin):
         verbose_name_plural = "TeamModule Team Banners"
 
 @python_2_unicode_compatible
-class TeamDisplayView(CMSPlugin):
-    template = models.CharField(
-        max_length=255,
-        choices=local_settings.TEAMMODULE_TEAMDISPLAY_TEMPLATES,
-        default='teamModule/team_display.html',
-        editable=len(local_settings.TEAMMODULE_TEAMDISPLAY_TEMPLATES) > 1)
-    css_class_prefix = models.CharField(
-        max_length=100,
-        default="",
-        blank=True
+class ProjectDisplayTranslationModel(TranslatableModel):
+    translations = TranslatedFields(
+        projects_title= models.CharField(max_length=255, default="Our Projects"),
+        project_title = models.CharField(max_length=255, default="Project Title"),
+        project_description_title = models.CharField(max_length=255, default="Project Title"),
+        project_status_title = models.CharField(max_length=255, default="Status"),
+        project_website_title = models.CharField(max_length=255, default="Website"),
     )
-
-    translations = models.ForeignKey(TeamDisplayTranslationModel, null=True)
+    def __str__(self):
+        return "Project display's translations({})".format(self.id)
 
     class Meta:
-        verbose_name = "TeamModule Team Display"
-        verbose_name_plural = "TeamModule Team Displays"
+        verbose_name = "ProjectDisplay Translation model"
+        verbose_name_plural = "ProjectDisplay Translation models"
 
 @python_2_unicode_compatible
 class ProjectDisplayView(CMSPlugin):
@@ -194,7 +192,7 @@ class ProjectDisplayView(CMSPlugin):
         blank=True
     )
 
-    #translations = models.ForeignKey(TeamDisplayTranslationModel, null=True)
+    translations = models.ForeignKey(ProjectDisplayTranslationModel, null=True)
 
     class Meta:
         verbose_name = "TeamModule Project Display"
