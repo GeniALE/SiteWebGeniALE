@@ -125,6 +125,7 @@ class ProjectModulePlugin(CMSPluginBase):
             'projects': projects,
             'projectsAsJson': json.dumps(projects_to_dict),
             'uniqueName': 'projectModuleDisplay' + '__' + str(instance.id),
+            'translations': instance.translations,
             'cssPrefix': instance.css_class_prefix,
         })
         return context
