@@ -87,10 +87,8 @@ if (!window.ProjectModuleClass) {
         if(show && component == this.detail.description_parent){
             component.style.display = "contents";
         } else if(show){
-            //component.style.visibility = "inherit";
             component.style.display = "block";
         } else {
-            //component.style.visibility = "hidden";
             component.style.display = "none";
         }
     }
@@ -134,9 +132,9 @@ if (!window.ProjectModuleClass) {
     ProjectModuleClass.prototype.buildCarousel = function(){
         $(this.detail.pictures).owlCarousel({
             center: true,
-            //loop: true,
+            loop: true,
             items:1,
-            navigation: true, // Show next and prev buttons
+            navigation: false,
             slideSpeed: 300,
             paginationSpeed: 400,
             margin: 1,

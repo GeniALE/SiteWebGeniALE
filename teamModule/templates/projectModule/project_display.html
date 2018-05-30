@@ -9,15 +9,13 @@
 {% endaddtoblock %}
 {% addtoblock "js" %}
     <script type="text/javascript">
-        //Encapsulate javascript inside a function so it's not accessible from the outside #hackerman
+        //Encapsulate javascript inside a function so it's not accessible from the outside
         var {{ uniqueName }};
         (function () {
             //Data from the backend
             var projects = {{ projectsAsJson|safe}};
             //Init the required modules with unique identifier
             {{ uniqueName }} = new ProjectModuleClass(projects, "{{ uniqueName }}");
-            //var allMembersTeam = {{ uniqueName }}.rootNode.querySelector(".teamModule__team");
-            //{{ uniqueName }}.setActiveTeam(-1,allMembersTeam);
         })();
 
     </script>
@@ -28,10 +26,9 @@
 
 <section class="projectModule row" id="{{ uniqueName }}">
 
-  <!--<div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>-->
-      <h1 class="projectModule__title">
-          {{ translations.projects_title }}
-      </h1>
+    <h1 class="projectModule__title">
+        {{ translations.projects_title }}
+    </h1>
     <div class="projectModule__projects">
         {% if projects %}
             {% for project in projects %}
@@ -41,7 +38,6 @@
                 </div>
                 <div class="projectModule__projects__project__picture">
                     {% if project.images %}
-                    <!--<img alt="project image" class="projectModule__projects__project__picture__container" src="{{ project.images.all.0 }}"> -->
                     <img class="projectModule__projects__project__picture__container" style="background-image:url('{{ project.images.all.0 }}')">
                     {% else %}
                     no picture
@@ -82,7 +78,7 @@
             </div>
             <div class="projectModule__detail__link">
                 <h4> {{ translations.project_website_title }} </h4>
-                <a href="" class="projectModule__detail__link__container" />
+                <a href="" class="projectModule__detail__link__container" target="blank"/>
             </div>
       </div>
     </div>
