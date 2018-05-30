@@ -2,37 +2,22 @@
 {% compress css %}
 <link rel="stylesheet" type="text/css" href="{% static "css/sponsor_display.css" %}">
 {% endcompress %}
-{% addtoblock "js" %}
-<!--<script type="text/javascript" src="{% static " js/script.js" %}"></script>-->
-{% endaddtoblock %}
-{% addtoblock "js" %}
-    <script type="text/javascript">
-        //Encapsulate javascript inside a function so it's not accessible from the outside #hackerman
-
-        (function () {
-            //Data from the backend
-            var sponsors = {{ sponsors }};
-        })();
-    </script>
-{% endaddtoblock %}
 
 
-<div class="sponsorsModule">
-    <div class="sponsorsModule__panel sponsorsModule__panel--left">
-
-    </div>
-    <div class="sponsorsModule__sponsors">
-        <h1 class="sponsorsModule__title">Sponsors</h1>
+<section id="sponsorsModule">
+    <h1 class="sponsorsModule__title">Sponsors</h1>
+    <div class="container container-centered">
         {% for category in category_sponsors %}
-        <h2>{{category.name}}</h2>
+            <h2>{{category.name}}</h2>
         <div class="row">
             {% for sponsor in category.sponsors%}
-            <div class="col-xs-2 col-centered">
-                <img src={{sponsor.image}} class="sponsorModule_img">
-                <!--<p>u{{sponsor.title}}</p>-->
+                <div class="col-centered">
+                    <span class="helper"></span><img src={{sponsor.image}} class="sponsorModule_img">
+                </div>
+                {% endfor %}
+
             </div>
-            {% endfor %}
-        </div>
         {% endfor %}
-    </div>
-</div>
+        </div>
+        <!--</div>-->
+</section>
