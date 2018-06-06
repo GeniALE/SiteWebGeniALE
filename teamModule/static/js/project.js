@@ -130,9 +130,13 @@ if (!window.ProjectModuleClass) {
     }
 
     ProjectModuleClass.prototype.buildCarousel = function(){
+        var moreThanOnePicture = false;
+        if(!this.empty(this.activeProjectDetail)){
+            moreThanOnePicture = (this.activeProjectDetail.images.length > 1);
+        }
         $(this.detail.pictures).owlCarousel({
             center: true,
-            //loop: true,
+            loop: moreThanOnePicture,
             items:1,
             navigation: false,
             slideSpeed: 300,
