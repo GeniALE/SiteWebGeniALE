@@ -7,21 +7,30 @@ from hvad.models import TranslatableModel, TranslatedFields
 from sponsorsModule import local_settings
 
 
+class CategoryTranslation(TranslatableModel):
+    translations = TranslatedFields(
+        name=models.CharField(max_length=255),
+    )
+
+    def __str__(self):
+        return "Categories Sponsors translations({})".format(self.id)
+
+    class Meta:
+        verbose_name = "Category Translation model"
+        verbose_name_plural = "Categories Translation models"
+
 class Category(models.Model):
-    name = models.CharField(max_length=100, blank=False)
     scoreMin = models.IntegerField()
     scoreMax = models.IntegerField()
+    translation = models.ForeignKey(CategoryTranslation, null=True)
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
     def __str__(self):
-        return self.name
-
-class CategoryTranslation(models.Model):
-    name = models.CharField(max_length=100, blank=False)
-    category = models.ForeignKey(Category)
-    def __str__(self):
-        return self.name
+        return self.translation.name
 
 class Sponsor(models.Model):
-    title = models.CharField(max_length=100, blank=False)
+    title = models.CharField(max_length=    100, blank=False)
     url = models.URLField(max_length=200)
     image = models.ImageField(upload_to='media/')
     score = models.IntegerField()
@@ -44,9 +53,6 @@ class SponsorsDisplayView(CMSPlugin):
         default="",
         blank=True
     )
-
-    # translations = models.ForeignKey(TeamDisplayTranslationModel, null=True)
-
     class Meta:
         verbose_name = "SponsorsModule Sponsors Display"
         verbose_name_plural = "SponsorsModule Sponsors Displays"

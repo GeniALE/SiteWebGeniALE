@@ -68,6 +68,7 @@ class SponsorsModulePlugin(CMSPluginBase):
         categories = self.get_categories(instance)
         # sponsors_category = self.add_category_to_sponsor(sponsors, categories)
         category_sponsors = self.add_sponsors_to_categories(sponsors, categories)
+        # translations = [x.translation.name for x in category_sponsors]
         context.update({
             'sponsors': sponsors,
             'categories': categories,

@@ -168,7 +168,7 @@ INSTALLED_APPS = (
     'compressor',
     'hvad',
     'teamModule',
-    'sponsorsModule'
+    'sponsorsModule',
     'beer_carousel'
 )
 

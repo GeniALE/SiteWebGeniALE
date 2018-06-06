@@ -12,7 +12,7 @@ class PageSponsorsDisplayView(admin.ModelAdmin):
 class PageCategory(admin.ModelAdmin):
     pass
 
-class PageCategoryTranslation(admin.ModelAdmin):
+class PageCategoryTranslation(TranslatableAdmin, admin.ModelAdmin):
     pass
 
 
