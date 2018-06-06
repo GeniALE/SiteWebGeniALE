@@ -132,14 +132,14 @@ if (!window.ProjectModuleClass) {
     ProjectModuleClass.prototype.buildCarousel = function(){
         $(this.detail.pictures).owlCarousel({
             center: true,
-            loop: true,
+            //loop: true,
             items:1,
             navigation: false,
             slideSpeed: 300,
             paginationSpeed: 400,
             margin: 1,
             autoplay:true,
-            autoplayTimeout:4000,
+            autoplayTimeout:5000,
             autoplayHoverPause:true
         });
     }
