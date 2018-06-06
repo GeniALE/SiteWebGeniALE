@@ -46,9 +46,9 @@ if (!window.ProjectModuleClass) {
 
     ProjectModuleClass.prototype.setActiveProject = function(projectId){
         var project = this._getProjectById(projectId);
-        console.log(project);
+        //console.log(project);
         this.activeProjectDetail = project;
-        console.log("setActiveProject", projectId);
+        //console.log("setActiveProject", projectId);
         if(project == null){
             $(this.detail.pictures).owlCarousel('destroy');
             this.detail.title.innerText = '';
