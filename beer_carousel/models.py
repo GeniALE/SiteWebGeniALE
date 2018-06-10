@@ -15,12 +15,21 @@ class BeerTranslationsModel(TranslatableModel):
     def __str__(self):
         return "Beer's translations ({})".format(self.id)
 
+class BeerContainer(models.Model):
+    name = models.CharField(max_length=100, blank=False)
+    css_class = models.CharField(max_length=100, blank=False)
+
+    def __str__(self):
+        return self.name
 
 class BeerModel(models.Model):
     name = models.CharField(max_length=100, blank=False)
     alcohol_percent = models.FloatField(blank=False)
     ibu = models.IntegerField(blank=False)
     image = models.ImageField(upload_to='media/')
+    image_scale = models.FloatField(blank=False, default=3)
+    image_shift = models.FloatField(blank=False, default=0)
+    beer_container = models.ForeignKey(BeerContainer, null=True)
     type = models.CharField(max_length=100, blank=False)
     service_temperature = models.CharField(max_length=10, blank=True)
     created_at = models.DateField(blank=True)
@@ -30,6 +39,9 @@ class BeerModel(models.Model):
     def __str__(self):
         return self.name
 
+"""
+Plugins models
+"""
 
 @python_2_unicode_compatible
 class BeerCarouselPluginTranslationModel(TranslatableModel):
@@ -43,11 +55,11 @@ class BeerCarouselPluginTranslationModel(TranslatableModel):
     )
 
     def __str__(self):
-        return "Beer carousel's translations({})".format(self.id)
+        return "Beer carousel's translations ({})".format(self.id)
 
     class Meta:
-        verbose_name = "Beer carousel's translations"
-        verbose_name_plural = "Beer carousel' translations"
+        verbose_name = "Beer carousel's translation"
+        verbose_name_plural = "Beer carousel's translations"
 
 
 @python_2_unicode_compatible
@@ -56,10 +68,11 @@ class BeerCarouselPluginModel(CMSPlugin):
         max_length=255,
         choices=local_settings.BEER_CAROUSEL_TEMPLATES_TEMPLATES,
         default='beer_carousel/default.html',
-        editable=len(local_settings.BEER_CAROUSEL_TEMPLATES_TEMPLATES) > 1)
+        editable=len(local_settings.BEER_CAROUSEL_TEMPLATES_TEMPLATES) > 1
+    )
 
     translations = models.ForeignKey(BeerCarouselPluginTranslationModel)
 
     class Meta:
-        verbose_name = "Beer carousel plugin"
-        verbose_name_plural = "Beer carousel plugins"
+        verbose_name = "Beer carousel's plugin"
+        verbose_name_plural = "Beer carousel's plugins"
