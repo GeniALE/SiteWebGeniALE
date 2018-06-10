@@ -1,4 +1,4 @@
-{% load cms_tags sekizai_tags compress static %}
+{% load sekizai_tags compress static %}
 
 {% addtoblock 'css' %}
     {% compress css %}
@@ -9,14 +9,13 @@
 <section class="beercarousel">
     <h1 class="beercarousel__title">{{ translations.title }}</h1>
     <div class="beercarousel__container">
-        <div class="beercarousel__beers" style="width: 300vw">
+        <div class="beercarousel__beers" style="width: {{ beer_count }}00vw">
             {% for beer in beers %}
                 <div class="beer">
                     <div class="beer__image">
-                        <span class="beer__imagecontainer beer__imagecontainer--bottle"></span>
+                        <span class="beer__imagecontainer beer__imagecontainer--{{ beer.beer_container.css_class }}"></span>
                         <div class="beer__imagetagwrapper">
-                            <span class="beer__imagetag"
-                                  style="background-image: url({{ beer.image.url }});  left: -705%; background-size: 30%;"></span>
+                            <span class="beer__imagetag" style="background-image: url({{ beer.image.url }});" data-scale="{{ beer.image_scale }}" data-position="{{ beer.image_shift }}"></span>
                         </div>
                     </div>
                     <div class="beer__info">
@@ -43,7 +42,7 @@
 
                             <div class="beer__detail">
                                 <span class="beer__detailname">{{ translations.service_temperature }}</span>
-                                <span class="beer__detailvalue">{{ beer.service_temperature }}</span>
+                                <span class="beer__detailvalue">{{ beer.service_temperature }}°C</span>
                             </div>
                         </div>
                         <div class="beer__desc">
@@ -54,7 +53,6 @@
                     </div>
                 </div>
             {% endfor %}
-
         </div>
         <div class="beercarousel__controls">
             {% for beer in beers %}
@@ -64,6 +62,7 @@
             {% endfor %}
         </div>
     </div>
+
 </section>
 
 {% addtoblock 'js' %}

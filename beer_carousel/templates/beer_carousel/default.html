@@ -1,72 +1,7 @@
 {% load sekizai_tags compress  static %}
 
-{% addtoblock 'css' %}
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "style/beer_carousel.scss" %}">
-    {% endcompress %}
-{% endaddtoblock %}
-
-<section class="beercarousel">
-    <h1 class="beercarousel__title">{{ translations.title }}</h1>
-    <div class="beercarousel__container">
-        <div class="beercarousel__beers" style="width: {{ beer_count }}00vw">
-            {% for beer in beers %}
-                <div class="beer">
-                    <div class="beer__image">
-                        <span class="beer__imagecontainer beer__imagecontainer--{{ beer.beer_container.css_class }}"></span>
-                        <div class="beer__imagetagwrapper">
-                            <span class="beer__imagetag" style="background-image: url({{ beer.image.url }});" data-scale="{{ beer.image_scale }}" data-position="{{ beer.image_shift }}"></span>
-                        </div>
-                    </div>
-                    <div class="beer__info">
-                        <div class="beer__title">
-                            <span>{{ beer.name }}</span>
-                        </div>
-                        <div class="beer__details">
-                            <div class="beer__detail">
-                                <span class="beer__detailname">{{ translations.alcohol_percent }}</span>
-                                <span class="beer__detailvalue">{{ beer.alcohol_percent }}%</span>
-                            </div>
-                            <div class="beer__detail">
-                                <span class="beer__detailname">{{ translations.ibu }}</span>
-                                <span class="beer__detailvalue">{{ beer.ibu }}</span>
-                            </div>
-                            <div class="beer__detail">
-                                <span class="beer__detailname">{{ translations.type }}</span>
-                                <span class="beer__detailvalue">{{ beer.type }}</span>
-                            </div>
-                            <div class="beer__detail">
-                                <span class="beer__detailname">{{ translations.creation_date }}</span>
-                                <span class="beer__detailvalue">{{ beer.created_at }}</span>
-                            </div>
-
-                            <div class="beer__detail">
-                                <span class="beer__detailname">{{ translations.service_temperature }}</span>
-                                <span class="beer__detailvalue">{{ beer.service_temperature }}°C</span>
-                            </div>
-                        </div>
-                        <div class="beer__desc">
-                            <p>
-                                {{ beer.translations.description }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="beercarousel__controls">
-            {% for beer in beers %}
-                <button class="beercarousel__button">
-                    <span class="beercarousel__buttonname">{{ beer.name }}</span>
-                </button>
-            {% endfor %}
-        </div>
-    </div>
-
-</section>
-
-{% addtoblock 'js' %}
-    {% compress js %}
-        <script src="{% static "script/beer_carousel.js" %}" type="text/javascript" charset="utf-8"></script>
-    {% endcompress %}
-{% endaddtoblock %}
+{% for beer in beers %}
+   <div>
+   {{ beer.name }}
+   </div>
+{% endfor %}
