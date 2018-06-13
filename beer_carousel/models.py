@@ -15,12 +15,14 @@ class BeerTranslationsModel(TranslatableModel):
     def __str__(self):
         return "Beer's translations ({})".format(self.id)
 
+
 class BeerContainer(models.Model):
     name = models.CharField(max_length=100, blank=False)
     css_class = models.CharField(max_length=100, blank=False)
 
     def __str__(self):
         return self.name
+
 
 class BeerModel(models.Model):
     name = models.CharField(max_length=100, blank=False)
@@ -39,9 +41,11 @@ class BeerModel(models.Model):
     def __str__(self):
         return self.name
 
+
 """
 Plugins models
 """
+
 
 @python_2_unicode_compatible
 class BeerCarouselPluginTranslationModel(TranslatableModel):
