@@ -1,3 +1,4 @@
+@import './basic/breakpoint.scss';
 $beerBottleWidth: 200px;
 $time-short: 300ms;
 $time-normal: 600ms;
@@ -148,6 +149,19 @@ section.beercarousel {
         &__controls {
             display: flex;
             justify-content: center;
+
+            @include breakpoint(phone) {
+                display: none;
+            }
+        }
+
+        &__mobilecontrols {
+            display: none;
+            justify-content: center;
+
+            @include breakpoint(phone) {
+                display: flex;
+            }
         }
 
         &__button {

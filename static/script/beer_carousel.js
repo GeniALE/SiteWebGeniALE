@@ -1,15 +1,28 @@
 var currentBeerIndex = 0;
 var beerTransitionTime = 1500;
+var beerNumber = 0;
 var timer;
 initBeers();
 
-$('.beercarousel__button').click(
+$('.beercarousel__controls button.beercarousel__button').click(
     function () {
-        activateBeer($('.beercarousel__button').index(this));
+        activateBeer($('.beercarousel__controls button.beercarousel__button').index(this));
+    }
+);
+
+$('.beercarousel__mobilecontrols button.beercarousel__button').click(
+    function () {
+        var nextBeerIndex = currentBeerIndex == beerNumber - 1 ? 0 : currentBeerIndex + 1;
+        if ($(this).hasClass('beercarousel__button--back')) {
+            nextBeerIndex = currentBeerIndex == 0 ? beerNumber - 2 : currentBeerIndex -1;
+        }
+
+        activateBeer(nextBeerIndex);
     }
 );
 
 function initBeers() {
+    beerNumber = $('div.beer').length;
     $('.beer__imagetag').each(function (i, el) {
         var scale = $(el).attr('data-scale');
         var pos = parseFloat($(el).attr('data-position'));
@@ -18,7 +31,7 @@ function initBeers() {
     });
 
     $('.beer').eq(0).addClass('beer--active');
-    $('.beercarousel__button').eq(0).addClass('beercarousel__button--active');
+    $('.beercarousel__controls button.beercarousel__button').eq(0).addClass('beercarousel__button--active');
 }
 
 function tagTransform(scale, pos) {
@@ -66,10 +79,10 @@ function activateBeer(index) {
     });
 
     $('.beer').removeClass('beer--active');
-    $('.beercarousel__button').removeClass('beercarousel__button--active');
+    $('.beercarousel__controls button.beercarousel__button').removeClass('beercarousel__button--active');
 
     $('.beercarousel__beers').css('left', index * -100 + 'vw');
     $('.beer').eq(index).addClass('beer--active');
-    $('.beercarousel__button').eq(index).addClass('beercarousel__button--active');
+    $('.beercarousel__controls button.beercarousel__button').eq(index).addClass('beercarousel__button--active');
     currentBeerIndex = index;
 }

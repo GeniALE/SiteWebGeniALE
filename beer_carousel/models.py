@@ -56,6 +56,8 @@ class BeerCarouselPluginTranslationModel(TranslatableModel):
         alcohol_percent=models.CharField(max_length=255, default="Alcohol percentage"),
         service_temperature=models.CharField(max_length=255, default="Service temperature"),
         ibu=models.CharField(max_length=255, default="IBU"),
+        back_label=models.CharField(max_length=255, default="Back"),
+        next_label=models.CharField(max_length=255, default="Next")
     )
 
     def __str__(self):
