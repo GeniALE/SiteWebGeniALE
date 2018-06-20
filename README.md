@@ -22,6 +22,7 @@ This repository  contains the CMS and the additionnal modules.
 - [Versioning](#versioning)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgments)
+- [Licenses](#licenses
 
 # Getting Started
 
@@ -142,3 +143,9 @@ See also the list of [contributors](https://github.com/GeniALE/SiteWebGeniALE/co
 * [Club Cedille](https://github.com/clubcedille)
 * Inspiration
 * etc
+
+# Licenses
+
+## Owl carousel
+
+The code and the documentation are released under the [MIT License](static/lib/owlcarousel/LICENSE).
