@@ -263,6 +263,11 @@ TEAMMODULE_TEAMBANNER_TEMPLATES = [
     ('components/member_banner.html', 'Team banner'),
 ]
 
+BEER_CAROUSEL_TEMPLATES_TEMPLATES = [
+    ('beer_carousel/default.html', 'Default'),
+    ('components/beer_carousel.html', 'Custom beer template'),
+]
+
 TEAMMODULE_PROJECTDISPLAY_TEMPLATES = [
     ('teamModule/project_display.html', 'List projects')
 ]
