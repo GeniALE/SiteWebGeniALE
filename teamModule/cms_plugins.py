@@ -153,6 +153,7 @@ class TeamBannerPlugin(CMSPluginBase):
         context.update({
             'member_count': json.dumps(member_count),
             'translations': instance.translations,
-            'image': instance.team_image
+            'image': instance.team_image,
+            'details_button_link': instance.details_button_link
         })
         return context
