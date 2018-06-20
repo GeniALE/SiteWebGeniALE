@@ -176,7 +176,19 @@ LANGUAGES = (
 
 CMS_LANGUAGES = {
     ## Customize this
-    2: [
+    'default': {
+        'redirect_on_fallback': True,
+        'public': True,
+        'hide_untranslated': False,
+    },
+    1: [
+        {
+            'code': 'en',
+            'name': gettext('en'),
+            'redirect_on_fallback': True,
+            'public': True,
+            'hide_untranslated': False,
+        },
         {
             'code': 'fr',
             'name': gettext('fr'),
@@ -186,20 +198,7 @@ CMS_LANGUAGES = {
             'hide_untranslated': False,
         },
     ],
-    1: [
-        {
-            'code': 'en',
-            'name': gettext('en'),
-            'redirect_on_fallback': True,
-            'public': True,
-            'hide_untranslated': False,
-        },
-    ],
-    'default': {
-        'redirect_on_fallback': True,
-        'public': True,
-        'hide_untranslated': False,
-    },
+
 }
 
 CMS_TEMPLATES = (
