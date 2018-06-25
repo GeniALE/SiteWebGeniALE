@@ -184,14 +184,14 @@ CMS_LANGUAGES = {
     1: [
         {
             'code': 'en',
-            'name': gettext('en'),
+            'name': gettext('English'),
             'redirect_on_fallback': True,
             'public': True,
             'hide_untranslated': False,
         },
         {
             'code': 'fr',
-            'name': gettext('fr'),
+            'name': gettext('French'),
             'fallbacks': ['en'],
             'redirect_on_fallback': True,
             'public': True,
