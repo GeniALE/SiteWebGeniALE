@@ -1,4 +1,5 @@
 @import "./basic/_flexboxgrid";
+@import './basic/breakpoint.scss';
 
 .projectModule {
   color: black;
@@ -39,6 +40,7 @@
           float: left;
           width: 100%;
           height: 41vh;
+          max-height: 350px;
           background-position: 50% 50%;
           background-repeat: no-repeat;
           background-size: cover;
@@ -62,11 +64,19 @@
     left: 0.5em;
     width: 100%;
     height: 68vh;
+    @include breakpoint(phone) {
+      height: 90vh;
+      top: 5vh;
+    }
     background-color: lightgray;
     border-radius: 7px;
     outline: none; // to remove the blue border when focus on chrome
     overflow-y: auto;
     padding: 0.5em;
+    z-index: 1010;
+    @include breakpoint(computer) {
+      min-height: 300px;
+    }
     &__title {
       min-height: 1.5em;
       &__container {
@@ -108,8 +118,12 @@
       max-height: 50%;
       &__container {
         overflow-y: auto;
+        overflow-x: hidden;
         text-align: justify;
         //text-justify: inter-word;
+        @include breakpoint(phone) {
+          overflow-y: visible;
+        }
       }
     }
     &__status {
@@ -132,24 +146,28 @@
       left: 0;
       background-color: black;
       opacity: 0.7;
+      z-index: 1000;
     }
     /*.blur :not(&){
         -webkit-filter: blur(5px) grayscale(50%);
         filter: blur(10px);
     }*/
     &__close {
-      position: absolute;
-      display: inline-block;
+      position: fixed;
+      display: none;
       //content: "\00d7"; //X
       top: 2%;
       right: 2%;
       color: black;
       cursor: pointer;
-      width: 1em;
-      height: 1em;
-      z-index: 10000;
+      //width: 1em;
+      //height: 1em;
+      z-index: 1020;
+      font-size: 3em;
+      text-shadow: 1px 1px 2px white, 0 0 25px lightgray, 0 0 5px gray;
       &:hover {
-        background-color: lightgray;
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px lightgray, 0 0 5px gray;
       }
     }
   }

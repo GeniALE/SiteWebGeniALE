@@ -24,7 +24,8 @@ if (!window.ProjectModuleClass) {
             pictureDivStr : "projectModule__detail__picture",
             pictureActiveStr : "projectModule__detail__picture__active",
             pictureImgStr : "projectModule__detail__picture__container",
-            blurContainer : this.rootNode.querySelector(".projectModule__detail__blur")
+            blurContainer : this.rootNode.querySelector(".projectModule__detail__blur"),
+            closeBtn: this.rootNode.querySelector(".projectModule__detail__close")
         }
 
         this.projects = projects || [];
@@ -60,6 +61,7 @@ if (!window.ProjectModuleClass) {
             this.detailNode.style.visibility = "hidden";
             //hide blur
             this.detail.blurContainer.style.display = "none";
+            this.detail.closeBtn.style.display = "none";
             return;
         }
 
@@ -81,6 +83,15 @@ if (!window.ProjectModuleClass) {
         this.detailNode.focus();
         this.buildCarousel();
         this.detail.blurContainer.style.display = "block";
+        this.detail.closeBtn.style.display = "block";
+        this.calculateClosePosition();
+    }
+
+    ProjectModuleClass.prototype.calculateClosePosition = function(){
+        var rect = this.detailNode.getBoundingClientRect();
+        //alert(JSON.stringify(rect));
+        this.detail.closeBtn.style.top = (rect.top + 10) + "px";
+        this.detail.closeBtn.style.right = ((rect.right - rect.width) + 10) + "px" ;
     }
 
     ProjectModuleClass.prototype.showHideInfo = function(component, show){

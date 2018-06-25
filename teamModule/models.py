@@ -169,7 +169,7 @@ class ProjectDisplayTranslationModel(TranslatableModel):
     translations = TranslatedFields(
         projects_title=models.CharField(max_length=255, default="Our Projects"),
         project_title=models.CharField(max_length=255, default="Project Title"),
-        project_description_title=models.CharField(max_length=255, default="Project Title"),
+        project_description_title=models.CharField(max_length=255, default="Project Description"),
         project_status_title=models.CharField(max_length=255, default="Status"),
         project_website_title=models.CharField(max_length=255, default="Website"),
     )
