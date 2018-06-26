@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 import json
 
 from teamModule.helpers import to_dict
-from .models import TeamBannerModel, Team, Member, TeamDisplayView
+from .models import TeamBannerModel, Team, Member, TeamDisplayView, Project, ProjectDisplayView
 
 
 @plugin_pool.register_plugin
@@ -77,6 +77,56 @@ class TeamModulePlugin(CMSPluginBase):
             'uniqueName': 'teamModuleDisplay' + '__' + str(instance.id),
             'translations': instance.translations,
             'cssPrefix': instance.css_class_prefix
+        })
+        return context
+
+
+@plugin_pool.register_plugin
+class ProjectModulePlugin(CMSPluginBase):
+    name = _("Project display plugin")
+    model = ProjectDisplayView
+    render_template = "projectModule/project_display.html"
+    cache = False
+
+    def get_projects(self):
+        projects = Project.objects.order_by('-id').prefetch_related(
+            'status', 'images'
+        )
+        return projects
+
+    def projects_to_dict(self, projects):
+        #projects_as_dict = {project.id: model_to_dict(project) for project in projects}
+
+        projects_as_dict = []
+        for project in projects:
+            new_project = to_dict(project)
+            images = project.images.all()
+            new_images = []
+            for image_obj in images:
+                new_image = str(image_obj)
+                new_images.append(new_image)
+            new_project['images'] = new_images
+            new_project['status_text'] = project.status.status
+            projects_as_dict.append(new_project)
+
+        return projects_as_dict
+
+    def render(self, context, instance, placeholder):
+        if instance and instance.template:
+            self.render_template = instance.template
+
+        context = super(ProjectModulePlugin, self).render(context, instance, placeholder)
+
+        # Get some data
+        projects = self.get_projects()
+        projects_to_dict = self.projects_to_dict(projects)
+
+        context.update({
+            'projects': projects,
+            'projectsAsJson': json.dumps(projects_to_dict),
+            'uniqueName': 'projectModuleDisplay' + '__' + str(instance.id),
+            'translations': instance.translations,
+            'cssPrefix': instance.css_class_prefix,
         })
         return context
 
