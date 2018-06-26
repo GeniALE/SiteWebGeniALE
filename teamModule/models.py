@@ -41,13 +41,21 @@ class ProjectStatus(models.Model):
 
 
 class Project(models.Model):
-    project_name = models.CharField(max_length=100, blank=False)
-    description = models.CharField(max_length=1000, null=True)
+    name = models.CharField(max_length=100, blank=False)
+    description = models.TextField(null=True)
     status = models.ForeignKey(ProjectStatus, default=0, on_delete=models.SET_DEFAULT)
     website = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
-        return self.project_name
+        return self.name
+
+
+class ProjectImage(models.Model):
+    project = models.ForeignKey(Project, related_name='images')
+    image = models.ImageField(upload_to='media/')
+
+    def __str__(self):
+        return self.image.url
 
 
 class Member(models.Model):
@@ -154,3 +162,41 @@ class TeamBannerModel(CMSPlugin):
     class Meta:
         verbose_name = "TeamModule Team Banner"
         verbose_name_plural = "TeamModule Team Banners"
+
+
+@python_2_unicode_compatible
+class ProjectDisplayTranslationModel(TranslatableModel):
+    translations = TranslatedFields(
+        projects_title=models.CharField(max_length=255, default="Our Projects"),
+        project_title=models.CharField(max_length=255, default="Project Title"),
+        project_description_title=models.CharField(max_length=255, default="Project Description"),
+        project_status_title=models.CharField(max_length=255, default="Status"),
+        project_website_title=models.CharField(max_length=255, default="Website"),
+    )
+
+    def __str__(self):
+        return "Project display's translations({})".format(self.id)
+
+    class Meta:
+        verbose_name = "ProjectDisplay Translation model"
+        verbose_name_plural = "ProjectDisplay Translation models"
+
+
+@python_2_unicode_compatible
+class ProjectDisplayView(CMSPlugin):
+    template = models.CharField(
+        max_length=255,
+        choices=local_settings.TEAMMODULE_PROJECTDISPLAY_TEMPLATES,
+        default='projectModule/project_display.html',
+        editable=len(local_settings.TEAMMODULE_PROJECTDISPLAY_TEMPLATES) > 1)
+    css_class_prefix = models.CharField(
+        max_length=100,
+        default="",
+        blank=True
+    )
+
+    translations = models.ForeignKey(ProjectDisplayTranslationModel, null=True)
+
+    class Meta:
+        verbose_name = "TeamModule Project Display"
+        verbose_name_plural = "TeamModule Project Displays"

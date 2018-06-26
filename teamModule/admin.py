@@ -1,15 +1,22 @@
 from django.contrib import admin
 from .models import Formation, Team, Project, Member, ProjectStatus, TeamRole, MemberExtraInfo, MemberExtraInfoType, \
-    TeamDisplayView, TeamBannerModel, TeamBannerTranslationModel, TeamDisplayTranslationModel
+    TeamDisplayView, TeamBannerModel, TeamBannerTranslationModel, TeamDisplayTranslationModel, ProjectImage, \
+    ProjectDisplayTranslationModel
 from hvad.admin import TranslatableAdmin
 
 
 class PageTeamAdmin(admin.ModelAdmin):
     pass
 
+class ProjectPictureInline(admin.StackedInline):
+    model = ProjectImage
+    extra = 0
+    fk_name = 'project'
+
 
 class PageProjectsAdmin(admin.ModelAdmin):
-    pass
+    model = Member
+    inlines = (ProjectPictureInline,)
 
 
 class ExtraInfoInline(admin.StackedInline):
@@ -64,11 +71,15 @@ class PageMemberExtraInfoAdmin(admin.ModelAdmin):
 class PageMemberExtraInfoTypeAdmin(admin.ModelAdmin):
     pass
 
+class ProjectTranslationModelAdmin(TranslatableAdmin , admin.ModelAdmin):
+    pass
+
 
 admin.site.register(ProjectStatus, PageStatusAdmin)
 admin.site.register(Formation, PageFormationAdmin)
 admin.site.register(Team, PageTeamAdmin)
 admin.site.register(Project, PageProjectsAdmin)
+
 admin.site.register(TeamRole, PageTeamRoleAdmin)
 admin.site.register(MemberExtraInfo, PageMemberExtraInfoAdmin)
 admin.site.register(MemberExtraInfoType, PageMemberExtraInfoTypeAdmin)
@@ -78,3 +89,5 @@ admin.site.register(TeamDisplayView, TeamDisplayViewAdmin)
 admin.site.register(TeamBannerModel, TeamBannerAdmin)
 admin.site.register(TeamBannerTranslationModel, TeamBannerTranslationModelAdmin)
 admin.site.register(TeamDisplayTranslationModel, TeamDisplayTranslationModelAdmin)
+
+admin.site.register(ProjectDisplayTranslationModel, ProjectTranslationModelAdmin)

@@ -176,30 +176,29 @@ LANGUAGES = (
 
 CMS_LANGUAGES = {
     ## Customize this
-    2: [
+    'default': {
+        'redirect_on_fallback': True,
+        'public': True,
+        'hide_untranslated': False,
+    },
+    1: [
+        {
+            'code': 'en',
+            'name': gettext('English'),
+            'redirect_on_fallback': True,
+            'public': True,
+            'hide_untranslated': False,
+        },
         {
             'code': 'fr',
-            'name': gettext('fr'),
+            'name': gettext('French'),
             'fallbacks': ['en'],
             'redirect_on_fallback': True,
             'public': True,
             'hide_untranslated': False,
         },
     ],
-    1: [
-        {
-            'code': 'en',
-            'name': gettext('en'),
-            'redirect_on_fallback': True,
-            'public': True,
-            'hide_untranslated': False,
-        },
-    ],
-    'default': {
-        'redirect_on_fallback': True,
-        'public': True,
-        'hide_untranslated': False,
-    },
+
 }
 
 CMS_TEMPLATES = (
@@ -266,6 +265,10 @@ TEAMMODULE_TEAMBANNER_TEMPLATES = [
 BEER_CAROUSEL_TEMPLATES_TEMPLATES = [
     ('beer_carousel/default.html', 'Default'),
     ('components/beer_carousel.html', 'Custom beer template'),
+]
+
+TEAMMODULE_PROJECTDISPLAY_TEMPLATES = [
+    ('teamModule/project_display.html', 'List projects')
 ]
 
 COMPRESS_ENABLED = True
