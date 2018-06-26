@@ -22,7 +22,7 @@ This repository  contains the CMS and the additionnal modules.
 - [Versioning](#versioning)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgments)
-- [Licenses](#licenses
+- [Licenses](#licenses)
 
 # Getting Started
 
