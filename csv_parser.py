@@ -17,8 +17,7 @@ formation = set()
 roleParEquipe = {}
 equipes = set()
 statut = ['Prêt','En cours','Terminé']
-prenom = set()
-courriel = set()
+membres = []
 
 # Lire le fichier csv puis ajouter les informations dans les listes
 with open('info.csv', encoding = "ISO-8859-1") as f:
@@ -30,8 +29,7 @@ with open('info.csv', encoding = "ISO-8859-1") as f:
             roleParEquipe[equipe] = set()
         roleParEquipe[equipe].add(row['role'])
         equipes.add(row['equipe'])
-        prenom.add(row['nom'])
-        courriel.add(row['courriel'])
+        membres.append(row)
         
 # Ajouter les formations en s'assurant de ne pas mettre le même deux fois
 for nom_formation in formation:
@@ -72,19 +70,34 @@ for team, roles in roleParEquipe.items():
             teamrole.save()
 
 # Ajouter le nom des membres en s'assurant de ne pas mettre le même deux fois
-for nom in prenom:
+for membre in membres:
     try:
-        exist = Member.objects.filter(first_name = nom).get()
+        exist = Member.objects.filter(email = membre['courriel']).get()
     except Member.DoesNotExist:
         member = Member()
-        member.first_name = nom
+        member.email = membre['courriel']
+        nom_complet = membre['nom'].split()
+        member.first_name = nom_complet.pop(0)
+        member.last_name = ' '.join(nom_complet)
+        
+        #We save to have an id for the many to many relationships
         member.save()
 
-# Ajouter le courriel des membres en s'assurant de ne pas mettre le même deux fois
-for courriel in courriel:
-    try:
-        exist = Member.objects.filter(email = nom).get()
-    except Member.DoesNotExist:
-        member = Member()
-        member.email = courriel
+        #We get a list of role(s)
+        team_roles = TeamRole.objects.filter(role=membre['role']).get()
+
+        #We get the team object for this user
+        member_team = Team.objects.filter(team_name=membre['equipe']).get()
+
+        #If there is only one teamRole, it must be the good one :)
+        if not isinstance(team_roles, list):
+            member.teamRoles.add(team_roles)
+        #If it's iterable, we check for a role that has the good team (this could be replaced by an inner join query)
+        else:    
+            for role in team_roles:
+                if role.team.team == member_team:
+                    member.teamRoles.add(team_roles)
+                    break
+
         member.save()
+
