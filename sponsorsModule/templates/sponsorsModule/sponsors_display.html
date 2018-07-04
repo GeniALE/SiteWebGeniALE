@@ -1,0 +1,23 @@
+{% load sekizai_tags compress  static %}
+{% compress css %}
+<link rel="stylesheet" type="text/css" href="{% static "css/sponsor_display.css" %}">
+{% endcompress %}
+
+
+<section id="sponsorsModule">
+    <h1 class="sponsorsModule__title">Sponsors</h1>
+    <div class="container container-centered">
+        {% for category in category_sponsors %}
+            <h2>{{category}}</h2>
+        <div class="row">
+            {% for sponsor in category.sponsors%}
+                <div class="col-centered">
+                    <span class="helper"></span><img src={{sponsor.image}} class="sponsorModule_img">
+                </div>
+                {% endfor %}
+
+            </div>
+        {% endfor %}
+        </div>
+        <!--</div>-->
+</section>
