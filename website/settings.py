@@ -256,14 +256,14 @@ STATICFILES_FINDERS = (
 )
 
 TEAMMODULE_TEAMDISPLAY_TEMPLATES = [
-    ('sponsorsModule/sponsors_display.html', 'Default'),
+    ('teamModule/team_display.html', 'Default'),
     ('components/member_count.html', 'Total member count'),
-    ('components/sponsors_display.html', 'Team member display')
+    ('components/team_display.html', 'Team member display')
 ]
 
 TEAMMODULE_TEAMBANNER_TEMPLATES = [
-    ('sponsorsModule/member_banner.html', 'Default'),
-    ('components/member_banner.html', 'Team banner')
+    ('teamModule/member_banner.html', 'Default'),
+    ('components/member_banner.html', 'Team banner'),
 ]
 
 SPONSORSMODULE_SPONSORSDISPLAY_TEMPLATES = [
