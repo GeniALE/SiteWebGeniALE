@@ -134,6 +134,9 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.language.LanguageCookieMiddleware'
 )
 
+
+
+
 INSTALLED_APPS = (
     'djangocms_admin_style',
     'django.contrib.auth',
@@ -165,6 +168,7 @@ INSTALLED_APPS = (
     'compressor',
     'hvad',
     'teamModule',
+    'sponsorsModule',
     'beer_carousel'
 )
 
@@ -260,6 +264,11 @@ TEAMMODULE_TEAMDISPLAY_TEMPLATES = [
 TEAMMODULE_TEAMBANNER_TEMPLATES = [
     ('teamModule/member_banner.html', 'Default'),
     ('components/member_banner.html', 'Team banner'),
+]
+
+SPONSORSMODULE_SPONSORSDISPLAY_TEMPLATES = [
+    ('sponsorsModule/sponsors_display.html', 'Default'),
+    ('components/sponsors_display.html', 'Sponsors Display')
 ]
 
 BEER_CAROUSEL_TEMPLATES_TEMPLATES = [
