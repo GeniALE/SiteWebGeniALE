@@ -23,6 +23,8 @@ RUN pip install -r requirements.txt
 ADD website /code/website
 ADD static /code/static
 ADD teamModule /code/teamModule
+ADD beer_carousel /code/beer_carousel
+ADD sponsorsModule /code/sponsorsModule
 ADD manage.py /code/
 ADD bin /code/bin
 
