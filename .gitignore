@@ -40,3 +40,5 @@ RELEASE-VERSION
 .env
 
 \.vscode/
+
+google_secret\.json
