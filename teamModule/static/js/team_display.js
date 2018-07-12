@@ -185,7 +185,7 @@ if (!TeamModuleClass.prototype._loadMemberDetails) {
             for (var i = 0; i < member.projects.length; i++) {
                 var project = member.projects[i];
                 var projectContainer = document.createElement('div');
-                var node = document.createTextNode(project.project_name);
+                var node = document.createTextNode(project.name);
                 projectContainer.appendChild(node);
                 projectElement.appendChild(projectContainer);
             }
