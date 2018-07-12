@@ -3,7 +3,8 @@ if (!window._TeamModuleHelper) {
     function _TeamModuleHelper() {
 
     }
-
+}
+if (!_TeamModuleHelper.prototype.indexArrayByKey) {
     _TeamModuleHelper.prototype.indexArrayByKey = function (arr, key) {
         var map = {};
         for (var i = 0; i < arr.length; i++) {
@@ -12,6 +13,9 @@ if (!window._TeamModuleHelper) {
         }
         return map;
     };
+}
+
+if (!window.TeamModuleHelper) {
     TeamModuleHelper = new _TeamModuleHelper();
 }
 
@@ -85,7 +89,7 @@ if (!window.TeamModuleClass) {
         }
 
         //Reset active member
-        if(this.activeDataTypes.member.id){
+        if (this.activeDataTypes.member.id) {
             this.setActiveMember(this.activeDataTypes.member.id);
         }
     };
@@ -107,8 +111,8 @@ if (!window.TeamModuleClass) {
                 this._loadMemberDetails(null);
             }
             if (id !== null) {
-                nameElem =  nameElem ? nameElem : this.rootNode.querySelector("." + this.classByType.member + id);
-                iconElem =  iconElem ? iconElem : this.rootNode.querySelector("." + this.classByType.memberIcon + id);
+                nameElem = nameElem ? nameElem : this.rootNode.querySelector("." + this.classByType.member + id);
+                iconElem = iconElem ? iconElem : this.rootNode.querySelector("." + this.classByType.memberIcon + id);
                 this._setActiveDiv(nameElem, 'member', true);
                 this._setActiveDiv(iconElem, 'memberIcon', true);
                 this._loadMemberDetails(id);
