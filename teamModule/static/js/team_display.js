@@ -61,7 +61,9 @@ if (!window.TeamModuleClass) {
         this.setActiveMember = this.setActiveMember.bind(this);
         this.setActiveTeam = this.setActiveTeam.bind(this);
     }
+}
 
+if (!TeamModuleClass.prototype.resetActiveDataType) {
     TeamModuleClass.prototype.resetActiveDataType = function (type) {
         if (this.activeDataTypes.hasOwnProperty(type)) {
             this.activeDataTypes[type] = {
@@ -70,7 +72,9 @@ if (!window.TeamModuleClass) {
             };
         }
     };
+}
 
+if (!TeamModuleClass.prototype.setActiveTeam) {
     TeamModuleClass.prototype.setActiveTeam = function (teamId, elem) {
         if (this.activeDataTypes.team.id === teamId) {
             this._setActiveDiv(this.activeDataTypes.team.elem, 'team', false);
@@ -93,8 +97,9 @@ if (!window.TeamModuleClass) {
             this.setActiveMember(this.activeDataTypes.member.id);
         }
     };
+}
 
-
+if (!TeamModuleClass.prototype.setActiveMember) {
     TeamModuleClass.prototype.setActiveMember = function (id, nameElem, iconElem) {
         if (this.activeDataTypes.member.id === id) {
             nameElem = nameElem ? nameElem : this.rootNode.querySelector('.' + this.classByType.member + id);
@@ -121,7 +126,8 @@ if (!window.TeamModuleClass) {
             this.activeDataTypes.member.elem = nameElem;
         }
     };
-
+}
+if (!TeamModuleClass.prototype.setMemberVisibility) {
     TeamModuleClass.prototype.setMemberVisibility = function (teamId) {
         for (var i = 0; i < this.members.length; i++) {
             var member = this.members[i];
@@ -138,6 +144,9 @@ if (!window.TeamModuleClass) {
         }
     };
 
+}
+
+if (!TeamModuleClass.prototype.isPartOfTeam) {
     TeamModuleClass.prototype.isPartOfTeam = function (member, teamId) {
         if (teamId === -1) {
             return true;
@@ -151,7 +160,8 @@ if (!window.TeamModuleClass) {
             return false;
         }
     };
-
+}
+if (!TeamModuleClass.prototype._loadMemberDetails) {
     /**
      * @private
      */
@@ -182,7 +192,9 @@ if (!window.TeamModuleClass) {
             mapping.formation.innerText = member.formation.name;
         }
     };
+}
 
+if (!TeamModuleClass.prototype._setActiveDiv) {
     /**
      * @private
      */
