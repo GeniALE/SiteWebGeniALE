@@ -7,8 +7,6 @@
 {% endaddtoblock %}
 {% addtoblock "js" %}
     <script type="text/javascript" src="{% static "js/project.js" %}"></script>
-{% endaddtoblock %}
-{% addtoblock "js" %}
     <script type="text/javascript">
         //Encapsulate javascript inside a function so it's not accessible from the outside
         var {{ uniqueName }};
@@ -39,7 +37,7 @@
                 </div>
                 <div class="projectModule__projects__project__picture">
                     {% if project.images %}
-                    <img class="projectModule__projects__project__picture__container" style="background-image:url('{{ project.images.all.0 }}')">
+                    <img class="projectModule__projects__project__picture__container" style="background-image:url('{{ project.images.all.0 }}')"/>
                     {% else %}
                     no picture
                     {% endif %}
@@ -58,7 +56,7 @@
             {% comment %}
             {# This is an example of the html that is generated in js #}
             <div class="projectModule__detail__picture">
-                <img alt="project image" class="projectModule__detail__picture__container">
+                <img alt="project image" class="projectModule__detail__picture__container"/>
             </div>
             {% endcomment %}
         </div>
@@ -79,7 +77,7 @@
             </div>
             <div class="projectModule__detail__link">
                 <h4> {{ translations.project_website_title }} </h4>
-                <a href="" class="projectModule__detail__link__container" target="blank"/>
+                <a href="" class="projectModule__detail__link__container" target="blank"></a>
             </div>
       </div>
     </div>
