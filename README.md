@@ -18,6 +18,7 @@ This repository  contains the CMS and the additionnal modules.
   - [Production deployment](#production-deployment)
   - [Docker tools](#docker-tools)
 - [Plugins](#plugins)
+- [Tools](#tools)
 - [Contributing](#contributing)
 - [Versioning](#versioning)
 - [Authors](#authors)
@@ -119,14 +120,18 @@ Eventually, more commands will be added to automate some tasks.
 - [TeamModule](/teamModule/README.md)
 - [beer_carousel](/beer_carousel/README.md)
 
+# Tools
+
+For our current infrastructure, we have to sync our database from google spreadsheets.
+
+To authenticate the script, you must first put the `google_secret.json` file into the root of the folder.
+
+Then, you simply need to run the `sync_db.py` script.
+
 
 # Contributing
 
 Contact the project leader.
-
-# Versioning
-
-To be seen
 
 # Authors
 

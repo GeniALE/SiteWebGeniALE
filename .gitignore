@@ -36,7 +36,9 @@ env/
 
 # Version file for source distribution
 RELEASE-VERSION
-
+*.DS_Store
 .env
 
 \.vscode/
+
+google_secret\.json
