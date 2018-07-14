@@ -3,7 +3,8 @@ if (!window._TeamModuleHelper) {
     function _TeamModuleHelper() {
 
     }
-
+}
+if (!_TeamModuleHelper.prototype.indexArrayByKey) {
     _TeamModuleHelper.prototype.indexArrayByKey = function (arr, key) {
         var map = {};
         for (var i = 0; i < arr.length; i++) {
@@ -12,6 +13,9 @@ if (!window._TeamModuleHelper) {
         }
         return map;
     };
+}
+
+if (!window.TeamModuleHelper) {
     TeamModuleHelper = new _TeamModuleHelper();
 }
 
@@ -57,7 +61,9 @@ if (!window.TeamModuleClass) {
         this.setActiveMember = this.setActiveMember.bind(this);
         this.setActiveTeam = this.setActiveTeam.bind(this);
     }
+}
 
+if (!TeamModuleClass.prototype.resetActiveDataType) {
     TeamModuleClass.prototype.resetActiveDataType = function (type) {
         if (this.activeDataTypes.hasOwnProperty(type)) {
             this.activeDataTypes[type] = {
@@ -66,7 +72,9 @@ if (!window.TeamModuleClass) {
             };
         }
     };
+}
 
+if (!TeamModuleClass.prototype.setActiveTeam) {
     TeamModuleClass.prototype.setActiveTeam = function (teamId, elem) {
         if (this.activeDataTypes.team.id === teamId) {
             this._setActiveDiv(this.activeDataTypes.team.elem, 'team', false);
@@ -85,12 +93,13 @@ if (!window.TeamModuleClass) {
         }
 
         //Reset active member
-        if(this.activeDataTypes.member.id){
+        if (this.activeDataTypes.member.id) {
             this.setActiveMember(this.activeDataTypes.member.id);
         }
     };
+}
 
-
+if (!TeamModuleClass.prototype.setActiveMember) {
     TeamModuleClass.prototype.setActiveMember = function (id, nameElem, iconElem) {
         if (this.activeDataTypes.member.id === id) {
             nameElem = nameElem ? nameElem : this.rootNode.querySelector('.' + this.classByType.member + id);
@@ -107,8 +116,8 @@ if (!window.TeamModuleClass) {
                 this._loadMemberDetails(null);
             }
             if (id !== null) {
-                nameElem =  nameElem ? nameElem : this.rootNode.querySelector("." + this.classByType.member + id);
-                iconElem =  iconElem ? iconElem : this.rootNode.querySelector("." + this.classByType.memberIcon + id);
+                nameElem = nameElem ? nameElem : this.rootNode.querySelector("." + this.classByType.member + id);
+                iconElem = iconElem ? iconElem : this.rootNode.querySelector("." + this.classByType.memberIcon + id);
                 this._setActiveDiv(nameElem, 'member', true);
                 this._setActiveDiv(iconElem, 'memberIcon', true);
                 this._loadMemberDetails(id);
@@ -117,7 +126,8 @@ if (!window.TeamModuleClass) {
             this.activeDataTypes.member.elem = nameElem;
         }
     };
-
+}
+if (!TeamModuleClass.prototype.setMemberVisibility) {
     TeamModuleClass.prototype.setMemberVisibility = function (teamId) {
         for (var i = 0; i < this.members.length; i++) {
             var member = this.members[i];
@@ -134,6 +144,9 @@ if (!window.TeamModuleClass) {
         }
     };
 
+}
+
+if (!TeamModuleClass.prototype.isPartOfTeam) {
     TeamModuleClass.prototype.isPartOfTeam = function (member, teamId) {
         if (teamId === -1) {
             return true;
@@ -147,7 +160,8 @@ if (!window.TeamModuleClass) {
             return false;
         }
     };
-
+}
+if (!TeamModuleClass.prototype._loadMemberDetails) {
     /**
      * @private
      */
@@ -171,14 +185,16 @@ if (!window.TeamModuleClass) {
             for (var i = 0; i < member.projects.length; i++) {
                 var project = member.projects[i];
                 var projectContainer = document.createElement('div');
-                var node = document.createTextNode(project.project_name);
+                var node = document.createTextNode(project.name);
                 projectContainer.appendChild(node);
                 projectElement.appendChild(projectContainer);
             }
             mapping.formation.innerText = member.formation.name;
         }
     };
+}
 
+if (!TeamModuleClass.prototype._setActiveDiv) {
     /**
      * @private
      */
