@@ -1,11 +1,11 @@
-@import './basic/breakpoint.scss';
+@import './basic/_partials';
+@import './basic/_colors';
+@import './basic/_breakpoint';
 $beerBottleWidth: 200px;
-$time-short: 300ms;
-$time-normal: 600ms;
-$time-long: 1500ms;
 
 section.beercarousel {
     overflow: hidden;
+    padding: 90px 0;
 
     .beercarousel {
 
@@ -168,7 +168,7 @@ section.beercarousel {
             margin: 0 15px;
             display: block;
             width: 175px;
-            background: #D2527F;
+            background: $color-primary-dark;
             border: none;
             cursor: pointer;
             outline: none;
@@ -178,7 +178,7 @@ section.beercarousel {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: #ecf0f1;
+            color: $color-foreground-dark;
             transition: color, background;
             transition-duration: $time-long;
 
@@ -187,8 +187,8 @@ section.beercarousel {
             }
 
             &--active {
-                background: #F1A9A0;
-                color: #000;
+                background: $color-primary-light;
+                color: $color-foreground-light;
             }
         }
     }

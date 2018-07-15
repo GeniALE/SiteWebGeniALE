@@ -1,17 +1,17 @@
 @import "./basic/_normalize";
-@import "./basic/_flexboxgrid";
-@import "./basic/_variables";
+@import "./basic/_colors";
 @import "./basic/_fonts";
+@import "./basic/_partials";
+@import "./basic/_flexboxgrid";
 @import "./components/_header";
 @import "header.scss";
 @import "footer.scss";
 
 
 body {
-  background-color: $background-color;
+  background-color: $color-background;
   font-family: $text-font;
   font-size: $text-regular;
-  /*background: #ecf0f1;*/
   position: relative;
 }
 

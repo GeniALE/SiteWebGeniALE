@@ -1,3 +1,5 @@
+@import "./basic/_colors";
+
 @function sqrt($r) {
   $x0: 1;
   $x1: $x0;
@@ -33,18 +35,17 @@
     margin-right: 29.3px;
   }
 
-  $white: #fff;
   $square-dim: 50 * sqrt(2);
   $half-square: 0.5 * $square-dim;
 
   .member__square {
     width: $square-dim + px;
     height: $square-dim + px;
-    background: #F1A9A0;
+    background: $color-primary-light;
     transition: opacity 500ms;
 
     &:nth-of-type(even) {
-      background: #F64747;
+      background: $color-primary;
     }
   }
 
@@ -54,7 +55,7 @@
     position: absolute;
     top: 0;
     right:0;
-    color: #ecf0f1;
+    color: $color-foreground-dark;
     font-family: Raleway;
     text-align: right;
     display: flex;
@@ -100,7 +101,7 @@
   }
 
   .button {
-    border: 1px solid #ecf0f1;
+    border: 1px solid $color-foreground-dark;
     border-radius: 3px;
     display: inline-block;
     padding: 6px 15px;
@@ -112,11 +113,11 @@
     }
 
     &--white {
-      color: #ecf0f1;
+      color: $color-foreground-dark;
 
       &:hover {
-        background: #ecf0f1;
-        color: black;
+        background: $color-background;
+        color: $color-foreground-light;
         text-shadow: none;
       }
     }
