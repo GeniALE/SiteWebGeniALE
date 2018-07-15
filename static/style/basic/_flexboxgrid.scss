@@ -1,6 +1,8 @@
+@import "./_partials";
+
 .wrapper {
   box-sizing: border-box;
-  max-width: 1200px;
+  max-width: $width-xl;
   margin: 0 auto; }
 
 .container-fluid {

@@ -1,4 +1,4 @@
-@import "_variables";
+@import "./_colors";
 
 /* Global input configuration */
 
@@ -23,16 +23,16 @@
   border: none;
   cursor: pointer;
   &--primary {
-    background-color: $primary;
-    color: $font-color-negative;
+    background-color: $color-primary;
+    color: $color-foreground-light;
     &:hover {
-      background-color: $primary-hover;
+      background-color: $color-primary-dark;
     }
   }
   &--secondary {
-    background-color: $secondary;
+    background-color: $color-secondary;
     &:hover {
-      background-color: $secondary-hover;
+      background-color: $color-secondary-dark;
     }
   }
 }

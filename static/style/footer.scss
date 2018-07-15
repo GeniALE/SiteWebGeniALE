@@ -1,19 +1,27 @@
-@import "./basic/_variables";
-@import "./basic/colors";
-@import "./basic/_flexboxgrid";
-
 .footer {
-  margin: 0;
-  background-color: $dark-background;
-  color: $font-color-negative;
-
-  a {
-    text-decoration: none;
-    color: white;
+  &__row {
+    margin: 0;
+    background-color: $color-background-dark;
+    color: $color-foreground-dark;
+    display: flex;
+    justify-content: center;
+    padding: 90px 0;
   }
 
-  a:hover {
-    color: #F64747;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: $width-xl;
+
+    a {
+      text-decoration: none;
+      color: $color-foreground-dark;
+    }
+
+    a:hover {
+      color: $color-primary;
+    }
   }
 
   &__icon {
@@ -25,24 +33,7 @@
     }
   }
 
-  &__content {
-    @extend .col-xs-10;
-    @extend .col-md-10;
-    @extend .col-sm-10;
-    margin: auto;
-  }
-
   &__section {
-    @extend .col-xs-10;
-    @extend .col-sm-4;
-    @extend .col-md-4;
-
-    &__content {
-      @extend .col-xs-10;
-      @extend .col-sm-10;
-      @extend .col-md-10;
-    }
-
     ul {
       list-style-type: none;
     }
@@ -62,11 +53,8 @@
 }
 
 .after_footer {
-  @extend .footer;
-  @extend .col-xs-12;
-  @extend .col-sm-12;
-  @extend .col-md-12;
-  background-color: $darker-background;
+  background-color: $color-background-darker;
+  color: $color-foreground-dark;
   text-align: center;
   padding: 1em;
 }
