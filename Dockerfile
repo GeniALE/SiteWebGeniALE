@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 # Install psql for scripts
 RUN apt-get update
 
-RUN apt-get install postgresql-client-9.4 -y
+RUN apt-get install postgresql-client-9.5 -y
 
 # Create directory code in the docker
 RUN mkdir /code
