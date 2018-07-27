@@ -21,11 +21,13 @@ class TeamModulePlugin(CMSPluginBase):
         members = Member.objects.prefetch_related(
             'teamRoles__team',
             'formation'
-        )
+        ).order_by("first_name")
         return members
 
     def get_teams(self,instance):
         teams = list(Team.objects.all().order_by("team_name"))
+        teams.sort(key= lambda team:team.team_name)
+
         all_text = instance.translations.all
         teams.insert(0, Team(id=-1, team_name=all_text))
         return teams
@@ -68,9 +70,10 @@ class TeamModulePlugin(CMSPluginBase):
         teams = self.get_teams(instance)
         members_as_dict = self.members_to_dict(members)
         teams_as_dict = self.teams_to_dict(teams, members)
+        ordered_teams_for_ui = sorted(list(teams_as_dict.values()),key=lambda team:team['team_name'])
 
         context.update({
-            'teams': list(teams_as_dict.values()),
+            'teams': ordered_teams_for_ui,
             'members': members,
             'teamsAsJson': json.dumps(list(teams_as_dict.values())),
             'membersAsJson': json.dumps(members_as_dict),
