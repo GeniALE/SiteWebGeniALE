@@ -4,6 +4,7 @@ import os
 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from django.templatetags.static import static
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "website.settings")
 django.setup()
@@ -29,7 +30,7 @@ M_ROLE = "Rôle"
 M_PROG = "Prog."
 M_TEAM = "Équipe"
 M_STUDIES_LEVEL = "Niveau"
-M_IN_STAGE = "Stage"
+M_INTERNING = "Stage"
 M_EMAIL = "Courriel"
 M_PHONE = "# Téléphone"
 M_PICTURE = "Photo"
@@ -169,7 +170,7 @@ extra_info_type_mapping = {
     'permanent_code': M_PERMANENT_CODE,
     'universal_code': M_UNIVERSAL_CODE,
     'level': M_STUDIES_LEVEL,
-    'in_stage': M_IN_STAGE,
+    'interning': M_INTERNING,
     'phone_number': M_PHONE
 }
 
@@ -241,7 +242,7 @@ for member in members:
         new_member.formation = formations[member[M_PROG]]
 
         if not member[M_PICTURE]:
-            new_member.profilePicUrl = "http://default_avatar.geniale.ca"
+            new_member.profilePicUrl = static("image/default_avatar.png")
         else:
             new_member.profilePicUrl = member[M_PICTURE]
 
