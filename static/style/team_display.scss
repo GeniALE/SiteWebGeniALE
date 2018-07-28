@@ -1,4 +1,5 @@
 @import "./basic/_colors.scss";
+@import "./basic/_breakpoint.scss";
 
 .teamModule {
   height: 100%;
@@ -9,7 +10,7 @@
 
   &__team {
     padding: 0.5em 0;
-    color:lightgray;
+    color: lightgray;
 
     &--active {
       color: black;
@@ -50,7 +51,7 @@
   }
 
   &__details {
-   /* background-color: white;*/
+    /* background-color: white;*/
     color: black;
     padding: 1em;
 
@@ -60,26 +61,32 @@
       height: 200px;
     }
 
-    &__fullname{
-      font-size:1.5em;
+    &__fullname {
+      font-size: 1.5em;
     }
 
-    &__projects{
+    &__projects {
 
     }
 
-    &__formation{
+    &__formation {
 
+    }
+    &__sticky {
+      @include breakpoint(desktop) {
+        position: fixed;
+        top:80px;
+      }
     }
   }
 
   &--hidden {
-    display: none !important;
+    visibility: hidden;
   }
 
   &__memberpanel {
     vertical-align: top;
-    color:lightgray;
+    color: lightgray;
 
     &__icon {
       object-fit: cover;

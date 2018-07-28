@@ -1,3 +1,37 @@
+var windw = this;
+if (!$.fn.followDetailToFooter) {
+    $.fn.followDetailToFooter = function (detailElem) {
+        var $this = this,
+            $window = $(windw);
+
+        $window.scroll(function (e) {
+            if ($window.width() > 780) {
+
+
+                var $footer = $('footer').first();
+                var topValue = 80;
+                var padding = 40;
+                var pos = $footer.position().top - $(detailElem).first().height() - topValue - padding;
+                if ($window.scrollTop() > pos) {
+                    $this.css({
+                        position: 'absolute',
+                        top: pos + topValue
+                    });
+                } else {
+                    $this.css({
+                        position: 'fixed',
+                        top: topValue + 'px'
+                    });
+                }
+            } else {
+                $this.css({
+                    position: 'flex'
+                });
+            }
+        });
+    };
+}
+
 // Register the instance only if not registered
 if (!window._TeamModuleHelper) {
     function _TeamModuleHelper() {
@@ -56,6 +90,9 @@ if (!window.TeamModuleClass) {
         this.members = members;
         this.membersById = TeamModuleHelper.indexArrayByKey(members, 'id');
         this.hiddenClass = "teamModule--hidden";
+
+        var detailElem = this.rootNode.querySelector(".teamModule__details__sticky");
+        $(detailElem).followDetailToFooter(detailElem);
 
         //Binding to this
         this.setActiveMember = this.setActiveMember.bind(this);
