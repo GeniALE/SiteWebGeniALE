@@ -90,6 +90,7 @@ if (!window.TeamModuleClass) {
         this.members = members;
         this.membersById = TeamModuleHelper.indexArrayByKey(members, 'id');
         this.hiddenClass = "teamModule--hidden";
+        this.invisibleClass = "teamModule--invisible";
 
         var detailElem = this.rootNode.querySelector(".teamModule__details__sticky");
         $(detailElem).followDetailToFooter(detailElem);
@@ -205,9 +206,9 @@ if (!TeamModuleClass.prototype._loadMemberDetails) {
     TeamModuleClass.prototype._loadMemberDetails = function (memberId) {
         var detailsElem = this.rootNode.querySelector(".teamModule__details");
         if (memberId === null) {
-            detailsElem.classList.add(this.hiddenClass);
+            detailsElem.classList.add(this.invisibleClass);
         } else {
-            detailsElem.classList.remove(this.hiddenClass);
+            detailsElem.classList.remove(this.invisibleClass);
 
             var member = this.membersById[memberId];
             var mapping = this.details;
