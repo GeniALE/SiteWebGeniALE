@@ -2,11 +2,11 @@
 @import "./basic/_colors";
 @import "./basic/_fonts";
 @import "./basic/_partials";
+@import "./basic/_breakpoint";
 @import "./basic/_flexboxgrid";
 @import "./components/_header";
 @import "header.scss";
 @import "footer.scss";
-
 
 body {
   background-color: $color-background;
