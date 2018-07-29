@@ -92,6 +92,13 @@
     vertical-align: top;
     color: lightgray;
 
+    &--avatars {
+      display: grid;
+      display: -ms-grid;
+      -ms-grid-template-columns: -ms-repeat(4, 1fr);
+      grid-template-columns: repeat(4, 1fr);
+    }
+
     &__icon {
       object-fit: cover;
       width: 100px;
