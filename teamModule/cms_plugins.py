@@ -72,6 +72,11 @@ class TeamModulePlugin(CMSPluginBase):
         teams_as_dict = self.teams_to_dict(teams, members)
         ordered_teams_for_ui = sorted(list(teams_as_dict.values()),key=lambda team:team['team_name'])
 
+        # Replace the all_team to the first place
+        all_team = next(x for x in ordered_teams_for_ui if x['id'] == -1)
+        ordered_teams_for_ui.remove(all_team)
+        ordered_teams_for_ui.insert(0,all_team)
+
         context.update({
             'teams': ordered_teams_for_ui,
             'members': members,
