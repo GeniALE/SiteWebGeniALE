@@ -53,6 +53,8 @@ class SponsorsDisplayView(CMSPlugin):
         default="",
         blank=True
     )
+    categories = models.ManyToManyField(Category)
+
     class Meta:
         verbose_name = "SponsorsModule Sponsors Display"
         verbose_name_plural = "SponsorsModule Sponsors Displays"

@@ -22,8 +22,10 @@ class SponsorsModulePlugin(CMSPluginBase):
         return sponsors
 
     def get_categories(self, instance):
-        categories = list(Category.objects.all().order_by("-scoreMin"))
-        return categories
+        if instance.categories.all().count() > 0:
+            return list(instance.categories.all().order_by("-scoreMin"))
+        else:
+            return list(Category.objects.all().order_by("-scoreMin"))
 
     def add_category_to_sponsor(self, sponsors, category):
         for sponsor in sponsors:
