@@ -1,16 +1,20 @@
 from django.contrib import admin
 from .models import Sponsor, SponsorsDisplayView, Category, CategoryTranslation
 from hvad.admin import TranslatableAdmin
-#
 
 
 class PageSponsorAdmin(admin.ModelAdmin):
     model = Sponsor
 
+
 class PageSponsorsDisplayView(admin.ModelAdmin):
-    pass
+    model = SponsorsDisplayView
+    filter_horizontal = ("categories",)
+
+
 class PageCategory(admin.ModelAdmin):
     pass
+
 
 class PageCategoryTranslation(TranslatableAdmin, admin.ModelAdmin):
     pass
