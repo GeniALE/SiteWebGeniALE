@@ -27,3 +27,14 @@ div[class*="button"] {
 main {
   padding-top: 3em;
 }
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &>h1 {
+    width: 100%;
+    max-width: 900px;
+  }
+}
