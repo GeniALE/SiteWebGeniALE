@@ -149,6 +149,7 @@ section.beercarousel {
         &__controls {
             display: flex;
             justify-content: center;
+            padding: 15px 0;
 
             @include breakpoint(phone) {
                 display: none;
