@@ -2,8 +2,8 @@
   margin: 1em 0;
   &__content {
     @extend .col-xs-10;
-    @extend .col-sm-10;
-    @extend .col-md-10;
+    @extend .col-sm-8;
+    @extend .col-md-6;
     margin: auto;
     &__title {
       text-transform: uppercase;
