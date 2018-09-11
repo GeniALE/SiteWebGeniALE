@@ -1,11 +1,13 @@
+@import "./components/_sections";
+
 .header {
+  @extend .section;
   margin: 1em 0;
   &__content {
-    @extend .col-xs-10;
-    @extend .col-sm-8;
-    @extend .col-md-6;
-    margin: auto;
+    @extend .section__content;
     &__title {
+      @extend .section__content__title;
+      @extend .section__content__title--no-border;
       text-transform: uppercase;
       color: black;
       font-weight: bold;
