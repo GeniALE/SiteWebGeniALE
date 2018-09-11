@@ -280,7 +280,8 @@ TEAMMODULE_PROJECTDISPLAY_TEMPLATES = [
     ('teamModule/project_display.html', 'List projects')
 ]
 
-COMPRESS_ENABLED = True
+
+COMPRESS_ENABLED = not DEBUG
 
 COMPRESS_JS_FILTERS = [
     'compressor.filters.jsmin.SlimItFilter'
