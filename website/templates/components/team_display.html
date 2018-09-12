@@ -1,11 +1,11 @@
-{% load sekizai_tags compress  static %}
+{% load sekizai_tags compress  static cache_bust %}
 {% addtoblock "css" %}
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "style/team_display.scss" %}">
     {% endcompress %}
 {% endaddtoblock %}
 {% addtoblock "js" %}
-    <script type="text/javascript" src="{% static "js/team_display.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/team_display.js" %}?{% cache_bust %}"></script>
     {% compress js %}
         <script type="text/javascript">
             //Encapsulate javascript inside a function so it's not accessible from the outside #hackerman
