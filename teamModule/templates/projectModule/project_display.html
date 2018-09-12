@@ -1,4 +1,4 @@
-{% load sekizai_tags compress static %}
+{% load sekizai_tags compress static cache_bust %}
 {% load i18n %}
 {% addtoblock "css" %}
     {% compress css %}
@@ -6,7 +6,7 @@
     {% endcompress %}
 {% endaddtoblock %}
 {% addtoblock "js" %}
-    <script type="text/javascript" src="{% static "js/project.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/project.js" %}?{% cache_bust %}"></script>
     <script type="text/javascript">
         //Encapsulate javascript inside a function so it's not accessible from the outside
         var {{ uniqueName }};

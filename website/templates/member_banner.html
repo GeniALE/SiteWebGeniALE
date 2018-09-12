@@ -33,6 +33,6 @@
 
 {% addtoblock "js" %}
     {% compress js %}
-        <script src="{% static "script/member_banner.js" %}" type="text/javascript" charset="utf-8"></script>
+        <script src="{% static "script/member_banner.js" %}?{% cache_bust %}" type="text/javascript" charset="utf-8"></script>
     {% endcompress %}
 {% endaddtoblock %}

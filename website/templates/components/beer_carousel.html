@@ -1,4 +1,4 @@
-{% load sekizai_tags compress static %}
+{% load sekizai_tags compress static cache_bust %}
 
 {% addtoblock 'css' %}
     {% compress css %}
@@ -75,6 +75,6 @@
 
 {% addtoblock 'js' %}
     {% compress js %}
-        <script src="{% static "script/beer_carousel.js" %}" type="text/javascript" charset="utf-8"></script>
+        <script src="{% static "script/beer_carousel.js" %}?{% cache_bust %}" type="text/javascript" charset="utf-8"></script>
     {% endcompress %}
 {% endaddtoblock %}
