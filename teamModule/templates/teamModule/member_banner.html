@@ -1,4 +1,4 @@
-{% load cms_tags sekizai_tags compress  static %}
+{% load cms_tags sekizai_tags compress  static cache_bust %}
 {% block style %}
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "style/member_banner.scss" %}">
@@ -33,6 +33,6 @@
 
 {% addtoblock "js" %}
     {% compress js %}
-        <script src="{% static "script/member_banner.js" %}" type="text/javascript" charset="utf-8"></script>
+        <script src="{% static "script/member_banner.js"  %}?{% cache_bust %}" type="text/javascript" charset="utf-8"></script>
     {% endcompress %}
 {% endaddtoblock %}

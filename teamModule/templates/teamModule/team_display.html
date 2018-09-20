@@ -1,10 +1,10 @@
-{% load sekizai_tags compress  static %}
+{% load sekizai_tags compress  static cache_bust %}
 {% load i18n %}
 {% compress css %}
     <link rel="stylesheet" type="text/x-scss" href="{% static "style/team_display.scss" %}">
 {% endcompress %}
 {% addtoblock "js" %}
-    <script type="text/javascript" src="{% static "js/script.js" %}"></script>
+    <script type="text/javascript" src="{%  static "js/team_display.js" %}?{% cache_bust %}"></script>
 {% endaddtoblock %}
 {% addtoblock "js" %}
     <script type="text/javascript">

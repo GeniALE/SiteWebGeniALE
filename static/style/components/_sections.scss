@@ -1,0 +1,36 @@
+@import "../basic/_flexboxgrid";
+
+.section {
+  @extend .row;
+  margin: 1em 0;
+
+  &__content {
+    @extend .col-md-6;
+    @extend .col-sm-8;
+    @extend .col-xs-10;
+    @extend .start-sm;
+    @extend .center-xs;
+    margin: auto;
+
+    &__title {
+      @extend .center-xs;
+
+      &::after {
+        content: " ";
+        padding: 0;
+        display: block;
+        border: none;
+        border-top: solid 5px;
+        text-align: center;
+        max-width: 250px;
+        margin: 15px auto 30px;
+        border-color: $color-primary-dark;
+      }
+      &--no-border {
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+}

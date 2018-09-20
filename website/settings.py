@@ -27,6 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_*e5#vmms*t78k^670ze(sw33k(!8e27!wd8^9#wmi&npfacw*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# If it's not true, static files won't be served
 DEBUG = True
 
 ADMINS = ['root', 'admin']
@@ -280,7 +281,8 @@ TEAMMODULE_PROJECTDISPLAY_TEMPLATES = [
     ('teamModule/project_display.html', 'List projects')
 ]
 
-COMPRESS_ENABLED = True
+
+COMPRESS_ENABLED = not DEBUG
 
 COMPRESS_JS_FILTERS = [
     'compressor.filters.jsmin.SlimItFilter'

@@ -5,6 +5,7 @@ from cms.plugin_pool import plugin_pool
 from django.forms import model_to_dict
 from django.utils.translation import ugettext_lazy as _
 import json
+from django.templatetags.static import static
 
 from teamModule.helpers import to_dict
 from .models import TeamBannerModel, Team, Member, TeamDisplayView, Project, ProjectDisplayView
@@ -40,6 +41,7 @@ class TeamModulePlugin(CMSPluginBase):
             new_member['teamRoles'] = [to_dict(teamRole) for teamRole in team_roles]
             new_member['projects'] = [to_dict(project) for project in member.projects.all()]
             new_member['formation'] = to_dict(member.formation)
+
             members_as_dict.append(new_member)
 
         return members_as_dict
@@ -67,6 +69,12 @@ class TeamModulePlugin(CMSPluginBase):
 
         # Get some data
         members = self.get_members()
+
+        # Check for default avatar
+        for member in members:
+            if not member.profilePicUrl:
+                member.profilePicUrl = static("image/default_avatar.png")
+
         teams = self.get_teams(instance)
         members_as_dict = self.members_to_dict(members)
         teams_as_dict = self.teams_to_dict(teams, members)

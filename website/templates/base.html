@@ -1,4 +1,4 @@
-{% load cms_tags menu_tags sekizai_tags compress static %}
+{% load cms_tags menu_tags sekizai_tags compress static cache_bust %}
 <!doctype html>
 <html>
 <head>
@@ -66,7 +66,7 @@
 {% render_block "scripts" %}
 {% render_block "js" %}
 {% compress js %}
-    <script src="{% static "script/base.js" %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static "script/base.js" %}?{% cache_bust %}" type="text/javascript" charset="utf-8"></script>
 {% endcompress %}
 {% block scripts %}{% endblock %}
 </body>
