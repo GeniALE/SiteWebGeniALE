@@ -19,10 +19,15 @@ section.beercarousel {
                 display: flex;
                 width: 100vw;
                 justify-content: center;
+                position: relative;
 
                 &__image {
                     width: 270px;
                     position: relative;
+
+                    @include breakpoint(phone) {
+                        width: 50%;
+                    }
 
                     span {
                         display: inline-block;
@@ -49,7 +54,7 @@ section.beercarousel {
 
                             & ~ .beer__imagetagwrapper {
                                 width: 64%;
-                                top: 48%;
+                                top: 46.5%;
                                 left: 18%;
                             }
                         }
@@ -63,7 +68,7 @@ section.beercarousel {
 
                             & ~ .beer__imagetagwrapper {
                                 width: 67%;
-                                top: 24%;
+                                top: 9%;
                                 left: 16%;
                             }
                         }
@@ -96,6 +101,12 @@ section.beercarousel {
                     box-sizing: border-box;
                     transition: left, opacity;
                     transition-duration: $time-long;
+
+                    @include breakpoint(phone) {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                    }
                 }
 
                 &__title {
@@ -106,16 +117,19 @@ section.beercarousel {
                 &__detail {
                     line-height: 1.5;
 
+                    span {
+                        @include breakpoint(phone) {
+                            background: $color-background;
+                            box-shadow: -3px 0 0 $color-background, 3px 0 0 $color-background;
+                        }
+                    }
+
                     &name {
                         font-weight: 700;
 
                         &::after {
                             content: ':';
                         }
-                    }
-
-                    &value {
-
                     }
                 }
 
@@ -124,6 +138,9 @@ section.beercarousel {
                     font-size: 1.2em;
                     text-align: justify;
 
+                    @include breakpoint(phone) {
+                        text-shadow: 0 0 6px $color-background;
+                    }
                 }
 
 
