@@ -1,6 +1,18 @@
 @import "./basic/_colors.scss";
 @import "./basic/_breakpoint.scss";
 
+@mixin mobileMemberDetail() {
+  position: fixed;
+  background-color: lightgray;
+  height: 90vh;
+  width: 96vw;
+  left: 0.5em;
+  top: 5vh;
+  border-radius: 1%;
+  z-index: 1010;
+  overflow-y: auto;
+}
+
 .teamModule {
   height: 100%;
   //background: linear-gradient(-45deg, black 25%, transparent 25%, transparent),linear-gradient(45deg, transparent 75%, black 75%);
@@ -54,6 +66,38 @@
     /* background-color: white;*/
     color: black;
     padding: 1em;
+
+    &__close {
+      position: fixed;
+      display: none;
+      top: 6%;
+      right: 6%;
+      color: black;
+      cursor: pointer;
+      z-index: 1020;
+      font-size: 3em;
+      text-shadow: 1px 1px 2px white, 0 0 25px lightgray, 0 0 5px gray;
+      &:hover {
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px lightgray, 0 0 5px gray;
+      }
+    }
+
+    @include breakpoint(phone) {
+      @include mobileMemberDetail();
+
+      &__close {
+        display: block;
+      }
+    }
+
+    @include breakpoint(tablet) {
+      @include mobileMemberDetail();
+
+      &__close {
+        display: block;
+      }
+    }
 
     &__picture {
       object-fit: cover;
