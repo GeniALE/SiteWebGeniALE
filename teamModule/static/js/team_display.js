@@ -246,3 +246,12 @@ if (!TeamModuleClass.prototype._setActiveDiv) {
         }
     };
 }
+
+if (!TeamModuleClass.prototype.modalClose) {
+    /**
+     * @private
+     */
+    TeamModuleClass.prototype.modalClose = function () {
+        this.setActiveMember(this.activeDataTypes.member.id);
+    };
+}
