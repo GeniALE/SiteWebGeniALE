@@ -1,5 +1,10 @@
 # TeamModule
 
+- [TeamModule](#teammodule)
+- [Team display](#team-display)
+- [Team banner](#team-banner)
+- [Template configuration](#template-configuration)
+
 TeamModule is a plugin that let you manage your team and your projects.
 
 Some plugins are available to display:

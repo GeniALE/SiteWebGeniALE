@@ -1,5 +1,9 @@
 # SponsorsModule
 
+- [SponsorsModule](#sponsorsmodule)
+- [Sponsors display](#sponsors-display)
+- [Template configuration](#template-configuration)
+
 SponsorsModule is a plugin that let you manage your sponsors.
 
 One plugin is available to display all of your sponsors by range of donations.

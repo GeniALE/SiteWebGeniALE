@@ -1,5 +1,8 @@
 # beer_carousel
 
+- [beer_carousel](#beercarousel)
+- [Template configuration](#template-configuration)
+
 Beer carousel is a plugin that act as a carousel for your beers. 
 
 You can add your beers in the admin panel and then add the plugin inside one of your page.
