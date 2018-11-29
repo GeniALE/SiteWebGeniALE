@@ -13,11 +13,19 @@
         {% endif %}
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" name="contact_plus_form_{{ contact.id|unlocalize }}" {% if contact.submit_button_text %}
-           value="{{ contact.submit_button_text }}"{% endif %} />
+    <div class="row">
+        <div class="col-xs-12
+                col-sm-4
+                col-md-2
+                col-lg-2">
+            <input class="button button--primary" type="submit" name="contact_plus_form_{{ contact.id|unlocalize }}"
+                    {% if contact.submit_button_text %}
+                   value="{{ contact.submit_button_text }}"{% endif %} />
+        </div>
+    </div>
     </form>
 
-    <div class="contactForm__thanks">
+        <div class="contactForm__thanks">
     {% else %}
         {{ contact.thanks|safe }}
     {% endif %}
