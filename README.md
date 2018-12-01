@@ -90,7 +90,9 @@ Basically, you have those type of branches :
 - Rebase master into your branch
 - Review and test 
 - Create pull request
-- Merge in master when peer reviewed (1 active contributor review **required**)
+- Set the reviewers for your pull request (you must have at least **ONE** approval to merge)
+- Assign the pull request to the person in charge of merging (*it can be yourself*)
+- Merge the branch when you have your approvals
 
 ### Fix workflow
 
