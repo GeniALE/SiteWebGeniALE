@@ -92,6 +92,7 @@ Basically, you have those type of branches :
 - Create pull request
 - Set the reviewers for your pull request (you must have at least **ONE** approval to merge)
 - Assign the pull request to the person in charge of merging (*it can be yourself*)
+- Assign your Trello card to the same person you assigned the PR
 - Merge the branch when you have your approvals
 
 ### Fix workflow
