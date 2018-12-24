@@ -22,18 +22,35 @@
 .button {
   border: none;
   cursor: pointer;
+
   &--primary {
     background-color: $color-primary;
-    color: $color-foreground-light;
+    color: $color-foreground-dark;
+
     &:hover {
       background-color: $color-primary-dark;
     }
   }
+
   &--secondary {
     background-color: $color-secondary;
+
     &:hover {
       background-color: $color-secondary-dark;
     }
+  }
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  &--success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
   }
 }
 

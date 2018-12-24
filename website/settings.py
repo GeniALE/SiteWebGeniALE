@@ -1,5 +1,8 @@
 import os
 import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv()
 
 gettext = lambda s: s
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -47,13 +50,16 @@ if docker_toolbox:
     ALLOWED_HOSTS.append(docker_toolbox)
 
 # Email configuration
+raw_email_use_ssl = os.getenv('EMAIL_USE_SSL', 0)
+raw_email_use_tls = os.getenv('EMAIL_USE_TLS', 0)
+raw_email_port = os.getenv('EMAIL_PORT', 25)
 
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'localhost')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD', '')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
-EMAIL_PORT = os.getenv('EMAIL_PORT', 25)
-EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', False)
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', False)
+EMAIL_PORT = int(raw_email_port)
+EMAIL_USE_SSL = bool(int(raw_email_use_ssl))
+EMAIL_USE_TLS = bool(int(raw_email_use_tls))
 
 # Application definition
 
@@ -63,8 +69,6 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-
 
 
 # Internationalization
@@ -134,9 +138,6 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.language.LanguageCookieMiddleware'
 )
-
-
-
 
 INSTALLED_APPS = (
     'djangocms_admin_style',
@@ -280,7 +281,6 @@ BEER_CAROUSEL_TEMPLATES_TEMPLATES = [
 TEAMMODULE_PROJECTDISPLAY_TEMPLATES = [
     ('teamModule/project_display.html', 'List projects')
 ]
-
 
 COMPRESS_ENABLED = not DEBUG
 
