@@ -9,13 +9,41 @@
     <div class="container container-centered">
         {% for category in category_sponsors %}
             <h2>{{category}}</h2>
-        <div class="row">
-            {% for sponsor in category.sponsors%}
-                <div class="col-centered">
-                    <span class="helper"></span><img src={{sponsor.image}} class="sponsorModule_img">
-                </div>
+            <div class="row">
+                {% for sponsor in category.sponsors%}
+                    {% comment %} <div class="col-centered">
+                        <p class="sponsorName">{{sponsor.title}}</p>
+                        <span class="helper"></span><img src={{sponsor.image}} class="sponsorModule_img">
+                    </div> {% endcomment %}
+                    <div class="sponsorCard">
+                        <img src={{sponsor.image}} alt={{sponsor.title}}>
+                        <div class="container">
+                            <h4><b>{{sponsor.title}}</b></h4> 
+                            <p>Commanditaire</p> 
+                        </div>
+                    </div>
+                    <div class="sponsorCard">
+                        <img src={{sponsor.image}} alt={{sponsor.title}}>
+                        <div class="container">
+                            <h4><b>{{sponsor.title}}</b></h4> 
+                            <p>Commanditaire</p> 
+                        </div>
+                    </div>
+                    <div class="sponsorCard">
+                        <img src={{sponsor.image}} alt={{sponsor.title}}>
+                        <div class="container">
+                            <h4><b>{{sponsor.title}}</b></h4> 
+                            <p>Commanditaire</p> 
+                        </div>
+                    </div>
+                    <div class="sponsorCard">
+                        <img src={{sponsor.image}} alt={{sponsor.title}}>
+                        <div class="container">
+                            <h4><b>{{sponsor.title}}</b></h4> 
+                            <p>Commanditaire</p> 
+                        </div>
+                    </div>
                 {% endfor %}
-
             </div>
         {% endfor %}
         </div>
