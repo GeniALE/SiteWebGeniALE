@@ -1,12 +1,17 @@
+.row{
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 50px;
+}
+
 .sponsorModule_img{
-    width:100%;
+    /* width:100%; */
     mix-blend-mode: multiply;
     vertical-align: -webkit-baseline-middle;
-
 }
 
 .container-centered{
-    margin: 0 auto !important
+    margin:  auto !important
 }
 .col-centered{
     -webkit-flex-basis: 16.6666666667%;
@@ -22,4 +27,19 @@
     display: inline-block;
     height: 100%;
     vertical-align: middle;
+}
+
+.sponsorCard {
+    display: inline;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+  
+.sponsorCard:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+  
+.container {
+    display: inline;
+    padding: 2px 16px;
 }
