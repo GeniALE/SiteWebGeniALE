@@ -1,3 +1,8 @@
+#sponsor_module{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 a{
     color: blue;
     text-decoration: none;
@@ -8,6 +13,7 @@ a{
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-gap: 50px;
+    margin-bottom: 25px;
 }
 
 .sponsor_module_img{
@@ -67,12 +73,9 @@ a{
 }
 
 table {
-    background-color:rgba(1,1,1,0);
     margin-left: 10px;
     margin-right: 10px;
-    margin-bottom: 25px;
     box-shadow: 0 8px 30px 0 rgba(0,0,0,0.2);
-    border-radius: 10px;
     transition: 0.5s;
 }
 
@@ -81,11 +84,10 @@ table:hover {
 }
 
 th, td {
-    /* border: 1px solid black; */
     padding-left: 6px;
     padding-right: 6px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 tr:first-child td:first-child{
@@ -94,41 +96,83 @@ tr:first-child td:first-child{
 }
 
 td:first-child{
-    background-color: rgb(177, 0, 12);
+    background-color: rgb(189, 0, 13);
     border-radius: 1px;
-    /* box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9); */
     color: white;
 }
 
-td:nth-child(2){
-    background-color: #a16528;
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
-    border-radius: 1px;
+tr:first-child td:nth-child(2){
+    background-color: #000000;
+    border: solid 2px #a16528;
+    color:#a16528;
+    transition: 0.5s;
+    border-radius: 7px;
 }
 
-td:nth-child(3){
-    background-color: #959595;
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
-    border-radius: 1px;
+tr:first-child td:nth-child(2):hover{
+    background-color: #6d4319;
+    border: solid 2px #a16528;
+    color: black;
 }
 
-td:nth-child(4){
-    background-color: #a88018;
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
-    border-radius: 1px;
+tr:first-child td:nth-child(3){
+    background-color: #000000;
+    border: solid 2px #959595;
+    color:#959595;
+    transition: 0.5s;
+    border-radius: 7px;
 }
 
-td:nth-child(5){
-    background-color: #a09e9b;
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
-    border-radius: 1px;
+tr:first-child td:nth-child(3):hover{
+    background-color: #707070;
+    border: solid 2px #959595;
+    color:black;
 }
 
-td:nth-child(6){
+tr:first-child td:nth-child(4){
+    background-color: #000000;
+    border: solid 2px #a88018;
+    color: #a88018;
+    transition: 0.5s;
+    border-radius: 7px;
+}
+
+tr:first-child td:nth-child(4):hover{
+    background-color: #806011;
+    border: solid 2px #a88018;
+    color: #000000;
+}
+
+tr:first-child td:nth-child(5){
+    background-color: #000000;
+    border: solid 2px #a09e9b;
+    color: #a09e9b;
+    transition: 0.5s;
+    border-radius: 7px;
+}
+
+tr:first-child td:nth-child(5):hover{
+    background-color: #838280;
+    border: solid 2px #a09e9b;
+    color: black;
+    transition: 0.5s;
+    border-radius: 7px;
+}
+
+tr:first-child td:nth-child(6){
     background-color: #0c0c0b;
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
-    border-radius: 1px;
-    color: white;
+    border: solid 2px rgb(39, 63, 136);
+    color: rgb(39, 63, 136);
+    transition: 0.5s;
+    border-radius: 7px;
+}
+
+tr:first-child td:nth-child(6):hover{
+    background-color: #172a61;
+    border: solid 2px rgb(39, 63, 136);
+    color: #0c0c0b;
+    transition: 0.5s;
+    border-radius: 7px;
 }
 
 td:not(:first-child){
@@ -136,15 +180,17 @@ td:not(:first-child){
     vertical-align: middle;
 }
 
-table tr:last-child td:first-child{
-    border-radius: 0 0 0 10px;
+table td {
+    /* border-left: 1px solid #000; */
+    border-right: 0.4px solid rgba(0, 0, 0, 0.267);
 }
 
-table tr:first-child td:last-child {
-    border-radius: 0 10px 0 0;
+table td:first-child {
+    border-left: none;
 }
-table tr:last-child td:last-child {
-    border-radius: 0 0 10px 0;
+
+table td:last-child {
+    border-right: none;
 }
 
 @media screen and (max-width: 600px) {
@@ -155,5 +201,16 @@ table tr:last-child td:last-child {
 
     .sponsor_card {
         box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2);
+    }
+
+    table{
+        font-size: 0.8em;
+    }
+
+    th, td {
+        padding-left: 3px;
+        padding-right: 3px;
+        padding-top: 7px;
+        padding-bottom: 7px;
     }
 }
