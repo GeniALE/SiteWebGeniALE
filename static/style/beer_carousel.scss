@@ -9,6 +9,10 @@ section.beercarousel {
 
     .beercarousel {
 
+        &__container {
+            width: 100%;
+        }
+
         &__beers {
             display: flex;
             position: relative;
@@ -173,11 +177,15 @@ section.beercarousel {
             }
         }
 
-        &__mobilecontrols {
+        &__prevnextcontrols {
             display: none;
             justify-content: center;
 
             @include breakpoint(phone) {
+                display: flex;
+            }
+
+            &.show {
                 display: flex;
             }
         }
