@@ -8,7 +8,7 @@
     <h1 class="sponsorsModule__title">Nos commanditaires</h1>
     <div class="container container_centered">
         {% for category in category_sponsors %}
-            <h2>{{category}}</h2>
+            <h2 class="categories">{{category}}</h2>
             <div class="row">
                 {% for sponsor in category.sponsors%}
                     <div class="sponsor_card" onclick = "location.href='{{sponsor.url}}';">
@@ -104,6 +104,6 @@
             <td>O</td>
         </tr>
     </table>
-    <p>Cliquez ici pour le <a href="https://bit.ly/2SRfAhx">plan de commandite de Géni Ale</a></p>
+    <p id="link_sponsors">En connaître un peu plus sur le <a href="https://bit.ly/2SRfAhx">plan de commandite de Géni Ale</a></p>
 
 </section>
