@@ -3,6 +3,20 @@
     margin-right: 10px;
 }
 
+.circle{
+    background: rgba(0,0,0,0.50); 
+    width: 20px; 
+    height: 20px; 
+    border-radius: 64px; 
+    margin: auto;
+    transition: 0.5s;
+    border: 1px solid rgba(0,0,0,0.40);
+}
+
+#circle:hover{
+
+}
+
 a{
     color: blue;
     text-decoration: none;
@@ -10,6 +24,7 @@ a{
 
 .categories{
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.329);
+    font-size: 2em;
 }
 
 .row{
@@ -47,12 +62,13 @@ a{
 
 .sponsor_card {
     display: inline;
-    box-shadow: 0 8px 30px 0 rgba(0,0,0,0.2);
+    box-shadow: 0px 7px 46px -9px rgba(0,0,0,0.75);
     transition: 0.5s;
     padding: 10px;
     height: 25vh;
     position: relative;
     border-radius: 5px;
+    background: white;
 }
 
 .sponsor_logo {
@@ -62,7 +78,7 @@ a{
 }
   
 .sponsor_card:hover {
-    box-shadow: 0 15px 45px 0 rgba(0,0,0,0.6);
+    box-shadow: 0px 7px 46px 3px rgba(0,0,0,0.75);
 }
   
 .container {
@@ -74,17 +90,18 @@ a{
 .card_text{
     position: absolute;
     bottom: 0;
+    color: rgba(0,0,0,0.6);
 }
 
 table {
     /* margin-left: 10px;
     margin-right: 10px; */
-    box-shadow: 0 8px 30px 0 rgba(0,0,0,0.2);
+    box-shadow: 0px 7px 46px -9px rgba(0,0,0,0.75);
     transition: 0.5s;
 }
 
 table:hover {
-    box-shadow: 0 15px 45px 0 rgba(0,0,0,0.6);
+    box-shadow: 0px 7px 46px 3px rgba(0,0,0,0.75);
 }
 
 th, td {
@@ -111,6 +128,7 @@ tr:first-child td:nth-child(2){
     color:#a16528;
     transition: 0.5s;
     border-radius: 7px;
+    font-size: 1.2em;
 }
 
 tr:first-child td:nth-child(2):hover{
@@ -125,6 +143,7 @@ tr:first-child td:nth-child(3){
     color:#959595;
     transition: 0.5s;
     border-radius: 7px;
+    font-size: 1.2em;
 }
 
 tr:first-child td:nth-child(3):hover{
@@ -139,6 +158,7 @@ tr:first-child td:nth-child(4){
     color: #a88018;
     transition: 0.5s;
     border-radius: 7px;
+    font-size: 1.2em;
 }
 
 tr:first-child td:nth-child(4):hover{
@@ -153,6 +173,7 @@ tr:first-child td:nth-child(5){
     color: #a09e9b;
     transition: 0.5s;
     border-radius: 7px;
+    font-size: 1.2em;
 }
 
 tr:first-child td:nth-child(5):hover{
@@ -169,6 +190,7 @@ tr:first-child td:nth-child(6){
     color: rgb(39, 63, 136);
     transition: 0.5s;
     border-radius: 7px;
+    font-size: 1.2em;
 }
 
 tr:first-child td:nth-child(6):hover{
