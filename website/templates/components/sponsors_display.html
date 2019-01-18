@@ -4,16 +4,16 @@
 {% endcompress %}
 
 
-<section id="sponsors_module">
-    <h1 class="sponsorsModule__title">Nos commanditaires</h1>
-    <div class="container container_centered">
+<section class="sponsors-module">
+    <h1 class="sponsors-module__title">Nos commanditaires</h1>
+    <div class="sponsors-module__container sponsors-module__container__centered">
         {% for category in category_sponsors %}
-            <h2 class="categories">{{category}}</h2>
-            <div class="row">
+            <h2 class="sponsors-module__categories">{{category}}</h2>
+            <div class="sponsors-module__row">
                 {% for sponsor in category.sponsors%}
-                    <div class="sponsor_card" onclick = "location.href='{{sponsor.url}}';">
-                        <img class="sponsor_logo" src={{sponsor.image}} alt={{sponsor.title}}>
-                        <div class="card_text">
+                    <div class="sponsor-card" onclick = "location.href='{{sponsor.url}}';">
+                        <img class="sponsor-card__logo" src={{sponsor.image}} alt={{sponsor.title}}>
+                        <div class="sponsor-card__text">
                             <h4>{{sponsor.title}}</h4>
                         </div>
                     </div>
@@ -21,89 +21,88 @@
             </div>
         {% endfor %}
     </div>
-    <h1 class="sponsorsModule__title">Devenir un commanditaire</h1>
-    <table onclick = "location.href='https://bit.ly/2SRfAhx';">
+    <h1 class="sponsors-module__title">Devenir un commanditaire</h1>
+    <table class="t" onclick = "location.href='https://bit.ly/2SRfAhx';">
         <tr>
-            <td>&nbsp;</td>
-            <td><b>Bronze</b></td>
-            <td><b>Argent</b></td> 
-            <td><b>Or</b></td>
-            <td><b>Platine</b></td>
-            <td><b>Vip</b></td>
+            <td class="t__td t__td--one">&nbsp;</td>
+            <td class="t__td t__td--two"><b>Bronze</b></td>
+            <td class="t__td t__td--three"><b>Argent</b></td> 
+            <td class="t__td t__td--four"><b>Or</b></td>
+            <td class="t__td t__td--five"><b>Platine</b></td>
+            <td class="t__td t__td--six"><b>Vip</b></td>
         </tr>
         <tr>
-            <td>Avantages de votre appui</td>
-            <td>499$ et moins</td>
-            <td>500$ à 1499$</td>
-            <td>1500$ à 2999$</td>
-            <td>3000$ à 7499$</td>
-            <td>7500$ et plus</td>
+            <td class="t__td t__td--one">Avantages de votre appui</td>
+            <td class="t__td">499$ et moins</td>
+            <td class="t__td">500$ à 1499$</td>
+            <td class="t__td">1500$ à 2999$</td>
+            <td class="t__td">3000$ à 7499$</td>
+            <td class="t__td">7500$ et plus</td>
         </tr>
         <tr>
-            <td>Invitation à la soirée annuelle des commanditaires des clubs</td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
+            <td class="t__td t__td--one">Invitation à la soirée annuelle des commanditaires des clubs</td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
         </tr>
         <tr>
-            <td>Votre logo sur le site web et les bannières du club</td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
+            <td class="t__td t__td--one">Votre logo sur le site web et les bannières du club</td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
         </tr>
         <tr>
-            <td>Une plaque de remerciement</td>
-            <td>&nbsp;</td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
+            <td class="t__td t__td--one">Une plaque de remerciement</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
         </tr>
         <tr>
-            <td>Votre logo sur les chandails du club</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
+            <td class="t__td t__td--one">Votre logo sur les chandails du club</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
         </tr>
         <tr>
-            <td>Votre logo sur les bouteilles et verres commémoratifs</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
+            <td class="t__td t__td--one">Votre logo sur les bouteilles et verres commémoratifs</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
         </tr>
         <tr>
-            <td>Remise des curriculums vitae de tous les membres du club</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td><div class="circle"></div></td>
-            <td><div class="circle"></div></td>
+            <td class="t__td t__td--one">Remise des curriculums vitae de tous les membres du club</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td"><div class="t__circle"></div></td>
+            <td class="t__td"><div class="t__circle"></div></td>
         </tr>
         <tr>
-            <td>Notre participation à un événement corporatif de votre choix</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td><div class="circle"></div></td>
+            <td class="t__td t__td--one">Notre participation à un événement corporatif de votre choix</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td"><div class="t__circle"></div></td>
         </tr>
         <tr>
-            <td>Un brassin sur-mesure à l’image de votre entreprise</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td><div class="circle"></div></td>
+            <td class="t__td t__td--one">Un brassin sur-mesure à l’image de votre entreprise</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td">&nbsp;</td>
+            <td class="t__td"><div class="t__circle"></div></td>
         </tr>
     </table>
-    <p id="link_sponsors">En connaître un peu plus sur le <a href="https://bit.ly/2SRfAhx">plan de commandite de Géni Ale</a></p>
-
+    <p class="sponsors-module__link-sponsors">En connaître un peu plus sur le <a href="https://bit.ly/2SRfAhx">plan de commandite de Géni Ale</a></p>
 </section>

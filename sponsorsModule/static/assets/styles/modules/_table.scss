@@ -1,0 +1,68 @@
+@import 'variables';
+
+$little-box-shadow-color: rgba(0,0,0,0.2);
+$box-shadow-color: rgba(0,0,0,0.75);
+$circle-background: rgba(0,0,0,0.50);
+$circle-border-background: rgba(0,0,0,0.40);
+
+.t{
+    box-shadow: 0px 7px 46px -9px $box-shadow-color;
+    transition: 0.5s;
+
+    &__circle{
+        background: $circle-background; 
+        width: 20px; 
+        height: 20px; 
+        border-radius: 64px; 
+        margin: auto;
+        transition: 0.5s;
+        border: 1px solid $circle-border-background;
+    }
+
+    &__td{
+        padding-left: 6px;
+        padding-right: 6px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        &--one{
+            background-color: rgb(189, 0, 13);
+            border-radius: 1px;
+            color: white;
+        }
+
+        &--two{
+            background-color: #000000;
+            border: solid 2px #a16528;
+            color:#a16528;
+            transition: 0.5s;
+            border-radius: 7px;
+            font-size: 1.2em;
+            
+            &:hover{
+                background-color: #6d4319;
+                border: solid 2px #a16528;
+                color: black;
+            }
+        }
+
+        &--three{
+            background-color: #000000;
+            border: solid 2px #959595;
+            color:#959595;
+            transition: 0.5s;
+            border-radius: 7px;
+            font-size: 1.2em;
+
+            &:hover{
+                background-color: #707070;
+                border: solid 2px #959595;
+                color:black;
+            }
+        }
+    }
+}
+
+.t:hover{
+    box-shadow: 0px 7px 46px 3px $box-shadow-color;
+}
