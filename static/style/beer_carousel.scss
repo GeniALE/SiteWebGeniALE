@@ -25,6 +25,11 @@ section.beercarousel {
                 justify-content: center;
                 position: relative;
 
+                @include breakpoint(phone) {
+                    align-items: center;
+                    flex-direction: column;
+                }
+
                 &__image {
                     width: 270px;
                     position: relative;
@@ -107,9 +112,7 @@ section.beercarousel {
                     transition-duration: $time-long;
 
                     @include breakpoint(phone) {
-                        position: absolute;
                         width: 100%;
-                        height: 100%;
                     }
                 }
 
@@ -120,13 +123,6 @@ section.beercarousel {
 
                 &__detail {
                     line-height: 1.5;
-
-                    span {
-                        @include breakpoint(phone) {
-                            background: $color-background;
-                            box-shadow: -3px 0 0 $color-background, 3px 0 0 $color-background;
-                        }
-                    }
 
                     &name {
                         font-weight: 700;
@@ -156,14 +152,6 @@ section.beercarousel {
                         }
                     }
                 }
-
-                // &:not(.beer--active) {
-                //     & .beer {
-                //         &__imagetag {
-                //             left: -600% !important;
-                //         }
-                //     }
-                // }
             }
         }
 
