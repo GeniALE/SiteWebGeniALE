@@ -3,12 +3,25 @@
 $little-box-shadow-color: rgba(0,0,0,0.2);
 $box-shadow-color: rgba(0,0,0,0.75);
 $circle-background: rgba(0,0,0,0.50);
-$circle-border-background: rgba(0,0,0,0.40);
+$circle-border-color: rgba(0,0,0,0.40);
+$red-color:  rgb(189, 0, 13);
+$bronze-color: #a16528;
+$bronze-dark-color: #6d4319;
+$silver-color: #959595;
+$silver-dark-color: #707070;
+$gold-color: #a88018;
+$gold-dark-color: #806011;
+$platine-color: #a09e9b;
+$platine-dark-color: #838280;
+$vip-color: rgb(39, 63, 136);
+$vip-dark-color: #172a61;
+$categories-bg-color: #0c0c0b;
+$separation-color: rgba(0, 0, 0, 0.267);
 
 .t{
     box-shadow: 0px 7px 46px -9px $box-shadow-color;
     transition: 0.5s;
-
+    
     &__circle{
         background: $circle-background; 
         width: 20px; 
@@ -16,7 +29,7 @@ $circle-border-background: rgba(0,0,0,0.40);
         border-radius: 64px; 
         margin: auto;
         transition: 0.5s;
-        border: 1px solid $circle-border-background;
+        border: 1px solid $circle-border-color;
     }
 
     &__td{
@@ -24,45 +37,114 @@ $circle-border-background: rgba(0,0,0,0.40);
         padding-right: 6px;
         padding-top: 10px;
         padding-bottom: 10px;
+        border-right: 0.4px solid $separation-color;
+
+        &:not(:first-child){
+            text-align: center; 
+            vertical-align: middle;
+        }
 
         &--one{
-            background-color: rgb(189, 0, 13);
+            background-color: $red-color;
             border-radius: 1px;
             color: white;
         }
 
         &--two{
-            background-color: #000000;
-            border: solid 2px #a16528;
-            color:#a16528;
+            background-color: $categories-bg-color;
+            border: solid 2px $bronze-color;
+            color:$bronze-color;
             transition: 0.5s;
             border-radius: 7px;
             font-size: 1.2em;
             
             &:hover{
-                background-color: #6d4319;
-                border: solid 2px #a16528;
-                color: black;
+                background-color: $bronze-dark-color;
+                border: solid 2px $bronze-color;
+                color: $categories-bg-color;
             }
         }
 
         &--three{
-            background-color: #000000;
-            border: solid 2px #959595;
-            color:#959595;
+            background-color: $categories-bg-color;
+            border: solid 2px $silver-color;
+            color:$silver-color;
             transition: 0.5s;
             border-radius: 7px;
             font-size: 1.2em;
 
             &:hover{
-                background-color: #707070;
-                border: solid 2px #959595;
-                color:black;
+                background-color: $silver-dark-color;
+                border: solid 2px $silver-color;
+                color:$categories-bg-color;
             }
         }
-    }
-}
 
-.t:hover{
-    box-shadow: 0px 7px 46px 3px $box-shadow-color;
+        &--four{
+            background-color: $categories-bg-color;
+            border: solid 2px $gold-color;
+            color: $gold-color;
+            transition: 0.5s;
+            border-radius: 7px;
+            font-size: 1.2em;
+
+            &:hover{
+                background-color: $gold-dark-color;
+                border: solid 2px $gold-color;
+                color: $categories-bg-color;
+            }
+        }
+
+        &--five{
+            background-color: $categories-bg-color;
+            border: solid 2px $platine-color;
+            color: $platine-color;
+            transition: 0.5s;
+            border-radius: 7px;
+            font-size: 1.2em;
+
+            &:hover{
+                background-color: $platine-dark-color;
+                border: solid 2px $platine-color;
+                color: $categories-bg-color;
+                transition: 0.5s;
+                border-radius: 7px;
+            }
+        }
+
+        &--six{
+            background-color: $categories-bg-color;
+            border: solid 2px $vip-color;
+            color: $vip-color;
+            transition: 0.5s;
+            border-radius: 7px;
+            font-size: 1.2em;
+
+            &:hover{
+                background-color: $vip-dark-color;
+                border: solid 2px $vip-color;
+                color: $categories-bg-color;
+                transition: 0.5s;
+                border-radius: 7px;
+            }
+        }
+
+        @media #{$information-reponsive} {
+            padding-left: 3px;
+            padding-right: 3px;
+            padding-top: 7px;
+            padding-bottom: 7px;
+
+        }
+    }
+
+    &:hover{
+        box-shadow: 0px 7px 46px 3px $box-shadow-color;
+    }
+
+    @media #{$information-reponsive} {
+        font-size: 0.8em;
+        margin-right: 15px;
+        margin-left: 15px;
+    }
 }
