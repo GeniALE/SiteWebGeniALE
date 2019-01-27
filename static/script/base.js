@@ -4,5 +4,5 @@ $(document).ready(function() {
 
 function toggleNav() {
     $(".button__hamburger").toggleClass("button__hamburger--close");
-    $("nav.nav--fullscreen").toggleClass("nav--open");
+    $(".mobile-nav--fullscreen").toggleClass("mobile-nav--open");
 }

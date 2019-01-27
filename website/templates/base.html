@@ -9,6 +9,7 @@
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}"/>
     {% endcompress %}
+    <link rel="stylesheet" type="text/css" href="{% static "style/styles.css" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "lib/owlcarousel/assets/owl.carousel.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "lib/owlcarousel/assets/owl.theme.default.min.css" %}">
 
@@ -19,20 +20,23 @@
 {% cms_toolbar %}
 <header>
     {% block header %}
-        <nav class="nav--fullscreen">
-            <div class="nav__container">
-                <div class="nav__logo">
-                    <img src="{% static "image/logo.png" %}" alt="GeniALE logo" class="logo__img">
-                    <div class="logo__title">
-                        <span>Géni</span>
-                        <span>ALE</span>
+        <nav>
+            {% include "nav.html" %}
+            <div class="mobile-nav--fullscreen">
+                <div class="mobile-nav__container">
+                    <div class="mobile-nav__logo">
+                        <img src="{% static "image/logo.png" %}" alt="GeniALE logo" class="logo__img">
+                        <div class="logo__title">
+                            <span>Géni</span>
+                            <span>ALE</span>
+                        </div>
+                        <div class="logo__text">
+                            <p>développement</p>
+                            <p>brassicole</p>
+                        </div>
                     </div>
-                    <div class="logo__text">
-                        <p>développement</p>
-                        <p>brassicole</p>
-                    </div>
+                    {% show_menu 0 0 %}
                 </div>
-                {% show_menu 0 0 %}
             </div>
         </nav>
         <div class="menu">
