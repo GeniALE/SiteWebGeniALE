@@ -143,8 +143,12 @@ $separation-color: rgba(0, 0, 0, 0.267);
     }
 
     @media #{$information-reponsive} {
-        font-size: 0.8em;
-        margin-right: 15px;
-        margin-left: 15px;
+        font-size: 0.7em;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    @media only screen and (max-width: 350px){
+        font-size: 0.5em;
     }
 }
