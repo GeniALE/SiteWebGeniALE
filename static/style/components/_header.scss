@@ -87,8 +87,7 @@ header {
             }
         }
     }
-
-    nav.nav--fullscreen {
+    .mobile-nav--fullscreen {
         position: fixed;
         width: 100%;
         height: 100vh;
@@ -99,19 +98,20 @@ header {
         transition: left 300ms;
         overflow-y: scroll;
         z-index: 98;
+        color: black;
 
         @media (max-height: 750px) {
             overflow-y: scroll;
         }
 
-        &.nav--open {
+        &.mobile-nav--open {
             left: 0;
         }
 
-        .nav__container {
+        .mobile-nav__container {
             margin-left: 60px;
 
-            .nav__logo {
+            .mobile-nav__logo {
                 margin-bottom: 30px;
 
                 img.logo__img {
