@@ -1,27 +1,60 @@
+/* to be replaced by   @include breakpoint(tablet) when back to sass */
+@media (max-width: 779px) {
+  .main-nav {
+    display: none !important;
+  }
+}
 .main-nav {
   display: flex;
   flex:1;
+  background-color: #40404f;
 }
 
 .main-nav__content {
   display: flex;
   flex:1;
-  background-color: orange;
   justify-content: space-between;
 }
 .main-nav__items {
-  background-color: lightgray;
+  display: flex;
+  flex:3;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.main-nav__items li {
+  list-style-type: none;
+  margin-bottom: 15px;
+  margin-left: 9px;
+}
+.main-nav__items a {
+  color: white;
+  font-size: 19px;
+  text-decoration: none;
+  transition: color 300ms;
+}
+.main-nav__items a:hover {
+      color: #6C7A89;
+}
+
+.main-nav__logo {
   display: flex;
   flex:1;
-  align-content: center;
+  justify-content: center;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
 .logo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   margin-bottom: 6px;
+
 }
 .logo__img {
-    width: 150px;
-    height: 150px;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
 }
 
 .logo__title {
