@@ -10,7 +10,7 @@ $('.beercarousel__controls button.beercarousel__button').click(
     }
 );
 
-$('.beercarousel__mobilecontrols button.beercarousel__button').click(
+$('.beercarousel__prevnextcontrols button.beercarousel__button').click(
     function () {
         var nextBeerIndex = currentBeerIndex == beerNumber - 1 ? 0 : currentBeerIndex + 1;
         if ($(this).hasClass('beercarousel__button--back')) {
