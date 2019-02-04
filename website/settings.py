@@ -284,7 +284,6 @@ TEAMMODULE_PROJECTDISPLAY_TEMPLATES = [
 
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter']
 COMPRESS_ENABLED = not DEBUG
-COMPRESS_CSS_HASHING_METHOD = None
 
 COMPRESS_JS_FILTERS = [
     'compressor.filters.jsmin.SlimItFilter'
