@@ -54,7 +54,7 @@
                 </div>
             {% endfor %}
         </div>
-        {% if beers.count == 2 %}
+        {% if beers.count >= 2 %}
             <div class="beercarousel__controls">
                 {% for beer in beers %}
                     <button class="beercarousel__button">
@@ -62,7 +62,7 @@
                     </button>
                 {% endfor %}
             </div>
-            <div class="beercarousel__mobilecontrols">
+            <div class="beercarousel__prevnextcontrols {% if beers.count >= 3 %}show{% endif %}">
                 <button class="beercarousel__button beercarousel__button--back">
                     <span class="beercarousel__buttonname">{{ translations.back_label }}</span>
                 </button>
