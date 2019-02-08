@@ -282,6 +282,7 @@ TEAMMODULE_PROJECTDISPLAY_TEMPLATES = [
     ('teamModule/project_display.html', 'List projects')
 ]
 
+COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter']
 COMPRESS_ENABLED = not DEBUG
 
 COMPRESS_JS_FILTERS = [

@@ -1,0 +1,17 @@
+{% load cms_tags menu_tags compress static %}
+<div class="main-nav">
+  <div class="main-nav__content">
+      <div class="main-nav__logo">
+        <div class="logo"> 
+            <img class="logo__img" src="{% static "image/logo.png" %}" alt="GeniALE logo" class="logo__img">
+            <div class="logo__title">
+                <span>Géni</span>
+                <span>ALE</span>
+            </div>
+        </div>
+      </div>
+      <div class="main-nav__items">
+          {% show_menu 0 0 %}
+      </div>
+  </div>
+</div>
