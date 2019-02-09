@@ -13,9 +13,7 @@
                 {% for sponsor in category.sponsors%}
                     <div class="sponsor-card" onclick = "location.href='{{sponsor.url}}';">
                         <img class="sponsor-card__logo" src={{sponsor.image}} alt={{sponsor.title}}>
-                        <div class="sponsor-card__text">
-                            <h4>{{sponsor.title}}</h4>
-                        </div>
+                            <span class="sponsor-card__text">{{sponsor.title}}</span>
                     </div>
                 {% endfor %}
             </div>

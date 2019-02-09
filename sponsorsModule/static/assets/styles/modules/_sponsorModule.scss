@@ -2,7 +2,7 @@
 $category-border-color: rgba(0, 0, 0, 0.329);
 
 .sponsors-module{
-    width: 75%;
+    width: 60%;
     margin: auto;
 
     &__container{
@@ -26,6 +26,11 @@ $category-border-color: rgba(0, 0, 0, 0.329);
             grid-template-columns: 1fr 1fr;
             grid-gap: 10px;
         }
+
+        @media only screen and (max-width: 1200px) {
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+        }
     }
 
     &__link-sponsors{
@@ -44,6 +49,11 @@ $category-border-color: rgba(0, 0, 0, 0.329);
 
     &__title{
         margin-left: 25px;
+        margin-right: 25px;
+
+        @media #{$information-reponsive} {
+            font-size: 0.7em;
+        }
     }
 
     @media #{$information-reponsive} {
