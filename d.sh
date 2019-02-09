@@ -28,4 +28,4 @@ else
     command=" ${*:1}"
 fi
 
-eval $prefix $command -d
+eval $prefix $command

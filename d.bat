@@ -40,4 +40,4 @@ IF %done%==false (
 )
 
 @ECHO ON
-%prefix% %suffix% -d
+%prefix% %suffix%
