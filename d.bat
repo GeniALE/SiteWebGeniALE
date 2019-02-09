@@ -1,9 +1,9 @@
 @ECHO OFF
 set done=false
-set prefix=docker-compose
+set prefix=docker-compose -d
 set suffix=
 IF %1==prod (
-    set prefix=docker-compose -f docker-compose.prod.yml
+    set prefix=docker-compose -d -f docker-compose.prod.yml
     SHIFT
 )
 IF %1==shell (

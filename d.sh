@@ -3,11 +3,11 @@ set -e
 
 action="$1"
 
-prefix="docker-compose"
+prefix="docker-compose -d"
 
 if [ $action == "prod" ]
 then
-  prefix="docker-compose -f docker-compose.prod.yml"
+  prefix="docker-compose -d -f docker-compose.prod.yml"
   shift
   action="$1"
 fi
