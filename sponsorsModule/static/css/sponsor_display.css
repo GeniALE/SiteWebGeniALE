@@ -39,16 +39,18 @@
 }
 
 .sponsors-module {
-  width: 60%;
+  width: 58%;
   margin: auto;
 }
 .sponsors-module__container {
   display: inline;
-  padding: 2px 16px;
   padding-bottom: 20px;
 }
-.sponsors-module__container__centered {
-  margin: auto !important;
+@media only screen and (max-width: 600px) {
+  .sponsors-module__container {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
 }
 .sponsors-module__row {
   display: inline-grid;
@@ -129,7 +131,7 @@
 }
 .t__td--two {
   background-color: #0c0c0b;
-  border: solid 2px #a16528;
+  border: solid 3px #a16528;
   color: #a16528;
   transition: 0.5s;
   border-radius: 7px;
@@ -137,12 +139,12 @@
 }
 .t__td--two:hover {
   background-color: #6d4319;
-  border: solid 2px #a16528;
+  border: solid 3px #a16528;
   color: #0c0c0b;
 }
 .t__td--three {
   background-color: #0c0c0b;
-  border: solid 2px #959595;
+  border: solid 3px #959595;
   color: #959595;
   transition: 0.5s;
   border-radius: 7px;
@@ -150,12 +152,12 @@
 }
 .t__td--three:hover {
   background-color: #707070;
-  border: solid 2px #959595;
+  border: solid 3px #959595;
   color: #0c0c0b;
 }
 .t__td--four {
   background-color: #0c0c0b;
-  border: solid 2px #a88018;
+  border: solid 3px #a88018;
   color: #a88018;
   transition: 0.5s;
   border-radius: 7px;
@@ -163,12 +165,12 @@
 }
 .t__td--four:hover {
   background-color: #806011;
-  border: solid 2px #a88018;
+  border: solid 3px #a88018;
   color: #0c0c0b;
 }
 .t__td--five {
   background-color: #0c0c0b;
-  border: solid 2px #a09e9b;
+  border: solid 3px #a09e9b;
   color: #a09e9b;
   transition: 0.5s;
   border-radius: 7px;
@@ -176,14 +178,14 @@
 }
 .t__td--five:hover {
   background-color: #838280;
-  border: solid 2px #a09e9b;
+  border: solid 3px #a09e9b;
   color: #0c0c0b;
   transition: 0.5s;
   border-radius: 7px;
 }
 .t__td--six {
   background-color: #0c0c0b;
-  border: solid 2px #273f88;
+  border: solid 3px #273f88;
   color: #273f88;
   transition: 0.5s;
   border-radius: 7px;
@@ -191,7 +193,7 @@
 }
 .t__td--six:hover {
   background-color: #172a61;
-  border: solid 2px #273f88;
+  border: solid 3px #273f88;
   color: #0c0c0b;
   transition: 0.5s;
   border-radius: 7px;

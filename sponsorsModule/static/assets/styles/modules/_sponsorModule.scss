@@ -2,16 +2,16 @@
 $category-border-color: rgba(0, 0, 0, 0.329);
 
 .sponsors-module{
-    width: 60%;
+    width: 58%;
     margin: auto;
 
     &__container{
         display: inline;
-        padding: 2px 16px;
         padding-bottom: 20px;
 
-        &__centered{
-            margin: auto !important
+        @media #{$information-reponsive} {
+            margin-right: 20px;
+            margin-left: 20px;
         }
     }
 
