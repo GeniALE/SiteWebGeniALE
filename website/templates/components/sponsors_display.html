@@ -4,22 +4,22 @@
 {% endcompress %}
 
 
-<section class="sponsors-module">
-    <span class="sponsors-module__title"><h1>Nos commanditaires</h1></span>
-    <div class="sponsors-module__container sponsors-module__container">
+<section class="partners-module">
+    <span class="partners-module__title"><h1>Nos commanditaires</h1></span>
+    <div class="partners-module__container partners-module__container">
         {% for category in category_sponsors %}
-            <h2 class="sponsors-module__categories">{{category}}</h2>
-            <div class="sponsors-module__row">
+            <h2 class="partners-module__categories">{{category}}</h2>
+            <div class="partners-module__row">
                 {% for sponsor in category.sponsors%}
-                    <div class="sponsor-card" onclick = "location.href='{{sponsor.url}}';">
-                        <img class="sponsor-card__logo" src={{sponsor.image}} alt={{sponsor.title}}>
-                            <span class="sponsor-card__text">{{sponsor.title}}</span>
+                    <div class="partners-card" onclick = "location.href='{{sponsor.url}}';">
+                        <img class="partners-card__logo" src={{sponsor.image}} alt={{sponsor.title}}>
+                            <span class="partners-card__text">{{sponsor.title}}</span>
                     </div>
                 {% endfor %}
             </div>
         {% endfor %}
     </div>
-    <span class="sponsors-module__title"><h1>Devenir un commanditaire</h1></span>
+    <span class="partners-module__title"><h1>Devenir un commanditaire</h1></span>
     <table class="t" onclick = "location.href='https://bit.ly/2SRfAhx';">
         <tr class="t__tr">
             <td class="t__td t__td--one">Avantages de votre appui</td>
@@ -102,5 +102,5 @@
             <td class="t__td"><div class="t__circle"></div></td>
         </tr>
     </table>
-    <p class="sponsors-module__link-sponsors">En connaître un peu plus sur le <a href="https://bit.ly/2SRfAhx">plan de commandite de GéniALE</a></p>
+    <p class="partners-module__link-partners">En connaître un peu plus sur le <a href="https://bit.ly/2SRfAhx">plan de commandite de GéniALE</a></p>
 </section>

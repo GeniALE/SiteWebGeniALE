@@ -1,4 +1,4 @@
-.sponsor-card {
+.partners-card {
   display: inline;
   box-shadow: 0px 7px 46px -9px rgba(0, 0, 0, 0.75);
   transition: 0.5s;
@@ -8,13 +8,13 @@
   border-radius: 5px;
   background: white;
 }
-.sponsor-card__logo {
+.partners-card__logo {
   display: block;
   margin: auto;
   max-width: 90%;
   max-height: 90%;
 }
-.sponsor-card__text {
+.partners-card__text {
   position: absolute;
   bottom: 15px;
   right: 15px;
@@ -22,37 +22,37 @@
   color: rgba(0, 0, 0, 0.6);
 }
 @media only screen and (max-width: 600px) {
-  .sponsor-card {
+  .partners-card {
     box-shadow: 0px 7px 46px -9px rgba(0, 0, 0, 0.2);
     height: 20vh;
   }
 }
 @media only screen and (max-width: 1200px) {
-  .sponsor-card {
+  .partners-card {
     box-shadow: 0px 7px 46px -9px rgba(0, 0, 0, 0.2);
     height: 20vh;
   }
 }
 
-.sponsor-card:hover {
+.partners-card:hover {
   box-shadow: 0px 7px 46px 3px rgba(0, 0, 0, 0.75);
 }
 
-.sponsors-module {
+.partners-module {
   width: 58%;
   margin: auto;
 }
-.sponsors-module__container {
+.partners-module__container {
   display: inline;
   padding-bottom: 20px;
 }
 @media only screen and (max-width: 600px) {
-  .sponsors-module__container {
+  .partners-module__container {
     margin-right: 20px;
     margin-left: 20px;
   }
 }
-.sponsors-module__row {
+.partners-module__row {
   display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
@@ -60,42 +60,42 @@
   margin-bottom: 25px;
 }
 @media only screen and (max-width: 600px) {
-  .sponsors-module__row {
+  .partners-module__row {
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
   }
 }
 @media only screen and (max-width: 1200px) {
-  .sponsors-module__row {
+  .partners-module__row {
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
   }
 }
-.sponsors-module__link-sponsors {
+.partners-module__link-partners {
   text-align: center;
 }
 @media only screen and (max-width: 600px) {
-  .sponsors-module__link-sponsors {
+  .partners-module__link-partners {
     font-size: 0.8em;
     padding-right: 10px;
     padding-left: 10px;
   }
 }
-.sponsors-module__categories {
+.partners-module__categories {
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.329);
   font-size: 2em;
 }
-.sponsors-module__title {
+.partners-module__title {
   margin-left: 25px;
   margin-right: 25px;
 }
 @media only screen and (max-width: 600px) {
-  .sponsors-module__title {
+  .partners-module__title {
     font-size: 0.7em;
   }
 }
 @media only screen and (max-width: 600px) {
-  .sponsors-module {
+  .partners-module {
     width: 100%;
   }
 }
