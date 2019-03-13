@@ -1,7 +1,7 @@
 @import 'variables';
 $category-border-color: rgba(0, 0, 0, 0.329);
 
-.sponsors-module{
+.partners-module{
     width: 58%;
     margin: auto;
 
@@ -33,7 +33,7 @@ $category-border-color: rgba(0, 0, 0, 0.329);
         }
     }
 
-    &__link-sponsors{
+    &__link-partners{
         text-align: center;
         @media #{$information-reponsive} {
             font-size: 0.8em;
