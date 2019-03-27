@@ -7,32 +7,28 @@
 
 {% block content %}
     <section class="member">
-        <div class="member__background">
-            <div class="member__bgContainer"></div>
-        </div>
-        <div class="member__content  row">
-            <div class="member__ctContainer center-xs end-md col-md-6 col-xs-12">
+        <div class="member__background"></div>
+        <div class="member__content row">
+            <div class="member__content__container center-xs col-md-6 col-xs-12">
                 <div class="box">
                     <h3>
-                        <span class="member__number">{{ member_count }}</span>+ {{ translations.members }}
+                        <span class="member__content__container__number">{{ member_count }}</span>+ {{ translations.members }}
                     </h3>
-                    <span>{{ translations.member_description }}</span>
-                    <span>
-                    <a href="." class="button button--white button--large">{{ translations.member_more_detail }}</a>
-                </span>
+                    <div class="member__content__container__description">
+                        <span class="member__content__container__description__text">{{ translations.member_description }}</span>
+                        <span class="member__content__container__description__link">
+                        <a href="{{ details_button_link }}" class="">
+                            {{ translations.member_more_detail }}
+                        </a>
+                        </span>
+                    </div>
                 </div>
             </div>
-            <div class="member__imgContainer col-md-6 col-xs-0">
+            <div class="member__content__image col-md-6 col-xs-0">
                 <div class="box">
-                <img src="{{ image.url }}" />
+                    <img src="{{ image.url }}"/>
                 </div>
             </div>
         </div>
     </section>
 {% endblock %}
-
-{% addtoblock "js" %}
-    {% compress js %}
-        <script src="{% static "script/member_banner.js"  %}?{% cache_bust %}" type="text/javascript" charset="utf-8"></script>
-    {% endcompress %}
-{% endaddtoblock %}
