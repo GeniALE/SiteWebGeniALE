@@ -3,12 +3,16 @@
 $card-color: white;
 $text-color: rgba(0,0,0,0.6);
 $little-box-shadow-color: rgba(0,0,0,0.2);
-$box-shadow-color: rgba(0,0,0,0.75);
+
+$box-shadow-color1: rgba(0,0,0,0.12);
+$box-shadow-color2: rgba(0,0,0,0.24);
+$box-shadow-color-hover1: rgba(0,0,0,0.25);
+$box-shadow-color-hover2: rgba(0,0,0,0.22);
 
 .partners-card {
     display: inline;
-    box-shadow: 0px 7px 46px -9px $box-shadow-color;
-    transition: 0.5s;
+    box-shadow: 0 1px 3px $box-shadow-color1, 0 1px 2px $box-shadow-color2;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     padding: 15px;
     position: relative;
     height: 25vh;
@@ -42,5 +46,5 @@ $box-shadow-color: rgba(0,0,0,0.75);
 }
 
 .partners-card:hover {
-    box-shadow: 0px 7px 46px 3px $box-shadow-color;
+    box-shadow: 0 14px 28px $box-shadow-color-hover1, 0 10px 10px $box-shadow-color-hover2;
 }

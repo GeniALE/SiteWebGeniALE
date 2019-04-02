@@ -1,8 +1,10 @@
 {% load sekizai_tags compress  static %}
-{% compress css %}
-<link rel="stylesheet" type="text/css" href="{% static "css/sponsor_display.css" %}">
-{% endcompress %}
 
+{% addtoblock 'css' %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "assets/styles/app.scss" %}">
+    {% endcompress %}
+{% endaddtoblock %}
 
 <section class="partners-module">
     <span class="partners-module__title"><h1>Nos commanditaires</h1></span>
