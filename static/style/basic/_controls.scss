@@ -18,6 +18,14 @@
   box-sizing: border-box;
 }
 
+/* Paragraph */
+.paragraph {
+  margin: auto;
+  text-align: justify;
+  line-height: 1.5em;
+  max-width: 600px;
+}
+
 /* Buttons */
 .button {
   border: none;
