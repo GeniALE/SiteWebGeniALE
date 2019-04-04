@@ -12,6 +12,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding: 0 33px;
     max-width: $width-xl;
 
     @include breakpoint(tablet) {
@@ -36,7 +37,6 @@
   }
 
   &__section {
-    margin: 0 33px;
   }
 
   &__icon {
