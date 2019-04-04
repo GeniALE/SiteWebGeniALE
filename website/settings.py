@@ -95,6 +95,8 @@ STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'website', 'static'),
+    os.path.join(BASE_DIR, 'sponsorsModule', 'static'),
+    os.path.join(BASE_DIR, 'teamModule', 'static'),
 )
 SITE_ID = 1
 
