@@ -59,7 +59,11 @@ function activateBeer(index) {
             return;
         }
 
-        var scale = $(el).attr('data-scale');
+        var scaleX = $(el).attr('data-scale-x');
+        var scaleY = $(el).attr('data-scale-y');
+
+        var scale = `${scaleX}| ${scaleY}`.replace(/,/g, '.').replace(/\|/g, ',');
+
         var shift = parseFloat($(el).attr('data-position'));
 
         // Animate
