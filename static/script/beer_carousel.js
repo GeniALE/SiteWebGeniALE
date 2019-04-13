@@ -34,8 +34,8 @@ function initBeers() {
     $('.beercarousel__controls button.beercarousel__button').eq(0).addClass('beercarousel__button--active');
 }
 
-function tagTransform(scale, pos) {
-    return 'scale(' + scale + ') translateX(-' + pos + '%)';
+function tagTransform(scale, x, y) {
+    return `scale(${scale}) translateX(-${x}%) translateY(${y}%)`;
 }
 
 function activateBeer(index) {
@@ -59,22 +59,23 @@ function activateBeer(index) {
             return;
         }
 
-        var scaleX = $(el).attr('data-scale-x');
-        var scaleY = $(el).attr('data-scale-y');
+        var scaleX = parseFloat($(el).attr('data-scale-x'));
+        var scaleY = parseFloat($(el).attr('data-scale-y'));
 
-        var scale = `${scaleX}| ${scaleY}`.replace(/,/g, '.').replace(/\|/g, ',');
+        var scale = `${scaleX}, ${scaleY}`;
 
-        var shift = parseFloat($(el).attr('data-position'));
+        var shiftX = parseFloat($(el).attr('data-shift-x'));
+        var shiftY = parseFloat($(el).attr('data-shift-y'));
 
         // Animate
         $(el).animate({
-            dest: dest + shift
+            dest: dest + shiftX
         }, {
             duration: beerTransitionTime,
             easing: 'swing',
             step: function (now, tween) {
-                tween.start = origin + shift;
-                $(el).css('transform', tagTransform(scale, now));
+                tween.start = origin + shiftX;
+                $(el).css('transform', tagTransform(scale, now, shiftY));
             },
             complete: function () {
                 timer = 0;
