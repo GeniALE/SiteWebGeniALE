@@ -35,7 +35,7 @@ function initBeers() {
 }
 
 function tagTransform(scale, x, y) {
-    return `scale(${scale}) translateX(-${x}%) translateY(${y}%)`;
+    return 'scale(' + scale + ') translateX(-' + x + ') translateY(' + y + ')';
 }
 
 function activateBeer(index) {
