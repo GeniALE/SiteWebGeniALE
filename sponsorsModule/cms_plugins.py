@@ -48,9 +48,11 @@ class SponsorsModulePlugin(CMSPluginBase):
                 if c.scoreMax is not None:
                     if c.scoreMin <= sponsor.score <= c.scoreMax:
                         c.sponsors.append(sponsor)
+                        c.count += 1
                 else:
                     if sponsor.score >= c.scoreMin:
                         c.sponsors.append(sponsor)
+                        c.count += 1
         return category
 
     def get_image_url(self, sponsors):
@@ -70,6 +72,7 @@ class SponsorsModulePlugin(CMSPluginBase):
         categories = self.get_categories(instance)
         # sponsors_category = self.add_category_to_sponsor(sponsors, categories)
         category_sponsors = self.add_sponsors_to_categories(sponsors, categories)
+        
         # translations = [x.translation.name for x in category_sponsors]
         context.update({
             'sponsors': sponsors,
