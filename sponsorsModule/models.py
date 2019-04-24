@@ -23,7 +23,6 @@ class Category(models.Model):
     scoreMin = models.IntegerField()
     scoreMax = models.IntegerField()
     translation = models.ForeignKey(CategoryTranslation, null=True)
-    count = 0
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"

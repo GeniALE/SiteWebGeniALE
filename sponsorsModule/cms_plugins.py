@@ -48,11 +48,9 @@ class SponsorsModulePlugin(CMSPluginBase):
                 if c.scoreMax is not None:
                     if c.scoreMin <= sponsor.score <= c.scoreMax:
                         c.sponsors.append(sponsor)
-                        c.count += 1
                 else:
                     if sponsor.score >= c.scoreMin:
                         c.sponsors.append(sponsor)
-                        c.count += 1
         return category
 
     def get_image_url(self, sponsors):

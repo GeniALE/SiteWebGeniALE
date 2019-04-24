@@ -10,7 +10,7 @@
     <span class="partners-module__title"><h1>Nos commanditaires</h1></span>
     <div class="partners-module__container partners-module__container">
         {% for category in category_sponsors %}
-            {% if category.count > 0 %}
+            {% if category.sponsors %}
                 <h2 class="partners-module__categories">{{category}}</h2>
                 <div class="partners-module__row">
                     {% for sponsor in category.sponsors%}
@@ -23,5 +23,4 @@
             {% endif %}
         {% endfor %}
     </div>
-    {% include "../sponsors_table.html"%}
 </section>
