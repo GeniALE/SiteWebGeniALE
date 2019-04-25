@@ -4,6 +4,7 @@
 @import "./basic/_partials";
 @import "./basic/_breakpoint";
 @import "./basic/_flexboxgrid";
+@import "./basic/_controls";
 @import "./components/_header";
 @import "./components/_sections";
 @import "header.scss";
@@ -24,6 +25,10 @@ body {
 .title {
   @extend %title;
   font-size: $title-big;
+
+  @include breakpoint(phone) {
+    font-size: $title-regular;
+  }
 }
 
 div[class*="button"] {

@@ -45,6 +45,8 @@ class Project(models.Model):
     description = models.TextField(null=True)
     status = models.ForeignKey(ProjectStatus, default=0, on_delete=models.SET_DEFAULT)
     website = models.CharField(max_length=200, blank=True, null=True)
+    display_order = models.IntegerField(blank=False, null=False, default=0)
+    display_banner_height = models.IntegerField(blank=False, null=False, default=0)
 
     def __str__(self):
         return self.name

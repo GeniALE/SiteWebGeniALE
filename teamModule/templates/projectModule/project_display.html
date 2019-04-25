@@ -14,8 +14,7 @@
             //Data from the backend
             var projects = {{ projectsAsJson|safe}};
             //Init the required modules with unique identifier
-            {{ uniqueName }}
-            = new ProjectModuleClass(projects, "{{ uniqueName }}");
+            {{ uniqueName }} = new ProjectModuleClass(projects, "{{ uniqueName }}");
         })();
 
     </script>
@@ -30,21 +29,27 @@
         {% if projects %}
             {% for project in projects %}
                 {% if forloop.counter|divisibleby:2 %}
-                    <div class="projectModule__projects__project projectModule__projects__project--even"
+                    <div class="projectModule__projects__project projectModule__projects__project--even {% if project.display_banner_height > 0 %}projectModule__projects__project--big{% endif %}"
                          onclick="{{ uniqueName }}.setActiveProject({{ project.id }})">
                 {% else %}
-                    <div class="projectModule__projects__project projectModule__projects__project--big"
+                    <div class="projectModule__projects__project {% if project.display_banner_height > 0 %}projectModule__projects__project--big{% endif %}"
                          onclick="{{ uniqueName }}.setActiveProject({{ project.id }})">
                 {% endif %}
+            <div class="projectModule__projects__project__excerpt">
+            <span class="projectModule__projects__project__excerpt__child">
+                <span class="projectModule__projects__project__excerpt__child__name">{{ project.name }}. </span>
+                {{ project.description }}
+                </span>
+            </div>
             <div class="projectModule__projects__project__title projectModule__projects__project__title--transparent">
                 {{ project.name }}
             </div>
             <div class="projectModule__projects__project__picture">
-                {% if project.images %}
+                {% if project.images.all %}
                     <img class="projectModule__projects__project__picture__container"
                          style="background-image:url('{{ project.images.all.0 }}')"/>
                 {% else %}
-                    no picture
+                    <img class="projectModule__projects__project__picture__container projectModule__projects__project__picture__container--default"/>
                 {% endif %}
             </div>
             <div class="projectModule__projects__project__title">
