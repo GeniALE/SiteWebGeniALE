@@ -25,60 +25,75 @@
 
 <section class="projectModule row" id="{{ uniqueName }}">
 
-    <h1 class="projectModule__title">
-        {{ translations.projects_title }}
-    </h1>
     <div class="projectModule__projects">
         {% if projects %}
             {% for project in projects %}
-            <div class="projectModule__projects__project" onclick="{{ uniqueName }}.setActiveProject({{project.id}})">
-                <div class="projectModule__projects__project__title">
-                    {{ project.name }}
-                </div>
-                <div class="projectModule__projects__project__picture">
-                    {% if project.images %}
-                    <img class="projectModule__projects__project__picture__container" style="background-image:url('{{ project.images.all.0 }}')"/>
-                    {% else %}
-                    no picture
-                    {% endif %}
-                </div>
+                {% if forloop.counter|divisibleby:2 %}
+                    <div class="projectModule__projects__project projectModule__projects__project--even {% if project.display_banner_height > 0 %}projectModule__projects__project--big{% endif %}"
+                         onclick="{{ uniqueName }}.setActiveProject({{ project.id }})">
+                {% else %}
+                    <div class="projectModule__projects__project {% if project.display_banner_height > 0 %}projectModule__projects__project--big{% endif %}"
+                         onclick="{{ uniqueName }}.setActiveProject({{ project.id }})">
+                {% endif %}
+            <div class="projectModule__projects__project__excerpt">
+            <span class="projectModule__projects__project__excerpt__child">
+                <span class="projectModule__projects__project__excerpt__child__name">{{ project.name }}. </span>
+                {{ project.description }}
+                </span>
+            </div>
+            <div class="projectModule__projects__project__title projectModule__projects__project__title--transparent">
+                {{ project.name }}
+            </div>
+            <div class="projectModule__projects__project__picture">
+                {% if project.images.all %}
+                    <img class="projectModule__projects__project__picture__container"
+                         style="background-image:url('{{ project.images.all.0 }}')"/>
+                {% else %}
+                    <img class="projectModule__projects__project__picture__container projectModule__projects__project__picture__container--default"/>
+                {% endif %}
+            </div>
+            <div class="projectModule__projects__project__title">
+                {{ project.name }}
+            </div>
+            <div class="projectModule__projects__project__layer"></div>
             </div>
             {% endfor %}
         {% else %}
+            <!-- TODO: Add translation for that -->
             No Projects To Show
         {% endif %}
-    </div>
+        </div>
 
-    <div class="projectModule__detail__blur" style="display: none;" onclick="{{ uniqueName }}.closeModal()"></div>
-    <div class="projectModule__detail__close" onclick="{{ uniqueName }}.closeModal()">X</div>
-    <div class="projectModule__detail row">
-        <div class="projectModule__detail__pictures owl-carousel owl-theme">
-            {% comment %}
+        <div class="projectModule__detail__blur" style="display: none;" onclick="{{ uniqueName }}.closeModal()"></div>
+        <div class="projectModule__detail__close" onclick="{{ uniqueName }}.closeModal()">X</div>
+        <div class="projectModule__detail row">
+            <div class="projectModule__detail__pictures owl-carousel owl-theme">
+                {% comment %}
             {# This is an example of the html that is generated in js #}
             <div class="projectModule__detail__picture">
                 <img alt="project image" class="projectModule__detail__picture__container"/>
             </div>
             {% endcomment %}
+            </div>
+
+
+            <div class="projectModule__detail__right">
+                <div class="projectModule__detail__title">
+                    <h2 class="projectModule__detail__title__container"> {{ translations.project_title }}</h2>
+                </div>
+
+                <div class="projectModule__detail__description">
+                    <h4> {{ translations.project_description_title }} </h4>
+                    <div class="projectModule__detail__description__container"></div>
+                </div>
+                <div class="projectModule__detail__status">
+                    <h4> {{ translations.project_status_title }} </h4>
+                    <div class="projectModule__detail__status__container"></div>
+                </div>
+                <div class="projectModule__detail__link">
+                    <h4> {{ translations.project_website_title }} </h4>
+                    <a href="" class="projectModule__detail__link__container" target="blank"></a>
+                </div>
+            </div>
         </div>
-
-
-        <div class="projectModule__detail__right">
-            <div class="projectModule__detail__title">
-                <h2 class="projectModule__detail__title__container"> {{ translations.project_title }}</h2>
-            </div>
-
-            <div class="projectModule__detail__description">
-              <h4> {{ translations.project_description_title }} </h4>
-                <div class="projectModule__detail__description__container"></div>
-            </div>
-            <div class="projectModule__detail__status">
-                <h4> {{ translations.project_status_title }} </h4>
-                <div class="projectModule__detail__status__container"></div>
-            </div>
-            <div class="projectModule__detail__link">
-                <h4> {{ translations.project_website_title }} </h4>
-                <a href="" class="projectModule__detail__link__container" target="blank"></a>
-            </div>
-      </div>
-    </div>
 </section>

@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run server" type="PythonConfigurationType" factoryName="Python">
+  <configuration default="false" name="Make migrations" type="PythonConfigurationType" factoryName="Python">
     <module name="SiteWebGeniALE" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
@@ -20,7 +20,7 @@
       </ENTRIES>
     </EXTENSION>
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
-    <option name="PARAMETERS" value="runserver 0.0.0.0:8000" />
+    <option name="PARAMETERS" value="makemigrations" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
     <option name="MODULE_MODE" value="false" />

@@ -1,20 +1,20 @@
 @import "./components/_sections";
+@import "./basic/_breakpoint";
 
 .header {
   @extend .section;
   margin: 1em 0;
+
   &__content {
     @extend .section__content;
+
     &__title {
       @extend .section__content__title;
       @extend .section__content__title--no-border;
+      @extend .title;
       text-transform: uppercase;
       color: black;
-      font-weight: bold;
-      font-size: $h1;
-      text-shadow: 1px 1px $color-primary,
-      2px 2px $color-primary,
-      3px 3px $color-primary;
+      text-shadow: 1px 1px $color-primary, 2px 2px $color-primary, 3px 3px $color-primary;
       padding: 0 0 0.5em 0;
     }
   }
