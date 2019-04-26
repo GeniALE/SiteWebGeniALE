@@ -13,7 +13,8 @@ def get_member_extra_info(user):
     return list(MemberExtraInfo.objects.filter(member=user))
 
 
-EXTRA_INFO_TYPES = [{'info_type': x.id} for x in list(MemberExtraInfoType.objects.all())]
+def get_default_extra_types():
+    return [{'info_type': x.id} for x in list(MemberExtraInfoType.objects.all())]
 
 
 class PageTeamAdmin(admin.ModelAdmin):
@@ -36,13 +37,13 @@ class ExtraInfoInlineFormSet(BaseInlineFormSet):
 
     def __init__(self, *args, **kwargs):
         super(ExtraInfoInlineFormSet, self).__init__(*args, **kwargs)
-        self.initial = EXTRA_INFO_TYPES
+        self.initial = get_default_extra_types()
 
 
 class ExtraInfoInline(admin.TabularInline):
     model = MemberExtraInfo
     fk_name = 'member'
-    extra = len(EXTRA_INFO_TYPES)
+    extra = len(get_default_extra_types())
     formset = ExtraInfoInlineFormSet
 
     def get_formset(self, request, obj=None, **kwargs):
@@ -51,7 +52,7 @@ class ExtraInfoInline(admin.TabularInline):
         default_extra_info = []
         already_defined_info_types = [x.info_type for x in member_extra_info]
 
-        for x in EXTRA_INFO_TYPES:
+        for x in get_default_extra_types():
             if not x in already_defined_info_types:
                 default_extra_info.append({'info_type': x})
 
