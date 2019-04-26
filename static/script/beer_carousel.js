@@ -29,7 +29,7 @@ function initBeers() {
         var scaleX = parseFloat($(el).attr('data-scale-x'));
         var scaleY = parseFloat($(el).attr('data-scale-y'));
 
-        var scale = `${scaleX}, ${scaleY}`;
+        var scale = scaleX + ', ' + scaleY;
 
         var shiftX = parseFloat($(el).attr('data-shift-x'));
         var shiftY = parseFloat($(el).attr('data-shift-y'));
@@ -42,8 +42,6 @@ function initBeers() {
 
     // Activate draggable on container
     var $container = $('.beercarousel__beers');
-
-    console.log($container.width());
 
     $container.draggable({
         axis: 'x',
@@ -98,7 +96,7 @@ function activateBeer(index, force) {
         var scaleX = parseFloat($(el).attr('data-scale-x'));
         var scaleY = parseFloat($(el).attr('data-scale-y'));
 
-        var scale = `${scaleX}, ${scaleY}`;
+        var scale = scaleX + ', ' + scaleY;
 
         var shiftX = parseFloat($(el).attr('data-shift-x'));
         var shiftY = parseFloat($(el).attr('data-shift-y'));
