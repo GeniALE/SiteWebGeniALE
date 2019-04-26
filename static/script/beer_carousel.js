@@ -40,9 +40,7 @@ function initBeers() {
 }
 
 function tagTransform(scale, x, y) {
-    var a = 'scale(' + scale + ') translateX(-' + x + '%) translateY(' + y + '%)';
-    console.log(a)
-    return a;
+    return 'scale(' + scale + ') translateX(-' + x + '%) translateY(' + y + '%)';
 }
 
 function activateBeer(index) {
