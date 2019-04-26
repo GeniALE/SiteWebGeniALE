@@ -23,11 +23,16 @@ $('.beercarousel__prevnextcontrols button.beercarousel__button').click(
 
 function initBeers() {
     beerNumber = $('div.beer').length;
-    $('.beer__imagetag').each(function (i, el) {
-        var scale = $(el).attr('data-scale');
-        var pos = parseFloat($(el).attr('data-position'));
+    $('.beer__imagetag').each(function (_, el) {
+        var scaleX = parseFloat($(el).attr('data-scale-x'));
+        var scaleY = parseFloat($(el).attr('data-scale-y'));
 
-        $(el).css('transform', tagTransform(scale, pos));
+        var scale = `${scaleX}, ${scaleY}`;
+
+        var shiftX = parseFloat($(el).attr('data-shift-x'));
+        var shiftY = parseFloat($(el).attr('data-shift-y'));
+
+        $(el).css('transform', tagTransform(scale, shiftX, shiftY));
     });
 
     $('.beer').eq(0).addClass('beer--active');
@@ -35,7 +40,9 @@ function initBeers() {
 }
 
 function tagTransform(scale, x, y) {
-    return 'scale(' + scale + ') translateX(-' + x + ') translateY(' + y + ')';
+    var a = 'scale(' + scale + ') translateX(-' + x + '%) translateY(' + y + '%)';
+    console.log(a)
+    return a;
 }
 
 function activateBeer(index) {
