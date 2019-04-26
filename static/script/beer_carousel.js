@@ -47,6 +47,7 @@ function initBeers() {
 
     $container.draggable({
         axis: 'x',
+        handle:'.beer__image',
         stop: function() {
             checkDrop($container.position().left)
         }
