@@ -43,7 +43,7 @@ class ExtraInfoInlineFormSet(BaseInlineFormSet):
 class ExtraInfoInline(admin.TabularInline):
     model = MemberExtraInfo
     fk_name = 'member'
-    extra = len(get_default_extra_types())
+    extra = 3
     formset = ExtraInfoInlineFormSet
 
     def get_formset(self, request, obj=None, **kwargs):
@@ -60,9 +60,8 @@ class ExtraInfoInline(admin.TabularInline):
         return formset
 
     def get_extra(self, request, obj=None, **kwargs):
-        extra = super(ExtraInfoInline, self).get_extra(request, obj, **kwargs)
         member_extra_infos = get_member_extra_info(obj)
-        return extra - len(member_extra_infos)
+        return len(get_default_extra_types()) - len(member_extra_infos)
 
 
 class PageMemberAdmin(admin.ModelAdmin):
