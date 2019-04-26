@@ -16,8 +16,15 @@ section.beercarousel {
         &__beers {
             display: flex;
             position: relative;
+            top: 0 !important;
             left: 0;
             transition: left $time-long;
+            cursor: grab;
+
+            &.ui-draggable-dragging {
+                transition: none;
+                cursor: grabbing;
+            }
 
             .beer {
                 display: flex;
