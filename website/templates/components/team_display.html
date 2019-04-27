@@ -51,7 +51,7 @@
                 <div class="teamModule__memberpanel teamModule__memberpanel--avatars col-md-8 col-xs-12">
                         {% for member in members %}
                             <img class="teamModule__memberpanel__icon teamModule__memberpanel__icon{{ member.id }}"
-                                 src="{{ member.profilePicUrl }}"
+                                 src="{{ member.image }}"
                                  onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},null,this)"/>
                         {% endfor %}
                 </div>

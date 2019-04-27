@@ -61,12 +61,12 @@ class ProjectImage(models.Model):
 
 
 class Member(models.Model):
-    first_name = models.CharField(max_length=60, blank=False)
-    last_name = models.CharField(max_length=60, blank=False)
+    first_name = models.CharField(max_length=255, blank=False)
+    last_name = models.CharField(max_length=255, blank=False)
     bio = models.CharField(max_length=400, blank=True)
-    email = models.CharField(max_length=75)
-    linkedInUrl = models.CharField(max_length=200, blank=True)
-    profilePicUrl = models.CharField(max_length=200, blank=True)
+    email = models.CharField(max_length=255)
+    linkedInUrl = models.CharField(max_length=255, blank=True)
+    image = models.ImageField(upload_to='media/', blank=True)
     formation = models.ForeignKey(Formation, null=True, on_delete=models.SET_NULL)
     teamRoles = models.ManyToManyField(TeamRole)
     projects = models.ManyToManyField(Project)
