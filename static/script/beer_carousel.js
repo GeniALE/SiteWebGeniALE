@@ -4,7 +4,6 @@ var beerNumber = 0;
 var timer;
 var dragThreshold = 100;
 var lastRecordedContainerXPosition = 0;
-var animateTag = true;
 initBeers();
 
 $('.beercarousel__controls button.beercarousel__button').click(
