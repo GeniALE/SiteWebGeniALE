@@ -4,6 +4,7 @@ var beerNumber = 0;
 var timer;
 var dragThreshold = 100;
 var lastRecordedContainerXPosition = 0;
+var animateTag = true;
 initBeers();
 
 $('.beercarousel__controls button.beercarousel__button').click(
@@ -65,15 +66,16 @@ function checkDrop(newPosition) {
         newIndex = Math.min(Math.max(newIndex, 0), beerNumber - 1);
     }
 
-    activateBeer(newIndex, true);
+    activateBeer(newIndex);
 }
 
 function tagTransform(scale, x, y) {
     return 'scale(' + scale + ') translateX(-' + x + '%) translateY(' + y + '%)';
 }
 
-function activateBeer(index, force) {
-    if (currentBeerIndex === index && !force) {
+function activateBeer(index) {
+    if (currentBeerIndex === index) {
+        $('.beercarousel__beers').css('left', index * -100 + 'vw');
         return;
     }
 
