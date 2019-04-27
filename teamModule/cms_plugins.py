@@ -72,8 +72,10 @@ class TeamModulePlugin(CMSPluginBase):
 
         # Check for default avatar
         for member in members:
-            if not member.profilePicUrl:
-                member.profilePicUrl = static("image/default_avatar.png")
+            if not member.image:
+                member.image = static("image/default_avatar.png")
+            else:
+                member.image = member.image.url
 
         teams = self.get_teams(instance)
         members_as_dict = self.members_to_dict(members)
