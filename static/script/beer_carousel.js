@@ -23,16 +23,20 @@ $('.beercarousel__prevnextcontrols button.beercarousel__button').click(
     }
 );
 
+function getAttrAsFloat(domElement, attrName) {
+    return parseFloat($(domElement).attr(attrName).replace(',', '.'));
+}
+
 function initBeers() {
     beerNumber = $('div.beer').length;
     $('.beer__imagetag').each(function (_, el) {
-        var scaleX = parseFloat($(el).attr('data-scale-x'));
-        var scaleY = parseFloat($(el).attr('data-scale-y'));
+        var scaleX = getAttrAsFloat(el,'data-scale-x');
+        var scaleY =  getAttrAsFloat(el,'data-scale-y');
 
         var scale = scaleX + ', ' + scaleY;
 
-        var shiftX = parseFloat($(el).attr('data-shift-x'));
-        var shiftY = parseFloat($(el).attr('data-shift-y'));
+        var shiftX =  getAttrAsFloat(el,'data-shift-x');
+        var shiftY =  getAttrAsFloat(el,'data-shift-y');
 
         $(el).css('transform', tagTransform(scale, shiftX, shiftY));
     });
@@ -45,8 +49,8 @@ function initBeers() {
 
     $container.draggable({
         axis: 'x',
-        handle:'.beer__image',
-        stop: function() {
+        handle: '.beer__image',
+        stop: function () {
             checkDrop($container.position().left)
         }
     });
@@ -80,12 +84,12 @@ function activateBeer(index) {
 
     $('.beer__imagetag').each(function (i, el) {
         $(el).stop();
-        var origin = 2/3*100;
+        var origin = 2 / 3 * 100;
         var dest = 0;
 
         if (currentBeerIndex < index) {
             origin = 0;
-            dest = 2/3*100;
+            dest = 2 / 3 * 100;
 
             if (index < i || i < currentBeerIndex) {
                 return;
@@ -94,13 +98,13 @@ function activateBeer(index) {
             return;
         }
 
-        var scaleX = parseFloat($(el).attr('data-scale-x'));
-        var scaleY = parseFloat($(el).attr('data-scale-y'));
+        var scaleX =  getAttrAsFloat(el,'data-scale-x');
+        var scaleY =  getAttrAsFloat(el,'data-scale-y');
 
         var scale = scaleX + ', ' + scaleY;
 
-        var shiftX = parseFloat($(el).attr('data-shift-x'));
-        var shiftY = parseFloat($(el).attr('data-shift-y'));
+        var shiftX =  getAttrAsFloat(el,'data-shift-x');
+        var shiftY =  getAttrAsFloat(el,'data-shift-y');
 
         // Animate
         $(el).animate({
