@@ -6,43 +6,61 @@ from hvad.models import TranslatableModel, TranslatedFields
 from teamModule import local_settings
 
 
-class Formation(models.Model):
-    name = models.CharField(max_length=100, blank=False)
-    url = models.CharField(max_length=200, null=True, blank=True)
+class Formation(TranslatableModel):
+    translations = TranslatedFields(
+        name=models.CharField(max_length=100, blank=False),
+        url=models.CharField(max_length=200, null=True, blank=True)
+    )
 
     def __str__(self):
-        return self.name
+        return str(self.lazy_translation_getter('name', self.pk))
 
 
-class Team(models.Model):
-    team_name = models.CharField(max_length=100, blank=False)
+class Team(TranslatableModel):
+    translations = TranslatedFields(
+        team_name=models.CharField(max_length=100, blank=False)
+    )
+
+    def get_team_name(self):
+        return str(self.lazy_translation_getter('team_name', self.pk))
 
     def __str__(self):
-        return self.team_name
+        return self.get_team_name()
 
 
-class TeamRole(models.Model):
-    role = models.CharField(max_length=100, blank=False)
-    description = models.CharField(max_length=1000, blank=True, null=True)
+class TeamRole(TranslatableModel):
+    translations = TranslatedFields(
+        role=models.CharField(max_length=100, blank=False),
+        description=models.CharField(max_length=1000, blank=True, null=True)
+    )
+
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.role + ' (' + self.team.team_name + ')'
+        team_name = self.team.get_team_name()
+        role = str(self.lazy_translation_getter('role', self.pk))
+        return "{} ({})".format(role, team_name)
 
 
-class ProjectStatus(models.Model):
-    status = models.CharField(max_length=20, blank=False)
+class ProjectStatus(TranslatableModel):
+    translations = TranslatedFields(
+        status=models.CharField(max_length=20, blank=False)
+    )
 
     def __str__(self):
-        return self.status
+        return str(self.lazy_translation_getter('status', self.pk))
 
     class Meta:
         verbose_name_plural = "project statuses"
 
 
-class Project(models.Model):
+class Project(TranslatableModel):
     name = models.CharField(max_length=100, blank=False)
-    description = models.TextField(null=True)
+
+    translations = TranslatedFields(
+        description=models.TextField(null=True)
+    )
+
     status = models.ForeignKey(ProjectStatus, default=0, on_delete=models.SET_DEFAULT)
     website = models.CharField(max_length=200, blank=True, null=True)
     display_order = models.IntegerField(blank=False, null=False, default=0)
@@ -60,16 +78,19 @@ class ProjectImage(models.Model):
         return self.image.url
 
 
-class Member(models.Model):
+class Member(TranslatableModel):
     first_name = models.CharField(max_length=255, blank=False)
     last_name = models.CharField(max_length=255, blank=False)
-    bio = models.CharField(max_length=400, blank=True)
     email = models.CharField(max_length=255)
     linkedInUrl = models.CharField(max_length=255, blank=True)
     image = models.ImageField(upload_to='media/', blank=True)
     formation = models.ForeignKey(Formation, null=True, on_delete=models.SET_NULL)
     teamRoles = models.ManyToManyField(TeamRole)
     projects = models.ManyToManyField(Project)
+
+    translations = TranslatedFields(
+        bio=models.CharField(max_length=400, blank=True)
+    )
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
@@ -107,7 +128,7 @@ class TeamDisplayTranslationModel(TranslatableModel):
     )
 
     def __str__(self):
-        return "Team display's translations({})".format(self.id)
+        return str(self.lazy_translation_getter('teams_title', self.pk))
 
     class Meta:
         verbose_name = "TeamDisplay Translation model"
@@ -123,7 +144,7 @@ class TeamBannerTranslationModel(TranslatableModel):
     )
 
     def __str__(self):
-        return "Team banner's translations({})".format(self.id)
+        return str(self.lazy_translation_getter('members', self.pk))
 
     class Meta:
         verbose_name = "TeamBanner Translation model"
@@ -177,7 +198,7 @@ class ProjectDisplayTranslationModel(TranslatableModel):
     )
 
     def __str__(self):
-        return "Project display's translations({})".format(self.id)
+        return str(self.lazy_translation_getter('projects_title', self.pk))
 
     class Meta:
         verbose_name = "ProjectDisplay Translation model"
