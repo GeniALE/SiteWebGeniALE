@@ -1,9 +1,16 @@
+{% load i18n %}
+{% trans "address" as t_address %}
+{% trans "ets_address" as t_ets_address %}
+{% trans "contactUs" as t_contact_us %}
+{% trans "socialMedia" as t_social_media %}
+{% trans "copyrights" as t_copyrights %}
+
 <footer>
     <div class="footer__row">
         <div class="footer__content">
             <div class="footer__section">
                 <span class="footer__section__title">
-                    Addresse
+                    {{ t_address|capfirst }}
                 </span>
                 <p>
                     ÉTS Montréal (Local A-1243)
@@ -18,7 +25,7 @@
 
             <div class="footer__section">
                 <span class="footer__section__title">
-                    Nous contacter
+                    {{ t_contact_us|capfirst }}
                 </span>
                 <p>
                     <a href="mailto:geniale@etsmtl.net">
@@ -27,9 +34,9 @@
                     </a>
                 </p>
                 <p>
-                    <a href="tel:+15141231324">
+                    <a href="tel:+15143968800,7152">
                         <i class="fas fa-phone fa-2x"></i>
-                        <span class="footer__icon__text">1-514-123-1324</span>
+                        <span class="footer__icon__text">1-514-396-8800 ext: 7152</span>
                     </a>
                 </p>
                 <p>
@@ -40,7 +47,7 @@
             </div>
 
             <div class="footer__section">
-                <span class="footer__section__title">Réseaux sociaux</span>
+                <span class="footer__section__title">{{ t_social_media|capfirst }}</span>
                 <p>
                     <a href="https://www.facebook.com/genialeets/"><i class="fab fa-facebook fa-2x"></i>
                         <span class="footer__icon__text">Facebook</span>
@@ -60,6 +67,6 @@
         </div>
     </div>
     <div class="after_footer">
-        Copyright © GéniAle 2018
+        {{ t_copyrights|capfirst }} © GéniALE {% now "Y" %}
     </div>
 </footer>
