@@ -1,4 +1,4 @@
-@import 'variables';
+@import '../basic/_breakpoint.scss';
 
 $little-box-shadow-color: rgba(0,0,0,0.2);
 $box-shadow-color1: rgba(0,0,0,0.12);
@@ -135,7 +135,7 @@ $separation-color: rgba(0, 0, 0, 0.09);
             }
         }
 
-        @media #{$information-reponsive} {
+        @include breakpoint(phone) {
             padding-left: 3px;
             padding-right: 3px;
             padding-top: 7px;
@@ -147,13 +147,13 @@ $separation-color: rgba(0, 0, 0, 0.09);
         box-shadow: 0 14px 28px $box-shadow-color-hover1, 0 10px 10px $box-shadow-color-hover2;
     }
 
-    @media #{$information-reponsive} {
+    @include breakpoint(phone) {
         font-size: 0.7em;
         margin-right: 20px;
         margin-left: 20px;
     }
 
-    @media only screen and (max-width: 350px){
+    @include breakpoint(phone){
         font-size: 0.4em;
     }
 }

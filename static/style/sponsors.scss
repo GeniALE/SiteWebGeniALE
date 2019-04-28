@@ -1,6 +1,7 @@
-@import 'variables';
-@import '../../../../../static/style/basic/_colors';
-@import '../../../../../static/style/components/_sections';
+@import './components/sponsor';
+@import './components/table';
+@import './basic/_breakpoint.scss';
+
 $category-border-color: rgba(0, 0, 0, 0.329);
 
 .partners-module{
@@ -11,7 +12,7 @@ $category-border-color: rgba(0, 0, 0, 0.329);
         display: inline;
         padding-bottom: 20px;
 
-        @media #{$information-reponsive} {
+        @include breakpoint(phone) {
             margin-right: 20px;
             margin-left: 20px;
         }
@@ -24,12 +25,12 @@ $category-border-color: rgba(0, 0, 0, 0.329);
         grid-gap: 50px;
         margin-bottom: 25px;
 
-        @media #{$information-reponsive} {
+        @include breakpoint(phone) {
             grid-template-columns: 1fr 1fr;
             grid-gap: 10px;
         }
 
-        @media only screen and (max-width: 1200px) {
+        @include breakpoint(tablet) {
             grid-template-columns: 1fr 1fr;
             grid-gap: 20px;
         }
@@ -37,7 +38,7 @@ $category-border-color: rgba(0, 0, 0, 0.329);
 
     &__link-partners{
         text-align: center;
-        @media #{$information-reponsive} {
+        @include breakpoint(phone) {
             font-size: 0.8em;
             padding-right: 10px;
             padding-left: 10px;
@@ -50,16 +51,15 @@ $category-border-color: rgba(0, 0, 0, 0.329);
     }
 
     &__title{
-         @extend .section__content__title;
-       /* margin-left: 25px;
+        margin-left: 25px;
         margin-right: 25px;
 
-        @media #{$information-reponsive} {
+        @include breakpoint(phone) {
             font-size: 0.7em;
-        }*/
+        }
     }
 
-    @media #{$information-reponsive} {
+    @include breakpoint(phone) {
         width: 100%;
     }
 }

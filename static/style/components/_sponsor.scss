@@ -1,4 +1,4 @@
-@import 'variables';
+@import '../basic/_breakpoint.scss';
 // _sponsor.scss colors
 $card-color: white;
 $text-color: rgba(0,0,0,0.6);
@@ -34,12 +34,12 @@ $box-shadow-color-hover2: rgba(0,0,0,0.22);
         color: $text-color;        
     }
 
-    @media #{$information-reponsive} {
+    @include breakpoint(phone) {
         box-shadow: 0px 7px 46px -9px $little-box-shadow-color;
         height: 20vh;
     }
 
-    @media only screen and (max-width: 1200px) {
+    @include breakpoint(tablet) {
         box-shadow: 0px 7px 46px -9px $little-box-shadow-color;
         height: 20vh;
     }

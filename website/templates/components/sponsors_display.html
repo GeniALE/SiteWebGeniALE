@@ -2,12 +2,12 @@
 
 {% addtoblock 'css' %}
     {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "assets/styles/app.scss" %}">
+        <link rel="stylesheet" type="text/x-scss" href="{% static "style/sponsors.scss" %}">
     {% endcompress %}
 {% endaddtoblock %}
 
 <section class="partners-module">
-    <span class="partners-module__title">Nos commanditaires</span>
+    <span class="partners-module__title"><h1>Nos commanditaires</h1></span>
     <div class="partners-module__container partners-module__container">
         {% for category in category_sponsors %}
             {% if category.sponsors %}
