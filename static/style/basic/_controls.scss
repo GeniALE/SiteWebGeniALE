@@ -1,4 +1,6 @@
 @import "./_colors";
+@import "./_fonts";
+@import "./_breakpoint";
 
 /* Global input configuration */
 
@@ -46,6 +48,15 @@
     &:hover {
       background-color: $color-secondary-dark;
     }
+  }
+}
+
+.title {
+  @extend %title;
+  font-size: $title-big;
+
+  @include breakpoint(phone) {
+    font-size: $title-regular;
   }
 }
 

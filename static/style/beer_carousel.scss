@@ -1,6 +1,8 @@
 @import './basic/_partials';
 @import './basic/_colors';
 @import './basic/_breakpoint';
+@import './header';
+
 $beerBottleWidth: 200px;
 
 section.beercarousel {
@@ -11,6 +13,10 @@ section.beercarousel {
 
         &__container {
             width: 100%;
+        }
+
+        &__title {
+             @extend .section__content__title;
         }
 
         &__beers {

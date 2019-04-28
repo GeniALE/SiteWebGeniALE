@@ -1,4 +1,6 @@
 @import "../basic/_flexboxgrid";
+@import "../basic/_fonts";
+@import "../basic/_breakpoint";
 
 .section {
   @extend .row;
@@ -13,6 +15,12 @@
     margin: auto;
 
     &__title {
+      @extend %title;
+      font-size: $title-regular;
+
+      @include breakpoint(phone) {
+        font-size: $title-small;
+      }
       @extend .center-xs;
 
       &::after {
@@ -26,6 +34,7 @@
         margin: 15px auto 30px;
         border-color: $color-primary-dark;
       }
+
       &--no-border {
         &::after {
           display: none;
