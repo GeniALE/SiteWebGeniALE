@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:500,500i,700,700i,900,900i');
-
+@import url('https://fonts.googleapis.com/css?family=Heebo:500,500i,700,700i,900,900i');
+@import url('https://cdn.rawgit.com/h-ibaldo/Raleway_Fixed_Numerals/master/css/rawline.css');
 // Text font
-$text-font: 'Raleway', arial, sans-serif;
+$text-font: 'rawline', arial, sans-serif;
 $text-regular: 15px;
 $text-small: .8em;
 $text-big: 1.2em;
 
 // Title font
-$title-font: 'Raleway', 'Arial', 'Ubuntu', sans-serif;
+$title-font: 'rawline', 'Arial', 'Ubuntu', sans-serif;
 $title-regular: 4em;
 $title-small: 2.4em;
 $title-big: 4.8em;
