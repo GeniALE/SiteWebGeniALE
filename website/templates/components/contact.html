@@ -24,10 +24,17 @@
         </div>
     </div>
     </form>
-
-        <div class="contactForm__thanks">
     {% else %}
-        {{ contact.thanks|safe }}
+        <div class="contactForm__thanks alert alert--success">
+            {{ contact.thanks|safe }}
+        </div>
     {% endif %}
-    </div>
 </div>
+<script type="text/javascript">var formHasBeenSubmitted = {% if form %}false{% else %}true{% endif %};</script>
+<script type="text/javascript">
+    if (formHasBeenSubmitted) {
+        setTimeout(function () {
+            window.location.href = '../';
+        }, 4000);
+    }
+</script>

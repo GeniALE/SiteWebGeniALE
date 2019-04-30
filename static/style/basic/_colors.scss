@@ -1,15 +1,16 @@
 // Colors
-$color-white: #ecf0f1;
+// Color shades generated from: https://material-ui.com/style/color/
+$color-white: white;
 $color-black: #111;
 $color-gray: #6c7a89;
 
 $color-primary: #f64747;
-$color-primary-light: #f1a9a0;
-$color-primary-dark: #d2527f;
+$color-primary-light: #f76b6b;
+$color-primary-dark: #ac3131;
 
 $color-secondary: #616161;
-$color-secondary-light: #6c7a89;
-$color-secondary-dark: #424242;
+$color-secondary-light: #808080;
+$color-secondary-dark: #434343;
 
 $color-tertiary: '';
 $color-tertiary-light: '';
@@ -19,6 +20,6 @@ $color-foreground: $color-black;
 $color-foreground-light: $color-black;
 $color-foreground-dark: $color-white;
 
-$color-background: $color-white;
+$color-background: #ecf0f1;
 $color-background-dark: #40404f;
 $color-background-darker: #25252d;

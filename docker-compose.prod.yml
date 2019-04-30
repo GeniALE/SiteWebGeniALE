@@ -19,6 +19,8 @@ services:
             bash -c "sh ./bin/wait-for-postgres.sh db
             && python3 manage.py migrate
             && python3 manage.py runserver 0.0.0.0:8000"
+        volumes:
+            - ./media:/code/media:rw
         ports:
             - "8000:8000"
         depends_on:

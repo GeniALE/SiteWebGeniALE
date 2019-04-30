@@ -1,5 +1,5 @@
 # Set the base image for the docker to python v3.6
-FROM python:3.4
+FROM python:3.5.6-stretch
 
 # Force stdin, stdout and stderr to be totally unbuffered
 ENV PYTHONUNBUFFERED 1
@@ -22,13 +22,13 @@ ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 
 # Copy the repo files into the WORKDIR
-ADD website /code/website
+ADD beer_carousel /code/beer_carousel
+ADD bin /code/bin
+ADD sponsorsModule /code/sponsorsModule
 ADD static /code/static
 ADD teamModule /code/teamModule
-ADD beer_carousel /code/beer_carousel
-ADD sponsorsModule /code/sponsorsModule
+ADD website /code/website
 ADD manage.py /code/
-ADD bin /code/bin
 
 # Start the application
 CMD ["bin/start.sh"]

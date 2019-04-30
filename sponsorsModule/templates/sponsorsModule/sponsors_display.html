@@ -1,23 +1,26 @@
 {% load sekizai_tags compress  static %}
-{% compress css %}
-<link rel="stylesheet" type="text/css" href="{% static "css/sponsor_display.css" %}">
-{% endcompress %}
 
+{% addtoblock 'css' %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "style/sponsors.scss" %}">
+    {% endcompress %}
+{% endaddtoblock %}
 
-<section id="sponsorsModule">
-    <h1 class="sponsorsModule__title">Sponsors</h1>
-    <div class="container container-centered">
+<section class="partners-module">
+    <span class="partners-module__title">Nos commanditaires</span>
+    <div class="partners-module__container partners-module__container">
         {% for category in category_sponsors %}
-            <h2>{{category}}</h2>
-        <div class="row">
-            {% for sponsor in category.sponsors%}
-                <div class="col-centered">
-                    <span class="helper"></span><img src={{sponsor.image}} class="sponsorModule_img">
+            {% if category.sponsors %}
+                <h2 class="partners-module__categories">{{category}}</h2>
+                <div class="partners-module__row">
+                    {% for sponsor in category.sponsors%}
+                        <div class="partners-card" onclick = "location.href='{{sponsor.url}}';">
+                            <img class="partners-card__logo" src={{sponsor.image}} alt={{sponsor.title}}>
+                                <span class="partners-card__text">{{sponsor.title}}</span>
+                        </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-
-            </div>
+            {% endif %}
         {% endfor %}
-        </div>
-        <!--</div>-->
+    </div>
 </section>

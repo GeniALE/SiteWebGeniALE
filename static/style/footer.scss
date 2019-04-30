@@ -5,13 +5,14 @@
     color: $color-foreground-dark;
     display: flex;
     justify-content: center;
-    padding: 33px 0;
+    padding: 13px 0;
   }
 
   &__content {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding: 0 33px;
     max-width: $width-xl;
 
     @include breakpoint(tablet) {
@@ -36,7 +37,6 @@
   }
 
   &__section {
-    margin: 0 33px;
   }
 
   &__icon {

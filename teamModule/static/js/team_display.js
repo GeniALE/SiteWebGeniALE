@@ -213,7 +213,7 @@ if (!TeamModuleClass.prototype._loadMemberDetails) {
             var member = this.membersById[memberId];
             var mapping = this.details;
 
-            mapping.picture.setAttribute("src", member.profilePicUrl);
+            mapping.picture.setAttribute("src", member.image);
             mapping.fullName.innerText = member.first_name + " " + member.last_name;
 
             var projectElement = mapping.projects;

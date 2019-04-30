@@ -2,10 +2,11 @@ import os
 import dj_database_url
 from dotenv import load_dotenv
 
+_ = lambda s: s
 load_dotenv()
 
-gettext = lambda s: s
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
+
 """
 Django settings for website project.
 
@@ -22,6 +23,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'website', 'locale'),)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -39,6 +41,7 @@ ALLOWED_HOSTS = [
     "geniale-dev.herokuapp.com",
     "geniale-cms.herokuapp.com",
     "geniale-prod.herokuapp.com",
+    "cms.geniale.ca",
     "web.geniale.ca",
     "localhost",
     "127.0.0.1"
@@ -94,6 +97,8 @@ STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'website', 'static'),
+    os.path.join(BASE_DIR, 'sponsorsModule', 'static'),
+    os.path.join(BASE_DIR, 'teamModule', 'static'),
 )
 SITE_ID = 1
 
@@ -176,8 +181,8 @@ INSTALLED_APPS = (
 
 LANGUAGES = (
     ## Customize this
-    ('en', gettext('en')),
-    ('fr', gettext('fr')),
+    ('en', _('en')),
+    ('fr', _('fr')),
 )
 
 CMS_LANGUAGES = {
@@ -190,14 +195,14 @@ CMS_LANGUAGES = {
     1: [
         {
             'code': 'en',
-            'name': gettext('English'),
+            'name': _('English'),
             'redirect_on_fallback': True,
             'public': True,
             'hide_untranslated': False,
         },
         {
             'code': 'fr',
-            'name': gettext('French'),
+            'name': _('French'),
             'fallbacks': ['en'],
             'redirect_on_fallback': True,
             'public': True,
@@ -282,6 +287,7 @@ TEAMMODULE_PROJECTDISPLAY_TEMPLATES = [
     ('teamModule/project_display.html', 'List projects')
 ]
 
+COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter']
 COMPRESS_ENABLED = not DEBUG
 
 COMPRESS_JS_FILTERS = [

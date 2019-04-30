@@ -72,8 +72,10 @@ class TeamModulePlugin(CMSPluginBase):
 
         # Check for default avatar
         for member in members:
-            if not member.profilePicUrl:
-                member.profilePicUrl = static("image/default_avatar.png")
+            if not member.image:
+                member.image = static("image/default_avatar.png")
+            else:
+                member.image = member.image.url
 
         teams = self.get_teams(instance)
         members_as_dict = self.members_to_dict(members)
@@ -105,13 +107,13 @@ class ProjectModulePlugin(CMSPluginBase):
     cache = False
 
     def get_projects(self):
-        projects = Project.objects.order_by('-id').prefetch_related(
+        projects = Project.objects.order_by('display_order').prefetch_related(
             'status', 'images'
         )
         return projects
 
     def projects_to_dict(self, projects):
-        #projects_as_dict = {project.id: model_to_dict(project) for project in projects}
+        # projects_as_dict = {project.id: model_to_dict(project) for project in projects}
 
         projects_as_dict = []
         for project in projects:
