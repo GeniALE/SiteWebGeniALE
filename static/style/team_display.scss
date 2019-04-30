@@ -119,7 +119,7 @@
     &__sticky {
       @include breakpoint(desktop) {
         position: fixed;
-        top:80px;
+        top:130px;
       }
     }
   }

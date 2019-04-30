@@ -9,7 +9,7 @@ if (!$.fn.followDetailToFooter) {
 
 
                 var $footer = $('footer').first();
-                var topValue = 80;
+                var topValue = 130;
                 var padding = 40;
                 var pos = $footer.position().top - $(detailElem).first().height() - topValue - padding;
                 if ($window.scrollTop() > pos) {
