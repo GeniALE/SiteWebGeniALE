@@ -231,7 +231,7 @@ $smLargeDivHeight: 225px;
     //top: 16%;
     top: 5em;
     left: 0.5em;
-    width: 100%;
+    width: 100vw;
     height: 68vh;
     @include breakpoint(phone) {
       height: 90vh;
