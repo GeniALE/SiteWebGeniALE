@@ -58,18 +58,21 @@
                 </div>
             </div>
         </div>
+        <div class="teamModule__details__blur teamModule--invisible " onclick="team_{{ uniqueName }}.modalClose()"></div>
         <div class="teamModule__details teamModule--invisible col-xs-12 col-sm-3 col-md-3 col-lg-2">
             <div class="teamModule__details__close" onclick="team_{{ uniqueName }}.modalClose()">X</div>
             <div class="center-xs start-sm teamModule__details__sticky">
-            <div>
-                <img class="teamModule__details__picture" src=""/>
-            </div>
-            <div class="teamModule__details__fullname"></div>
-            <h4>{{ translations.projects_title }}</h4>
-            <div class="teamModule__details__projects"></div>
-            <h4>{{ translations.formation_title }}</h4>
-            <div class="teamModule__details__formation"></div>
+                <div>
+                    <img class="teamModule__details__picture" src=""/>
                 </div>
+                <div class="teamModule__details__fullname"></div>
+                <h4></h4>
+                <div class="teamModule__details__bio"></div>
+                <h4>{{ translations.projects_title }}</h4>
+                <div class="teamModule__details__projects"></div>
+                <h4>{{ translations.formation_title }}</h4>
+                <div class="teamModule__details__formation"></div>
+            </div>
         </div>
         <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
     </div>

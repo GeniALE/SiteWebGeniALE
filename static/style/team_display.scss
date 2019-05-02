@@ -3,11 +3,11 @@
 
 @mixin mobileMemberDetail() {
   position: fixed;
-  background-color: lightgray;
-  height: 90vh;
-  width: 97%;
-  left: 0.5em;
-  top: 5vh;
+  background-color: $color-background;
+  height: 90%;
+  width: 90%;
+  left: 5%;
+  top: 5%;
   border-radius: 1%;
   z-index: 1010;
   overflow-y: auto;
@@ -71,7 +71,7 @@
       position: fixed;
       display: none;
       top: 6%;
-      right: 6%;
+      right: 10%;
       color: black;
       cursor: pointer;
       z-index: 1020;
@@ -99,6 +99,24 @@
       }
     }
 
+    &__blur {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100vw;
+      height: 100vh;
+      background-color: $color-background-darker;
+      opacity: 0.4;
+      z-index: 999;
+      display:none;
+      @include breakpoint(phone){
+        display:block;
+      }
+      @include breakpoint(tablet){
+        display:block;
+      }
+    }
+
     &__picture {
       object-fit: cover;
       width: 200px;
@@ -120,6 +138,7 @@
       @include breakpoint(desktop) {
         position: fixed;
         top:130px;
+        padding-right: 2em;
       }
     }
   }
@@ -157,5 +176,16 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+body.modal-open {
+  @include breakpoint(phone) {
+    overflow: hidden;
+    height: 100vh;
+  }
+  @include breakpoint(tablet) {
+    overflow: hidden;
+    height: 100vh;
   }
 }
