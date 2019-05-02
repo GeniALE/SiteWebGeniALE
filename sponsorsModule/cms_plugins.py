@@ -1,13 +1,8 @@
-from collections import OrderedDict
-
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from django.forms import model_to_dict
 from django.utils.translation import ugettext_lazy as _
-import json
 
-from sponsorsModule.helpers import to_dict
-from .models import CategoryTranslation, Category, Sponsor, SponsorsDisplayView
+from .models import Category, Sponsor, SponsorsDisplayView
 
 
 @plugin_pool.register_plugin
@@ -15,6 +10,7 @@ class SponsorsModulePlugin(CMSPluginBase):
     name = _("Sponsors display plugin")
     model = SponsorsDisplayView
     render_template = "sponsorsModule/sponsors_display.html"
+    filter_horizontal = ("categories",)
     cache = False
 
     def get_sponsors(self):
@@ -76,6 +72,7 @@ class SponsorsModulePlugin(CMSPluginBase):
             'sponsors': sponsors,
             'categories': categories,
             'category_sponsors': category_sponsors,
-            'cssPrefix': instance.css_class_prefix
+            'cssPrefix': instance.css_class_prefix,
+            'translations': instance.translation
         })
         return context
