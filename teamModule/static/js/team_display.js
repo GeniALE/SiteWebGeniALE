@@ -9,7 +9,7 @@ if (!$.fn.followDetailToFooter) {
 
 
                 var $footer = $('footer').first();
-                var topValue = 80;
+                var topValue = 130;
                 var padding = 40;
                 var pos = $footer.position().top - $(detailElem).first().height() - topValue - padding;
                 if ($window.scrollTop() > pos) {
@@ -66,10 +66,13 @@ if (!window.TeamModuleClass) {
 
         //Mapping of the details nodes
         this.details = {
+            container: this.rootNode.querySelector(".teamModule__details"),
             picture: this.rootNode.querySelector(".teamModule__details__picture"),
             fullName: this.rootNode.querySelector(".teamModule__details__fullname"),
+            bio: this.rootNode.querySelector(".teamModule__details__bio"),
             projects: this.rootNode.querySelector(".teamModule__details__projects"),
-            formation: this.rootNode.querySelector(".teamModule__details__formation")
+            formation: this.rootNode.querySelector(".teamModule__details__formation"),
+            blur: this.rootNode.querySelector(".teamModule__details__blur")
         };
 
         /**
@@ -91,6 +94,7 @@ if (!window.TeamModuleClass) {
         this.membersById = TeamModuleHelper.indexArrayByKey(members, 'id');
         this.hiddenClass = "teamModule--hidden";
         this.invisibleClass = "teamModule--invisible";
+        this.modalOpenClass = "modal-open";
 
         var detailElem = this.rootNode.querySelector(".teamModule__details__sticky");
         $(detailElem).followDetailToFooter(detailElem);
@@ -204,17 +208,22 @@ if (!TeamModuleClass.prototype._loadMemberDetails) {
      * @private
      */
     TeamModuleClass.prototype._loadMemberDetails = function (memberId) {
-        var detailsElem = this.rootNode.querySelector(".teamModule__details");
+        const detailsElem = this.details.container;//this.rootNode.querySelector(".teamModule__details");
         if (memberId === null) {
             detailsElem.classList.add(this.invisibleClass);
+            this.details.blur.classList.add(this.invisibleClass);
+            document.body.classList.remove(this.modalOpenClass);
         } else {
             detailsElem.classList.remove(this.invisibleClass);
+            this.details.blur.classList.remove(this.invisibleClass);
+            document.body.classList.add(this.modalOpenClass);
 
             var member = this.membersById[memberId];
             var mapping = this.details;
 
             mapping.picture.setAttribute("src", member.image);
             mapping.fullName.innerText = member.first_name + " " + member.last_name;
+            mapping.bio.innerText = member.bio;
 
             var projectElement = mapping.projects;
             projectElement.innerHTML = '';
@@ -244,5 +253,11 @@ if (!TeamModuleClass.prototype._setActiveDiv) {
         } else {
             elem.classList.remove(activateClass);
         }
+    };
+}
+
+if (!TeamModuleClass.prototype.modalClose) {
+    TeamModuleClass.prototype.modalClose = function () {
+        this.setActiveMember(this.activeDataTypes.member.id);
     };
 }

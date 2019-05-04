@@ -2,10 +2,11 @@ import os
 import dj_database_url
 from dotenv import load_dotenv
 
+_ = lambda s: s
 load_dotenv()
 
-gettext = lambda s: s
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
+
 """
 Django settings for website project.
 
@@ -22,6 +23,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'website', 'locale'),)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -179,8 +181,8 @@ INSTALLED_APPS = (
 
 LANGUAGES = (
     ## Customize this
-    ('en', gettext('en')),
-    ('fr', gettext('fr')),
+    ('en', _('en')),
+    ('fr', _('fr')),
 )
 
 CMS_LANGUAGES = {
@@ -193,14 +195,14 @@ CMS_LANGUAGES = {
     1: [
         {
             'code': 'en',
-            'name': gettext('English'),
+            'name': _('English'),
             'redirect_on_fallback': True,
             'public': True,
             'hide_untranslated': False,
         },
         {
             'code': 'fr',
-            'name': gettext('French'),
+            'name': _('French'),
             'fallbacks': ['en'],
             'redirect_on_fallback': True,
             'public': True,

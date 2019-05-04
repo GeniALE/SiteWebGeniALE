@@ -1,12 +1,24 @@
 @import "./basic/_colors.scss";
 @import "./basic/_breakpoint.scss";
 
+@mixin mobileMemberDetail() {
+  position: fixed;
+  background-color: $color-background;
+  height: 90%;
+  width: 90%;
+  left: 5%;
+  top: 5%;
+  border-radius: 1%;
+  z-index: 1010;
+  overflow-y: auto;
+}
+
 .teamModule {
   height: 100%;
   //background: linear-gradient(-45deg, black 25%, transparent 25%, transparent),linear-gradient(45deg, transparent 75%, black 75%);
   min-height: 460px;
   color: black;
-  padding: 1em;
+  padding: 0.9em;
 
   &__team {
     padding: 0.5em 0;
@@ -55,6 +67,56 @@
     color: black;
     padding: 1em;
 
+    &__close {
+      position: fixed;
+      display: none;
+      top: 6%;
+      right: 10%;
+      color: black;
+      cursor: pointer;
+      z-index: 1020;
+      font-size: 3em;
+      text-shadow: 1px 1px 2px white, 0 0 25px lightgray, 0 0 5px gray;
+      &:hover {
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px lightgray, 0 0 5px gray;
+      }
+    }
+
+    @include breakpoint(phone) {
+      @include mobileMemberDetail();
+
+      &__close {
+        display: block;
+      }
+    }
+
+    @include breakpoint(tablet) {
+      @include mobileMemberDetail();
+
+      &__close {
+        display: block;
+      }
+    }
+
+    &__blur {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100vw;
+      height: 100vh;
+      background-color: $color-background-darker;
+      opacity: 0.4;
+      z-index: 999;
+      display:none;
+      @include breakpoint(phone){
+        display:block;
+      }
+      @include breakpoint(tablet){
+        display:block;
+      }
+    }
+
     &__picture {
       object-fit: cover;
       width: 200px;
@@ -75,7 +137,8 @@
     &__sticky {
       @include breakpoint(desktop) {
         position: fixed;
-        top:80px;
+        top:130px;
+        padding-right: 2em;
       }
     }
   }
@@ -113,5 +176,16 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+body.modal-open {
+  @include breakpoint(phone) {
+    overflow: hidden;
+    height: 100vh;
+  }
+  @include breakpoint(tablet) {
+    overflow: hidden;
+    height: 100vh;
   }
 }

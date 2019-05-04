@@ -19,15 +19,15 @@ class TeamModulePlugin(CMSPluginBase):
     cache = False
 
     def get_members(self):
-        members = Member.objects.prefetch_related(
+        members = Member.objects.language().prefetch_related(
             'teamRoles__team',
             'formation'
         ).order_by("first_name")
         return members
 
-    def get_teams(self,instance):
-        teams = list(Team.objects.all().order_by("team_name"))
-        teams.sort(key= lambda team:team.team_name)
+    def get_teams(self, instance):
+        teams = list(Team.objects.language().all().order_by("team_name"))
+        teams.sort(key=lambda team: team.team_name)
 
         all_text = instance.translations.all
         teams.insert(0, Team(id=-1, team_name=all_text))
@@ -38,16 +38,16 @@ class TeamModulePlugin(CMSPluginBase):
         for member in members:
             new_member = to_dict(member)
             team_roles = member.teamRoles.all()
-            new_member['teamRoles'] = [to_dict(teamRole) for teamRole in team_roles]
-            new_member['projects'] = [to_dict(project) for project in member.projects.all()]
-            new_member['formation'] = to_dict(member.formation)
+            new_member['teamRoles'] = [to_dict(teamRole, ['role']) for teamRole in team_roles]
+            new_member['projects'] = [to_dict(project, ['description']) for project in member.projects.all()]
+            new_member['formation'] = to_dict(member.formation, ['name', 'url'])
 
             members_as_dict.append(new_member)
 
         return members_as_dict
 
     def teams_to_dict(self, teams, members):
-        teams_as_dict = {team.id: model_to_dict(team) for team in teams}
+        teams_as_dict = {team.id: to_dict(team, ['team_name']) for team in teams}
         for (team_id, team) in teams_as_dict.items():
             teams_as_dict[team_id]['members_count'] = 0
 
@@ -80,12 +80,13 @@ class TeamModulePlugin(CMSPluginBase):
         teams = self.get_teams(instance)
         members_as_dict = self.members_to_dict(members)
         teams_as_dict = self.teams_to_dict(teams, members)
-        ordered_teams_for_ui = sorted(list(teams_as_dict.values()),key=lambda team:team['team_name'])
+        a = list(teams_as_dict.values())
+        ordered_teams_for_ui = sorted(list(teams_as_dict.values()), key=lambda team: team['team_name'])
 
         # Replace the all_team to the first place
         all_team = next(x for x in ordered_teams_for_ui if x['id'] == -1)
         ordered_teams_for_ui.remove(all_team)
-        ordered_teams_for_ui.insert(0,all_team)
+        ordered_teams_for_ui.insert(0, all_team)
 
         context.update({
             'teams': ordered_teams_for_ui,
@@ -107,7 +108,7 @@ class ProjectModulePlugin(CMSPluginBase):
     cache = False
 
     def get_projects(self):
-        projects = Project.objects.order_by('display_order').prefetch_related(
+        projects = Project.objects.language().order_by('display_order').prefetch_related(
             'status', 'images'
         )
         return projects
@@ -117,7 +118,7 @@ class ProjectModulePlugin(CMSPluginBase):
 
         projects_as_dict = []
         for project in projects:
-            new_project = to_dict(project)
+            new_project = to_dict(project, ['description'])
             images = project.images.all()
             new_images = []
             for image_obj in images:

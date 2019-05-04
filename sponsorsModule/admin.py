@@ -1,26 +1,32 @@
 from django.contrib import admin
-from .models import Sponsor, SponsorsDisplayView, Category, CategoryTranslation
+
+from .models import Sponsor, SponsorsDisplayView, Category, CategoryTranslation, SponsorsDisplayViewTranslations
 from hvad.admin import TranslatableAdmin
 
 
-class PageSponsorAdmin(admin.ModelAdmin):
+class SponsorAdmin(admin.ModelAdmin):
     model = Sponsor
 
 
-class PageSponsorsDisplayView(admin.ModelAdmin):
-    model = SponsorsDisplayView
+class SponsorsDisplayViewAdmin(admin.ModelAdmin):
     filter_horizontal = ("categories",)
 
 
-class PageCategory(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     pass
 
 
-class PageCategoryTranslation(TranslatableAdmin, admin.ModelAdmin):
+class CategoryTranslationAdmin(TranslatableAdmin, admin.ModelAdmin):
     pass
 
 
-admin.site.register(Sponsor, PageSponsorAdmin)
-admin.site.register(SponsorsDisplayView, PageSponsorsDisplayView)
-admin.site.register(Category, PageCategory)
-admin.site.register(CategoryTranslation, PageCategoryTranslation)
+class SponsorsDisplayViewTranslationsAdmin(TranslatableAdmin, admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Sponsor, SponsorAdmin)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(CategoryTranslation, CategoryTranslationAdmin)
+
+admin.site.register(SponsorsDisplayView, SponsorsDisplayViewAdmin)
+admin.site.register(SponsorsDisplayViewTranslations, SponsorsDisplayViewTranslationsAdmin)

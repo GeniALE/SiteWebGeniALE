@@ -17,7 +17,7 @@ def get_default_extra_types():
     return [{'info_type': x.id} for x in list(MemberExtraInfoType.objects.all())]
 
 
-class PageTeamAdmin(admin.ModelAdmin):
+class TeamAdmin(TranslatableAdmin):
     pass
 
 
@@ -27,7 +27,7 @@ class ProjectPictureInline(admin.StackedInline):
     fk_name = 'project'
 
 
-class PageProjectsAdmin(admin.ModelAdmin):
+class ProjectAdmin(TranslatableAdmin):
     model = Member
     inlines = (ProjectPictureInline,)
 
@@ -64,21 +64,21 @@ class ExtraInfoInline(admin.TabularInline):
         return len(get_default_extra_types()) - len(member_extra_infos)
 
 
-class PageMemberAdmin(admin.ModelAdmin):
+class MemberAdmin(TranslatableAdmin):
     model = Member
     inlines = (ExtraInfoInline,)
     filter_horizontal = ("teamRoles", "projects",)
 
 
-class PageFormationAdmin(admin.ModelAdmin):
+class FormationAdmin(TranslatableAdmin):
     pass
 
 
-class PageStatusAdmin(admin.ModelAdmin):
+class StatusAdmin(TranslatableAdmin):
     pass
 
 
-class PageTeamRoleAdmin(admin.ModelAdmin):
+class TeamRoleAdmin(TranslatableAdmin):
     pass
 
 
@@ -115,15 +115,15 @@ class ProjectTranslationModelAdmin(TranslatableAdmin, admin.ModelAdmin):
     pass
 
 
-admin.site.register(ProjectStatus, PageStatusAdmin)
-admin.site.register(Formation, PageFormationAdmin)
-admin.site.register(Team, PageTeamAdmin)
-admin.site.register(Project, PageProjectsAdmin)
+admin.site.register(ProjectStatus, StatusAdmin)
+admin.site.register(Formation, FormationAdmin)
+admin.site.register(Team, TeamAdmin)
+admin.site.register(Project, ProjectAdmin)
 
-admin.site.register(TeamRole, PageTeamRoleAdmin)
+admin.site.register(TeamRole, TeamRoleAdmin)
 admin.site.register(MemberExtraInfo, PageMemberExtraInfoAdmin)
 admin.site.register(MemberExtraInfoType, PageMemberExtraInfoTypeAdmin)
-admin.site.register(Member, PageMemberAdmin)
+admin.site.register(Member, MemberAdmin)
 
 admin.site.register(TeamDisplayView, TeamDisplayViewAdmin)
 admin.site.register(TeamBannerModel, TeamBannerAdmin)
