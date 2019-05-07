@@ -1,6 +1,8 @@
+@import './basic/_colors';
+@import './basic/_breakpoint';
 @import './components/sponsor';
 @import './components/table';
-@import './basic/_breakpoint.scss';
+@import './components/sections';
 
 $category-border-color: rgba(0, 0, 0, 0.329);
 
@@ -51,12 +53,7 @@ $category-border-color: rgba(0, 0, 0, 0.329);
     }
 
     &__title{
-        margin-left: 25px;
-        margin-right: 25px;
-
-        @include breakpoint(phone) {
-            font-size: 0.7em;
-        }
+        @extend .section__content__title;
     }
 
     @include breakpoint(phone) {

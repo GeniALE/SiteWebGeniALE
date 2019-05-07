@@ -20,6 +20,7 @@ class Team(TranslatableModel):
     translations = TranslatedFields(
         team_name=models.CharField(max_length=100, blank=False)
     )
+    email = models.CharField(max_length=255, blank=True, null=True)
 
     def get_team_name(self):
         return str(self.lazy_translation_getter('team_name', self.pk))
@@ -87,6 +88,9 @@ class Member(TranslatableModel):
     formation = models.ForeignKey(Formation, null=True, on_delete=models.SET_NULL)
     teamRoles = models.ManyToManyField(TeamRole)
     projects = models.ManyToManyField(Project)
+
+    date_joined = models.DateTimeField(auto_now_add=True,)
+    date_left = models.DateTimeField(blank=True, null=True)
 
     translations = TranslatedFields(
         bio=models.CharField(max_length=400, blank=True)
