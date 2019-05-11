@@ -2,8 +2,8 @@ var currentBeerIndex = 0;
 var beerTransitionTime = 1500;
 var beerNumber = 0;
 var timer;
-var dragThreshold = 100;
-var lastRecordedContainerXPosition = 0;
+var startDragPosition = 0;
+var dragThreshold = 75;
 initBeers();
 
 $('.beercarousel__controls button.beercarousel__button').click(
@@ -50,20 +50,23 @@ function initBeers() {
     $container.draggable({
         axis: 'x',
         handle: '.beer__image',
+        start: function () {
+            startDragPosition = $container.position().left;
+        },
         stop: function () {
-            checkDrop($container.position().left)
+            checkDrop(startDragPosition - $container.position().left);
         }
     });
 }
 
-function checkDrop(newPosition) {
-    var difference = Math.abs(lastRecordedContainerXPosition - newPosition);
+function checkDrop(dragDelta) {
+    var draggedDistance = Math.abs(dragDelta);
     var newIndex = currentBeerIndex;
 
     // Check if it is over the threshold
-    if (difference > dragThreshold) {
+    if (draggedDistance > dragThreshold) {
         // Get the new index
-        newIndex += lastRecordedContainerXPosition > newPosition ? 1 : -1;
+        newIndex += dragDelta > 0 ? 1 : -1;
 
         // Clamp index
         newIndex = Math.min(Math.max(newIndex, 0), beerNumber - 1);
