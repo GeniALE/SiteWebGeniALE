@@ -16,7 +16,7 @@ section.beercarousel {
         }
 
         &__title {
-             @extend .section__content__title;
+            @extend .section__content__title;
         }
 
         &__beers {
@@ -41,6 +41,7 @@ section.beercarousel {
                 @include breakpoint(phone) {
                     align-items: center;
                     flex-direction: column;
+                    justify-content: left;
                 }
 
                 &__image {
@@ -208,10 +209,6 @@ section.beercarousel {
             color: $color-foreground-dark;
             transition: color, background;
             transition-duration: $time-long;
-
-            &name {
-
-            }
 
             &--active {
                 background: $color-primary-dark;
