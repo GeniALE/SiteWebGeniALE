@@ -1,8 +1,7 @@
 from collections import OrderedDict
-
+from django.core.serializers.json import DjangoJSONEncoder
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from django.forms import model_to_dict
 from django.utils.translation import ugettext_lazy as _
 import json
 from django.templatetags.static import static
@@ -92,7 +91,7 @@ class TeamModulePlugin(CMSPluginBase):
             'teams': ordered_teams_for_ui,
             'members': members,
             'teamsAsJson': json.dumps(list(teams_as_dict.values())),
-            'membersAsJson': json.dumps(members_as_dict),
+            'membersAsJson': json.dumps(members_as_dict, cls=DjangoJSONEncoder),
             'uniqueName': 'teamModuleDisplay' + '__' + str(instance.id),
             'translations': instance.translations,
             'cssPrefix': instance.css_class_prefix
