@@ -121,9 +121,6 @@ function activateBeer(index) {
             },
             complete: function () {
                 timer = 0;
-
-                // update container position
-                lastRecordedContainerXPosition = $('.beercarousel__beers').position().left;
             }
         });
     });
