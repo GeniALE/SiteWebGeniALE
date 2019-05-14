@@ -20,7 +20,8 @@ class TeamModulePlugin(CMSPluginBase):
     def get_members(self):
         members = Member.objects.language().prefetch_related(
             'teamRoles__team',
-            'formation'
+            'formation',
+            'translations'
         ).order_by("first_name")
         return members
 
@@ -35,12 +36,11 @@ class TeamModulePlugin(CMSPluginBase):
     def members_to_dict(self, members):
         members_as_dict = []
         for member in members:
-            new_member = to_dict(member)
+            new_member = to_dict(member, ['bio'])
             team_roles = member.teamRoles.all()
             new_member['teamRoles'] = [to_dict(teamRole, ['role']) for teamRole in team_roles]
             new_member['projects'] = [to_dict(project, ['description']) for project in member.projects.all()]
             new_member['formation'] = to_dict(member.formation, ['name', 'url'])
-
             members_as_dict.append(new_member)
 
         return members_as_dict
