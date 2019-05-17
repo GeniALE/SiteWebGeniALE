@@ -22,10 +22,10 @@ COPY ./requirements.txt /usr/src/app/requirements.txt
 
 RUN apk add --no-cache --virtual build-deps build-base linux-headers \
     && pip install --upgrade pip \
-    && pip install -r requirements.txt
+    && pip install -r requirements.txt && apk del build-deps
 
 # copy project
 COPY . /usr/src/app/
 
-# run entrypoint.sh
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+# run entrypoint.prod.sh
+ENTRYPOINT ["/usr/src/app/entrypoint.prod.sh"]
