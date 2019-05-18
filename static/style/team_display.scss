@@ -167,10 +167,12 @@
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      opacity: 0.5;
 
       &--active {
         opacity: 1.0 !important;
+        border: 5px solid $color-primary-light;
+        box-sizing: border-box;
+        padding: 5px;
       }
       &:hover {
         cursor: pointer;
