@@ -113,7 +113,8 @@ At the moment, the website is deployed at: http://geniale-cms.herokuapp.com/
 2. Install the dependencies: 
     
     ```shell
-    pip install -r requirements.txt```
+    pip install -r requirements.txt
+    ```
 3. Create the environment configuration: `cp .env.example .env`
 4. Modify the environment configuration and set the database credentials.
 5. Start the server
