@@ -121,6 +121,8 @@
       object-fit: cover;
       width: 200px;
       height: 200px;
+      padding: 15px 0;
+      border-radius: 6px;
     }
 
     &__fullname {
@@ -169,10 +171,8 @@
       border-radius: 50%;
 
       &--active {
-        opacity: 1.0 !important;
-        border: 5px solid $color-primary-light;
+        border: 5px solid $color-primary;
         box-sizing: border-box;
-        padding: 5px;
       }
       &:hover {
         cursor: pointer;
