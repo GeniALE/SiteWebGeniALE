@@ -38,6 +38,8 @@ venv/
 *.sqlite
 *.sql
 *.db
+pgdata
+pgdata_dev
 /pgdata/*
 !/pgdata/.ini
 

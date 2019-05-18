@@ -11,19 +11,19 @@ This repository  contains the CMS and the additional modules.
 - [SiteWebGeniALE](#sitewebgeniale)
 - [Table of content](#table-of-content)
 - [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installing](#installing)
-    - [Branching model](#branching-model)
-        - [Feature workflow](#feature-workflow)
-        - [Fix workflow](#fix-workflow)
+  - [Prerequisites](#prerequisites)
+  - [Installing](#installing)
+  - [Branching model](#branching-model)
+    - [Feature workflow](#feature-workflow)
+    - [Fix workflow](#fix-workflow)
 - [Deployment](#deployment)
-    - [Production deployment](#production-deployment)
+  - [Production deployment](#production-deployment)
 - [Plugins](#plugins)
-- [Tools](#tools)
+- [Documentation](#documentation)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgments)
 - [Licenses](#licenses)
-    - [Owl carousel](#owl-carousel)
+  - [Owl carousel](#owl-carousel)
 
 # Getting Started
 
@@ -124,24 +124,26 @@ At the moment, the website is deployed at: http://geniale-cms.herokuapp.com/
 
 # Plugins
 
-- [TeamModule](/teamModule/README.md)
-- [beer_carousel](/beer_carousel/README.md)
+- [Team module](teamModule/README.md)
+- [Beer carousel](beer_carousel/README.md)
+- [Sponsors Module](sponsorsModule/README.md)
 
-# Tools
+# Documentation
 
-For our current infrastructure, we have to sync our database from google spreadsheets.
-
-To authenticate the script, you must first put the `google_secret.json` file into the root of the folder.
-
-Then, you simply need to run the `sync_db.py` script.
+- [**Backups**](docs/BACKUPS.md)
+- [**Docker**](docs/DOCKER.md)
+- [**Pycharm**](docs/PYCHARM.md)
+- [**Translations**](docs/TRANSLATIONS.md)
 
 # Authors
 
-- **Mathieu Chan Yee Choy** [Bazooo](https://github.com/Bazooo)
-- **Alexis Côté** [popojargo](https://github.com/popojargo)
-- **Gabriel Bergeron** [gabrielbergeron](https://github.com/gabrielbergeron)
-- **Hugo Parent-Leduc** [hugoparent](https://github.com/hugoparent)
-- **Kristian Agbogba** [kpucc](https://github.com/kpucc)
+- **William Cantin** [:octocat:](https://github.com/wilomgfx)
+- **Mathieu Chan Yee Choy** [:octocat:](https://github.com/Bazooo)
+- **Alexis Côté** [:octocat:](https://github.com/popojargo)
+- **Gabriel Bergeron** [:octocat:](https://github.com/gabrielbergeron)
+- **Alexandre Desgagné** [:octocat:](https://github.com/alexemdesgagne)
+- **Hugo Parent-Leduc** [:octocat:](https://github.com/hugoparent)
+- **Kristian Agbogba** [:octocat:](https://github.com/kpucc)
 
 See also the list of [contributors](https://github.com/GeniALE/SiteWebGeniALE/contributors) who participated in this project.
 

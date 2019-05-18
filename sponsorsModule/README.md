@@ -32,4 +32,4 @@ SPONSORSMODULE_SPONSORSDISPLAY_TEMPLATES = [
 
 ```
 
-You must have atleast one template available in your components to be able to change it in the UI.
+You must have at least one template available in your components to be able to change it in the UI.

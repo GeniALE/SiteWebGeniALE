@@ -4,32 +4,32 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.prod
-    command: gunicorn --config docker/gunicorn.conf website.wsgi:application --bind 0.0.0.0:8000
+      dockerfile: docker/Dockerfile
+    command: gunicorn --config gunicorn.conf website.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - static_volume:/usr/src/app/static
-      - media_volume:/usr/src/app/media
+      - ./static:/usr/src/app/static
+      - ./media:/usr/src/app/media
     expose:
       - 8000
     env_file: .env
+    environment:
+      DEBUG: 0
     depends_on:
       - db
   db:
     image: postgres
+
     volumes:
-      - pgdata:/var/lib/postgresql/data/
-    env_file: .env.db
+      - ./pgdata:/var/lib/postgresql/data/pgdata:rw
+    environment:
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    env_file: .env
   nginx:
-    build: ./docker/nginx
+    build: docker/nginx
     volumes:
-      - static_volume:/usr/src/app/static
-      - media_volume:/usr/src/app/media
+      - ./static:/usr/src/app/static
+      - ./media:/usr/src/app/media
     ports:
       - 1337:80
     depends_on:
       - web
-
-volumes:
-  pgdata:
-  static_volume:
-  media_volume:

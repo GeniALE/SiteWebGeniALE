@@ -4,8 +4,6 @@ services:
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/usr/src/app/
     env_file: .env
     ports:
       - 8000:8000
@@ -13,12 +11,7 @@ services:
       - db
   db:
     image: postgres
-    volumes:
-      - pgdata:/var/lib/postgresql/data/
     environment:
         # Make sure the credentials are the same as the default one in the settings.py
         POSTGRES_PASSWORD: 'geniale'
         POSTGRES_USER: 'postgres'
-
-volumes:
-  pgdata:

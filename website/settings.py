@@ -31,7 +31,7 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'website', 'locale'),)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = int(os.environ.get('DEBUG',default=0))
+DEBUG = bool(os.environ.get('DEBUG', default=False))
 
 ADMINS = ['root', 'admin']
 

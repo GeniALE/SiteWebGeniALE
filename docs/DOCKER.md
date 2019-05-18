@@ -5,7 +5,10 @@ You can setup your project to use docker.
 - [Docker setup](#docker-setup)
 - [Prerequisites](#prerequisites)
 - [Getting started](#getting-started)
+- [Developer setup](#developer-setup)
+  - [Docker files](#docker-files)
 - [Production deployment](#production-deployment)
+  - [Docker files](#docker-files-1)
 - [Docker tools](#docker-tools)
 
 
@@ -28,18 +31,52 @@ You can setup your project to use docker.
 
     `docker-compose run web python manage.py createsuperuser`
     
-    
+ 
+# Developer setup
+
+The developer setup consists of a `docker-compose` configuration that combines:
+
+- A PostgreSQL database (**db**) mounted on `pgdata_dev`
+- A web container for DjangoCMS (**web**) mount on `.`
+
+You can run the setup with: `docker-compose up` or `./d.sh up`
+
+The developer setup serve the static/media files via Python. It also mount the 
+local directory directly in the container. So every local changes will be reflected in the container.
+
+## Docker files
+
+- `Dockerfile`: The DockerFile for the web container.
+- `docker-compose.yml`: The base configuration for all docker-compose setups.
+- `docker-compose.override.yml`: The developer setup override configuration file.
 
 
 # Production deployment
 
+The production setup consists of a `docker-compose` configuration that combines:
+
+- A PostgreSQL database (**db**) mounted on `pgdata`
+- A web container for DjangoCMS (**web**) running Gunicorn.
+- A Nginx server to serve static files
+
+
 1. Pull the repository
 2. Build docker compose 
     
-    `docker-compose -f docker-compose.prod.yml build` or `./d.sh prod build`
+    `docker-compose -f docker-compose.yml -f docker-compose.prod.yml build` or `./d.sh prod build`
 3. Start docker compose 
 
-    `docker-compose -f docker-compose.prod.yml up` or `./d.sh prod up`
+    `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up` or `./d.sh prod up`
+
+## Docker files
+
+- `docker/DockerFile`: The DockerFile for the production web container.
+- `docker/nginx`: A directory containing Nginx DockerFile and configuration files.
+- `docker/gunicorn.conf`: A Gunicorn configuration file to allow setting config 
+via environment variable prefixed by `GUNICORN_`.
+- `docker-compose.yml`: The base configuration for all docker-compose setups.
+- `docker-compose.prod.yml`: The production configuration for docker-compose
+
     
 # Docker tools
 
