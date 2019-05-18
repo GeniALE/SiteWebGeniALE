@@ -11,4 +11,4 @@ services:
     volumes:
       - ./pgdata_dev:/var/lib/postgresql/data/pgdata_dev:rw
     environment:
-        PGDATA: "/vardocker-compose/lib/postgresql/data/pgdata_dev"
+        PGDATA: "/var/lib/postgresql/data/pgdata_dev"
