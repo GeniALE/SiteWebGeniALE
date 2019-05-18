@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.4"
+  - "3.5"
 
 services:
   - docker
@@ -12,7 +12,7 @@ before_install:
  - docker-compose build
 
 script:
- - docker-compose run web  bash -c "sh ./bin/wait-for-postgres.sh db && python manage.py test"
+ - docker-compose run web  bash -c "python manage.py test"
  - echo $TRAVIS_PULL_REQUEST_BRANCH && echo $TRAVIS_BRANCH
 
 after_success:

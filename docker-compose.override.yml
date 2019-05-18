@@ -9,6 +9,6 @@ services:
   db:
     image: postgres
     volumes:
-      - ./pgdata_dev:/var/lib/postgresql/data/pgdata_dev:rw
+      - ./pgdata_dev:/var/lib/postgresql/data/pgdata_dev
     environment:
         PGDATA: "/var/lib/postgresql/data/pgdata_dev"
