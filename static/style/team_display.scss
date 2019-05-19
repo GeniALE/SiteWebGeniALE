@@ -67,6 +67,12 @@
     color: black;
     padding: 1em;
 
+    &__section__title{
+      display:block;
+      font-weight: bold;
+      margin: 10px 0 2px 0;
+    }
+
     &__close {
       position: fixed;
       display: none;

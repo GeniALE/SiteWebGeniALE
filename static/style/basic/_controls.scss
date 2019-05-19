@@ -53,10 +53,10 @@
 
 .title {
   @extend %title;
-  font-size: $title-big;
+  font-size: $title-regular;
 
   @include breakpoint(phone) {
-    font-size: $title-regular;
+    font-size: $title-small;
   }
 }
 
