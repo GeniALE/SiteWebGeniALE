@@ -29,11 +29,9 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'website', 'locale'),)
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_*e5#vmms*t78k^670ze(sw33k(!8e27!wd8^9#wmi&npfacw*'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# If it's not true, static files won't be served
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG', default=False))
 
 ADMINS = ['root', 'admin']
 
@@ -42,6 +40,7 @@ ALLOWED_HOSTS = [
     "geniale-cms.herokuapp.com",
     "geniale-prod.herokuapp.com",
     "cms.geniale.ca",
+    'geniale.ca',
     "web.geniale.ca",
     "localhost",
     "127.0.0.1"

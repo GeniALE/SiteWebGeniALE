@@ -7,7 +7,7 @@ prefix="docker-compose"
 
 if [ $action == "prod" ]
 then
-  prefix="docker-compose -f docker-compose.prod.yml"
+  prefix="docker-compose -f docker-compose.yml -f docker-compose.prod.yml"
   shift
   action="$1"
 fi

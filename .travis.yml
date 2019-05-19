@@ -1,18 +1,15 @@
-language: python
-python:
-  - "3.4"
+language: minimal
 
 services:
   - docker
 
 before_install:
- - touch .env
- - sudo /etc/init.d/postgresql stop
+ - cp .env.docker-example .env
  - docker build -t registry.heroku.com/geniale-cms/web .
  - docker-compose build
 
 script:
- - docker-compose run web  bash -c "sh ./bin/wait-for-postgres.sh db && python manage.py test"
+ - docker-compose run web sh -c "python manage.py test"
  - echo $TRAVIS_PULL_REQUEST_BRANCH && echo $TRAVIS_BRANCH
 
 after_success:
