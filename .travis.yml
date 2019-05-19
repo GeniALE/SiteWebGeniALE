@@ -1,18 +1,18 @@
 language: minimal
-
 services:
   - docker
-
 before_install:
- - cp .env.docker-example .env
- - docker build -t registry.heroku.com/geniale-cms/web .
- - docker-compose build
-
+  - cp .env.docker-example .env
+  - docker build -t registry.heroku.com/geniale-cms/web .
+  - docker-compose build
 script:
- - docker-compose run web sh -c "python manage.py test"
- - echo $TRAVIS_PULL_REQUEST_BRANCH && echo $TRAVIS_BRANCH
-
-after_success:
- - |
-    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" registry.heroku.com --password-stdin
-    docker push registry.heroku.com/geniale-cms/web
+  - docker-compose run web sh -c "python manage.py test"
+  - echo $TRAVIS_PULL_REQUEST_BRANCH && echo $TRAVIS_BRANCH
+deploy:
+  provider: heroku
+  app:
+    master: geniale-cms
+  api_key:
+    secure: Jq5zRzbgbKap1rO0VF3Fi0x/MwW6Lh3sme0wvW+fHQzG5rCcSQdpGBg+dknoWpTrQX783msdgb7xLsM2kUsV0X4kc59j76Kv4OohnXTp5GmXav6jDK1AaYq/rDlyEnmi8Q5r5WVI/L6HIBviRPZ9EvqDSwkCM11hXyptAnMBL4wTKi1+ua86jj0TwWL5l7PyER7qRMgWUUdq2M27HdPKsUJBK211bfDSK6g+AUCOOJzyoqEvS5yuiRvchHHxSNkY7uMwjXQgv649QuEMm1A04UoaPMQzUtG+j7Dj5sy8ctgUXbigiyJZyKa83hSMHWgP22OkTbJWSgvAexbFthkHVMiGawqK+EcPJ6JKo1turNdeeqPpgcnlEPLpA2EVtHoEp7l/vVCSCbHfA2ZYkhgpHWZfydsPnwjkOFrlB8icgHZVZkrEVo5xfvnLMeqRUq+npg/X/DduzKpk/Y5bN4N+vVoLssdmBDS2iL9jMZhmVDwdzS6ce9jBHpqguqKLyAMF2/YI6H/8D0uWVTyVbcK3GsRr9jt1nV/1ZKX79AT4IDV2onMex0hGr7MnvAoNU7og7MSC2Xmc0fu9oovB6vpobtMFiJD/yRwbMk0z5EWCQN3RzjViiPD84U8qLO2Vd6B9Cs0zb+wtC/sUraSlp4e1ssfmXkNt/7MvkJyjg4A0NzA=
+  run:
+    - "pip install -r requirements.txt"
