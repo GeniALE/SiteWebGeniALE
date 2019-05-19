@@ -5,6 +5,7 @@ You can setup your project to use docker.
 - [Docker setup](#docker-setup)
 - [Prerequisites](#prerequisites)
 - [Getting started](#getting-started)
+- [Base image](#base-image)
 - [Developer setup](#developer-setup)
   - [Docker files](#docker-files)
 - [Production deployment](#production-deployment)
@@ -30,7 +31,13 @@ You can setup your project to use docker.
 5. You need to create your super user with:
 
     `docker-compose run web python manage.py createsuperuser`
-    
+   
+# Base image
+
+The base image of our web container is located in [docker/base](docker/base).
+Its a prebuild Python 3.5-alpine image with libsass dependencies.
+
+Its used to speedup the usage of docker.
  
 # Developer setup
 
@@ -46,7 +53,7 @@ local directory directly in the container. So every local changes will be reflec
 
 ## Docker files
 
-- `Dockerfile`: The DockerFile for the web container.
+- `Dockerfile`: The Dockerfile for the web container.
 - `docker-compose.yml`: The base configuration for all docker-compose setups.
 - `docker-compose.override.yml`: The developer setup override configuration file.
 
@@ -70,8 +77,8 @@ The production setup consists of a `docker-compose` configuration that combines:
 
 ## Docker files
 
-- `docker/DockerFile`: The DockerFile for the production web container.
-- `docker/nginx`: A directory containing Nginx DockerFile and configuration files.
+- `docker/Dockerfile`: The Dockerfile for the production web container.
+- `docker/nginx`: A directory containing Nginx Dockerfile and configuration files.
 - `docker/gunicorn.conf`: A Gunicorn configuration file to allow setting config 
 via environment variable prefixed by `GUNICORN_`.
 - `docker-compose.yml`: The base configuration for all docker-compose setups.
