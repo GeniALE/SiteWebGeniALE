@@ -3,6 +3,7 @@
 @import './components/sponsor';
 @import './components/table';
 @import './components/sections';
+@import './header';
 
 $category-border-color: rgba(0, 0, 0, 0.329);
 
@@ -53,7 +54,7 @@ $category-border-color: rgba(0, 0, 0, 0.329);
     }
 
     &__title{
-        @extend .section__content__title;
+        @extend .header__content__title;
     }
 
     @include breakpoint(phone) {
