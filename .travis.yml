@@ -1,4 +1,5 @@
 language: minimal
+sudo: true
 services:
 - docker
 before_install:
@@ -7,6 +8,7 @@ before_install:
 - docker-compose build
 script:
 - docker-compose run web sh -c "python manage.py test"
+- sudo rm -rf pgdata_dev
 - echo $TRAVIS_PULL_REQUEST_BRANCH && echo $TRAVIS_BRANCH
 deploy:
   provider: heroku
