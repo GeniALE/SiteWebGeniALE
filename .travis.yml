@@ -14,7 +14,7 @@ script:
 
 after_success:
  - |
-   if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then
-      docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" registry.heroku.com
+   if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "true" ]; then
+      echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" registry.heroku.com --password-stdin
       docker push registry.heroku.com/geniale-cms/web
    fi
