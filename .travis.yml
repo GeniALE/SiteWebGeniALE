@@ -1,18 +1,18 @@
 language: minimal
 services:
-  - docker
+- docker
 before_install:
-  - cp .env.docker-example .env
-  - docker build -t registry.heroku.com/geniale-cms/web .
-  - docker-compose build
+- cp .env.docker-example .env
+- docker build -t registry.heroku.com/geniale-cms/web .
+- docker-compose build
 script:
-  - docker-compose run web sh -c "python manage.py test"
-  - echo $TRAVIS_PULL_REQUEST_BRANCH && echo $TRAVIS_BRANCH
+- docker-compose run web sh -c "python manage.py test"
+- echo $TRAVIS_PULL_REQUEST_BRANCH && echo $TRAVIS_BRANCH
 deploy:
   provider: heroku
   app:
     master: geniale-cms
   api_key:
-    secure: Jq5zRzbgbKap1rO0VF3Fi0x/MwW6Lh3sme0wvW+fHQzG5rCcSQdpGBg+dknoWpTrQX783msdgb7xLsM2kUsV0X4kc59j76Kv4OohnXTp5GmXav6jDK1AaYq/rDlyEnmi8Q5r5WVI/L6HIBviRPZ9EvqDSwkCM11hXyptAnMBL4wTKi1+ua86jj0TwWL5l7PyER7qRMgWUUdq2M27HdPKsUJBK211bfDSK6g+AUCOOJzyoqEvS5yuiRvchHHxSNkY7uMwjXQgv649QuEMm1A04UoaPMQzUtG+j7Dj5sy8ctgUXbigiyJZyKa83hSMHWgP22OkTbJWSgvAexbFthkHVMiGawqK+EcPJ6JKo1turNdeeqPpgcnlEPLpA2EVtHoEp7l/vVCSCbHfA2ZYkhgpHWZfydsPnwjkOFrlB8icgHZVZkrEVo5xfvnLMeqRUq+npg/X/DduzKpk/Y5bN4N+vVoLssdmBDS2iL9jMZhmVDwdzS6ce9jBHpqguqKLyAMF2/YI6H/8D0uWVTyVbcK3GsRr9jt1nV/1ZKX79AT4IDV2onMex0hGr7MnvAoNU7og7MSC2Xmc0fu9oovB6vpobtMFiJD/yRwbMk0z5EWCQN3RzjViiPD84U8qLO2Vd6B9Cs0zb+wtC/sUraSlp4e1ssfmXkNt/7MvkJyjg4A0NzA=
+    secure: L0EtnbeDe6vWaAkXrrHdoHymUsYQZ1/cm98YNHWa3Kv9jSFnoYKCLjvTxCRrtpTXaCjzr/20pcNCjvqMEgmst3fX4NIvogA0DNO580lcqm/xc22BJ+9/bxgLbVHotFs1vRf3vxrpOuTanXZiQMOSV879/QUbDHmLpXJ23u/P5wqOI1suQBFlffNGDXj6Evnd/F6AHkIgrKObsgR67Q8YnCWXcULfhmyib1b5FUwDZSdRfsc1NUHlF/k8e6UOzMLvQVs/KO3tlElhsbXB8UeN7H6siYao6lsjITf6jrKu1AZW58CkGJV0KiDz4V75qSgowxmoCdCvVttfHcl6f3+Oc8Wr1beI0A7G3TsGsR3J6gVgdESWfYQoZirOh1oAaHyDJWKJER1AGyskjXlzMq/RQZCe/pNEpxOKfBavNUZXd7WppsUTngGZJhRgYo6groqAjhgTeE4Nj35wKuH2o+BuhiX0KP4AtYWWzKL2VCV4pe3MihYUaid2a08EFnnEw4jXlkeWpiTsKolXBeiDKbHSe4qeHDVFtLGIIZFxKP7G993BCn6hiTq9l948J1XWroStCQxZJl32wznRUiHOid59VWciI6XPRhoG7hMg/QVUJnn0iDUwHl6o3Nd6GG9MQi1NPL6/udD9S0F7fWLtpwgkttVZcoi6mHYSQYEMdYpJp7M=
   run:
-    - "pip install -r requirements.txt"
+  - pip install -r requirements.txt
