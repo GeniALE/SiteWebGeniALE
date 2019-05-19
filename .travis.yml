@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
- - cp env.docker-example .envdoc
+ - cp .env.docker-example .env
  - docker build -t registry.heroku.com/geniale-cms/web .
  - docker-compose build
 
