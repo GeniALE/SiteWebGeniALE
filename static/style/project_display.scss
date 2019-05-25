@@ -159,9 +159,10 @@ $smLargeDivHeight: 225px;
         transition: $time-short;
         white-space: nowrap;
         width: 100%;
-        // TODO: Remove webkit specifier when available on all browsers.
         -webkit-text-stroke-width: 2px;
+        text-stroke-width: 2px;
         -webkit-text-stroke-color: white;
+        text-stroke-color: white;
         z-index: 20;
 
         @include breakpoint(phone) {
@@ -218,27 +219,12 @@ $smLargeDivHeight: 225px;
   }
 
   &__detail {
-    @extend .col-xs-12;
-    @extend .col-sm-11;
-    @extend .col-md-11;
-    @extend .col-md-offset-05;
-    //width: 80vw;
-    //display: flex;
-    //display: inherit;
     visibility: hidden; // hide and will be shown in js
-    //flex-direction: row;
     position: fixed;
-    //top: 16%;
     top: 5em;
-    left: 0.5em;
-    width: 100vw;
-    height: 68vh;
-    @include breakpoint(tablet) {
-      height: 90%;
-      width: 90%;
-      margin: 0 3%;
-      top: 5%;
-    }
+    width: 90%;
+    margin: 0 5%;
+    max-height: 90%;
     background-color: $color-background-light;
     border-radius: 7px;
     outline: none; // to remove the blue border when focus on chrome
@@ -260,39 +246,30 @@ $smLargeDivHeight: 225px;
     }
 
     &__picture {
+      margin-top: 2em;
       height: 100%;
       width: 100%;
-      //display: inline-block;
+
       .owl-carousel .owl-item &__container {
         max-height: 100%;
         max-width: 100%;
         vertical-align: middle;
-        /*position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%); */
       }
 
       &__prev, &__next {
         @extend .col-md-1;
         $height: 160px;
-        $width: 80px;
         padding: 0 !important;
         line-height: $height;
-        max-width: $width !important;
+        max-width: 6%;
 
         &:hover {
           cursor: pointer;
         }
 
         img {
-          max-width: $width;
           vertical-align: middle;
         }
-      }
-
-      @include breakpoint(tablet) {
-        margin-top: 15px;
       }
     }
 
@@ -303,16 +280,7 @@ $smLargeDivHeight: 225px;
       @extend .col-xs-12;
       @extend .col-sm-12;
       @extend .col-md-6;
-
-      .owl-stage-outer {
-        //height: 95% !important;
-        & .owl-stage {
-          //height: 100%;
-          & .owl-item {
-            //height: 100%;
-          }
-        }
-      }
+      padding-bottom: 0 !important;
     }
 
     &__description {
@@ -329,22 +297,16 @@ $smLargeDivHeight: 225px;
         overflow-y: auto;
         overflow-x: hidden;
         text-align: justify;
-        //text-justify: inter-word;
         @include breakpoint(phone) {
           overflow-y: visible;
         }
       }
     }
 
-    &__status {
-      &__container {
-
-      }
-    }
-
     &__right {
       @extend .col-md-45;
       overflow-y: auto;
+      padding-top: 0 !important;
 
       & > div {
         display: flex;
@@ -366,8 +328,8 @@ $smLargeDivHeight: 225px;
     &__close {
       position: fixed;
       display: none;
-      top: 7%;
-      right: 5%;
+      top: 6.5%;
+      right: 7%;
       color: black;
       cursor: pointer;
       z-index: 1020;
@@ -380,8 +342,8 @@ $smLargeDivHeight: 225px;
       }
 
       @include breakpoint(tablet) {
-        top: 2.5%;
-        right: 6%;
+        top: 6.5%;
+        right: 8%;
       }
 
     }
