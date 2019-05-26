@@ -9,6 +9,7 @@
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}"/>
     {% endcompress %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="{% static "lib/owlcarousel/assets/owl.carousel.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "lib/owlcarousel/assets/owl.theme.default.min.css" %}">
 
@@ -66,6 +67,7 @@
 <script src="{% static "lib/jquery/jquery-3.4.0.min.js" %}"></script>
 <script src="{% static "lib/jquery/jquery-ui.min.js" %}"></script>
 <script src="{% static "lib/jquery/jquery.ui.touch-punch.min.js" %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 <script src="{% static "lib/owlcarousel/owl.carousel.min.js" %}"></script>
 
 {% render_block "scripts" %}

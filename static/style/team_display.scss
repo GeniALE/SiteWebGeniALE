@@ -3,7 +3,7 @@
 
 @mixin mobileMemberDetail() {
   position: fixed;
-  background-color: $color-background;
+  background-color: $color-background-light;
   height: 90%;
   width: 90%;
   left: 5%;
@@ -53,9 +53,11 @@
 
     &__member {
       margin: 8px;
+
       &--active {
         color: black;
       }
+
       &:hover {
         cursor: pointer;
       }
@@ -63,12 +65,11 @@
   }
 
   &__details {
-    /* background-color: white;*/
     color: black;
     padding: 1em;
 
-    &__section__title{
-      display:block;
+    &__section__title {
+      display: block;
       font-weight: bold;
       margin: 10px 0 2px 0;
     }
@@ -76,13 +77,14 @@
     &__close {
       position: fixed;
       display: none;
-      top: 6%;
-      right: 10%;
+      top: 1%;
+      right: 7%;
       color: black;
       cursor: pointer;
       z-index: 1020;
-      font-size: 3em;
+      font-size: 5em;
       text-shadow: 1px 1px 2px white, 0 0 25px lightgray, 0 0 5px gray;
+
       &:hover {
         color: white;
         text-shadow: 1px 1px 2px black, 0 0 25px lightgray, 0 0 5px gray;
@@ -114,12 +116,12 @@
       background-color: $color-background-darker;
       opacity: 0.4;
       z-index: 999;
-      display:none;
-      @include breakpoint(phone){
-        display:block;
+      display: none;
+      @include breakpoint(phone) {
+        display: block;
       }
-      @include breakpoint(tablet){
-        display:block;
+      @include breakpoint(tablet) {
+        display: block;
       }
     }
 
@@ -142,10 +144,11 @@
     &__formation {
 
     }
+
     &__sticky {
       @include breakpoint(desktop) {
         position: fixed;
-        top:130px;
+        top: 130px;
         padding-right: 2em;
       }
     }
@@ -180,6 +183,7 @@
         border: 5px solid $color-primary;
         box-sizing: border-box;
       }
+
       &:hover {
         cursor: pointer;
       }
