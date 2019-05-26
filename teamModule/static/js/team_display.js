@@ -119,15 +119,10 @@ if (!TeamModuleClass.prototype.resetActiveDataType) {
 if (!TeamModuleClass.prototype.setActiveTeam) {
     TeamModuleClass.prototype.setActiveTeam = function (teamId, elem) {
         if (this.activeDataTypes.team.id === teamId) {
-            this._setActiveDiv(this.activeDataTypes.team.elem, 'team', false);
             this.setMemberVisibility(-1);
             this.resetActiveDataType('team');
         } else {
-            if (this.activeDataTypes.team.id !== null) {
-                this._setActiveDiv(this.activeDataTypes.team.elem, 'team', false);
-            }
             if (teamId !== null) {
-                this._setActiveDiv(elem, 'team', true);
                 this.setMemberVisibility(teamId);
             }
             this.activeDataTypes.team.id = teamId;

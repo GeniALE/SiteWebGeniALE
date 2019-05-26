@@ -19,6 +19,14 @@
                 var allMembersTeam = team_{{ uniqueName }}.rootNode.querySelector(".teamModule__team");
                 team_{{ uniqueName }}.setActiveTeam(-1, allMembersTeam);
             })();
+
+            $(document).ready(function () {
+                var $dropDown = $('#team_{{ uniqueName }}_dropdown');
+                $dropDown.select2();
+                $dropDown.on('change', function (evt) {
+                    team_{{ uniqueName }}.setActiveTeam(parseInt(evt.target.value));
+                });
+            });
         </script>
     {% endcompress %}
 {% endaddtoblock %}
@@ -27,13 +35,19 @@
         <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8 ">
             <div class="teamModule__teams">
-                <h1 class="teamModule__title">{{ translations.teams_title }}</h1>
-                {% for team in teams %}
-                    <div class="teamModule__team" onclick="team_{{ uniqueName }}.setActiveTeam({{ team.id }},this)">
-                        {{ team.team_name }}
-                        <span class="teamModule__team__count">{{ team.members_count }}</span>
-                    </div>
-                {% endfor %}
+                <label for="team_{{ uniqueName }}_dropdown">
+                    <h1 class="teamModule__title">{{ translations.teams_title }}</h1>
+                </label>
+                <div class="row">
+                    <select id="team_{{ uniqueName }}_dropdown" name="state" class="col-xs-12 col-md-4">
+                        {% for team in teams %}
+                            <option value="{{ team.id }}"
+                                    onClick="team_{{ uniqueName }}.setActiveTeam({{ team.id }},this)">
+                                {{ team.team_name }} ({{ team.members_count }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
 
             <div class="teamModule__members">
@@ -49,18 +63,19 @@
                         {% endfor %}
                     </div>
                     <div class="teamModule__memberpanel teamModule__memberpanel--avatars col-md-8 col-xs-12">
-                            {% for member in members %}
-                                <img class="teamModule__memberpanel__icon teamModule__memberpanel__icon{{ member.id }}"
-                                     src="{{ member.image }}"
-                                     onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},null,this)"/>
-                            {% endfor %}
+                        {% for member in members %}
+                            <img class="teamModule__memberpanel__icon teamModule__memberpanel__icon{{ member.id }}"
+                                 src="{{ member.image }}"
+                                 onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},null,this)"/>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="teamModule__details__blur teamModule--invisible " onclick="team_{{ uniqueName }}.modalClose()"></div>
+        <div class="teamModule__details__blur teamModule--invisible "
+             onclick="team_{{ uniqueName }}.modalClose()"></div>
         <div class="teamModule__details teamModule--invisible col-xs-12 col-sm-3 col-md-3 col-lg-2">
-            <div class="teamModule__details__close" onclick="team_{{ uniqueName }}.modalClose()">X</div>
+            <div class="teamModule__details__close" onclick="team_{{ uniqueName }}.modalClose()">&times;</div>
             <div class="center-xs start-sm teamModule__details__sticky">
                 <div>
                     <img class="teamModule__details__picture" src=""/>
