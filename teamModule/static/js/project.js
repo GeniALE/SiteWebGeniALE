@@ -15,16 +15,14 @@ if (!window.ProjectModuleClass) {
             pictures: this.detailNode.querySelector(".projectModule__detail__pictures"),
             description_parent: this.detailNode.querySelector(".projectModule__detail__description"),
             description: this.detailNode.querySelector(".projectModule__detail__description__container"),
-            status_parent: this.detailNode.querySelector(".projectModule__detail__status"),
-            status: this.detailNode.querySelector(".projectModule__detail__status__container"),
-            link_parent: this.detailNode.querySelector(".projectModule__detail__link"),
-            link: this.detailNode.querySelector(".projectModule__detail__link__container"),
             pictureDivStr: "projectModule__detail__picture",
             pictureActiveStr: "projectModule__detail__picture__active",
             pictureImgStr: "projectModule__detail__picture__container",
             blurContainer: this.rootNode.querySelector(".projectModule__detail__blur"),
-            closeBtn: this.rootNode.querySelector(".projectModule__detail__close")
-        }
+            closeBtn: this.rootNode.querySelector(".projectModule__detail__close"),
+            nextBtn: this.rootNode.querySelector(".projectModule__detail__picture__next"),
+            prevBtn: this.rootNode.querySelector(".projectModule__detail__picture__prev")
+        };
 
         this.projects = projects || [];
     }
@@ -57,9 +55,6 @@ if (!ProjectModuleClass.prototype.setActiveProject) {
             this.detail.title.innerText = '';
             this.detail.pictures.innerHTML = '';
             this.detail.description.innerText = '';
-            this.detail.status.innerText = '';
-            this.detail.link.href = '';
-            this.detail.link.innerText = '';
             this.detailNode.style.visibility = "hidden";
             //hide blur
             this.detail.blurContainer.style.display = "none";
@@ -69,18 +64,12 @@ if (!ProjectModuleClass.prototype.setActiveProject) {
 
         this.detail.pictures.innerHTML = '';
         this.detail.title.innerText = project.name;
-        this.detail.description.innerText = project.description;
+        this.detail.description.innerHTML = '<span class="projectModule__detail__description__prefix">' + project.name + ' </span>' + project.description;
         this.showHideInfo(this.detail.description_parent, !this.empty(project.description));
-        this.detail.status.innerText = project.status_text;
-        this.showHideInfo(this.detail.status_parent, !this.empty(project.status_text));
-        this.detail.link.href = project.website;
-        this.detail.link.innerText = project.website;
-        this.showHideInfo(this.detail.link_parent, !this.empty(project.website));
 
         for (var i = 0; i < project.images.length; i++) {
             this._insertPicture(this.detail.pictures, project.images[i]);
         }
-        var _this = this;
         this.detailNode.style.visibility = "inherit";
         this.detailNode.focus();
         this.buildCarousel();
@@ -93,32 +82,34 @@ if (!ProjectModuleClass.prototype.setActiveProject) {
 if (!ProjectModuleClass.prototype.calculateClosePosition) {
     ProjectModuleClass.prototype.calculateClosePosition = function () {
         var rect = this.detailNode.getBoundingClientRect();
-        //alert(JSON.stringify(rect));
-        this.detail.closeBtn.style.top = (rect.top + 10) + "px";
-        this.detail.closeBtn.style.right = ((rect.right - rect.width) + 10) + "px";
+        //this.detail.closeBtn.style.top = (rect.top) + "px";
+        //this.detail.closeBtn.style.right = ((rect.right - rect.width) + 10) + "px";
     }
 }
 
 if (!ProjectModuleClass.prototype.showHideInfo) {
     ProjectModuleClass.prototype.showHideInfo = function (component, show) {
         if (show && component == this.detail.description_parent) {
-            component.style.display = "contents";
+            component.style.display = "flex";
+            $('body').addClass("modal-open");
         } else if (show) {
             component.style.display = "block";
+             $('body').addClass("modal-open");
         } else {
             component.style.display = "none";
+            $('body').removeClass("modal-open");
         }
     }
 }
 if (!ProjectModuleClass.prototype.empty) {
     ProjectModuleClass.prototype.empty = function (data) {
-        if (typeof(data) == 'number' || typeof(data) == 'boolean') {
+        if (typeof (data) == 'number' || typeof (data) == 'boolean') {
             return false;
         }
-        if (typeof(data) == 'undefined' || data === null) {
+        if (typeof (data) == 'undefined' || data === null) {
             return true;
         }
-        if (typeof(data.length) != 'undefined') {
+        if (typeof (data.length) != 'undefined') {
             return data.length == 0;
         }
         var count = 0;
@@ -157,17 +148,30 @@ if (!ProjectModuleClass.prototype.buildCarousel) {
         if (!this.empty(this.activeProjectDetail)) {
             moreThanOnePicture = (this.activeProjectDetail.images.length > 1);
         }
-        $(this.detail.pictures).owlCarousel({
+        var $owl = $(this.detail.pictures);
+        $owl.owlCarousel({
             center: true,
             loop: moreThanOnePicture,
             items: 1,
             navigation: false,
+            nav: false,
+            dots: true,
             slideSpeed: 300,
             paginationSpeed: 400,
             margin: 1,
             autoplay: true,
             autoplayTimeout: 5000,
             autoplayHoverPause: true
+        });
+
+        $(this.detail.nextBtn).click(function () {
+            $owl.trigger('next.owl.carousel');
+        });
+
+        $(this.detail.prevBtn).click(function () {
+            // With optional speed parameter
+            // Parameters has to be in square bracket '[]'
+            $owl.trigger('prev.owl.carousel', [300]);
         });
     }
 }

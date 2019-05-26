@@ -42,3 +42,14 @@ section {
     max-width: 900px;
   }
 }
+
+body.modal-open {
+  @include breakpoint(phone) {
+    overflow: hidden;
+    height: 100vh;
+  }
+  @include breakpoint(tablet) {
+    overflow: hidden;
+    height: 100vh;
+  }
+}

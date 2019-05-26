@@ -65,8 +65,11 @@
         </div>
 
         <div class="projectModule__detail__blur" style="display: none;" onclick="{{ uniqueName }}.closeModal()"></div>
-        <div class="projectModule__detail__close" onclick="{{ uniqueName }}.closeModal()">X</div>
+        <div class="projectModule__detail__close" onclick="{{ uniqueName }}.closeModal()">&times;</div>
         <div class="projectModule__detail row">
+            <div class="projectModule__detail__picture__prev">
+                <img src="{% static "image/left-chevron.svg" %}" />
+            </div>
             <div class="projectModule__detail__pictures owl-carousel owl-theme">
                 {% comment %}
             {# This is an example of the html that is generated in js #}
@@ -83,17 +86,11 @@
                 </div>
 
                 <div class="projectModule__detail__description">
-                    <h4> {{ translations.project_description_title }} </h4>
                     <div class="projectModule__detail__description__container"></div>
                 </div>
-                <div class="projectModule__detail__status">
-                    <h4> {{ translations.project_status_title }} </h4>
-                    <div class="projectModule__detail__status__container"></div>
-                </div>
-                <div class="projectModule__detail__link">
-                    <h4> {{ translations.project_website_title }} </h4>
-                    <a href="" class="projectModule__detail__link__container" target="blank"></a>
-                </div>
+            </div>
+            <div class="projectModule__detail__picture__next">
+                  <img src="{% static "image/right-chevron.svg" %}" />
             </div>
         </div>
 </section>

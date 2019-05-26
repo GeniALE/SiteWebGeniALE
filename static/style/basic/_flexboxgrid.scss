@@ -487,6 +487,12 @@
     -ms-flex-preferred-size: 33.3333333333%;
     flex-basis: 33.3333333333%;
     max-width: 33.3333333333%; }
+  .col-md-45 {
+    -webkit-flex-basis: 36.5%;
+    -moz-flex-basis: 36.5%;
+    -ms-flex-preferred-size: 36.5%;
+    flex-basis: 36.5%;
+    max-width: 36.5%; }
   .col-md-5 {
     -webkit-flex-basis: 41.6666666667%;
     -moz-flex-basis: 41.6666666667%;
@@ -535,6 +541,8 @@
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
     max-width: 100%; }
+  .col-md-offset-05 {
+    margin-left: 4.1666666666%; }
   .col-md-offset-1 {
     margin-left: 8.3333333333%; }
   .col-md-offset-2 {
