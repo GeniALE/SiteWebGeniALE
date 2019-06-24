@@ -180,8 +180,8 @@ INSTALLED_APPS = (
 
 LANGUAGES = (
     ## Customize this
-    ('en', _('en')),
     ('fr', _('fr')),
+    ('en', _('en')),
 )
 
 CMS_LANGUAGES = {
@@ -193,16 +193,16 @@ CMS_LANGUAGES = {
     },
     1: [
         {
-            'code': 'en',
-            'name': _('English'),
+            'code': 'fr',
+            'name': _('French'),
+            'fallbacks': ['en'],
             'redirect_on_fallback': True,
             'public': True,
             'hide_untranslated': False,
         },
         {
-            'code': 'fr',
-            'name': _('French'),
-            'fallbacks': ['en'],
+            'code': 'en',
+            'name': _('English'),
             'redirect_on_fallback': True,
             'public': True,
             'hide_untranslated': False,
