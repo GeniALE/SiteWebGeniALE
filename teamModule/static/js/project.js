@@ -25,6 +25,9 @@ if (!window.ProjectModuleClass) {
         };
 
         this.projects = projects || [];
+        this.projectIds = $.map(this.projects, function (project) {
+            return project.id;
+        });
     }
 }
 
@@ -47,13 +50,12 @@ if (!ProjectModuleClass.prototype._getProjectById) {
 if (!ProjectModuleClass.prototype.setActiveProject) {
     ProjectModuleClass.prototype.setActiveProject = function (projectId) {
         var project = this._getProjectById(projectId);
-        //console.log(project);
+        var dialogAlreadyMounted = !!this.activeProjectDetail;
         this.activeProjectDetail = project;
-        //console.log("setActiveProject", projectId);
+
         if (project == null) {
-            $(this.detail.pictures).owlCarousel('destroy');
             this.detail.title.innerText = '';
-            this.detail.pictures.innerHTML = '';
+            this._clearPictures(this.detail.pictures);
             this.detail.description.innerText = '';
             this.detailNode.style.visibility = "hidden";
             //hide blur
@@ -67,15 +69,39 @@ if (!ProjectModuleClass.prototype.setActiveProject) {
         this.detail.description.innerHTML = '<span class="projectModule__detail__description__prefix">' + project.name + ' </span>' + project.description;
         this.showHideInfo(this.detail.description_parent, !this.empty(project.description));
 
+        if (dialogAlreadyMounted || !project) {
+            this._clearPictures(this.detail.pictures);
+        }
+
         for (var i = 0; i < project.images.length; i++) {
             this._insertPicture(this.detail.pictures, project.images[i]);
         }
-        this.detailNode.style.visibility = "inherit";
-        this.detailNode.focus();
-        this.buildCarousel();
-        this.detail.blurContainer.style.display = "block";
-        this.detail.closeBtn.style.display = "block";
-        this.calculateClosePosition();
+        this.buildCarousel(dialogAlreadyMounted);
+
+        if (!dialogAlreadyMounted) {
+            this.detailNode.focus();
+            this.detailNode.style.visibility = "inherit";
+            this.detail.blurContainer.style.display = "block";
+            this.detail.closeBtn.style.display = "block";
+            this.calculateClosePosition();
+        }
+    }
+}
+
+if (!ProjectModuleClass.prototype.navigateToAnotherProject) {
+    /**
+     * Navigate either to the previous or next project.
+     * @param goToNextOne boolean If true, move to the next project. Otherwise, it goes to the previous one.
+     */
+    ProjectModuleClass.prototype.navigateToAnotherProject = function (goToNextOne) {
+        if (typeof (goToNextOne) !== "boolean") {
+            goToNextOne = true;
+        }
+
+        var currentId = this.activeProjectDetail.id;
+        var nextId = goToNextOne ? this.getNextProjectId(currentId) : this.getPreviousProjectId(currentId);
+
+        this.setActiveProject(nextId);
     }
 }
 
@@ -94,7 +120,7 @@ if (!ProjectModuleClass.prototype.showHideInfo) {
             $('body').addClass("modal-open");
         } else if (show) {
             component.style.display = "block";
-             $('body').addClass("modal-open");
+            $('body').addClass("modal-open");
         } else {
             component.style.display = "none";
             $('body').removeClass("modal-open");
@@ -124,6 +150,7 @@ if (!ProjectModuleClass.prototype.empty) {
 
 if (!ProjectModuleClass.prototype.closeModal) {
     ProjectModuleClass.prototype.closeModal = function () {
+        this.deleteCarousel();
         this.setActiveProject(null);
     }
 }
@@ -142,36 +169,80 @@ if (!ProjectModuleClass.prototype._insertPicture) {
     }
 }
 
+if (!ProjectModuleClass.prototype._clearPictures) {
+    ProjectModuleClass.prototype._clearPictures = function (parentNode) {
+        while (parentNode.firstChild) {
+            parentNode.removeChild(parentNode.firstChild);
+        }
+    }
+}
+
 if (!ProjectModuleClass.prototype.buildCarousel) {
-    ProjectModuleClass.prototype.buildCarousel = function () {
+    ProjectModuleClass.prototype.buildCarousel = function (alreadyMounted) {
         var moreThanOnePicture = false;
         if (!this.empty(this.activeProjectDetail)) {
             moreThanOnePicture = (this.activeProjectDetail.images.length > 1);
         }
+
         var $owl = $(this.detail.pictures);
+
+        if (alreadyMounted) {
+            $owl.owlCarousel("destroy");
+        }
+
         $owl.owlCarousel({
             center: true,
             loop: moreThanOnePicture,
             items: 1,
-            navigation: false,
+            navigation: true,
             nav: false,
             dots: true,
             slideSpeed: 300,
             paginationSpeed: 400,
-            margin: 1,
+            margin: 2,
             autoplay: true,
             autoplayTimeout: 5000,
             autoplayHoverPause: true
         });
+        if (!alreadyMounted) {
+            $(this.detail.nextBtn).click(function () {
+                this.navigateToAnotherProject(true);
+            }.bind(this));
 
-        $(this.detail.nextBtn).click(function () {
-            $owl.trigger('next.owl.carousel');
-        });
+            $(this.detail.prevBtn).click(function () {
+                this.navigateToAnotherProject(false);
+            }.bind(this));
+        }
 
-        $(this.detail.prevBtn).click(function () {
-            // With optional speed parameter
-            // Parameters has to be in square bracket '[]'
-            $owl.trigger('prev.owl.carousel', [300]);
-        });
+    }
+}
+
+if (!ProjectModuleClass.prototype.deleteCarousel) {
+    ProjectModuleClass.prototype.deleteCarousel = function () {
+        var $owl = $(this.detail.pictures);
+        $owl.owlCarousel("destroy");
+        $(this.detail.nextBtn).unbind("click");
+        $(this.detail.prevBtn).unbind("click")
+    }
+}
+
+if (!ProjectModuleClass.prototype.getNextProjectId) {
+    ProjectModuleClass.prototype.getNextProjectId = function (projectId) {
+        var nextIndex = this.projectIds.indexOf(projectId) + 1;
+        if (nextIndex === this.projectIds.length) {
+            return this.projectIds[0];
+        } else {
+            return this.projectIds[nextIndex];
+        }
+    }
+}
+
+if (!ProjectModuleClass.prototype.getPreviousProjectId) {
+    ProjectModuleClass.prototype.getPreviousProjectId = function (projectId) {
+        var currentIndex = this.projectIds.indexOf(projectId);
+        if (currentIndex === 0) {
+            return this.projectIds[this.projectIds.length - 1];
+        } else
+            return this.projectIds[currentIndex - 1];
     }
 }
