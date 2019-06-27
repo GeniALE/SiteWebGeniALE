@@ -4,7 +4,7 @@ from hvad.admin import TranslatableAdmin
 
 from .models import Formation, Team, Project, Member, ProjectStatus, TeamRole, MemberExtraInfo, MemberExtraInfoType, \
     TeamDisplayView, TeamBannerModel, TeamBannerTranslationModel, TeamDisplayTranslationModel, ProjectImage, \
-    ProjectDisplayTranslationModel
+    ProjectDisplayTranslationModel, ProjectDisplayView
 
 
 def get_member_extra_info(user):
@@ -114,6 +114,9 @@ class PageMemberExtraInfoTypeAdmin(admin.ModelAdmin):
 class ProjectTranslationModelAdmin(TranslatableAdmin, admin.ModelAdmin):
     pass
 
+class ProjectDisplayViewAdmin(admin.ModelAdmin):
+    pass
+
 
 admin.site.register(ProjectStatus, StatusAdmin)
 admin.site.register(Formation, FormationAdmin)
@@ -131,3 +134,4 @@ admin.site.register(TeamBannerTranslationModel, TeamBannerTranslationModelAdmin)
 admin.site.register(TeamDisplayTranslationModel, TeamDisplayTranslationModelAdmin)
 
 admin.site.register(ProjectDisplayTranslationModel, ProjectTranslationModelAdmin)
+admin.site.register(ProjectDisplayView,ProjectDisplayViewAdmin)

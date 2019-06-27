@@ -221,10 +221,10 @@ $smLargeDivHeight: 225px;
   &__detail {
     visibility: hidden; // hide and will be shown in js
     position: fixed;
-    top: 5em;
+    top: 5vh;
     width: 90%;
     margin: 0 5%;
-    max-height: 90%;
+    height:90vh;
     background-color: $color-background-light;
     border-radius: 7px;
     outline: none; // to remove the blue border when focus on chrome
@@ -247,7 +247,7 @@ $smLargeDivHeight: 225px;
 
     &__picture {
       margin-top: 2em;
-      height: 100%;
+      max-height: calc(90vh - 8em);
       width: 100%;
 
       .owl-carousel .owl-item &__container {
