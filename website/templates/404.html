@@ -1,0 +1,41 @@
+{% load sekizai_tags compress static cache_bust %}
+
+{% addtoblock 'css' %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "style/error_page.scss" %}">
+    {% endcompress %}
+{% endaddtoblock %}
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% comment %} <script src="js/main.js"></script>  {% endcomment %}
+    </head>
+    <body class="error_page">
+        <div class="error_page__content">
+            <div id="falling_beer"></div>
+            <div id="pichet">
+                <img class="logo_geniale" src="{% static "image/logo.png" %}" alt="Logo GéniALE">
+                <div id="beer">
+                    <div class="foam_base" id="foam_1"></div>
+                    <div class="foam_base" id="foam_2"></div>
+                    <div class="foam_base" id="foam_3"></div>
+                    <div class="foam_base" id="foam_4"></div>
+                    <div class="foam_base" id="foam_5"></div>
+                    <div class="foam_base" id="foam_6"></div>
+                    <div class="bubble bubble1"></div>
+                    <div class="bubble bubble2"></div>
+                    <div class="bubble bubble3"></div>
+                    <div class="bubble bubble4"></div>
+                    <div class="bubble bubble5"></div>
+                </div>
+            </div>
+            <div class="error_page__text">
+                <p>
+                    <h1>Erreur 404</h1> 
+                    Cette page n'existe pas ou n'existe plus. 
+                    <p>Prenez une bonne bière et continuez votre navigation sur le <a href="http://cms.geniale.ca">site de GéniALE</a>.</p>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
