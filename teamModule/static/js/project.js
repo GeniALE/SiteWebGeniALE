@@ -58,7 +58,8 @@ if (!ProjectModuleClass.prototype.setActiveProject) {
             this._clearPictures(this.detail.pictures);
             this.detail.description.innerText = '';
             this.detailNode.style.visibility = "hidden";
-            //hide blur
+
+            // Hide blur
             this.detail.blurContainer.style.display = "none";
             this.detail.closeBtn.style.display = "none";
             return;
@@ -67,7 +68,7 @@ if (!ProjectModuleClass.prototype.setActiveProject) {
         this.detail.pictures.innerHTML = '';
         this.detail.title.innerText = project.name;
         this.detail.description.innerHTML = '<span class="projectModule__detail__description__prefix">' + project.name + ' </span>' + project.description;
-        this.showHideInfo(this.detail.description_parent, !this.empty(project.description));
+        this.changeInfoVisibility(this.detail.description_parent, !this.empty(project.description));
 
         if (dialogAlreadyMounted || !project) {
             this._clearPictures(this.detail.pictures);
@@ -113,12 +114,12 @@ if (!ProjectModuleClass.prototype.calculateClosePosition) {
     }
 }
 
-if (!ProjectModuleClass.prototype.showHideInfo) {
-    ProjectModuleClass.prototype.showHideInfo = function (component, show) {
-        if (show && component == this.detail.description_parent) {
+if (!ProjectModuleClass.prototype.changeInfoVisibility) {
+    ProjectModuleClass.prototype.changeInfoVisibility = function (component, visible) {
+        if (visible && component == this.detail.description_parent) {
             component.style.display = "flex";
             $('body').addClass("modal-open");
-        } else if (show) {
+        } else if (visible) {
             component.style.display = "block";
             $('body').addClass("modal-open");
         } else {
@@ -151,6 +152,7 @@ if (!ProjectModuleClass.prototype.empty) {
 if (!ProjectModuleClass.prototype.closeModal) {
     ProjectModuleClass.prototype.closeModal = function () {
         this.deleteCarousel();
+        this.changeInfoVisibility(this.detail.description_parent, false);
         this.setActiveProject(null);
     }
 }
