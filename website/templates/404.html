@@ -1,41 +1,65 @@
 {% load sekizai_tags compress static cache_bust %}
 
-{% addtoblock 'css' %}
+<!doctype html>
+<html>
+<head>
+    <title>Page not found/Page non trouvé</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}"/>
+    {% endcompress %}
+
+    <!-- Favicon icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static "icons/apple-icon-57x57.png" %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static "icons/apple-icon-60x60.png" %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static "icons/apple-icon-72x72.png" %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static "icons/apple-icon-76x76.png" %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static "icons/apple-icon-114x114.png" %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static "icons/apple-icon-120x120.png" %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static "icons/apple-icon-144x144.png" %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static "icons/apple-icon-152x152.png" %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "icons/apple-icon-180x180.png" %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static "icons/android-icon-192x192.png" %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static "icons/favicon-32x32.png" %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static "icons/favicon-96x96.png" %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static "icons/favicon-16x16.png" %}">
+    <link rel="manifest" href="{% static "icons/manifest.json" %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static "icons/ms-icon-144x144.png" %}">
+    <meta name="theme-color" content="#ffffff">
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "style/error_page.scss" %}">
     {% endcompress %}
-{% endaddtoblock %}
-<html>
-    <head>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        {% comment %} <script src="js/main.js"></script>  {% endcomment %}
-    </head>
-    <body class="error_page">
-        <div class="error_page__content">
-            <div id="falling_beer"></div>
-            <div id="pichet">
-                <img class="logo_geniale" src="{% static "image/logo.png" %}" alt="Logo GéniALE">
-                <div id="beer">
-                    <div class="foam_base" id="foam_1"></div>
-                    <div class="foam_base" id="foam_2"></div>
-                    <div class="foam_base" id="foam_3"></div>
-                    <div class="foam_base" id="foam_4"></div>
-                    <div class="foam_base" id="foam_5"></div>
-                    <div class="foam_base" id="foam_6"></div>
-                    <div class="bubble bubble1"></div>
-                    <div class="bubble bubble2"></div>
-                    <div class="bubble bubble3"></div>
-                    <div class="bubble bubble4"></div>
-                    <div class="bubble bubble5"></div>
-                </div>
-            </div>
-            <div class="error_page__text">
-                <p>
-                    <h1>Erreur 404</h1> 
-                    Cette page n'existe pas ou n'existe plus. 
-                    <p>Prenez une bonne bière et continuez votre navigation sur le <a href="http://cms.geniale.ca">site de GéniALE</a>.</p>
-                </p>
-            </div>
+</head>
+<body class="error_page">
+<div class="error_page__content">
+    <div id="falling_beer"></div>
+    <div id="pichet">
+        <img class="logo_geniale" src="{% static "image/logo.png" %}" alt="Logo GéniALE">
+        <div id="beer">
+            <div class="foam_base" id="foam_1"></div>
+            <div class="foam_base" id="foam_2"></div>
+            <div class="foam_base" id="foam_3"></div>
+            <div class="foam_base" id="foam_4"></div>
+            <div class="foam_base" id="foam_5"></div>
+            <div class="foam_base" id="foam_6"></div>
+            <div class="bubble bubble1"></div>
+            <div class="bubble bubble2"></div>
+            <div class="bubble bubble3"></div>
+            <div class="bubble bubble4"></div>
+            <div class="bubble bubble5"></div>
         </div>
-    </body>
+    </div>
+    <div class="error_page__text">
+        <p>
+        <h1>Erreur 404</h1>
+        Cette page n'existe pas ou n'existe plus.
+        <p>Prenez une bonne bière et continuez votre navigation sur le <a href="http://cms.geniale.ca">site de
+            GéniALE</a>.</p>
+        </p>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static "script/error_page.js" %}"></script>
+</body>
 </html>
