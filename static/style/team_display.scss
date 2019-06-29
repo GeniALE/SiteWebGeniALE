@@ -53,9 +53,11 @@
 
     &__member {
       margin: 8px;
+      color: $color-background-dark;
 
       &--active {
-        color: black;
+        color: $color-primary;
+        font-weight: bold;
       }
 
       &:hover {
