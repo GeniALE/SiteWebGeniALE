@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-28 18:05-0400\n"
+"POT-Creation-Date: 2019-06-29 15:12-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,21 +17,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\settings.py:182
-msgid "en"
-msgstr "en"
-
 #: .\settings.py:183
 msgid "fr"
 msgstr "fr"
 
-#: .\settings.py:196
+#: .\settings.py:184
+msgid "en"
+msgstr "en"
+
+#: .\settings.py:197
+msgid "French"
+msgstr "Français"
+
+#: .\settings.py:205
 msgid "English"
 msgstr "English"
 
-#: .\settings.py:203
-msgid "French"
-msgstr "Français"
+#: .\templates\404.html:6
+msgid "Oops! Page not found"
+msgstr "Oops! Page introuvable"
+
+#: .\templates\404.html:42
+msgid "Page not found"
+msgstr "Page introuvable"
+
+#: .\templates\404.html:44
+msgid ""
+"The page you're trying to reach doesn't exists. Return to GeniALE's website "
+"using the button below."
+msgstr "La page que vous tentez d'accéder n'existe pas. Retournez sur le site de GéniALE en cliquant sur le bouton ci-dessous."
+
+#: .\templates\404.html:45
+msgid "Homepage"
+msgstr "Page d'accueil"
 
 #: .\templates\footer.html:2
 msgid "address"
