@@ -328,8 +328,8 @@ $smLargeDivHeight: 225px;
     &__close {
       position: fixed;
       display: none;
-      top: 6.5%;
-      right: 7%;
+      top: 3vh;
+      right: calc(5vw + 8px);
       color: black;
       cursor: pointer;
       z-index: 1020;
@@ -340,11 +340,6 @@ $smLargeDivHeight: 225px;
         color: white;
         text-shadow: 1px 1px 2px black, 0 0 25px lightgray, 0 0 5px gray;
       }
-
-      @include breakpoint(tablet) {
-        right: 8%;
-      }
-
     }
   }
 
