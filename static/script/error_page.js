@@ -1,44 +1,49 @@
 var beerHeight = 20;
 var beerWidth = 200;
 var beerMaxHeight = 270;
-var fallingBeerHeight = 400;
-var fallingBeerWidth = 20;
-var fillDelay = 2;
+
+var beerFillingWidth = 20;
+var fillDelay = 4;
 var fillInterval;
-var stopFillDelay = 1 / 100;
-var stopFillingInterval = null;
-var beer = null;
-var fallingBeer = null;
-var nbFoams = 5;
-var foams = [];
-var text = null;
+
+// DOM Elements
+var beerFillingElem = null;
+var beerElem = null;
+var textElem = null;
 
 
 function fill() {
     beerHeight += 1;
-    if (beerHeight <= beerMaxHeight && beer) {
-        beer.style.height = beerHeight + "px";
+    if (beerHeight <= beerMaxHeight && beerElem) {
+        beerElem.style.height = beerHeight + "px";
     } else {
         stopFill();
     }
 }
 
 function stopFill() {
-    fallingBeer.style.height = 0 + "px";
-    //text.style.opacity = 1.0;
+    beerFillingElem.style.height = 0 + "px";
+    textElem.style.display = "block";
+    textElem.style.opacity = 1.0;
+    clearInterval(fillInterval);
 }
 
+function loadHomepage() {
+    location.href = location.protocol + "//" + location.host;
+}
 
-$(document).ready(function () {
-    beer = document.getElementById("beer");
-    beer.style.height = beerHeight + "px";
-    beer.style.width = beerWidth + "px";
-    var beerRect = beer.getBoundingClientRect();
-    fallingBeer = document.getElementById("falling_beer");
-    debugger;
-    fallingBeer.style.height = beerRect.top + "px";
-    fallingBeer.style.width = fallingBeerWidth + "px";
-    text = document.getElementById("text");
+(function () {
+    beerElem = document.getElementById("beer");
+    beerElem.style.height = beerHeight + "px";
+    beerElem.style.width = beerWidth + "px";
+
+    var beerRect = beerElem.getBoundingClientRect();
+
+    beerFillingElem = document.getElementById("beerFilling");
+    beerFillingElem.style.height = beerRect.top - 66 + "px";
+    beerFillingElem.style.width = beerFillingWidth + "px";
+
+    textElem = document.getElementById("errorText");
 
     fillInterval = setInterval(fill, fillDelay);
-});
+})();

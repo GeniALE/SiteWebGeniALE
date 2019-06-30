@@ -42,7 +42,7 @@ The website translations are stored into `website/locale/<language>`.
 To translate a new language, you must run the following command inside the `website` folder:
 
 ```bash
-django-admins makemessages -l en
+django-admin makemessages -l en
 ```
 
 It will generate a `django.po` file inside `/website/locale/en/LC_MESSAGES` directory.
@@ -54,7 +54,7 @@ Once you're done translating the files, you must compile them!
 To do so, run the following command inside the `website` folder:
 
 ```bash
-django-admins compilemessages
+django-admin compilemessages
 ```
 
 The `django.po` files should be compiled into `django.mo` files. At this point, translations should be loaded

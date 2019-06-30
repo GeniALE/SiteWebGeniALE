@@ -26,6 +26,10 @@
   text-align: justify;
   line-height: 1.5em;
   max-width: 600px;
+
+  &--center{
+    text-align: center;
+  }
 }
 
 /* Buttons */
