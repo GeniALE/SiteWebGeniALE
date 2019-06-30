@@ -148,7 +148,7 @@ See also the list of [contributors](https://github.com/GeniALE/SiteWebGeniALE/co
 
 # Acknowledgments
 
-* **Club Cedille** [:octocat:](https://github.com/clubcedille) [:globe_with_meridians:](http://cedille.etsmtl.ca/)
+* **Club Cedille** [:octocat:](https://github.com/clubcedille)[:globe_with_meridians:](http://cedille.etsmtl.ca/)
 
 # Licenses
 
