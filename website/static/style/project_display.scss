@@ -1,7 +1,7 @@
-@import "./basic/_flexboxgrid";
-@import './basic/_breakpoint.scss';
-@import './basic/_colors.scss';
-@import './basic/_fonts.scss';
+@import "basic/flexboxgrid";
+@import 'basic/breakpoint';
+@import 'basic/colors';
+@import 'basic/fonts';
 
 // Tablet/desktop heights
 $mdSmallDivHeight: 200px;

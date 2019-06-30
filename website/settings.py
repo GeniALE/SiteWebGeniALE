@@ -31,8 +31,8 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'website', 'locale'),)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = bool(os.environ.get('DEBUG', default=False))
 
+DEBUG = bool(int(os.environ.get('DEBUG', default="0")))
 ADMINS = ['root', 'admin']
 
 ALLOWED_HOSTS = [
@@ -96,7 +96,6 @@ STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'website', 'static'),
-    os.path.join(BASE_DIR, 'sponsorsModule', 'static'),
     os.path.join(BASE_DIR, 'teamModule', 'static'),
 )
 SITE_ID = 1

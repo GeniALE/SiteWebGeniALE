@@ -8,8 +8,7 @@
 /media/
 /sql
 /fcgi/django.fcgi
-/static/css/*.css
-/static/CACHE
+/static
 
 # Common IDEs
 *.swp
@@ -51,3 +50,4 @@ RELEASE-VERSION
 \.vscode/
 
 google_secret\.json
+

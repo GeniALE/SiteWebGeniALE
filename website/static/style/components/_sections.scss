@@ -1,6 +1,6 @@
-@import "../basic/_flexboxgrid";
-@import "../basic/_fonts";
-@import "../basic/_breakpoint";
+@import "../basic/flexboxgrid";
+@import "../basic/fonts";
+@import "../basic/breakpoint";
 
 .section {
   @extend .row;
