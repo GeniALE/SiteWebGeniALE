@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-28 18:19-0400\n"
+"POT-Creation-Date: 2019-06-29 15:11-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,21 +16,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: .\settings.py:183
+msgid "fr"
+msgstr "fr"
+
 #: .\settings.py:184
 msgid "en"
 msgstr "en"
 
-#: .\settings.py:185
-msgid "fr"
-msgstr "fr"
+#: .\settings.py:197
+msgid "French"
+msgstr "Français"
 
-#: .\settings.py:198
+#: .\settings.py:205
 msgid "English"
 msgstr "English"
 
-#: .\settings.py:205
-msgid "French"
-msgstr "Français"
+#: .\templates\404.html:6
+msgid "Oops! Page not found"
+msgstr "Oops! Page not found"
+
+#: .\templates\404.html:42
+msgid "Page not found"
+msgstr "Page not found"
+
+#: .\templates\404.html:44
+msgid ""
+"The page you're trying to reach doesn't exists. Return to GeniALE's website "
+"using the button below."
+msgstr "The page you're trying to reach doesn't exists. Return to GeniALE's website using the button below."
+
+#: .\templates\404.html:45
+msgid "Homepage"
+msgstr "Homepage"
 
 #: .\templates\footer.html:2
 msgid "address"
