@@ -138,19 +138,17 @@ At the moment, the website is deployed at: http://geniale-cms.herokuapp.com/
 
 # Authors
 
+- **Gabriel Bergeron** [:octocat:](https://github.com/gabrielbergeron)
 - **William Cantin** [:octocat:](https://github.com/wilomgfx)
 - **Mathieu Chan Yee Choy** [:octocat:](https://github.com/Bazooo)
 - **Alexis Côté** [:octocat:](https://github.com/popojargo)
-- **Gabriel Bergeron** [:octocat:](https://github.com/gabrielbergeron)
 - **Alexandre Desgagné** [:octocat:](https://github.com/alexemdesgagne)
-- **Hugo Parent-Leduc** [:octocat:](https://github.com/hugoparent)
-- **Kristian Agbogba** [:octocat:](https://github.com/kpucc)
 
 See also the list of [contributors](https://github.com/GeniALE/SiteWebGeniALE/contributors) who participated in this project.
 
 # Acknowledgments
 
-* [Club Cedille](https://github.com/clubcedille)
+* **Club Cedille** [:octocat:](https://github.com/clubcedille)[:globe_with_meridians:](http://cedille.etsmtl.ca/)
 
 # Licenses
 
