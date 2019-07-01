@@ -1,6 +1,6 @@
-@import "./components/_sections";
-@import "./basic/_breakpoint";
-@import "./basic/_controls";
+@import "components/sections";
+@import "basic/breakpoint";
+@import "basic/controls";
 
 .header {
   @extend .section;

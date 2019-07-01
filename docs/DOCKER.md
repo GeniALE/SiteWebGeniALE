@@ -75,6 +75,8 @@ The production setup consists of a `docker-compose` configuration that combines:
 
     `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up` or `./d.sh prod up`
 
+The application will be hosted on the port `:1337`. For example: `http://localhost:1337/`
+
 ## Docker files
 
 - `docker/Dockerfile`: The Dockerfile for the production web container.

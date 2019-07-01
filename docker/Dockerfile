@@ -7,10 +7,12 @@ COPY docker/gunicorn.conf /usr/src/app
 COPY bin /usr/src/app/bin
 COPY docker/entrypoint.sh /usr/src/app/
 COPY sponsorsModule /usr/src/app/sponsorsModule
-COPY static /usr/src/app/static
 COPY teamModule /usr/src/app/teamModule
 COPY website /usr/src/app/website
 COPY manage.py /usr/src/app/
+
+# Create folder for static files collected
+RUN mkdir -p /usr/src/app/static
 
 # run entrypoint.prod.sh
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

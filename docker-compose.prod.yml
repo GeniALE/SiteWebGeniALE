@@ -7,7 +7,7 @@ services:
       dockerfile: docker/Dockerfile
     command: gunicorn --config gunicorn.conf website.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - ./static:/usr/src/app/static
+      - static_files:/usr/src/app/static
       - ./media:/usr/src/app/media
     expose:
       - 8000
@@ -18,7 +18,6 @@ services:
       - db
   db:
     image: postgres
-
     volumes:
       - ./pgdata:/var/lib/postgresql/data/pgdata
     environment:
@@ -27,9 +26,11 @@ services:
   nginx:
     build: docker/nginx
     volumes:
-      - ./static:/usr/src/app/static
+      - static_files:/usr/src/app/static
       - ./media:/usr/src/app/media
     ports:
       - 1337:80
     depends_on:
       - web
+volumes:
+  static_files:

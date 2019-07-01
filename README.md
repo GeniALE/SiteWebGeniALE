@@ -154,4 +154,4 @@ See also the list of [contributors](https://github.com/GeniALE/SiteWebGeniALE/co
 
 ## Owl carousel
 
-The code and the documentation are released under the [MIT License](static/lib/owlcarousel/LICENSE).
+The code and the documentation are released under the [MIT License](website/static/lib/owlcarousel/LICENSE).

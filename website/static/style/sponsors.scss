@@ -1,9 +1,9 @@
-@import './basic/_colors';
-@import './basic/_breakpoint';
-@import './components/sponsor';
-@import './components/table';
-@import './components/sections';
-@import './header';
+@import 'basic/colors';
+@import 'basic/breakpoint';
+@import 'components/sponsor';
+@import 'components/table';
+@import 'components/sections';
+@import 'header';
 
 $category-border-color: rgba(0, 0, 0, 0.329);
 
