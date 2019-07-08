@@ -93,7 +93,7 @@ class Member(TranslatableModel):
     date_left = models.DateTimeField(blank=True, null=True)
 
     translations = TranslatedFields(
-        bio=models.CharField(max_length=400, blank=True)
+        bio=models.CharField(max_length=1200, blank=True)
     )
 
     def __str__(self):

@@ -7,6 +7,10 @@ from hvad.admin import TranslatableAdmin
 class SponsorAdmin(admin.ModelAdmin):
     model = Sponsor
 
+    important_fields = ('title', 'url', 'score')
+    search_fields = important_fields
+    list_display = important_fields
+
 
 class SponsorsDisplayViewAdmin(admin.ModelAdmin):
     filter_horizontal = ("categories",)
