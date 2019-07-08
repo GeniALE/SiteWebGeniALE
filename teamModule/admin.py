@@ -18,7 +18,7 @@ def get_default_extra_types():
 
 
 class TeamAdmin(TranslatableAdmin):
-    pass
+    model = Team
 
 
 class ProjectPictureInline(admin.StackedInline):
@@ -28,8 +28,12 @@ class ProjectPictureInline(admin.StackedInline):
 
 
 class ProjectAdmin(TranslatableAdmin):
-    model = Member
+    model = Project
     inlines = (ProjectPictureInline,)
+
+    important_fields = ('name',)
+    search_fields = important_fields
+    list_display = important_fields
 
 
 class ExtraInfoInlineFormSet(BaseInlineFormSet):
@@ -69,9 +73,13 @@ class MemberAdmin(TranslatableAdmin):
     inlines = (ExtraInfoInline,)
     filter_horizontal = ("teamRoles", "projects",)
 
+    important_fields = ('first_name', 'last_name', 'email', 'date_joined', 'date_left')
+    search_fields = important_fields
+    list_display = important_fields
+
 
 class FormationAdmin(TranslatableAdmin):
-    pass
+    model = Formation
 
 
 class StatusAdmin(TranslatableAdmin):
@@ -114,6 +122,7 @@ class PageMemberExtraInfoTypeAdmin(admin.ModelAdmin):
 class ProjectTranslationModelAdmin(TranslatableAdmin, admin.ModelAdmin):
     pass
 
+
 class ProjectDisplayViewAdmin(admin.ModelAdmin):
     pass
 
@@ -134,4 +143,4 @@ admin.site.register(TeamBannerTranslationModel, TeamBannerTranslationModelAdmin)
 admin.site.register(TeamDisplayTranslationModel, TeamDisplayTranslationModelAdmin)
 
 admin.site.register(ProjectDisplayTranslationModel, ProjectTranslationModelAdmin)
-admin.site.register(ProjectDisplayView,ProjectDisplayViewAdmin)
+admin.site.register(ProjectDisplayView, ProjectDisplayViewAdmin)

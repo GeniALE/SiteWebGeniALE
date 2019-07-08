@@ -1,7 +1,8 @@
 from django.contrib import admin
 from hvad.admin import TranslatableAdmin
 
-from .models import BeerCarouselPluginModel, BeerModel, BeerTranslationsModel, BeerCarouselPluginTranslationModel, BeerContainer
+from .models import BeerCarouselPluginModel, BeerModel, BeerTranslationsModel, BeerCarouselPluginTranslationModel, \
+    BeerContainer
 
 
 class BeerCarouselTranslationModelAdmin(TranslatableAdmin, admin.ModelAdmin):
@@ -13,11 +14,16 @@ class BeerTranslationsAdmin(TranslatableAdmin, admin.ModelAdmin):
 
 
 class BeerAdmin(admin.ModelAdmin):
-    pass
+    model = BeerModel
+
+    important_fields = ('name', 'type', 'alcohol_percent', 'ibu', 'created_at')
+    search_fields = important_fields
+    list_display = important_fields
 
 
 class BeerPluginAdmin(admin.ModelAdmin):
     pass
+
 
 class BeerContainerAdmin(admin.ModelAdmin):
     pass
