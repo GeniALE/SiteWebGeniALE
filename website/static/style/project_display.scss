@@ -164,6 +164,8 @@ $smLargeDivHeight: 225px;
         -webkit-text-stroke-color: white;
         text-stroke-color: white;
         z-index: 20;
+        margin: 0;
+        font-weight: bold;
 
         @include breakpoint(phone) {
           font-size: $title-small;
@@ -224,7 +226,7 @@ $smLargeDivHeight: 225px;
     top: 5vh;
     width: 90%;
     margin: 0 5%;
-    height:90vh;
+    height: 90vh;
     background-color: $color-background-light;
     border-radius: 7px;
     outline: none; // to remove the blue border when focus on chrome
@@ -241,7 +243,8 @@ $smLargeDivHeight: 225px;
       font-size: $title-small;
 
       &__container {
-
+        font-weight: bold;
+        margin: 0.5em 0;
       }
     }
 
@@ -307,6 +310,7 @@ $smLargeDivHeight: 225px;
       @extend .col-md-45;
       overflow-y: auto;
       padding-top: 0 !important;
+      flex: 1;
 
       & > div {
         display: flex;
