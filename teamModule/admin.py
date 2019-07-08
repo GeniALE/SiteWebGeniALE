@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.forms import BaseInlineFormSet
+from django.forms import BaseInlineFormSet, Textarea
 from hvad.admin import TranslatableAdmin
 
 from .models import Formation, Team, Project, Member, ProjectStatus, TeamRole, MemberExtraInfo, MemberExtraInfoType, \
@@ -76,6 +76,12 @@ class MemberAdmin(TranslatableAdmin):
     important_fields = ('first_name', 'last_name', 'email', 'date_joined', 'date_left')
     search_fields = important_fields
     list_display = important_fields
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        formfield = super(MemberAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        if db_field.name == 'bio':
+            formfield.widget = Textarea(attrs=formfield.widget.attrs)
+        return formfield
 
 
 class FormationAdmin(TranslatableAdmin):
