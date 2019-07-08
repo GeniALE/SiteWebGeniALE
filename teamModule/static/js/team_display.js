@@ -94,7 +94,7 @@ if (!window.TeamModuleClass) {
         this.membersById = TeamModuleHelper.indexArrayByKey(members, 'id');
         this.hiddenClass = "teamModule--hidden";
         this.invisibleClass = "teamModule--invisible";
-        this.modalOpenClass = "modal-open";
+        this.modalOpenClass = "modal-open-mobile-only";
 
         var detailElem = this.rootNode.querySelector(".teamModule__details__sticky");
         $(detailElem).followDetailToFooter(detailElem);
