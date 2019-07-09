@@ -291,6 +291,10 @@ $smLargeDivHeight: 225px;
       display: flex;
       flex-grow: 1;
 
+      @include breakpoint(phone) {
+        max-height: 100%;
+      }
+
       &__prefix {
         font-weight: bold;
         font-size: 1.2em;
@@ -301,7 +305,7 @@ $smLargeDivHeight: 225px;
         overflow-x: hidden;
         text-align: justify;
         @include breakpoint(phone) {
-          overflow-y: visible;
+          overflow-y: hidden;
         }
       }
     }
