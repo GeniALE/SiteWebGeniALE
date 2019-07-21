@@ -13,37 +13,37 @@ var textElem = null;
 
 
 function fill() {
-    beerHeight += 1;
-    if (beerHeight <= beerMaxHeight && beerElem) {
-        beerElem.style.height = beerHeight + "px";
-    } else {
-        stopFill();
-    }
+  beerHeight += 1;
+  if (beerHeight <= beerMaxHeight && beerElem) {
+    beerElem.style.height = beerHeight + "px";
+  } else {
+    stopFill();
+  }
 }
 
 function stopFill() {
-    beerFillingElem.style.height = 0 + "px";
-    textElem.style.display = "block";
-    textElem.style.opacity = 1.0;
-    clearInterval(fillInterval);
+  beerFillingElem.style.height = 0 + "px";
+  textElem.style.display = "block";
+  textElem.style.opacity = 1.0;
+  clearInterval(fillInterval);
 }
 
 function loadHomepage() {
-    location.href = location.protocol + "//" + location.host;
+  location.href = location.protocol + "//" + location.host;
 }
 
 (function () {
-    beerElem = document.getElementById("beer");
-    beerElem.style.height = beerHeight + "px";
-    beerElem.style.width = beerWidth + "px";
+  beerElem = document.getElementById("beer");
+  beerElem.style.height = beerHeight + "px";
+  beerElem.style.width = beerWidth + "px";
 
-    var beerRect = beerElem.getBoundingClientRect();
+  var beerRect = beerElem.getBoundingClientRect();
 
-    beerFillingElem = document.getElementById("beerFilling");
-    beerFillingElem.style.height = beerRect.top - 66 + "px";
-    beerFillingElem.style.width = beerFillingWidth + "px";
+  beerFillingElem = document.getElementById("beerFilling");
+  beerFillingElem.style.height = beerRect.top - 66 + "px";
+  beerFillingElem.style.width = beerFillingWidth + "px";
 
-    textElem = document.getElementById("errorText");
+  textElem = document.getElementById("errorText");
 
-    fillInterval = setInterval(fill, fillDelay);
+  fillInterval = setInterval(fill, fillDelay);
 })();

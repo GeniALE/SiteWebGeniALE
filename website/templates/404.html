@@ -4,59 +4,59 @@
 {% block title %}{% trans "Oops! Page not found" %}{% endblock title %}
 
 {% block style %}
-    {% addtoblock "css" %}
-        {% compress css %}
-            <link rel="stylesheet" type="text/x-scss" href="{% static "style/error_page.scss" %}">
-        {% endcompress %}
-    {% endaddtoblock %}
+  {% addtoblock "css" %}
+    {% compress css %}
+      <link rel="stylesheet" type="text/x-scss" href="{% static "style/error_page.scss" %}">
+    {% endcompress %}
+  {% endaddtoblock %}
 {% endblock %}
 {% block content %}
-    <div class="error_page">
-    <div class="error_page__content">
-        <div id="beerFilling"></div>
-        <div>
-            <div class="abs-container abs-container--top error-text-container">
-                <div id="errorText">
-                    <div class="header">
-                        <div class="header__content">
-                            <div class="header__content__title">{% trans "Page not found" %}</div>
-                            <div class="paragraph paragraph--center">
-                                {% trans "The page you're trying to reach doesn't exists. Return to GeniALE's website using the button below." %}
-                            </div>
-                            <div class="paragraph paragraph--center">
-                                <button onclick="loadHomepage()" class="inputs button button--primary">
-                                    {% trans "Homepage" %}
-                                </button>
-                            </div>
+  <div class="error_page">
+  <div class="error_page__content">
+    <div id="beerFilling"></div>
+    <div>
+      <div class="abs-container abs-container--top error-text-container">
+        <div id="errorText">
+          <div class="header">
+            <div class="header__content">
+              <div class="header__content__title">{% trans "Page not found" %}</div>
+              <div class="paragraph paragraph--center">
+                {% trans "The page you're trying to reach doesn't exists. Return to GeniALE's website using the button below." %}
+              </div>
+              <div class="paragraph paragraph--center">
+                <button onclick="loadHomepage()" class="inputs button button--primary">
+                  {% trans "Homepage" %}
+                </button>
+              </div>
 
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div class="abs-container abs-container--bottom pitcher-container">
-                <div id="pitcher">
-                    <img class="genialeLogo" src="{% static "image/logo.png" %}" alt="Logo GeniALE">
-                    <div id="beer">
-                        <div class="foam_base" id="foam_1"></div>
-                        <div class="foam_base" id="foam_2"></div>
-                        <div class="foam_base" id="foam_3"></div>
-                        <div class="foam_base" id="foam_4"></div>
-                        <div class="foam_base" id="foam_5"></div>
-                        <div class="foam_base" id="foam_6"></div>
-                        <div class="bubble bubble1"></div>
-                        <div class="bubble bubble2"></div>
-                        <div class="bubble bubble3"></div>
-                        <div class="bubble bubble4"></div>
-                        <div class="bubble bubble5"></div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="abs-container abs-container--bottom pitcher-container">
+        <div id="pitcher">
+          <img class="genialeLogo" src="{% static "image/logo.png" %}" alt="Logo GeniALE">
+          <div id="beer">
+            <div class="foam_base" id="foam_1"></div>
+            <div class="foam_base" id="foam_2"></div>
+            <div class="foam_base" id="foam_3"></div>
+            <div class="foam_base" id="foam_4"></div>
+            <div class="foam_base" id="foam_5"></div>
+            <div class="foam_base" id="foam_6"></div>
+            <div class="bubble bubble1"></div>
+            <div class="bubble bubble2"></div>
+            <div class="bubble bubble3"></div>
+            <div class="bubble bubble4"></div>
+            <div class="bubble bubble5"></div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 {% endblock content %}
 
 {% block scripts %}
-    {% addtoblock "js" %}
-        <script src="{% static "script/error_page.js" %}"></script>
-    {% endaddtoblock %}
+  {% addtoblock "js" %}
+    <script src="{% static "script/error_page.js" %}"></script>
+  {% endaddtoblock %}
 {% endblock %}

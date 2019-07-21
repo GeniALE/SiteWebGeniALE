@@ -6,20 +6,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('beer_carousel', '0006_auto_20180610_1414'),
+  ]
 
-    dependencies = [
-        ('beer_carousel', '0006_auto_20180610_1414'),
-    ]
-
-    operations = [
-        migrations.AddField(
-            model_name='beercarouselplugintranslationmodeltranslation',
-            name='back_label',
-            field=models.CharField(default='Back', max_length=255),
-        ),
-        migrations.AddField(
-            model_name='beercarouselplugintranslationmodeltranslation',
-            name='next_label',
-            field=models.CharField(default='Next', max_length=255),
-        ),
-    ]
+  operations = [
+    migrations.AddField(
+      model_name='beercarouselplugintranslationmodeltranslation',
+      name='back_label',
+      field=models.CharField(default='Back', max_length=255),
+    ),
+    migrations.AddField(
+      model_name='beercarouselplugintranslationmodeltranslation',
+      name='next_label',
+      field=models.CharField(default='Next', max_length=255),
+    ),
+  ]

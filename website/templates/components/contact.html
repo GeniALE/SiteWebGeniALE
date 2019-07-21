@@ -1,40 +1,40 @@
 {% load l10n compress static %}
 
 {% compress css %}
-    <link rel="stylesheet" type="text/x-scss" href="{% static "style/contact.scss" %}"/>
+  <link rel="stylesheet" type="text/x-scss" href="{% static "style/contact.scss" %}"/>
 {% endcompress %}
 
 <div class="contactForm">
-    {% if form %}
-        {% if form.is_multipart %}
-            <form enctype="multipart/form-data" method="POST" action="">
-        {% else %}
-            <form method="POST" action="">
-        {% endif %}
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div class="row">
-        <div class="col-xs-12
+  {% if form %}
+    {% if form.is_multipart %}
+      <form enctype="multipart/form-data" method="POST" action="">
+    {% else %}
+      <form method="POST" action="">
+    {% endif %}
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div class="row">
+    <div class="col-xs-12
                 col-sm-4
                 col-md-2
                 col-lg-2">
-            <input class="button button--primary" type="submit" name="contact_plus_form_{{ contact.id|unlocalize }}"
-                    {% if contact.submit_button_text %}
-                   value="{{ contact.submit_button_text }}"{% endif %} />
-        </div>
+      <input class="button button--primary" type="submit" name="contact_plus_form_{{ contact.id|unlocalize }}"
+        {% if contact.submit_button_text %}
+             value="{{ contact.submit_button_text }}"{% endif %} />
     </div>
-    </form>
-    {% else %}
-        <div class="contactForm__thanks alert alert--success">
-            {{ contact.thanks|safe }}
-        </div>
-    {% endif %}
+  </div>
+  </form>
+  {% else %}
+    <div class="contactForm__thanks alert alert--success">
+      {{ contact.thanks|safe }}
+    </div>
+  {% endif %}
 </div>
 <script type="text/javascript">var formHasBeenSubmitted = {% if form %}false{% else %}true{% endif %};</script>
 <script type="text/javascript">
-    if (formHasBeenSubmitted) {
-        setTimeout(function () {
-            window.location.href = '../';
-        }, 4000);
-    }
+  if (formHasBeenSubmitted) {
+    setTimeout(function () {
+      window.location.href = '../';
+    }, 4000);
+  }
 </script>

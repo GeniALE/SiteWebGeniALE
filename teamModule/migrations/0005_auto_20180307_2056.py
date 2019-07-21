@@ -6,15 +6,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('teamModule', '0004_auto_20180307_2032'),
+  ]
 
-    dependencies = [
-        ('teamModule', '0004_auto_20180307_2032'),
-    ]
-
-    operations = [
-        migrations.AlterField(
-            model_name='teamdisplayview',
-            name='css_class_prefix',
-            field=models.CharField(blank=True, default='', max_length=100),
-        ),
-    ]
+  operations = [
+    migrations.AlterField(
+      model_name='teamdisplayview',
+      name='css_class_prefix',
+      field=models.CharField(blank=True, default='', max_length=100),
+    ),
+  ]

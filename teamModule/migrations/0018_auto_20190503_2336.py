@@ -7,25 +7,24 @@ import django.utils.datetime_safe
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('teamModule', '0017_auto_20190428_1217'),
+  ]
 
-    dependencies = [
-        ('teamModule', '0017_auto_20190428_1217'),
-    ]
-
-    operations = [
-        migrations.AddField(
-            model_name='member',
-            name='date_joined',
-            field=models.DateTimeField(auto_now_add=True),
-        ),
-        migrations.AddField(
-            model_name='member',
-            name='date_left',
-            field=models.DateTimeField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='team',
-            name='email',
-            field=models.CharField(blank=True, max_length=255, null=True),
-        ),
-    ]
+  operations = [
+    migrations.AddField(
+      model_name='member',
+      name='date_joined',
+      field=models.DateTimeField(auto_now_add=True),
+    ),
+    migrations.AddField(
+      model_name='member',
+      name='date_left',
+      field=models.DateTimeField(blank=True, null=True),
+    ),
+    migrations.AddField(
+      model_name='team',
+      name='email',
+      field=models.CharField(blank=True, max_length=255, null=True),
+    ),
+  ]

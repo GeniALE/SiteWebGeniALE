@@ -6,11 +6,10 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('teamModule', '0010_teambannermodel_details_button_link'),
+    ('teamModule', '0011_auto_20180527_1757'),
+  ]
 
-    dependencies = [
-        ('teamModule', '0010_teambannermodel_details_button_link'),
-        ('teamModule', '0011_auto_20180527_1757'),
-    ]
-
-    operations = [
-    ]
+  operations = [
+  ]

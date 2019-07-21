@@ -6,18 +6,18 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('beer_carousel', '0004_auto_20180610_1342'),
+  ]
 
-    dependencies = [
-        ('beer_carousel', '0004_auto_20180610_1342'),
-    ]
-
-    operations = [
-        migrations.AlterModelOptions(
-            name='beercarouselpluginmodel',
-            options={'verbose_name': "Beer carousel's plugin", 'verbose_name_plural': "Beer carousel's plugins"},
-        ),
-        migrations.AlterModelOptions(
-            name='beercarouselplugintranslationmodel',
-            options={'verbose_name': "Beer carousel's translation", 'verbose_name_plural': "Beer carousel's translations"},
-        ),
-    ]
+  operations = [
+    migrations.AlterModelOptions(
+      name='beercarouselpluginmodel',
+      options={'verbose_name': "Beer carousel's plugin", 'verbose_name_plural': "Beer carousel's plugins"},
+    ),
+    migrations.AlterModelOptions(
+      name='beercarouselplugintranslationmodel',
+      options={'verbose_name': "Beer carousel's translation",
+               'verbose_name_plural': "Beer carousel's translations"},
+    ),
+  ]

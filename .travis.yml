@@ -1,15 +1,15 @@
 language: minimal
 sudo: true
 services:
-- docker
+  - docker
 before_install:
-- cp .env.docker-example .env
-- docker build -t registry.heroku.com/geniale-cms/web .
-- docker-compose build
+  - cp .env.docker-example .env
+  - docker build -t registry.heroku.com/geniale-cms/web .
+  - docker-compose build
 script:
-- docker-compose run web sh -c "python manage.py test"
-- sudo rm -rf pgdata_dev
-- echo $TRAVIS_PULL_REQUEST_BRANCH && echo $TRAVIS_BRANCH
+  - docker-compose run web sh -c "python manage.py test"
+  - sudo rm -rf pgdata_dev
+  - echo $TRAVIS_PULL_REQUEST_BRANCH && echo $TRAVIS_BRANCH
 deploy:
   provider: heroku
   app:

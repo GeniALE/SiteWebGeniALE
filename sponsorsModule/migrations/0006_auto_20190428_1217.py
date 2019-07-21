@@ -8,49 +8,51 @@ import django.db.models.manager
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('sponsorsModule', '0005_auto_20180907_1437'),
+  ]
 
-    dependencies = [
-        ('sponsorsModule', '0005_auto_20180907_1437'),
-    ]
-
-    operations = [
-        migrations.CreateModel(
-            name='SponsorsDisplayViewTranslations',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-            ],
-            options={
-                'verbose_name': 'Sponsors plugin translation',
-                'verbose_name_plural': 'Sponsor plugin translations',
-            },
-            managers=[
-                ('objects', django.db.models.manager.Manager()),
-                ('_plain_manager', django.db.models.manager.Manager()),
-            ],
-        ),
-        migrations.CreateModel(
-            name='SponsorsDisplayViewTranslationsTranslation',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('language_code', models.CharField(db_index=True, max_length=15)),
-                ('master', models.ForeignKey(editable=False, on_delete=django.db.models.deletion.CASCADE, related_name='translations', to='sponsorsModule.SponsorsDisplayViewTranslations')),
-            ],
-            options={
-                'db_table': 'sponsorsModule_sponsorsdisplayviewtranslations_translation',
-                'db_tablespace': '',
-                'abstract': False,
-                'managed': True,
-                'default_permissions': (),
-            },
-        ),
-        migrations.AddField(
-            model_name='sponsorsdisplayview',
-            name='translation',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='sponsorsModule.SponsorsDisplayViewTranslations'),
-        ),
-        migrations.AlterUniqueTogether(
-            name='sponsorsdisplayviewtranslationstranslation',
-            unique_together=set([('language_code', 'master')]),
-        ),
-    ]
+  operations = [
+    migrations.CreateModel(
+      name='SponsorsDisplayViewTranslations',
+      fields=[
+        ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+      ],
+      options={
+        'verbose_name': 'Sponsors plugin translation',
+        'verbose_name_plural': 'Sponsor plugin translations',
+      },
+      managers=[
+        ('objects', django.db.models.manager.Manager()),
+        ('_plain_manager', django.db.models.manager.Manager()),
+      ],
+    ),
+    migrations.CreateModel(
+      name='SponsorsDisplayViewTranslationsTranslation',
+      fields=[
+        ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+        ('title', models.CharField(max_length=255)),
+        ('language_code', models.CharField(db_index=True, max_length=15)),
+        ('master', models.ForeignKey(editable=False, on_delete=django.db.models.deletion.CASCADE,
+                                     related_name='translations',
+                                     to='sponsorsModule.SponsorsDisplayViewTranslations')),
+      ],
+      options={
+        'db_table': 'sponsorsModule_sponsorsdisplayviewtranslations_translation',
+        'db_tablespace': '',
+        'abstract': False,
+        'managed': True,
+        'default_permissions': (),
+      },
+    ),
+    migrations.AddField(
+      model_name='sponsorsdisplayview',
+      name='translation',
+      field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                              to='sponsorsModule.SponsorsDisplayViewTranslations'),
+    ),
+    migrations.AlterUniqueTogether(
+      name='sponsorsdisplayviewtranslationstranslation',
+      unique_together=set([('language_code', 'master')]),
+    ),
+  ]

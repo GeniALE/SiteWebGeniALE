@@ -6,20 +6,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('teamModule', '0014_auto_20180625_0941'),
+  ]
 
-    dependencies = [
-        ('teamModule', '0014_auto_20180625_0941'),
-    ]
-
-    operations = [
-        migrations.AddField(
-            model_name='project',
-            name='display_banner_height',
-            field=models.IntegerField(default=0),
-        ),
-        migrations.AddField(
-            model_name='project',
-            name='display_order',
-            field=models.IntegerField(default=0),
-        ),
-    ]
+  operations = [
+    migrations.AddField(
+      model_name='project',
+      name='display_banner_height',
+      field=models.IntegerField(default=0),
+    ),
+    migrations.AddField(
+      model_name='project',
+      name='display_order',
+      field=models.IntegerField(default=0),
+    ),
+  ]

@@ -8,26 +8,26 @@ import django.db.models.manager
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('sponsorsModule', '0003_auto_20180605_2122'),
+  ]
 
-    dependencies = [
-        ('sponsorsModule', '0003_auto_20180605_2122'),
-    ]
-
-    operations = [
-        migrations.AlterModelManagers(
-            name='categorytranslation',
-            managers=[
-                ('objects', django.db.models.manager.Manager()),
-                ('_plain_manager', django.db.models.manager.Manager()),
-            ],
-        ),
-        migrations.RemoveField(
-            model_name='category',
-            name='name',
-        ),
-        migrations.AlterField(
-            model_name='category',
-            name='translation',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='sponsorsModule.CategoryTranslation'),
-        ),
-    ]
+  operations = [
+    migrations.AlterModelManagers(
+      name='categorytranslation',
+      managers=[
+        ('objects', django.db.models.manager.Manager()),
+        ('_plain_manager', django.db.models.manager.Manager()),
+      ],
+    ),
+    migrations.RemoveField(
+      model_name='category',
+      name='name',
+    ),
+    migrations.AlterField(
+      model_name='category',
+      name='translation',
+      field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                              to='sponsorsModule.CategoryTranslation'),
+    ),
+  ]

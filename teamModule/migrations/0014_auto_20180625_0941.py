@@ -6,15 +6,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('teamModule', '0013_auto_20180620_1441'),
+  ]
 
-    dependencies = [
-        ('teamModule', '0013_auto_20180620_1441'),
-    ]
-
-    operations = [
-        migrations.AlterField(
-            model_name='projectdisplaytranslationmodeltranslation',
-            name='project_description_title',
-            field=models.CharField(default='Project Description', max_length=255),
-        ),
-    ]
+  operations = [
+    migrations.AlterField(
+      model_name='projectdisplaytranslationmodeltranslation',
+      name='project_description_title',
+      field=models.CharField(default='Project Description', max_length=255),
+    ),
+  ]

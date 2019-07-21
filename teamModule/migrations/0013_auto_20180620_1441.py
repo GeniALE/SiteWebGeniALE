@@ -6,15 +6,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('teamModule', '0012_merge_20180620_1438'),
+  ]
 
-    dependencies = [
-        ('teamModule', '0012_merge_20180620_1438'),
-    ]
-
-    operations = [
-        migrations.AlterField(
-            model_name='project',
-            name='description',
-            field=models.TextField(null=True),
-        ),
-    ]
+  operations = [
+    migrations.AlterField(
+      model_name='project',
+      name='description',
+      field=models.TextField(null=True),
+    ),
+  ]

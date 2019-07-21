@@ -6,39 +6,38 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('teamModule', '0015_auto_20190424_1514'),
+  ]
 
-    dependencies = [
-        ('teamModule', '0015_auto_20190424_1514'),
-    ]
-
-    operations = [
-        migrations.RemoveField(
-            model_name='member',
-            name='profilePicUrl',
-        ),
-        migrations.AddField(
-            model_name='member',
-            name='image',
-            field=models.ImageField(blank=True, upload_to='media/'),
-        ),
-        migrations.AlterField(
-            model_name='member',
-            name='email',
-            field=models.CharField(max_length=255),
-        ),
-        migrations.AlterField(
-            model_name='member',
-            name='first_name',
-            field=models.CharField(max_length=255),
-        ),
-        migrations.AlterField(
-            model_name='member',
-            name='last_name',
-            field=models.CharField(max_length=255),
-        ),
-        migrations.AlterField(
-            model_name='member',
-            name='linkedInUrl',
-            field=models.CharField(blank=True, max_length=255),
-        ),
-    ]
+  operations = [
+    migrations.RemoveField(
+      model_name='member',
+      name='profilePicUrl',
+    ),
+    migrations.AddField(
+      model_name='member',
+      name='image',
+      field=models.ImageField(blank=True, upload_to='media/'),
+    ),
+    migrations.AlterField(
+      model_name='member',
+      name='email',
+      field=models.CharField(max_length=255),
+    ),
+    migrations.AlterField(
+      model_name='member',
+      name='first_name',
+      field=models.CharField(max_length=255),
+    ),
+    migrations.AlterField(
+      model_name='member',
+      name='last_name',
+      field=models.CharField(max_length=255),
+    ),
+    migrations.AlterField(
+      model_name='member',
+      name='linkedInUrl',
+      field=models.CharField(blank=True, max_length=255),
+    ),
+  ]
