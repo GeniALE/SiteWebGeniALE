@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-29 15:12-0400\n"
+"POT-Creation-Date: 2019-07-21 14:42-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,39 +17,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\settings.py:183
+#: .\settings.py:182
 msgid "fr"
 msgstr "fr"
 
-#: .\settings.py:184
+#: .\settings.py:183
 msgid "en"
 msgstr "en"
 
-#: .\settings.py:197
+#: .\settings.py:196
 msgid "French"
 msgstr "Français"
 
-#: .\settings.py:205
+#: .\settings.py:204
 msgid "English"
 msgstr "English"
 
-#: .\templates\404.html:6
+#: .\templates\404.html:4
 msgid "Oops! Page not found"
 msgstr "Oops! Page introuvable"
 
-#: .\templates\404.html:42
+#: .\templates\404.html:22
 msgid "Page not found"
 msgstr "Page introuvable"
 
-#: .\templates\404.html:44
+#: .\templates\404.html:24
 msgid ""
 "The page you're trying to reach doesn't exists. Return to GeniALE's website "
 "using the button below."
-msgstr "La page que vous tentez d'accéder n'existe pas. Retournez sur le site de GéniALE en cliquant sur le bouton ci-dessous."
+msgstr ""
+"La page que vous tentez d'accéder n'existe pas. Retournez sur le site de "
+"GéniALE en cliquant sur le bouton ci-dessous."
 
-#: .\templates\404.html:45
+#: .\templates\404.html:28
 msgid "Homepage"
 msgstr "Page d'accueil"
+
+#: .\templates\base.html:2
+msgid "websiteDescription"
+msgstr "GéniALE a pour principale mission de développer des technologies dans le domaine brassicole afin d’automatiser et d’optimiser les procédés de brassage. En collaboration avec de grands joueurs de l’industrie, le club se concentre sur le développement de nouvelles technologies dans le but d'améliorer les procédés existants."
+
+#: .\templates\base.html:3
+msgid "clubMissionPartOne"
+msgstr "Développement"
+
+#: .\templates\base.html:4
+msgid "clubMissionPartTwo"
+msgstr "technologique"
 
 #: .\templates\footer.html:2
 msgid "address"

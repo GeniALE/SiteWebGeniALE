@@ -164,6 +164,7 @@ if (!ProjectModuleClass.prototype._insertPicture) {
 
     var img = document.createElement("img");
     img.src = imageUrl;
+    img.alt = "Project picture";
     img.className = this.detail.pictureImgStr;
     div.appendChild(img);
 

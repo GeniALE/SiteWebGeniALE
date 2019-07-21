@@ -49,10 +49,10 @@
       </div>
       <div class="projectModule__projects__project__picture">
         {% if project.images.all %}
-          <img class="projectModule__projects__project__picture__container"
+          <img alt="Project image" class="projectModule__projects__project__picture__container"
                style="background-image:url('{{ project.images.all.0 }}')"/>
         {% else %}
-          <img
+          <img alt="Project image"
             class="projectModule__projects__project__picture__container projectModule__projects__project__picture__container--default"/>
         {% endif %}
       </div>
@@ -72,7 +72,7 @@
     <div class="projectModule__detail__close" onclick="{{ uniqueName }}.closeModal()">&times;</div>
     <div class="projectModule__detail row">
       <div class="projectModule__detail__picture__prev">
-        <img src="{% static "image/left-chevron.svg" %}"/>
+        <img alt="Previous project" src="{% static "image/left-chevron.svg" %}"/>
       </div>
       <div class="projectModule__detail__pictures owl-carousel owl-theme">
         {% comment %}
@@ -94,7 +94,7 @@
         </div>
       </div>
       <div class="projectModule__detail__picture__next">
-        <img src="{% static "image/right-chevron.svg" %}"/>
+        <img alt="Next project" src="{% static "image/right-chevron.svg" %}"/>
       </div>
     </div>
 </section>

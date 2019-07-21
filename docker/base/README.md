@@ -36,5 +36,5 @@ docker build -f docker/base/Dockerfile -t geniale/django-cms-base:latest .
 ### Push
 
 ```bash
-docker push -t geniale/django-cms-base:latest
+docker push geniale/django-cms-base:latest
 ```
