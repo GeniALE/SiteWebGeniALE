@@ -97,10 +97,9 @@ You can always run any command on your docker-compose with: `d <command>`
 
 To run command on production, you need to run: `d prod <command>`
 
-| Command | Description                         | POSIX              | WIN              |
+| Command | Description                         | Unix               | WIN              |
 |---------|-------------------------------------|--------------------|------------------|
 | shell   | Open a shell into the web container | ./d.sh shell          | d shell          |
 | exec    | Execute something in the container  | ./d.sh exec python -V | d exec python -V |
 | bash    | Execute a bash terminal in the container | ./d.sh bash | d bash | 
 Eventually, more commands will be added to automate some tasks.
-    

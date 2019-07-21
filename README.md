@@ -8,22 +8,20 @@ The new website of GeniALE. :beers:
 This repository  contains the CMS and the additional modules.
 
 # Table of content
-- [SiteWebGeniALE](#sitewebgeniale)
-- [Table of content](#table-of-content)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installing](#installing)
-  - [Branching model](#branching-model)
-    - [Feature workflow](#feature-workflow)
-    - [Fix workflow](#fix-workflow)
-- [Deployment](#deployment)
-  - [Production deployment](#production-deployment)
-- [Plugins](#plugins)
-- [Documentation](#documentation)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgments)
-- [Licenses](#licenses)
-  - [Owl carousel](#owl-carousel)
+- [SiteWebGeniALE](#SiteWebGeniALE)
+- [Table of content](#Table-of-content)
+- [Getting Started](#Getting-Started)
+  - [Prerequisites](#Prerequisites)
+  - [Installing](#Installing)
+  - [Branching model](#Branching-model)
+- [Deployment](#Deployment)
+  - [Production deployment](#Production-deployment)
+- [Plugins](#Plugins)
+- [Documentation](#Documentation)
+- [Authors](#Authors)
+- [Acknowledgments](#Acknowledgments)
+- [Licenses](#Licenses)
+  - [Owl carousel](#Owl-carousel)
 
 # Getting Started
 
@@ -49,29 +47,63 @@ If you wish to use docker,  see the [Docker documentation](docs/DOCKER.md).
 
 If you wish to use Pycharm, see the [Pycharm documentation](docs/PYCHARM.md).
 
-Otherwise, here's the classic configuration with a terminal:
+<details><summary>Basic installation</summary>
+<p>
 
-1. Create the database in PostgreSQL: (eg: `geniale_website`)
-2. Clone the repo `git clone https://github.com/GeniALE/SiteWebGeniALE.git`
-3. Go into the directory `cd SiteWebGeniALE`
-4. You need to create a `.env` file to store your environment variables.
-    
-    You can also copy `.env.example` to `.env`.
-    
-    It contains some of the default env variables. Then, modify the values to fit your database configuration.
-    
-    > *Note: As this file is mandatory, you don't have to put variables in it. As long as it exists, it's fine.*
-5. Create your virtualenv: `virtualenv -p python3 venv`
-6. Activate your virtual env:
-    
-    - **Windows**: `env\Scripts\activate`
-    - **POSIX**: `source env/bin/activate`
-    
-7. Install the dependencies: `pip3 install -r requirements.txt`
-8. Run the migrations `python3 manage.py migrate`
-9. Create a superuser: `python3 manage.py createsuperuser`
-10. Run the server: `python3 manage.py runserver 0.0.0.0` 
-7. The DjangoCMS should be running at [http://localhost:8000](localhost:8000)
+Before starting, you need to create a database for the website. You can either
+use the create a database from the [terminal](https://stackoverflow.com/questions/30641512/create-database-from-command-line) or 
+with a GUI such as [PGAdmin](https://www.youtube.com/watch?v=h05bcVYcGRU)
+
+Clone the Github repository
+
+```bash
+  git clone https://github.com/GeniALE/SiteWebGeniALE.git
+```
+
+Create an `.env` file with your configurations
+
+```bash
+cd SiteWebGeniALE
+cp .env.example .env
+```
+
+>**Note**: You might want to change the values according to your environment configurations.
+
+Create your virtualenv
+
+```bash
+virtualenv -p python3 venv
+```
+
+Each time you want to work on your project, you need to activate your environment:
+
+On Unix like OS:
+```bash
+source env/bin/activate
+```
+
+On Windows: 
+```cmd
+env\Scripts\activate
+```
+
+Install dependencies, migrations and create super user
+
+```bash
+pip3 install -r requirements.txt
+python3 manage.py migrate
+python3 manage.py createsuperuser
+```
+
+You can finally start the server with:
+
+```bash
+python3 manage.py runserver 0.0.0.0
+```
+
+The website should be running at [http://localhost:8000](localhost:8000)
+</p>
+</details>
 
 ## Branching model
 
@@ -83,7 +115,8 @@ Basically, you have those type of branches :
 - **feature** : New feature development based on **master**
 - **fix** : A fix for something in master. 
 
-### Feature workflow
+<details><summary>Feature workflow</summary>
+<p>
 
 - Create your feature branch from the master with a `feature/` prefix.
 - Do your work
@@ -95,13 +128,20 @@ Basically, you have those type of branches :
 - Assign your Trello card to the same person you assigned the PR
 - Merge the branch when you have your approvals
 
-### Fix workflow
+</p>
+</details>
+
+<details><summary>Fix workflow</summary>
+<p>
 
 When we find a flaw, we have to respond quickly to fix that bug.
 
 The workflow is pretty much the same.
  
 The only difference is the branch prefix: `fix/`.
+
+</p>
+</details>
 
 # Deployment
 
