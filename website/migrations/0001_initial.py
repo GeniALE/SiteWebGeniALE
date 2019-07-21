@@ -6,16 +6,16 @@ from django.db import migrations
 
 
 def load_data(apps, schema_editor):
-    BeerContainer = apps.get_model("beer_carousel", "BeerContainer")
+  BeerContainer = apps.get_model("beer_carousel", "BeerContainer")
 
-    BeerContainer(name="Can", css_class="can").save()
-    BeerContainer(name="Bottle", css_class="bottle").save()
+  BeerContainer(name="Can", css_class="can").save()
+  BeerContainer(name="Bottle", css_class="bottle").save()
 
 
 class Migration(migrations.Migration):
-    dependencies = [
-    ]
+  dependencies = [
+  ]
 
-    operations = [
-        migrations.RunPython(load_data)
-    ]
+  operations = [
+    migrations.RunPython(load_data)
+  ]

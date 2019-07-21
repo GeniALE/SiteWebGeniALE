@@ -6,20 +6,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('beer_carousel', '0008_auto_20190413_1128'),
+  ]
 
-    dependencies = [
-        ('beer_carousel', '0008_auto_20190413_1128'),
-    ]
-
-    operations = [
-        migrations.RenameField(
-            model_name='beermodel',
-            old_name='image_shift',
-            new_name='image_shift_x',
-        ),
-        migrations.AddField(
-            model_name='beermodel',
-            name='image_shift_y',
-            field=models.FloatField(default=0),
-        ),
-    ]
+  operations = [
+    migrations.RenameField(
+      model_name='beermodel',
+      old_name='image_shift',
+      new_name='image_shift_x',
+    ),
+    migrations.AddField(
+      model_name='beermodel',
+      name='image_shift_y',
+      field=models.FloatField(default=0),
+    ),
+  ]

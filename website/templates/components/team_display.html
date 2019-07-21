@@ -1,94 +1,94 @@
 {% load sekizai_tags compress  static cache_bust %}
 {% addtoblock "css" %}
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "style/team_display.scss" %}">
-    {% endcompress %}
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static "style/team_display.scss" %}">
+  {% endcompress %}
 {% endaddtoblock %}
 {% addtoblock "js" %}
-    <script type="text/javascript" src="{% static "js/team_display.js" %}?{% cache_bust %}"></script>
-    {% compress js %}
-        <script type="text/javascript">
-            //Encapsulate javascript inside a function so it's not accessible from the outside #hackerman
-            var team_{{ uniqueName }};
-            (function () {
-                //Data from the backend
-                var members = {{ membersAsJson|safe}};
-                var teams = {{  teamsAsJson|safe }};
-                //Init the required modules with unique identifier
-                team_{{ uniqueName }} = new TeamModuleClass(members, "{{ uniqueName }}");
-                var allMembersTeam = team_{{ uniqueName }}.rootNode.querySelector(".teamModule__team");
-                team_{{ uniqueName }}.setActiveTeam(-1, allMembersTeam);
-            })();
+  <script type="text/javascript" src="{% static "js/team_display.js" %}?{% cache_bust %}"></script>
+  {% compress js %}
+    <script type="text/javascript">
+      //Encapsulate javascript inside a function so it's not accessible from the outside #hackerman
+      var team_{{ uniqueName }};
+      (function () {
+        //Data from the backend
+        var members = {{ membersAsJson|safe}};
+        var teams = {{  teamsAsJson|safe }};
+        //Init the required modules with unique identifier
+        team_{{ uniqueName }} = new TeamModuleClass(members, "{{ uniqueName }}");
+        var allMembersTeam = team_{{ uniqueName }}.rootNode.querySelector(".teamModule__team");
+        team_{{ uniqueName }}.setActiveTeam(-1, allMembersTeam);
+      })();
 
-            $(document).ready(function () {
-                var $dropDown = $('#team_{{ uniqueName }}_dropdown');
-                $dropDown.select2();
-                $dropDown.on('change', function (evt) {
-                    team_{{ uniqueName }}.setActiveTeam(parseInt(evt.target.value));
-                });
-            });
-        </script>
-    {% endcompress %}
+      $(document).ready(function () {
+        var $dropDown = $('#team_{{ uniqueName }}_dropdown');
+        $dropDown.select2();
+        $dropDown.on('change', function (evt) {
+          team_{{ uniqueName }}.setActiveTeam(parseInt(evt.target.value));
+        });
+      });
+    </script>
+  {% endcompress %}
 {% endaddtoblock %}
 <div class="teamModule container-fluid" id="{{ uniqueName }}">
-    <div class="row">
-        <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
-        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8 ">
-            <div class="teamModule__teams">
-                <label for="team_{{ uniqueName }}_dropdown">
-                    <h1 class="teamModule__title">{{ translations.teams_title }}</h1>
-                </label>
-                <div class="row">
-                    <select id="team_{{ uniqueName }}_dropdown" name="state" class="col-xs-12 col-md-4">
-                        {% for team in teams %}
-                            <option value="{{ team.id }}"
-                                    onClick="team_{{ uniqueName }}.setActiveTeam({{ team.id }},this)">
-                                {{ team.team_name }} ({{ team.members_count }})
-                            </option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-
-            <div class="teamModule__members">
-                <h1 class="teamModule__title">{{ translations.members_title }}</h1>
-                <div class="row">
-
-                    <div class="teamModule__memberpanel col-xs-0 col-md-4">
-                        {% for member in members %}
-                            <div class="teamModule__team__member teamModule__team__member{{ member.id }}"
-                                 onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},this)">
-                                {{ member.first_name }} {{ member.last_name }}
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <div class="teamModule__memberpanel teamModule__memberpanel--avatars col-md-8 col-xs-12">
-                        {% for member in members %}
-                            <img class="teamModule__memberpanel__icon teamModule__memberpanel__icon{{ member.id }}"
-                                 src="{{ member.image }}"
-                                 onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},null,this)"/>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8 ">
+      <div class="teamModule__teams">
+        <label for="team_{{ uniqueName }}_dropdown">
+          <h1 class="teamModule__title">{{ translations.teams_title }}</h1>
+        </label>
+        <div class="row">
+          <select id="team_{{ uniqueName }}_dropdown" name="state" class="col-xs-12 col-md-4">
+            {% for team in teams %}
+              <option value="{{ team.id }}"
+                      onClick="team_{{ uniqueName }}.setActiveTeam({{ team.id }},this)">
+                {{ team.team_name }} ({{ team.members_count }})
+              </option>
+            {% endfor %}
+          </select>
         </div>
-        <div class="teamModule__details__blur teamModule--invisible "
-             onclick="team_{{ uniqueName }}.modalClose()"></div>
-        <div class="teamModule__details teamModule--invisible col-xs-12 col-sm-3 col-md-3 col-lg-2">
-            <div class="teamModule__details__close" onclick="team_{{ uniqueName }}.modalClose()">&times;</div>
-            <div class="center-xs start-sm teamModule__details__sticky">
-                <div>
-                    <img class="teamModule__details__picture" src=""/>
-                </div>
-                <div class="teamModule__details__fullname"></div>
-                <h4></h4>
-                <div class="teamModule__details__bio"></div>
-                <span class="teamModule__details__section__title">{{ translations.projects_title }}</span>
-                <div class="teamModule__details__projects"></div>
-                <span class="teamModule__details__section__title">{{ translations.formation_title }}</span>
-                <div class="teamModule__details__formation"></div>
-            </div>
+      </div>
+
+      <div class="teamModule__members">
+        <h1 class="teamModule__title">{{ translations.members_title }}</h1>
+        <div class="row">
+
+          <div class="teamModule__memberpanel col-xs-0 col-md-4">
+            {% for member in members %}
+              <div class="teamModule__team__member teamModule__team__member{{ member.id }}"
+                   onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},this)">
+                {{ member.first_name }} {{ member.last_name }}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="teamModule__memberpanel teamModule__memberpanel--avatars col-md-8 col-xs-12">
+            {% for member in members %}
+              <img class="teamModule__memberpanel__icon teamModule__memberpanel__icon{{ member.id }}"
+                   src="{{ member.image }}"
+                   onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},null,this)"/>
+            {% endfor %}
+          </div>
         </div>
-        <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+      </div>
     </div>
+    <div class="teamModule__details__blur teamModule--invisible "
+         onclick="team_{{ uniqueName }}.modalClose()"></div>
+    <div class="teamModule__details teamModule--invisible col-xs-12 col-sm-3 col-md-3 col-lg-2">
+      <div class="teamModule__details__close" onclick="team_{{ uniqueName }}.modalClose()">&times;</div>
+      <div class="center-xs start-sm teamModule__details__sticky">
+        <div>
+          <img class="teamModule__details__picture" src=""/>
+        </div>
+        <div class="teamModule__details__fullname"></div>
+        <h4></h4>
+        <div class="teamModule__details__bio"></div>
+        <span class="teamModule__details__section__title">{{ translations.projects_title }}</span>
+        <div class="teamModule__details__projects"></div>
+        <span class="teamModule__details__section__title">{{ translations.formation_title }}</span>
+        <div class="teamModule__details__formation"></div>
+      </div>
+    </div>
+    <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+  </div>
 </div>

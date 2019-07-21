@@ -1,23 +1,24 @@
 {% load sekizai_tags compress static cache_bust %}
 {% load i18n %}
 {% addtoblock "css" %}
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "style/project_display.scss" %}">
-    {% endcompress %}
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static "style/project_display.scss" %}">
+  {% endcompress %}
 {% endaddtoblock %}
 {% addtoblock "js" %}
-    <script type="text/javascript" src="{% static "js/project.js" %}?{% cache_bust %}"></script>
-    <script type="text/javascript">
-        //Encapsulate javascript inside a function so it's not accessible from the outside
-        var {{ uniqueName }};
-        (function () {
-            //Data from the backend
-            var projects = {{ projectsAsJson|safe}};
-            //Init the required modules with unique identifier
-            {{ uniqueName }} = new ProjectModuleClass(projects, "{{ uniqueName }}");
-        })();
+  <script type="text/javascript" src="{% static "js/project.js" %}?{% cache_bust %}"></script>
+  <script type="text/javascript">
+    //Encapsulate javascript inside a function so it's not accessible from the outside
+    var {{ uniqueName }};
+    (function () {
+      //Data from the backend
+      var projects = {{ projectsAsJson|safe}};
+      //Init the required modules with unique identifier
+      {{ uniqueName }}
+      = new ProjectModuleClass(projects, "{{ uniqueName }}");
+    })();
 
-    </script>
+  </script>
 {% endaddtoblock %}
 
 
@@ -25,72 +26,75 @@
 
 <section class="projectModule row" id="{{ uniqueName }}">
 
-    <div class="projectModule__projects">
-        {% if projects %}
-            {% for project in projects %}
-                {% if forloop.counter|divisibleby:2 %}
-                    <div class="projectModule__projects__project projectModule__projects__project--even {% if project.display_banner_height > 0 %}projectModule__projects__project--big{% endif %}"
-                         onclick="{{ uniqueName }}.setActiveProject({{ project.id }})">
-                {% else %}
-                    <div class="projectModule__projects__project {% if project.display_banner_height > 0 %}projectModule__projects__project--big{% endif %}"
-                         onclick="{{ uniqueName }}.setActiveProject({{ project.id }})">
-                {% endif %}
-            <div class="projectModule__projects__project__excerpt">
+  <div class="projectModule__projects">
+    {% if projects %}
+      {% for project in projects %}
+        {% if forloop.counter|divisibleby:2 %}
+          <div
+            class="projectModule__projects__project projectModule__projects__project--even {% if project.display_banner_height > 0 %}projectModule__projects__project--big{% endif %}"
+            onclick="{{ uniqueName }}.setActiveProject({{ project.id }})">
+        {% else %}
+          <div
+            class="projectModule__projects__project {% if project.display_banner_height > 0 %}projectModule__projects__project--big{% endif %}"
+            onclick="{{ uniqueName }}.setActiveProject({{ project.id }})">
+        {% endif %}
+      <div class="projectModule__projects__project__excerpt">
             <span class="projectModule__projects__project__excerpt__child">
                 <span class="projectModule__projects__project__excerpt__child__name">{{ project.name }}. </span>
                 {{ project.description }}
                 </span>
-            </div>
-            <div class="projectModule__projects__project__title projectModule__projects__project__title--transparent">
-                {{ project.name }}
-            </div>
-            <div class="projectModule__projects__project__picture">
-                {% if project.images.all %}
-                    <img class="projectModule__projects__project__picture__container"
-                         style="background-image:url('{{ project.images.all.0 }}')"/>
-                {% else %}
-                    <img class="projectModule__projects__project__picture__container projectModule__projects__project__picture__container--default"/>
-                {% endif %}
-            </div>
-            <h2 class="projectModule__projects__project__title">
-                {{ project.name }}
-            </h2>
-            <div class="projectModule__projects__project__layer"></div>
-            </div>
-            {% endfor %}
+      </div>
+      <div class="projectModule__projects__project__title projectModule__projects__project__title--transparent">
+        {{ project.name }}
+      </div>
+      <div class="projectModule__projects__project__picture">
+        {% if project.images.all %}
+          <img class="projectModule__projects__project__picture__container"
+               style="background-image:url('{{ project.images.all.0 }}')"/>
         {% else %}
-            <!-- TODO: Add translation for that -->
-            No Projects To Show
+          <img
+            class="projectModule__projects__project__picture__container projectModule__projects__project__picture__container--default"/>
         {% endif %}
-        </div>
+      </div>
+      <h2 class="projectModule__projects__project__title">
+        {{ project.name }}
+      </h2>
+      <div class="projectModule__projects__project__layer"></div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <!-- TODO: Add translation for that -->
+      No Projects To Show
+    {% endif %}
+    </div>
 
-        <div class="projectModule__detail__blur" style="display: none;" onclick="{{ uniqueName }}.closeModal()"></div>
-        <div class="projectModule__detail__close" onclick="{{ uniqueName }}.closeModal()">&times;</div>
-        <div class="projectModule__detail row">
-            <div class="projectModule__detail__picture__prev">
-                <img src="{% static "image/left-chevron.svg" %}" />
-            </div>
-            <div class="projectModule__detail__pictures owl-carousel owl-theme">
-                {% comment %}
+    <div class="projectModule__detail__blur" style="display: none;" onclick="{{ uniqueName }}.closeModal()"></div>
+    <div class="projectModule__detail__close" onclick="{{ uniqueName }}.closeModal()">&times;</div>
+    <div class="projectModule__detail row">
+      <div class="projectModule__detail__picture__prev">
+        <img src="{% static "image/left-chevron.svg" %}"/>
+      </div>
+      <div class="projectModule__detail__pictures owl-carousel owl-theme">
+        {% comment %}
             {# This is an example of the html that is generated in js #}
             <div class="projectModule__detail__picture">
                 <img alt="project image" class="projectModule__detail__picture__container"/>
             </div>
             {% endcomment %}
-            </div>
+      </div>
 
 
-            <div class="projectModule__detail__right">
-                <div class="projectModule__detail__title">
-                    <div class="projectModule__detail__title__container"> {{ translations.project_title }}</div>
-                </div>
-
-                <div class="projectModule__detail__description">
-                    <div class="projectModule__detail__description__container"></div>
-                </div>
-            </div>
-            <div class="projectModule__detail__picture__next">
-                  <img src="{% static "image/right-chevron.svg" %}" />
-            </div>
+      <div class="projectModule__detail__right">
+        <div class="projectModule__detail__title">
+          <div class="projectModule__detail__title__container"> {{ translations.project_title }}</div>
         </div>
+
+        <div class="projectModule__detail__description">
+          <div class="projectModule__detail__description__container"></div>
+        </div>
+      </div>
+      <div class="projectModule__detail__picture__next">
+        <img src="{% static "image/right-chevron.svg" %}"/>
+      </div>
+    </div>
 </section>

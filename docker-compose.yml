@@ -12,6 +12,6 @@ services:
   db:
     image: postgres
     environment:
-        # Make sure the credentials are the same as the default one in the settings.py
-        POSTGRES_PASSWORD: 'geniale'
-        POSTGRES_USER: 'postgres'
+      # Make sure the credentials are the same as the default one in the settings.py
+      POSTGRES_PASSWORD: 'geniale'
+      POSTGRES_USER: 'postgres'

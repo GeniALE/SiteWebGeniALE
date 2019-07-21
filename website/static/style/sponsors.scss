@@ -7,57 +7,57 @@
 
 $category-border-color: rgba(0, 0, 0, 0.329);
 
-.partners-module{
-    width: 58%;
-    margin: auto;
+.partners-module {
+  width: 58%;
+  margin: auto;
 
-    &__container{
-        display: inline;
-        padding-bottom: 20px;
-
-        @include breakpoint(phone) {
-            margin-right: 20px;
-            margin-left: 20px;
-        }
-    }
-
-    &__row{
-        display: inline-grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: auto;
-        grid-gap: 50px;
-        margin-bottom: 25px;
-
-        @include breakpoint(phone) {
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 10px;
-        }
-
-        @include breakpoint(tablet) {
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 20px;
-        }
-    }
-
-    &__link-partners{
-        text-align: center;
-        @include breakpoint(phone) {
-            font-size: 0.8em;
-            padding-right: 10px;
-            padding-left: 10px;
-        }
-    }
-    
-    &__categories{
-        border-bottom: 0.5px solid $category-border-color;
-        font-size: 2em;
-    }
-
-    &__title{
-        @extend .header__content__title;
-    }
+  &__container {
+    display: inline;
+    padding-bottom: 20px;
 
     @include breakpoint(phone) {
-        width: 100%;
+      margin-right: 20px;
+      margin-left: 20px;
     }
+  }
+
+  &__row {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 50px;
+    margin-bottom: 25px;
+
+    @include breakpoint(phone) {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 10px;
+    }
+
+    @include breakpoint(tablet) {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+    }
+  }
+
+  &__link-partners {
+    text-align: center;
+    @include breakpoint(phone) {
+      font-size: 0.8em;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+  }
+
+  &__categories {
+    border-bottom: 0.5px solid $category-border-color;
+    font-size: 2em;
+  }
+
+  &__title {
+    @extend .header__content__title;
+  }
+
+  @include breakpoint(phone) {
+    width: 100%;
+  }
 }

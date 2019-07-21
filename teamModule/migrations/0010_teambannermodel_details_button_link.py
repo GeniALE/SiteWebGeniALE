@@ -6,15 +6,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('teamModule', '0009_auto_20180410_2136'),
+  ]
 
-    dependencies = [
-        ('teamModule', '0009_auto_20180410_2136'),
-    ]
-
-    operations = [
-        migrations.AddField(
-            model_name='teambannermodel',
-            name='details_button_link',
-            field=models.CharField(default='#', max_length=255),
-        ),
-    ]
+  operations = [
+    migrations.AddField(
+      model_name='teambannermodel',
+      name='details_button_link',
+      field=models.CharField(default='#', max_length=255),
+    ),
+  ]

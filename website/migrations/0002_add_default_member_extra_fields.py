@@ -6,24 +6,24 @@ from django.db import migrations
 
 
 def load_data(apps, schema_editor):
-    MemberExtraInfoType = apps.get_model("teamModule", "MemberExtraInfoType")
-    models_to_add = [
-        MemberExtraInfoType(description="Code permanent"),
-        MemberExtraInfoType(description="Code universel"),
-        MemberExtraInfoType(description="Niveau scolaire"),
-        MemberExtraInfoType(description="En stage"),
-        MemberExtraInfoType(description="Numnéro de téléphone")
-    ]
+  MemberExtraInfoType = apps.get_model("teamModule", "MemberExtraInfoType")
+  models_to_add = [
+    MemberExtraInfoType(description="Code permanent"),
+    MemberExtraInfoType(description="Code universel"),
+    MemberExtraInfoType(description="Niveau scolaire"),
+    MemberExtraInfoType(description="En stage"),
+    MemberExtraInfoType(description="Numnéro de téléphone")
+  ]
 
-    for model in models_to_add:
-        model.save()
+  for model in models_to_add:
+    model.save()
 
 
 class Migration(migrations.Migration):
-    dependencies = [
-        ('website', '0001_initial'),
-    ]
+  dependencies = [
+    ('website', '0001_initial'),
+  ]
 
-    operations = [
-        migrations.RunPython(load_data)
-    ]
+  operations = [
+    migrations.RunPython(load_data)
+  ]

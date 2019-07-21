@@ -3,97 +3,97 @@ from django.forms import BaseInlineFormSet, Textarea
 from hvad.admin import TranslatableAdmin
 
 from .models import Formation, Team, Project, Member, ProjectStatus, TeamRole, MemberExtraInfo, MemberExtraInfoType, \
-    TeamDisplayView, TeamBannerModel, TeamBannerTranslationModel, TeamDisplayTranslationModel, ProjectImage, \
-    ProjectDisplayTranslationModel, ProjectDisplayView
+  TeamDisplayView, TeamBannerModel, TeamBannerTranslationModel, TeamDisplayTranslationModel, ProjectImage, \
+  ProjectDisplayTranslationModel, ProjectDisplayView
 
 
 def get_member_extra_info(user):
-    if not user:
-        return []
-    return list(MemberExtraInfo.objects.filter(member=user))
+  if not user:
+    return []
+  return list(MemberExtraInfo.objects.filter(member=user))
 
 
 def get_default_extra_types():
-    return [{'info_type': x.id} for x in list(MemberExtraInfoType.objects.all())]
+  return [{'info_type': x.id} for x in list(MemberExtraInfoType.objects.all())]
 
 
 class TeamAdmin(TranslatableAdmin):
-    model = Team
+  model = Team
 
 
 class ProjectPictureInline(admin.StackedInline):
-    model = ProjectImage
-    extra = 0
-    fk_name = 'project'
+  model = ProjectImage
+  extra = 0
+  fk_name = 'project'
 
 
 class ProjectAdmin(TranslatableAdmin):
-    model = Project
-    inlines = (ProjectPictureInline,)
+  model = Project
+  inlines = (ProjectPictureInline,)
 
-    important_fields = ('name',)
-    search_fields = important_fields
-    list_display = important_fields
+  important_fields = ('name',)
+  search_fields = important_fields
+  list_display = important_fields
 
 
 class ExtraInfoInlineFormSet(BaseInlineFormSet):
-    model = MemberExtraInfo
+  model = MemberExtraInfo
 
-    def __init__(self, *args, **kwargs):
-        super(ExtraInfoInlineFormSet, self).__init__(*args, **kwargs)
-        self.initial = get_default_extra_types()
+  def __init__(self, *args, **kwargs):
+    super(ExtraInfoInlineFormSet, self).__init__(*args, **kwargs)
+    self.initial = get_default_extra_types()
 
 
 class ExtraInfoInline(admin.TabularInline):
-    model = MemberExtraInfo
-    fk_name = 'member'
-    extra = 3
-    formset = ExtraInfoInlineFormSet
+  model = MemberExtraInfo
+  fk_name = 'member'
+  extra = 3
+  formset = ExtraInfoInlineFormSet
 
-    def get_formset(self, request, obj=None, **kwargs):
-        formset = super(ExtraInfoInline, self).get_formset(request, obj, **kwargs)
-        member_extra_info = get_member_extra_info(obj)
-        default_extra_info = []
-        already_defined_info_types = [x.info_type for x in member_extra_info]
+  def get_formset(self, request, obj=None, **kwargs):
+    formset = super(ExtraInfoInline, self).get_formset(request, obj, **kwargs)
+    member_extra_info = get_member_extra_info(obj)
+    default_extra_info = []
+    already_defined_info_types = [x.info_type for x in member_extra_info]
 
-        for x in get_default_extra_types():
-            if not x in already_defined_info_types:
-                default_extra_info.append({'info_type': x})
+    for x in get_default_extra_types():
+      if not x in already_defined_info_types:
+        default_extra_info.append({'info_type': x})
 
-        formset.initial = default_extra_info
-        return formset
+    formset.initial = default_extra_info
+    return formset
 
-    def get_extra(self, request, obj=None, **kwargs):
-        member_extra_infos = get_member_extra_info(obj)
-        return len(get_default_extra_types()) - len(member_extra_infos)
+  def get_extra(self, request, obj=None, **kwargs):
+    member_extra_infos = get_member_extra_info(obj)
+    return len(get_default_extra_types()) - len(member_extra_infos)
 
 
 class MemberAdmin(TranslatableAdmin):
-    model = Member
-    inlines = (ExtraInfoInline,)
-    filter_horizontal = ("teamRoles", "projects",)
+  model = Member
+  inlines = (ExtraInfoInline,)
+  filter_horizontal = ("teamRoles", "projects",)
 
-    important_fields = ('first_name', 'last_name', 'email', 'date_joined', 'date_left')
-    search_fields = important_fields
-    list_display = important_fields
+  important_fields = ('first_name', 'last_name', 'email', 'date_joined', 'date_left')
+  search_fields = important_fields
+  list_display = important_fields
 
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        formfield = super(MemberAdmin, self).formfield_for_dbfield(db_field, **kwargs)
-        if db_field.name == 'bio':
-            formfield.widget = Textarea(attrs=formfield.widget.attrs)
-        return formfield
+  def formfield_for_dbfield(self, db_field, **kwargs):
+    formfield = super(MemberAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+    if db_field.name == 'bio':
+      formfield.widget = Textarea(attrs=formfield.widget.attrs)
+    return formfield
 
 
 class FormationAdmin(TranslatableAdmin):
-    model = Formation
+  model = Formation
 
 
 class StatusAdmin(TranslatableAdmin):
-    pass
+  pass
 
 
 class TeamRoleAdmin(TranslatableAdmin):
-    pass
+  pass
 
 
 """
@@ -102,35 +102,35 @@ Plugins admins
 
 
 class TeamDisplayViewAdmin(admin.ModelAdmin):
-    pass
+  pass
 
 
 class TeamBannerAdmin(admin.ModelAdmin):
-    pass
+  pass
 
 
 class TeamBannerTranslationModelAdmin(TranslatableAdmin, admin.ModelAdmin):
-    pass
+  pass
 
 
 class TeamDisplayTranslationModelAdmin(TranslatableAdmin, admin.ModelAdmin):
-    pass
+  pass
 
 
 class PageMemberExtraInfoAdmin(admin.ModelAdmin):
-    pass
+  pass
 
 
 class PageMemberExtraInfoTypeAdmin(admin.ModelAdmin):
-    pass
+  pass
 
 
 class ProjectTranslationModelAdmin(TranslatableAdmin, admin.ModelAdmin):
-    pass
+  pass
 
 
 class ProjectDisplayViewAdmin(admin.ModelAdmin):
-    pass
+  pass
 
 
 admin.site.register(ProjectStatus, StatusAdmin)

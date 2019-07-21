@@ -6,20 +6,21 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('teamModule', '0006_merge_20180317_1759'),
+  ]
 
-    dependencies = [
-        ('teamModule', '0006_merge_20180317_1759'),
-    ]
-
-    operations = [
-        migrations.AddField(
-            model_name='teamdisplayview',
-            name='select_all_text',
-            field=models.CharField(default='All', max_length=100),
-        ),
-        migrations.AlterField(
-            model_name='teamdisplayview',
-            name='template',
-            field=models.CharField(choices=[('components/member_count.html', 'Total member count'), ('components/team_display.html', 'Team member display')], default='teamModule/team_display.html', max_length=255),
-        ),
-    ]
+  operations = [
+    migrations.AddField(
+      model_name='teamdisplayview',
+      name='select_all_text',
+      field=models.CharField(default='All', max_length=100),
+    ),
+    migrations.AlterField(
+      model_name='teamdisplayview',
+      name='template',
+      field=models.CharField(choices=[('components/member_count.html', 'Total member count'),
+                                      ('components/team_display.html', 'Team member display')],
+                             default='teamModule/team_display.html', max_length=255),
+    ),
+  ]
