@@ -2,85 +2,93 @@
 <!doctype html>
 <html>
 <head>
-    <title>{% block title %}This is my new project home page{% endblock title %}</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}"/>
-    {% endcompress %}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="{% static "lib/owlcarousel/assets/owl.carousel.min.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "lib/owlcarousel/assets/owl.theme.default.min.css" %}">
+  <title>{% block title %}This is my new project home page{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}"/>
+  {% endcompress %}
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" type="text/css" href="{% static "lib/owlcarousel/assets/owl.carousel.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "lib/owlcarousel/assets/owl.theme.default.min.css" %}">
 
-    <!-- Favicon icons -->
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static "icons/apple-icon-57x57.png" %}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static "icons/apple-icon-60x60.png" %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static "icons/apple-icon-72x72.png" %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static "icons/apple-icon-76x76.png" %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static "icons/apple-icon-114x114.png" %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static "icons/apple-icon-120x120.png" %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static "icons/apple-icon-144x144.png" %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static "icons/apple-icon-152x152.png" %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static "icons/apple-icon-180x180.png" %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static "icons/android-icon-192x192.png" %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static "icons/favicon-32x32.png" %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static "icons/favicon-96x96.png" %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static "icons/favicon-16x16.png" %}">
-    <link rel="manifest" href="{% static "icons/manifest.json" %}">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{% static "icons/ms-icon-144x144.png" %}">
-    <meta name="theme-color" content="#ffffff">
+  <!-- Favicon icons -->
+  <link rel="apple-touch-icon" sizes="57x57" href="{% static "icons/apple-icon-57x57.png" %}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{% static "icons/apple-icon-60x60.png" %}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{% static "icons/apple-icon-72x72.png" %}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static "icons/apple-icon-76x76.png" %}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{% static "icons/apple-icon-114x114.png" %}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{% static "icons/apple-icon-120x120.png" %}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{% static "icons/apple-icon-144x144.png" %}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static "icons/apple-icon-152x152.png" %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static "icons/apple-icon-180x180.png" %}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{% static "icons/android-icon-192x192.png" %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static "icons/favicon-32x32.png" %}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{% static "icons/favicon-96x96.png" %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static "icons/favicon-16x16.png" %}">
+  <link rel="manifest" href="{% static "icons/manifest.json" %}">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="{% static "icons/ms-icon-144x144.png" %}">
+  <meta name="theme-color" content="#ffffff">
 
-    {% block style %}{% endblock %}
-    {% block css %}{% endblock %}
-    {% render_block "css" %}
+  {% block style %}{% endblock %}
+  {% block css %}{% endblock %}
+  {% render_block "css" %}
 </head>
 <body>
 {% cms_toolbar %}
 <header>
-    {% block header %}
-        <nav class="site-nav" role="navigation">
-            {% include "nav.html" %}
-            <div class="mobile-nav--fullscreen">
-                <div class="mobile-nav__container">
-                    <div class="mobile-nav__logo">
-                        <img src="{% static "image/logo.png" %}" alt="GeniALE logo" class="logo__img">
-                        <div class="logo__title">
-                            <span>Géni</span>
-                            <span>ALE</span>
-                        </div>
-                        <div class="logo__text">
-                            <p>développement</p>
-                            <p>brassicole</p>
-                        </div>
-                    </div>
-                    {% show_menu 0 0 %}
-                </div>
+  {% block header %}
+    <nav class="site-nav" role="navigation">
+      {% include "nav.html" %}
+      <div class="mobile-nav--fullscreen">
+        <div class="mobile-nav__container">
+          <div class="mobile-nav__logo">
+            <img src="{% static "image/logo.png" %}" alt="GeniALE logo" class="logo__img">
+            <div class="logo__title">
+              <span>Géni</span>
+              <span>ALE</span>
             </div>
-        </nav>
-        <div class="menu">
-            <!-- <div class="logo">
-                <a href="">
-                    <img class="logo__img" src="http://logo.geniale.ca" alt="">
-                    <div class="logo__text">
-                        <span>Géni</span><span>ALE</span>
-                    </div>
-                </a>
-            </div> -->
-
-            <div class="button__hamburger">
-                <span class="button__hamburger-bar"></span>
-                <span class="button__hamburger-bar"></span>
-                <span class="button__hamburger-bar"></span>
-                <span class="button__hamburger-bar button__hamburger-bar--close"></span>
-                <span class="button__hamburger-bar button__hamburger-bar--close"></span>
+            <div class="logo__text">
+              <p>développement</p>
+              <p>brassicole</p>
             </div>
+          </div>
+          {% show_menu 0 0 %}
+          <li class="divider-horz"></li>
+          <li class="mobile-nav__languages">
+            {% ifequal LANGUAGE_CODE "fr" %}
+              <a href="{% page_language_url "en" %}">EN</a>
+            {% else %}
+              <a href="{% page_language_url "fr" %}">FR</a>
+            {% endifequal %}
+          </li>
         </div>
-    {% endblock %}
+      </div>
+    </nav>
+    <div class="menu">
+      <!-- <div class="logo">
+          <a href="">
+              <img class="logo__img" src="http://logo.geniale.ca" alt="">
+              <div class="logo__text">
+                  <span>Géni</span><span>ALE</span>
+              </div>
+          </a>
+      </div> -->
+
+      <div class="button__hamburger">
+        <span class="button__hamburger-bar"></span>
+        <span class="button__hamburger-bar"></span>
+        <span class="button__hamburger-bar"></span>
+        <span class="button__hamburger-bar button__hamburger-bar--close"></span>
+        <span class="button__hamburger-bar button__hamburger-bar--close"></span>
+      </div>
+    </div>
+  {% endblock %}
 </header>
 <main class="main">
-    {% block content %}{% endblock %}
+  {% block content %}{% endblock %}
 </main>
 
 {% include "footer.html" %}
@@ -93,7 +101,7 @@
 {% render_block "scripts" %}
 {% render_block "js" %}
 {% compress js %}
-    <script src="{% static "script/base.js" %}?{% cache_bust %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static "script/base.js" %}?{% cache_bust %}" type="text/javascript" charset="utf-8"></script>
 {% endcompress %}
 {% block scripts %}{% endblock %}
 </body>

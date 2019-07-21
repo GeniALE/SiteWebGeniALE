@@ -92,6 +92,7 @@ header {
             }
         }
     }
+
     .mobile-nav--fullscreen {
         position: fixed;
         width: 100%;
@@ -110,6 +111,15 @@ header {
 
         &.mobile-nav--open {
             left: 0;
+        }
+
+        .mobile-nav__languages {
+            & > a {
+                color: unset;
+                font-size: 19px;
+                text-decoration: unset;
+                transition: color 300ms;
+            }
         }
 
         .mobile-nav__container {

@@ -1,17 +1,26 @@
-{% load cms_tags menu_tags compress static %}
+{% load cms_tags menu_tags compress static i18n %}
+
 <div class="main-nav">
   <div class="main-nav__content">
-      <div class="main-nav__logo">
-        <div class="logo"> 
-            <img class="logo__img" src="{% static "image/logo.png" %}" alt="GeniALE logo" class="logo__img">
-            <div class="logo__title">
-                <span>Géni</span>
-                <span>ALE</span>
-            </div>
+    <div class="main-nav__logo">
+      <div class="logo">
+        <img class="logo__img" src="{% static "image/logo.png" %}" alt="GeniALE logo" class="logo__img">
+        <div class="logo__title">
+          <span>Géni</span>
+          <span>ALE</span>
         </div>
       </div>
-      <div class="main-nav__items">
-          {% show_menu 0 0 %}
-      </div>
+    </div>
+    <div class="main-nav__items">
+      {% show_menu 0 0 %}
+    </div>
+
+    <div class="main-nav__languages">
+      {% ifequal LANGUAGE_CODE "fr" %}
+        <a href="{% page_language_url "en" %}">EN</a>
+      {% else %}
+        <a href="{% page_language_url "fr" %}">FR</a>
+      {% endifequal %}
+    </div>
   </div>
 </div>
