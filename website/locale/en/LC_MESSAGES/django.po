@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-29 15:11-0400\n"
+"POT-Creation-Date: 2019-07-21 14:42-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,39 +16,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\settings.py:183
+#: .\settings.py:182
 msgid "fr"
 msgstr "fr"
 
-#: .\settings.py:184
+#: .\settings.py:183
 msgid "en"
 msgstr "en"
 
-#: .\settings.py:197
+#: .\settings.py:196
 msgid "French"
 msgstr "Français"
 
-#: .\settings.py:205
+#: .\settings.py:204
 msgid "English"
 msgstr "English"
 
-#: .\templates\404.html:6
+#: .\templates\404.html:4
 msgid "Oops! Page not found"
 msgstr "Oops! Page not found"
 
-#: .\templates\404.html:42
+#: .\templates\404.html:22
 msgid "Page not found"
 msgstr "Page not found"
 
-#: .\templates\404.html:44
+#: .\templates\404.html:24
 msgid ""
 "The page you're trying to reach doesn't exists. Return to GeniALE's website "
 "using the button below."
-msgstr "The page you're trying to reach doesn't exists. Return to GeniALE's website using the button below."
+msgstr ""
+"The page you're trying to reach doesn't exists. Return to GeniALE's website "
+"using the button below."
 
-#: .\templates\404.html:45
+#: .\templates\404.html:28
 msgid "Homepage"
 msgstr "Homepage"
+
+#: .\templates\base.html:2
+msgid "websiteDescription"
+msgstr "GeniALE's main mission is to develop technologies in the brewing industry in order to automate and optimize brewing processes. In collaboration with major industry players, the club focuses on the development of new technologies with the aim of improving existing processes."
+
+#: .\templates\base.html:3
+msgid "clubMissionPartOne"
+msgstr "Technological"
+
+#: .\templates\base.html:4
+msgid "clubMissionPartTwo"
+msgstr "development"
 
 #: .\templates\footer.html:2
 msgid "address"

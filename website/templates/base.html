@@ -1,17 +1,28 @@
-{% load cms_tags menu_tags sekizai_tags compress static cache_bust %}
+{% load cms_tags menu_tags sekizai_tags compress static cache_bust i18n %}
+{% trans "websiteDescription" as t_websiteDescription %}
+{% trans "clubMissionPartOne" as t_clubMissionPartOne %}
+{% trans "clubMissionPartTwo" as t_clubMissionPartTwo %}
 <!doctype html>
-<html>
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
-  <title>{% block title %}This is my new project home page{% endblock title %}</title>
+  <title>{% block title %}GéniALE{% endblock title %}</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="{{ t_websiteDescription }}">
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self';style-src 'unsafe-inline' 'self' https://cdn.rawgit.com https://use.fontawesome.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdn.rawgit.com https://use.fontawesome.com;script-src 'unsafe-inline' 'self';"
+  >
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
         integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   {% compress css %}
     <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}"/>
   {% endcompress %}
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
+  <link href="{% static "lib/select2/css/select2.min.css" %}" rel="stylesheet"/>
   <link rel="stylesheet" type="text/css" href="{% static "lib/owlcarousel/assets/owl.carousel.min.css" %}">
   <link rel="stylesheet" type="text/css" href="{% static "lib/owlcarousel/assets/owl.theme.default.min.css" %}">
+
+  <link href="https://fonts.googleapis.com/css?family=Heebo:500,500i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://cdn.rawgit.com/h-ibaldo/Raleway_Fixed_Numerals/master/css/rawline.css" rel="stylesheet">
 
   <!-- Favicon icons -->
   <link rel="apple-touch-icon" sizes="57x57" href="{% static "icons/apple-icon-57x57.png" %}">
@@ -35,9 +46,11 @@
   {% block style %}{% endblock %}
   {% block css %}{% endblock %}
   {% render_block "css" %}
+
 </head>
 <body>
 {% cms_toolbar %}
+<h1 style="display:none">{% page_attribute page_title %}</h1>
 <header>
   {% block header %}
     <nav class="site-nav" role="navigation">
@@ -51,8 +64,8 @@
               <span>ALE</span>
             </div>
             <div class="logo__text">
-              <p>développement</p>
-              <p>brassicole</p>
+              <p>{{ t_clubMissionPartOne }}</p>
+              <p>{{ t_clubMissionPartTwo }}</p>
             </div>
           </div>
           {% show_menu 0 0 %}
@@ -68,15 +81,6 @@
       </div>
     </nav>
     <div class="menu">
-      <!-- <div class="logo">
-          <a href="">
-              <img class="logo__img" src="http://logo.geniale.ca" alt="">
-              <div class="logo__text">
-                  <span>Géni</span><span>ALE</span>
-              </div>
-          </a>
-      </div> -->
-
       <div class="button__hamburger">
         <span class="button__hamburger-bar"></span>
         <span class="button__hamburger-bar"></span>
@@ -95,7 +99,7 @@
 <script src="{% static "lib/jquery/jquery-3.4.0.min.js" %}"></script>
 <script src="{% static "lib/jquery/jquery-ui.min.js" %}"></script>
 <script src="{% static "lib/jquery/jquery.ui.touch-punch.min.js" %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+<script src="{% static "lib/select2/js/select2.min.js" %}"></script>
 <script src="{% static "lib/owlcarousel/owl.carousel.min.js" %}"></script>
 
 {% render_block "scripts" %}
