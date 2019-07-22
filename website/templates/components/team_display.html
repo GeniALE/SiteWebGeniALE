@@ -15,7 +15,7 @@
         var members = {{ membersAsJson|safe}};
         var teams = {{  teamsAsJson|safe }};
         //Init the required modules with unique identifier
-        team_{{ uniqueName }} = new TeamModuleClass(members, "{{ uniqueName }}");
+        team_{{ uniqueName }} = new TeamModuleClass(members,teams, "{{ uniqueName }}");
         var allMembersTeam = team_{{ uniqueName }}.rootNode.querySelector(".teamModule__team");
         team_{{ uniqueName }}.setActiveTeam(-1, allMembersTeam);
       })();
@@ -84,6 +84,8 @@
         <div class="teamModule__details__fullname"></div>
         <h4></h4>
         <div class="teamModule__details__bio"></div>
+         <span class="teamModule__details__section__title">{{ translations.teams_title }}</span>
+        <div class="teamModule__details__teams"></div>
         <span class="teamModule__details__section__title">{{ translations.projects_title }}</span>
         <div class="teamModule__details__projects"></div>
         <span class="teamModule__details__section__title">{{ translations.formation_title }}</span>

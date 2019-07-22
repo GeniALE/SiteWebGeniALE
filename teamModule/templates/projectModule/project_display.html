@@ -49,11 +49,16 @@
       </div>
       <div class="projectModule__projects__project__picture">
         {% if project.images.all %}
-          <img alt="Project image" class="projectModule__projects__project__picture__container"
-               style="background-image:url('{{ project.images.all.0 }}')"/>
+          {% comment %} No alt or src here since we need to load image from CSS {% endcomment %}
+          <img
+            class="projectModule__projects__project__picture__container"
+            style="background-image:url('{{ project.images.all.0 }}')"
+          />
         {% else %}
-          <img alt="Project image"
-            class="projectModule__projects__project__picture__container projectModule__projects__project__picture__container--default"/>
+          {% comment %} No alt or src here since we need to load image from CSS {% endcomment %}
+          <img
+            class="projectModule__projects__project__picture__container projectModule__projects__project__picture__container--default"
+          />
         {% endif %}
       </div>
       <h2 class="projectModule__projects__project__title">

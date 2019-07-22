@@ -55,7 +55,7 @@ if (!window.TeamModuleHelper) {
 
 // Register the instance only if not registered
 if (!window.TeamModuleClass) {
-  function TeamModuleClass(members, rootId) {
+  function TeamModuleClass(members, teams, rootId) {
     //This node is the only thing that makes this module unique
     this.rootNode = document.getElementById(rootId);
     this.classByType = {
@@ -71,6 +71,7 @@ if (!window.TeamModuleClass) {
       fullName: this.rootNode.querySelector(".teamModule__details__fullname"),
       bio: this.rootNode.querySelector(".teamModule__details__bio"),
       projects: this.rootNode.querySelector(".teamModule__details__projects"),
+      teamRoles: this.rootNode.querySelector(".teamModule__details__teams"),
       formation: this.rootNode.querySelector(".teamModule__details__formation"),
       blur: this.rootNode.querySelector(".teamModule__details__blur")
     };
@@ -91,6 +92,8 @@ if (!window.TeamModuleClass) {
     };
 
     this.members = members;
+    this.teams = teams;
+    this.teamsById = TeamModuleHelper.indexArrayByKey(teams, 'id');
     this.membersById = TeamModuleHelper.indexArrayByKey(members, 'id');
     this.hiddenClass = "teamModule--hidden";
     this.invisibleClass = "teamModule--invisible";
@@ -220,10 +223,25 @@ if (!TeamModuleClass.prototype._loadMemberDetails) {
       mapping.fullName.innerText = member.first_name + " " + member.last_name;
       mapping.bio.innerText = member.bio;
 
+
+      // Add teams
+      var teamElement = mapping.teamRoles;
+      teamElement.innerHTML = '';
+      for (var i = 0; i < member.teamRoles.length; i++) {
+        var teamRole = member.teamRoles[i];
+        var teamName = this.teamsById[teamRole.team].team_name;
+        var roleName = teamRole.role;
+
+        var roleContainer = document.createElement('div');
+        var node = document.createTextNode(teamName + ' (' + roleName + ')');
+        roleContainer.appendChild(node);
+        teamElement.appendChild(roleContainer);
+      }
+
+      //Add projects
       var projectElement = mapping.projects;
       projectElement.innerHTML = '';
 
-      //Add projects
       for (var i = 0; i < member.projects.length; i++) {
         var project = member.projects[i];
         var projectContainer = document.createElement('div');
