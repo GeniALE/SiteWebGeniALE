@@ -98,6 +98,9 @@ STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'website', 'static'),
   os.path.join(BASE_DIR, 'teamModule', 'static'),
 )
+#http://whitenoise.evans.io/en/stable/django.html#add-compression-and-caching-support
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 SITE_ID = 1
 
 TEMPLATES = [
@@ -143,6 +146,8 @@ MIDDLEWARE_CLASSES = (
 )
 
 INSTALLED_APPS = (
+  # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
+  'whitenoise.runserver_nostatic', #to get whitenoise to server static in dev too
   'djangocms_admin_style',
   'django.contrib.auth',
   'django.contrib.contenttypes',
