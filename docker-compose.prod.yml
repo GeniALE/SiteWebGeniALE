@@ -23,14 +23,5 @@ services:
     environment:
       PGDATA: "/var/lib/postgresql/data/pgdata"
     env_file: .env
-  nginx:
-    build: docker/nginx
-    volumes:
-      - static_files:/usr/src/app/static
-      - ./media:/usr/src/app/media
-    ports:
-      - 1337:80
-    depends_on:
-      - web
 volumes:
   static_files:
