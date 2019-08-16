@@ -131,6 +131,7 @@ TEMPLATES = [
 ]
 
 MIDDLEWARE_CLASSES = (
+  'whitenoise.middleware.WhiteNoiseMiddleware',
   'cms.middleware.utils.ApphookReloadMiddleware',
   'django.contrib.sessions.middleware.SessionMiddleware',
   'django.middleware.csrf.CsrfViewMiddleware',
@@ -142,12 +143,13 @@ MIDDLEWARE_CLASSES = (
   'cms.middleware.user.CurrentUserMiddleware',
   'cms.middleware.page.CurrentPageMiddleware',
   'cms.middleware.toolbar.ToolbarMiddleware',
-  'cms.middleware.language.LanguageCookieMiddleware'
+  'cms.middleware.language.LanguageCookieMiddleware',
 )
 
 INSTALLED_APPS = (
+# Allows to run WhiteNoise in dev to have the save behavior as prod
   # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
-  'whitenoise.runserver_nostatic', #to get whitenoise to server static in dev too
+  'whitenoise.runserver_nostatic',
   'djangocms_admin_style',
   'django.contrib.auth',
   'django.contrib.contenttypes',
@@ -179,7 +181,7 @@ INSTALLED_APPS = (
   'hvad',
   'teamModule',
   'sponsorsModule',
-  'beer_carousel'
+  'beer_carousel',
 )
 
 LANGUAGES = (
