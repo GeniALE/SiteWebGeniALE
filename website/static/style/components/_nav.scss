@@ -88,8 +88,17 @@
         display: flex;
         font-size: 20px;
         text-transform: uppercase;
-        font-weight: 900;
+        font-weight: 700;
         margin-left: 3px;
+
+        @media (max-width: 750px) {
+          padding-top: 9px;
+          font-size: 30px;
+        }
+
+        span:nth-of-type(2) {
+          font-weight: 900;
+        }
       }
 
       &__text {
