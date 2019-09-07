@@ -1,5 +1,4 @@
 .main-nav {
-  // @extend .row;
   display: flex;
   flex: 1;
   background-color: #ecf0f1;
@@ -71,7 +70,6 @@
     display: flex;
     justify-content: center;
     margin-left: 45px;
-    // position: absolute;
     width: 130px;
 
     .logo {
