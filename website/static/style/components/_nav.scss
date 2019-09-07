@@ -1,5 +1,5 @@
 .main-nav {
-  @extend .row;
+  // @extend .row;
   display: flex;
   flex: 1;
   background-color: #ecf0f1;
@@ -13,14 +13,13 @@
   &__content {
     display: flex;
     flex: 1;
-    @extend .col-md-12;
   }
 
   &__languages {
     display: flex;
     align-items: center;
-    padding: 1.3em;
-    position: absolute;
+    justify-content: center;
+    width: 175px;
 
     a {
       color: black;
@@ -39,7 +38,7 @@
     flex: 1;
     align-items: center;
     justify-content: center;
-    @extend .col-md-12;
+    text-align: center;
 
     li.selected > a {
       color: black;
@@ -72,7 +71,8 @@
     display: flex;
     justify-content: center;
     margin-left: 45px;
-    position: absolute;
+    // position: absolute;
+    width: 130px;
 
     .logo {
       display: flex;
