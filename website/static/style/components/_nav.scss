@@ -1,3 +1,6 @@
+$edgeWidth: 130px;
+$logoLeftMargin: 45px;
+
 .main-nav {
   display: flex;
   flex: 1;
@@ -18,7 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 175px;
+    width: $edgeWidth + $logoLeftMargin;
 
     a {
       color: black;
@@ -69,8 +72,8 @@
   &__logo {
     display: flex;
     justify-content: center;
-    margin-left: 45px;
-    width: 130px;
+    margin-left: $logoLeftMargin;
+    width: $edgeWidth;
 
     .logo {
       display: flex;
