@@ -127,7 +127,10 @@ header {
       margin-top: 120px;
 
       .mobile-nav__logo {
+        display: block;
         margin-bottom: 30px;
+        text-decoration: none;
+        color: inherit;
 
         img.logo__img {
           width: 270px;
