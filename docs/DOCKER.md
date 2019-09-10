@@ -27,7 +27,7 @@ You can setup your project to use docker.
     *Note: As this file is mandatory, you don't have to put variables in it. As long as it exists, it's fine.*
 2. Build the docker containers `docker-compose build`
 3. Run the docker services `docker-compose up`
-4. The DjangoCMS should be running at [http://localhost:8000](localhost:8000)
+4. The DjangoCMS should be running at [http://localhost:8080](localhost:8080)
 5. You need to create your super user with:
 
     `docker-compose run web python manage.py createsuperuser`

@@ -29,5 +29,5 @@
     pip install requirements.txt
     ```
 9. To run the application, you can select the run configuration (`Run with migrations`) and click on **Play**
-10. The DjangoCMS should be running at [http://localhost:8000](localhost:8000)
+10. The DjangoCMS should be running at [http://localhost:8080](localhost:8080)
 11. To create the superuser, you can execute the running task: `Create Super User`

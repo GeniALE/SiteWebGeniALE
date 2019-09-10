@@ -2,13 +2,16 @@
 FROM geniale/django-cms-base:latest
 
 # Copy project files. Since our app is not in a subfolder, we need to copy everything manually...
+COPY entrypoint.sh \
+  manage.py \
+  /usr/src/app/
+
+# Copy other folders
 COPY beer_carousel /usr/src/app/beer_carousel
 COPY bin /usr/src/app/bin
-COPY entrypoint.sh /usr/src/app/
 COPY sponsorsModule /usr/src/app/sponsorsModule
 COPY teamModule /usr/src/app/teamModule
 COPY website /usr/src/app/website
-COPY manage.py /usr/src/app/
 
 # run entrypoint.sh
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

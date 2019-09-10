@@ -101,7 +101,7 @@ You can finally start the server with:
 python3 manage.py runserver 0.0.0.0
 ```
 
-The website should be running at [http://localhost:8000](localhost:8000)
+The website should be running at [http://localhost:8080](localhost:8080)
 </p>
 </details>
 

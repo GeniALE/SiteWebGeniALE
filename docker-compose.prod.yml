@@ -5,13 +5,12 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    command: gunicorn --config gunicorn.conf website.wsgi:application --bind 0.0.0.0:8000
+    command: supervisord -n -c /etc/supervisor/conf.d/supervisor-app.conf
     volumes:
-      - static_files:/usr/src/app/static
       - ./media:/usr/src/app/media
-    expose:
-      - 8000
     env_file: .env
+    ports:
+      - 1337:80
     environment:
       DEBUG: 0
     depends_on:
@@ -23,14 +22,3 @@ services:
     environment:
       PGDATA: "/var/lib/postgresql/data/pgdata"
     env_file: .env
-  nginx:
-    build: docker/nginx
-    volumes:
-      - static_files:/usr/src/app/static
-      - ./media:/usr/src/app/media
-    ports:
-      - 1337:80
-    depends_on:
-      - web
-volumes:
-  static_files:
