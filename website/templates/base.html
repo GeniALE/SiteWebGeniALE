@@ -57,7 +57,7 @@
       {% include "nav.html" %}
       <div class="mobile-nav--fullscreen">
         <div class="mobile-nav__container">
-          <div class="mobile-nav__logo">
+          <a class="mobile-nav__logo" href="/">
             <img src="{% static "image/logo.png" %}" alt="GeniALE logo" class="logo__img">
             <div class="logo__title">
               <span>Géni</span>
@@ -67,7 +67,7 @@
               <p>{{ t_clubMissionPartOne }}</p>
               <p>{{ t_clubMissionPartTwo }}</p>
             </div>
-          </div>
+          </a>
           {% show_menu 0 0 %}
           <li class="divider-horz"></li>
           <li class="mobile-nav__languages">
