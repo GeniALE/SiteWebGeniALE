@@ -2,12 +2,16 @@ from collections import OrderedDict
 from django.core.serializers.json import DjangoJSONEncoder
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django.db.models import Q
 import json
 from django.templatetags.static import static
 
 from teamModule.helpers import to_dict
 from .models import TeamBannerModel, Team, Member, TeamDisplayView, Project, ProjectDisplayView
+
+get_member_filter = Q(date_left__isnull=True) | Q(date_left__gt=timezone.now())
 
 
 @plugin_pool.register_plugin
@@ -18,7 +22,7 @@ class TeamModulePlugin(CMSPluginBase):
   cache = False
 
   def get_members(self):
-    members = Member.objects.language().prefetch_related(
+    members = Member.objects.language().filter(get_member_filter).prefetch_related(
       'teamRoles__team',
       'formation',
       'translations'
@@ -55,8 +59,13 @@ class TeamModulePlugin(CMSPluginBase):
       for teamRole in team_roles:
         teams_as_dict[teamRole.team_id]['members_count'] += 1
 
-    # All special case
+    # Add the "All" team special case
     teams_as_dict[-1]['members_count'] = len(members)
+
+    # Remove team without any members
+    teams_as_dict = {key: val for key, val in teams_as_dict.items() if val['members_count'] > 0}
+
+    # Sort teams
     teams_as_dict = OrderedDict(sorted(teams_as_dict.items(), key=lambda t: t[0]))
     return teams_as_dict
 
@@ -79,7 +88,6 @@ class TeamModulePlugin(CMSPluginBase):
     teams = self.get_teams(instance)
     members_as_dict = self.members_to_dict(members)
     teams_as_dict = self.teams_to_dict(teams, members)
-    a = list(teams_as_dict.values())
     ordered_teams_for_ui = sorted(list(teams_as_dict.values()), key=lambda team: team['team_name'])
 
     # Replace the all_team to the first place
@@ -157,7 +165,7 @@ class TeamBannerPlugin(CMSPluginBase):
   cache = False
 
   def get_member_count(self):
-    return Member.objects.count()
+    return Member.objects.filter(get_member_filter).count()
 
   def render(self, context, instance, placeholder):
     if instance and instance.template:
