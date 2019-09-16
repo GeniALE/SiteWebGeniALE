@@ -6,6 +6,7 @@
 /public/static
 /public/media
 /media/
+/credentials
 /sql
 /fcgi/django.fcgi
 /static
@@ -49,5 +50,10 @@ RELEASE-VERSION
 
 \.vscode/
 
+# Orchester
+google_drive_*.json
+.orchester.json
 google_secret\.json
+
+
 

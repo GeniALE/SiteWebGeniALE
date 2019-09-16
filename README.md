@@ -157,7 +157,9 @@ At the moment, the website is deployed at: http://geniale-cms.herokuapp.com/
     ```
 3. Create the environment configuration: `cp .env.example .env`
 4. Modify the environment configuration and set the database credentials.
-5. Start the server
+5. To use Orchester, you need to create a `.orchester.json` configuration file with the
+proper credentials. For more details, refers to that documentation: https://github.com/popojargo/orchester
+6. Start the server
 
     ```shell
     python manage.py migrate && python manage.py runserver 0.0.0.0:80
@@ -168,6 +170,7 @@ At the moment, the website is deployed at: http://geniale-cms.herokuapp.com/
 - [Team module](teamModule/README.md)
 - [Beer carousel](beer_carousel/README.md)
 - [Sponsors Module](sponsorsModule/README.md)
+- [Orchester integration module](orchester_cms_integration/README.md)
 
 # Documentation
 

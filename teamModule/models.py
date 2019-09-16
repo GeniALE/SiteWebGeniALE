@@ -102,6 +102,7 @@ class Member(TranslatableModel):
 
 class MemberExtraInfoType(models.Model):
   description = models.CharField(max_length=50)
+  code = models.CharField(max_length=50, blank=False, null=False, default="Enter a unique code")
 
   def __str__(self):
     return "{}".format(self.description)

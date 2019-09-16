@@ -97,6 +97,7 @@ STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'website', 'static'),
   os.path.join(BASE_DIR, 'teamModule', 'static'),
+  os.path.join(BASE_DIR, 'orchester_cms_integration', 'static'),
 )
 SITE_ID = 1
 
@@ -174,7 +175,8 @@ INSTALLED_APPS = (
   'hvad',
   'teamModule',
   'sponsorsModule',
-  'beer_carousel'
+  'beer_carousel',
+  'orchester_cms_integration',
 )
 
 LANGUAGES = (
