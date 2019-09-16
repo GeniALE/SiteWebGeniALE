@@ -18,6 +18,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
+  url(r'^orchester/', include('orchester_cms_integration.urls'), name="orchester"),
   url(r'^admin/', include(admin.site.urls)),  # NOQA
   url(r'^', include('cms.urls')),
 )

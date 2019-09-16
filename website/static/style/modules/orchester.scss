@@ -1,0 +1,50 @@
+@import '../basic/_colors';
+@import '../basic/_fonts';
+
+.orchester {
+  padding: 1em;
+  /* Padding for the sideframe menu */
+  padding-top: 46px;
+
+  &__container {
+    padding: 1em;
+  }
+
+  &__icon {
+    height: 1.5em;
+
+    &--medium {
+      height: 3em;
+    }
+  }
+
+  form {
+    margin: 0;
+  }
+
+  &__table {
+    border-collapse: collapse;
+    width: 100%;
+
+    td, th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: $color-primary-dark;
+      color: white;
+    }
+  }
+}

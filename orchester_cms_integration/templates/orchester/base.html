@@ -1,0 +1,15 @@
+{% load sekizai_tags compress static %}
+{% block style %}
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}">
+    <link rel="stylesheet" type="text/x-scss" href="{% static "style/modules/orchester.scss" %}">
+  {% endcompress %}
+{% endblock %}
+
+<div class="orchester">
+  {% block orchester_content %}
+  {% endblock %}
+</div>
+
+
+

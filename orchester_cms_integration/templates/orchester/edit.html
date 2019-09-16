@@ -1,0 +1,68 @@
+{% extends 'orchester/base.html' %}
+{% load static %}
+
+{% block orchester_content %}
+  <div>
+    <ul class="breadcrumb">
+      <li><a href="{% url "orchester:index" %}">Members</a></li>
+      <li>{{ member.email }}</li>
+    </ul>
+  </div>
+
+  <h2>Services</h2>
+
+  {% if error_message %}
+    <div class="alert alert--error">
+      <strong>Error:</strong>
+      {{ error_message }}
+    </div>
+  {% endif %}
+
+  <div>
+    <table class="orchester__table">
+      <tr>
+        <th>Service</th>
+        <th>Username</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+      <tbody>
+      {% for service_entry in service_info %}
+        <tr>
+          <td>{{ service_entry.displayName }}</td>
+          <td>{{ service_entry.username }}</td>
+          <td class="center">
+            {% if service_entry.status == 1 %}
+              <img
+                alt="Registered to service" class="orchester__icon--medium"
+                src="{% static "image/check-square-regular.svg" %}"
+              />
+            {% else %}
+              <img
+                alt="Unregistered to service" class="orchester__icon--medium"
+                src="{% static "image/times-circle-regular.svg" %}"
+              />
+            {% endif %}
+          </td>
+          <td class="center">
+            {% if service_entry.status == 1 %}
+              <form action="{% url 'orchester:unregister' member.id %}" method="post">
+            {% else %}
+              <form action="{% url 'orchester:register' member.id %}" method="post">
+            {% endif %}
+
+            {% csrf_token %}
+            <input type="hidden" name="connector_name" value="{{ service_entry.name }}"/>
+            {% if service_entry.status == 1 %}
+              <input type="submit" value="Unregister">
+            {% else %}
+              <input type="submit" value="Register"/>
+            {% endif %}
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

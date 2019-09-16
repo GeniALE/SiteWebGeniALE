@@ -49,5 +49,10 @@ RELEASE-VERSION
 
 \.vscode/
 
+# Orchester
+google_drive_*.json
+.orchester.json
 google_secret\.json
+
+
 
