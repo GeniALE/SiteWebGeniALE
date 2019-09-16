@@ -11,6 +11,7 @@ COPY beer_carousel /usr/src/app/beer_carousel
 COPY bin /usr/src/app/bin
 COPY sponsorsModule /usr/src/app/sponsorsModule
 COPY teamModule /usr/src/app/teamModule
+COPY orchester_cms_integration /usr/src/app/orchester_cms_integration
 COPY website /usr/src/app/website
 
 # run entrypoint.sh

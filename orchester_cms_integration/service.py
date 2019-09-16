@@ -1,8 +1,20 @@
+import logging
+
 from orchester import ConnectorManager, ConfigHelper, ConnectorType
 from orchester_cms_integration.errors import BadParametersError
 from orchester_cms_integration.getters import MEMBER_CONNECTOR_FIELD_GETTERS, AVAILABLE_CONNECTORS
 
-config = ConfigHelper.get_config_data()
+logger = logging.getLogger(__name__)
+
+config = {
+  'default_connector': "",
+  'connectors': []
+}
+try:
+  config = ConfigHelper.get_config_data()
+except Exception as error:
+  logger.error(str(error))
+
 connector_manager = ConnectorManager(config)
 
 

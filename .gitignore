@@ -6,6 +6,7 @@
 /public/static
 /public/media
 /media/
+/credentials
 /sql
 /fcgi/django.fcgi
 /static

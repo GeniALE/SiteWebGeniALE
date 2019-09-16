@@ -7,6 +7,7 @@ services:
       dockerfile: docker/Dockerfile
     command: supervisord -n -c /etc/supervisor/conf.d/supervisor-app.conf
     volumes:
+      - ./credentials:/usr/src/app/credentials
       - ./media:/usr/src/app/media
     env_file: .env
     ports:

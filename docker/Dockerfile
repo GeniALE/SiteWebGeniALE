@@ -18,6 +18,7 @@ COPY docker/gunicorn.conf \
 COPY bin /usr/src/app/bin
 COPY beer_carousel /usr/src/app/beer_carousel
 COPY sponsorsModule /usr/src/app/sponsorsModule
+COPY orchester_cms_integration /usr/src/app/orchester_cms_integration
 COPY teamModule /usr/src/app/teamModule
 COPY website /usr/src/app/website
 
