@@ -54,9 +54,9 @@
             {% csrf_token %}
             <input type="hidden" name="connector_name" value="{{ service_entry.name }}"/>
             {% if service_entry.status == 1 %}
-              <input type="submit" value="Unregister">
+              <input type="submit" class="inputs button button--primary" value="Unregister">
             {% else %}
-              <input type="submit" value="Register"/>
+              <input type="submit" class="inputs button button--primary" value="Register"/>
             {% endif %}
             </form>
           </td>
