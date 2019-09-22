@@ -89,25 +89,15 @@
     background-color: #f44336;
     color: white;
   }
+
+  &--info{
+    background-color: #0275d8;
+    color:white;
+  }
 }
 
 .divider-horz {
   border-bottom: solid black 0.5px;
-}
-
-
-/*Classes assignation to inputs*/
-
-input {
-  @extend .inputs;
-}
-
-input[type=text], select, textarea {
-  @extend .textInput
-}
-
-input[type=submit] {
-  @extend .button--primary;
 }
 
 label {

@@ -12,6 +12,18 @@
     width: 100%;
   }
 
+  input {
+    @extend .inputs;
+  }
+
+  input[type=text], select, textarea {
+    @extend .textInput
+  }
+
+  input[type=submit] {
+    @extend .button--primary;
+  }
+
   &__thanks {
 
   }

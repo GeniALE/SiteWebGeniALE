@@ -4,6 +4,13 @@
     <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}">
     <link rel="stylesheet" type="text/x-scss" href="{% static "style/modules/orchester.scss" %}">
   {% endcompress %}
+  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
+{% endblock %}
+
+{% block script %}
+  <script src="{% static "lib/jquery/jquery-3.4.0.min.js" %}"></script>
+  <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
 {% endblock %}
 
 <div class="orchester">
