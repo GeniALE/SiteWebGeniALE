@@ -11,24 +11,34 @@
 
   <h1 class="">Members</h1>
 
-  <table class="orchester__table">
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Actions</th>
-    </tr>
-    <tbody>
-    {% for member in object_list %}
-      <tr>
-        <td>{{ member.first_name }}</td>
-        <td>{{ member.last_name }}</td>
-        <td class="center" style="width:80px">
-          <a href="{% url 'orchester:detail' member.id %}">
-            <img alt="Edit member" class="orchester__icon" src="{% static "image/edit-solid.svg" %}"/>
-          </a>
-        </td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+  <p class="alert alert--info">
+    Click on a row to edit a member
+  </p>
+
+  <div id="orchesterTable" style="height: 100%;width:100%;" class="ag-theme-balham"></div>
+
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+
+      // let the grid know which columns and what data to use
+      var gridOptions = {
+        defaultColDef: {
+          filter: true,
+          sortable: true
+        },
+        domLayout: 'autoHeight',
+        columnDefs: {{ memberColumnsDef|safe }},
+        rowData: {{ memberList|safe }},
+        onRowClicked: function (event) {
+          window.location.href = "{% url 'orchester:index' %}" + event.data.id;
+        }
+      };
+
+      // lookup the container we want the Grid to use
+      var eGridDiv = document.querySelector('#orchesterTable');
+
+      // create the grid passing in the div to use together with the columns & data we want to use
+      new agGrid.Grid(eGridDiv, gridOptions);
+    });
+  </script>
 {% endblock %}
