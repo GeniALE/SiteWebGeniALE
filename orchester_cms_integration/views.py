@@ -13,6 +13,8 @@ from orchester_cms_integration.service import get_user_status_list
 from teamModule.models import Member, MemberExtraInfoType
 from orchester_cms_integration import service
 
+EXTRA_VALUE_PREFIX = "extra_"
+
 
 @method_decorator(login_required, name='dispatch')
 class IndexView(generic.ListView):
@@ -26,8 +28,8 @@ class IndexView(generic.ListView):
     return [{'field': field.name} for field in opts.concrete_fields]
 
   def get_extra_info_type_layout(self):
-    extra_info_types = set(map(lambda x: x.code,MemberExtraInfoType.objects.all()))
-    return [{'field': code} for code in extra_info_types]
+    extra_info_types = set(map(lambda x: x.code, MemberExtraInfoType.objects.all()))
+    return [{'field': EXTRA_VALUE_PREFIX + code, 'headerName': code.capitalize()} for code in extra_info_types]
 
   def get_flatten_members_list(self):
     members = Member.objects.prefetch_related(
@@ -39,7 +41,7 @@ class IndexView(generic.ListView):
     for member in members:
       member_as_dict = to_dict(member)
       for extra in member.memberextrainfo_set.all():
-        member_as_dict[extra.info_type.code] = extra.value
+        member_as_dict[EXTRA_VALUE_PREFIX + extra.info_type.code] = extra.value
       result.append(member_as_dict)
 
     return result
