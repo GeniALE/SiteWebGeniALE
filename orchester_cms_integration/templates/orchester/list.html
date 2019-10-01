@@ -3,6 +3,11 @@
 
 {% block orchester_content %}
 
+  <div class="loading">
+    <div class="loading__image">
+    </div>
+  </div>
+
   <div>
     <ul class="breadcrumb">
       <li>Members</li>
@@ -30,6 +35,7 @@
         columnDefs: {{ memberColumnsDef|safe }},
         rowData: {{ memberList|safe }},
         onRowClicked: function (event) {
+          $(".loading").addClass("loading--visible");
           window.location.href = "{% url 'orchester:index' %}" + event.data.id;
         }
       };
