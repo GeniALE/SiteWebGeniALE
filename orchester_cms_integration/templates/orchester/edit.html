@@ -2,6 +2,12 @@
 {% load static %}
 
 {% block orchester_content %}
+
+  <div class="loading">
+    <div class="loading__image">
+    </div>
+  </div>
+
   <div>
     <ul class="breadcrumb">
       <li><a href="{% url "orchester:index" %}">Members</a></li>
@@ -46,9 +52,9 @@
           </td>
           <td class="center">
             {% if service_entry.status == 1 %}
-              <form action="{% url 'orchester:unregister' member.id %}" method="post">
+              <form class="orchesterActionForm" action="{% url 'orchester:unregister' member.id %}" method="post">
             {% else %}
-              <form action="{% url 'orchester:register' member.id %}" method="post">
+              <form class="orchesterActionForm" action="{% url 'orchester:register' member.id %}" method="post">
             {% endif %}
 
             {% csrf_token %}
@@ -65,4 +71,13 @@
       </tbody>
     </table>
   </div>
+  <script type="application/javascript">
+    $(document).ready(function () {
+      $(".orchesterActionForm").submit(function () {
+        $(".loading").addClass("loading--visible");
+      });
+    });
+  </script>
 {% endblock %}
+
+

@@ -90,9 +90,9 @@
     color: white;
   }
 
-  &--info{
+  &--info {
     background-color: #0275d8;
-    color:white;
+    color: white;
   }
 }
 
@@ -137,4 +137,31 @@ ul.breadcrumb li a {
 ul.breadcrumb li a:hover {
   color: #01447e;
   text-decoration: underline;
+}
+
+
+// Loading gif
+
+.loading {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  cursor: pointer;
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    background: url("../cms/img/loader.gif") center center no-repeat;
+  }
+
+  &--visible {
+    display: block;
+  }
 }
