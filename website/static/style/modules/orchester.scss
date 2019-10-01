@@ -47,4 +47,13 @@
       color: white;
     }
   }
+
+  &__edit {
+
+    &__buttonForm {
+      height:100%;
+      display: flex;
+      align-items: center;
+    }
+  }
 }

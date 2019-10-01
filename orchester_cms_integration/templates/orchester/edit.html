@@ -24,58 +24,67 @@
     </div>
   {% endif %}
 
-  <div>
-    <table class="orchester__table">
-      <tr>
-        <th>Service</th>
-        <th>Username</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-      <tbody>
-      {% for service_entry in service_info %}
-        <tr>
-          <td>{{ service_entry.displayName }}</td>
-          <td>{{ service_entry.username }}</td>
-          <td class="center">
-            {% if service_entry.status == 1 %}
-              <img
-                alt="Registered to service" class="orchester__icon--medium"
-                src="{% static "image/check-square-regular.svg" %}"
-              />
-            {% else %}
-              <img
-                alt="Unregistered to service" class="orchester__icon--medium"
-                src="{% static "image/times-circle-regular.svg" %}"
-              />
-            {% endif %}
-          </td>
-          <td class="center">
-            {% if service_entry.status == 1 %}
-              <form class="orchesterActionForm" action="{% url 'orchester:unregister' member.id %}" method="post">
-            {% else %}
-              <form class="orchesterActionForm" action="{% url 'orchester:register' member.id %}" method="post">
-            {% endif %}
+  <div id="orchesterTable" style="height: 100%;width:100%;" class="ag-theme-balham"></div>
 
-            {% csrf_token %}
-            <input type="hidden" name="connector_name" value="{{ service_entry.name }}"/>
-            {% if service_entry.status == 1 %}
-              <input type="submit" class="inputs button button--primary" value="Unregister">
-            {% else %}
-              <input type="submit" class="inputs button button--primary" value="Register"/>
-            {% endif %}
-            </form>
-          </td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  <script type="application/javascript">
+  <script type="text/javascript" charset="utf-8">
+    var unregisterUrl = "{% url 'orchester:unregister' member.id %}";
+    var registerUrl = "{% url 'orchester:register' member.id %}";
+
+    var columnsDef = [
+      {
+        field: "displayName",
+      },
+      {
+        field: "username"
+      }, {
+        field: "status"
+      },
+      {
+        field: "actions",
+        suppressSizeToFit:true,
+        cellRenderer: function (params) {
+          return params.data.status
+            ? [
+              '<form class="orchester__edit__buttonForm" action="' + unregisterUrl + '" method="post">',
+              '<input type="hidden" name="connector_name" value="' + params.data.name + '" />',
+              "{% csrf_token %}",
+              '<input type="submit" class="button--primary" value="Unregister"/>',
+              '</form',
+            ].join('')
+            : [
+              '<form class="orchester__edit__buttonForm" action="' + registerUrl + '" method="post">',
+              '<input type="hidden" name="connector_name" value="' + params.data.name + '" />',
+              "{% csrf_token %}",
+              '<input type="submit" class="button--primary" value="Register"/>',
+              '</form',
+            ].join('');
+        }
+      }
+    ];
     $(document).ready(function () {
-      $(".orchesterActionForm").submit(function () {
-        $(".loading").addClass("loading--visible");
-      });
+
+      // let the grid know which columns and what data to use
+      var gridOptions = {
+        defaultColDef: {
+          filter: true,
+          sortable: true,
+          resizable: true
+        },
+        domLayout: 'autoHeight',
+        columnDefs: columnsDef,
+        rowData: {{ service_info|safe }},
+        onFirstDataRendered: function () {
+          $(".orchester__edit__buttonForm").submit(function () {
+            $(".loading").addClass("loading--visible");
+          });
+        }
+      };
+
+      // lookup the container we want the Grid to use
+      var eGridDiv = document.querySelector('#orchesterTable');
+
+      // create the grid passing in the div to use together with the columns & data we want to use
+      new agGrid.Grid(eGridDiv, gridOptions);
     });
   </script>
 {% endblock %}

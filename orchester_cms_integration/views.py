@@ -69,7 +69,7 @@ class DetailView(generic.DetailView):
     context = super().get_context_data(**kwargs)
     # Add in a QuerySet of all the books
     member = context['member']
-    context['service_info'] = get_user_status_list(member)
+    context['service_info'] = json.dumps(get_user_status_list(member))
     return context
 
 
@@ -88,14 +88,14 @@ def unregister(request, member_id):
       return render(request, 'orchester/edit.html', {
         'member': member,
         'error_message': "Failed to unregister the user!",
-        'service_info': service_info
+        'service_info': json.dumps(service_info)
       })
 
   except Exception as error:
     return render(request, 'orchester/edit.html', {
       'member': member,
       'error_message': str(error),
-      'service_info': service_info
+      'service_info': json.dumps(service_info)
     })
 
 
@@ -114,11 +114,11 @@ def register(request, member_id):
       return render(request, 'orchester/edit.html', {
         'member': member,
         'error_message': "Failed to register the user",
-        'service_info': service_info
+        'service_info': json.dumps(service_info)
       })
   except Exception as error:
     return render(request, 'orchester/edit.html', {
       'member': member,
       'error_message': str(error),
-      'service_info': service_info
+      'service_info': json.dumps(service_info)
     })
