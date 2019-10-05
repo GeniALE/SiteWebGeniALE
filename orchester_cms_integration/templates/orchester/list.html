@@ -20,26 +20,59 @@
     Click on a row to edit a member
   </p>
 
+  <p>
+    <label>Show active members only: <input type="checkbox" checked="true" onclick="externalFilterChanged();"/></label>
+  </p>
+
   <div id="orchesterTable" style="height: 100%;width:100%;" class="ag-theme-balham"></div>
 
   <script type="text/javascript" charset="utf-8">
+    var filterIsActiveDefault = true;
+    // External filters
+    var filterIsActive = filterIsActiveDefault;
+
+    // let the grid know which columns and what data to use
+    var gridOptions = {
+      defaultColDef: {
+        filter: true,
+        sortable: true
+      },
+      domLayout: 'autoHeight',
+      animateRows: true,
+      columnDefs: {{ memberColumnsDef|safe }},
+      rowData: {{ memberList|safe }},
+      onRowClicked: function (event) {
+        $(".loading").addClass("loading--visible");
+        window.location.href = "{% url 'orchester:index' %}" + event.data.id;
+      },
+      isExternalFilterPresent: isExternalFilterPresent,
+      doesExternalFilterPass: isActiveFilter
+    };
+
+    function isExternalFilterPresent() {
+      return filterIsActive;
+    }
+
+    function isActiveFilter(node) {
+      if (!node.data.date_left) {
+        return true;
+      }
+
+      try {
+        var date = new Date(node.data.date_left);
+        return date.getTime() > new Date().getTime();
+      } catch (err) {
+        console.warn("Error parsing filter date: ", err);
+      }
+      return false;
+    }
+
+    function externalFilterChanged() {
+      filterIsActive = !filterIsActive;
+      gridOptions.api.onFilterChanged();
+    }
+
     $(document).ready(function () {
-
-      // let the grid know which columns and what data to use
-      var gridOptions = {
-        defaultColDef: {
-          filter: true,
-          sortable: true
-        },
-        domLayout: 'autoHeight',
-        columnDefs: {{ memberColumnsDef|safe }},
-        rowData: {{ memberList|safe }},
-        onRowClicked: function (event) {
-          $(".loading").addClass("loading--visible");
-          window.location.href = "{% url 'orchester:index' %}" + event.data.id;
-        }
-      };
-
       // lookup the container we want the Grid to use
       var eGridDiv = document.querySelector('#orchesterTable');
 
