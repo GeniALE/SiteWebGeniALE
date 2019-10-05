@@ -2,8 +2,9 @@ import logging
 
 from orchester import ConnectorManager, ConfigHelper, ConnectorType
 from orchester_cms_integration.errors import BadParametersError
-from orchester_cms_integration.getters import MEMBER_CONNECTOR_FIELD_GETTERS, AVAILABLE_CONNECTORS
+from orchester_cms_integration.getters import MEMBER_CONNECTOR_FIELD_GETTERS, AVAILABLE_CONNECTORS, EXTRA_VALUE_PREFIX
 from orchester_cms_integration.models import ServiceInstructions
+from teamModule.helpers import to_dict
 
 logger = logging.getLogger(__name__)
 
@@ -60,9 +61,14 @@ def get_user_status_list(member):
     })
 
   custom_services = ServiceInstructions.objects.all()
+
+  member_as_dict = to_dict(member)
+  for extra in member.memberextrainfo_set.all():
+    member_as_dict[EXTRA_VALUE_PREFIX + extra.info_type.code] = extra.value
+
   for custom_service in custom_services:
     service_info.append({
-      'username': getattr(member, custom_service.member_mapping_to_username, default_username),
+      'username': member_as_dict.get(custom_service.member_mapping_to_username, default_username),
       'name': custom_service.service_name,
       'displayName': custom_service.service_name,
       'status': 'N/A',

@@ -3,6 +3,8 @@ from orchester import ConnectorType
 
 from teamModule.models import Member, MemberExtraInfo
 
+EXTRA_VALUE_PREFIX = "extra_"
+
 
 def get_slack_user(member: Member):
   return member.email
