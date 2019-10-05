@@ -40,21 +40,15 @@
     var registerUrl = "{% url 'orchester:register' member.id %}";
 
     function renderNormalService(data) {
-      return data.status
-        ? [
-          '<form class="orchester__edit__buttonForm" action="' + unregisterUrl + '" method="post">',
-          '<input type="hidden" name="connector_name" value="' + data.name + '" />',
-          "{% csrf_token %}",
-          '<input type="submit" class="button--primary" value="Unregister"/>',
-          '</form',
-        ].join('')
-        : [
-          '<form class="orchester__edit__buttonForm" action="' + registerUrl + '" method="post">',
-          '<input type="hidden" name="connector_name" value="' + data.name + '" />',
-          "{% csrf_token %}",
-          '<input type="submit" class="button--primary" value="Register"/>',
-          '</form',
-        ].join('');
+      const url = data.status ? unregisterUrl : registerUrl;
+      const buttonName = data.status ? 'Unregister' : 'Register';
+      return [
+        '<form class="orchester__edit__buttonForm" action="' + url + '" method="post">',
+        '<input type="hidden" name="connector_name" value="' + data.name + '" />',
+        "{% csrf_token %}",
+        '<input type="submit" class="button--primary" value="' + buttonName + '"/>',
+        '</form',
+      ].join('');
     }
 
     function buildButton(url, buttonName, buttonClass) {
@@ -68,7 +62,6 @@
     }
 
     function renderCustomService(data) {
-
       const content = ['<div class="orchester__edit__custom">'];
 
       if (data.instructionUrl) {
@@ -84,11 +77,9 @@
       }
 
       content.push('</div>');
-
       return content.join('');
     }
-
-
+    
     var columnsDef = [
       {
         field: "displayName",
