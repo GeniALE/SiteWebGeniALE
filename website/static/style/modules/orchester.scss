@@ -50,10 +50,14 @@
 
   &__edit {
 
-    &__buttonForm {
-      height:100%;
+    &__buttonForm, &__custom {
+      height: 100%;
       display: flex;
       align-items: center;
+    }
+
+    &__custom > a {
+      margin-right: 0.5em;
     }
   }
 }
