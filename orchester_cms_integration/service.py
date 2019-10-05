@@ -2,7 +2,9 @@ import logging
 
 from orchester import ConnectorManager, ConfigHelper, ConnectorType
 from orchester_cms_integration.errors import BadParametersError
-from orchester_cms_integration.getters import MEMBER_CONNECTOR_FIELD_GETTERS, AVAILABLE_CONNECTORS
+from orchester_cms_integration.getters import MEMBER_CONNECTOR_FIELD_GETTERS, AVAILABLE_CONNECTORS, EXTRA_VALUE_PREFIX
+from orchester_cms_integration.models import ServiceInstructions
+from teamModule.helpers import to_dict
 
 logger = logging.getLogger(__name__)
 
@@ -38,20 +40,41 @@ def do_action(action_name, connector_name, member):
 
 def get_user_status_list(member):
   service_info = []
+  default_username = 'N/A'
 
   for connector_type in AVAILABLE_CONNECTORS:
     username_getter = MEMBER_CONNECTOR_FIELD_GETTERS.get(connector_type)
 
-    username = 'N/A'
+    username = default_username
     try:
       is_active = do_action('check', connector_type, member)
       username = username_getter(member)
     except:
       is_active = False
+
     service_info.append({
       'username': username,
       'name': connector_type.value,
       'displayName': connector_type.name,
-      'status': is_active
+      'status': is_active,
+      'isCustomService': False
+    })
+
+  custom_services = ServiceInstructions.objects.all()
+
+  member_as_dict = to_dict(member)
+  for extra in member.memberextrainfo_set.all():
+    member_as_dict[EXTRA_VALUE_PREFIX + extra.info_type.code] = extra.value
+
+  for custom_service in custom_services:
+    service_info.append({
+      'username': member_as_dict.get(custom_service.member_mapping_to_username, default_username),
+      'name': custom_service.service_name,
+      'displayName': custom_service.service_name,
+      'status': 'N/A',
+      'registerUrl': custom_service.register_url,
+      'unregisterUrl': custom_service.unregister_url,
+      'instructionUrl': str(custom_service.instruction_file),
+      'isCustomService': True
     })
   return service_info

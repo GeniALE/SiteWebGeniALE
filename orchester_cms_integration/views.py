@@ -8,12 +8,11 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 import json
 
+from orchester_cms_integration.getters import EXTRA_VALUE_PREFIX
 from teamModule.helpers import to_dict
 from orchester_cms_integration.service import get_user_status_list
 from teamModule.models import Member, MemberExtraInfoType
 from orchester_cms_integration import service
-
-EXTRA_VALUE_PREFIX = "extra_"
 
 
 @method_decorator(login_required, name='dispatch')

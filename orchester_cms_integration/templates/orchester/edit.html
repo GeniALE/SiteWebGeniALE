@@ -39,6 +39,47 @@
     var unregisterUrl = "{% url 'orchester:unregister' member.id %}";
     var registerUrl = "{% url 'orchester:register' member.id %}";
 
+    function renderNormalService(data) {
+      const url = data.status ? unregisterUrl : registerUrl;
+      const buttonName = data.status ? 'Unregister' : 'Register';
+      return [
+        '<form class="orchester__edit__buttonForm" action="' + url + '" method="post">',
+        '<input type="hidden" name="connector_name" value="' + data.name + '" />',
+        "{% csrf_token %}",
+        '<input type="submit" class="button--primary" value="' + buttonName + '"/>',
+        '</form',
+      ].join('');
+    }
+
+    function buildButton(url, buttonName, buttonClass) {
+      return [
+        '<a href="' + url + '">',
+        '<button class="' + (buttonClass || "") + '">',
+        buttonName,
+        '</button>',
+        '</a>'
+      ].join('');
+    }
+
+    function renderCustomService(data) {
+      const content = ['<div class="orchester__edit__custom">'];
+
+      if (data.instructionUrl) {
+        content.push(buildButton('/media/' + data.instructionUrl, 'Instructions', 'button--primary'));
+      }
+
+      if (data.registerUrl) {
+        content.push(buildButton(data.registerUrl, 'Register', 'button--secondary'));
+      }
+
+      if (data.unregisterUrl) {
+        content.push(buildButton(data.unregisterUrl, 'Unregister', 'button--secondary'));
+      }
+
+      content.push('</div>');
+      return content.join('');
+    }
+    
     var columnsDef = [
       {
         field: "displayName",
@@ -51,22 +92,12 @@
       {
         field: "actions",
         suppressSizeToFit: true,
+        width: 420,
         cellRenderer: function (params) {
-          return params.data.status
-            ? [
-              '<form class="orchester__edit__buttonForm" action="' + unregisterUrl + '" method="post">',
-              '<input type="hidden" name="connector_name" value="' + params.data.name + '" />',
-              "{% csrf_token %}",
-              '<input type="submit" class="button--primary" value="Unregister"/>',
-              '</form',
-            ].join('')
-            : [
-              '<form class="orchester__edit__buttonForm" action="' + registerUrl + '" method="post">',
-              '<input type="hidden" name="connector_name" value="' + params.data.name + '" />',
-              "{% csrf_token %}",
-              '<input type="submit" class="button--primary" value="Register"/>',
-              '</form',
-            ].join('');
+          var data = params.data;
+          return data.isCustomService
+            ? renderCustomService(data)
+            : renderNormalService(data);
         }
       }
     ];
