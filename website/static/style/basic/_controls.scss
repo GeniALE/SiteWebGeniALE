@@ -48,6 +48,7 @@
 
   &--secondary {
     background-color: $color-secondary;
+    color: $color-foreground-dark;
 
     &:hover {
       background-color: $color-secondary-dark;

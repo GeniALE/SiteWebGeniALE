@@ -17,14 +17,23 @@
 
   <h2>Services</h2>
 
-  {% if error_message %}
-    <div class="alert alert--error">
-      <strong>Error:</strong>
-      {{ error_message }}
-    </div>
-  {% endif %}
+    {% if error_message %}
+      <div class="alert alert--error">
+        <strong>Error:</strong>
+          {{ error_message }}
+      </div>
+    {% endif %}
 
   <div id="orchesterTable" style="height: 100%;width:100%;" class="ag-theme-balham"></div>
+
+  <div>
+    <a class="link" href="{{ HTTP_HOST }}/admin/teamModule/member/{{ member.id }}/change/">
+      <button class="inputs button button--primary">Edit user details</button>
+    </a>
+    <a class="link" href="{{ HTTP_HOST }}/admin/teamModule/member/{{ member.id }}/delete/">
+      <button class="inputs button button--secondary">Delete user</button>
+    </a>
+  </div>
 
   <script type="text/javascript" charset="utf-8">
     var unregisterUrl = "{% url 'orchester:unregister' member.id %}";
@@ -41,7 +50,7 @@
       },
       {
         field: "actions",
-        suppressSizeToFit:true,
+        suppressSizeToFit: true,
         cellRenderer: function (params) {
           return params.data.status
             ? [
