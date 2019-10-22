@@ -39,6 +39,7 @@ class IndexView(generic.ListView):
     result = []
     for member in members:
       member_as_dict = to_dict(member)
+      member_as_dict['formation'] = str(member.formation)
       for extra in member.memberextrainfo_set.all():
         member_as_dict[EXTRA_VALUE_PREFIX + extra.info_type.code] = extra.value
       result.append(member_as_dict)
