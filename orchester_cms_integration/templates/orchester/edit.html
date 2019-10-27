@@ -36,96 +36,110 @@
   </div>
 
   <script type="text/javascript" charset="utf-8">
-    var unregisterUrl = "{% url 'orchester:unregister' member.id %}";
-    var registerUrl = "{% url 'orchester:register' member.id %}";
+      var data = {{ service_info|safe }};
+      var unregisterUrl = "{% url 'orchester:unregister' member.id %}";
+      var registerUrl = "{% url 'orchester:register' member.id %}";
 
-    function renderNormalService(data) {
-      const url = data.status ? unregisterUrl : registerUrl;
-      const buttonName = data.status ? 'Unregister' : 'Register';
-      return [
-        '<form class="orchester__edit__buttonForm" action="' + url + '" method="post">',
-        '<input type="hidden" name="connector_name" value="' + data.name + '" />',
-        "{% csrf_token %}",
-        '<input type="submit" class="button--primary" value="' + buttonName + '"/>',
-        '</form',
-      ].join('');
-    }
-
-    function buildButton(url, buttonName, buttonClass) {
-      return [
-        '<a href="' + url + '">',
-        '<button class="' + (buttonClass || "") + '">',
-        buttonName,
-        '</button>',
-        '</a>'
-      ].join('');
-    }
-
-    function renderCustomService(data) {
-      const content = ['<div class="orchester__edit__custom">'];
-
-      if (data.instructionUrl) {
-        content.push(buildButton('/media/' + data.instructionUrl, 'Instructions', 'button--primary'));
+      function renderNormalService(td, data) {
+          const url = data.status ? unregisterUrl : registerUrl;
+          const buttonName = data.status ? 'Unregister' : 'Register';
+          td.innerHTML = [
+              '<form class="orchester__edit__buttonForm" action="' + url + '" method="post">',
+              '<input type="hidden" name="connector_name" value="' + data.name + '" />',
+              "{% csrf_token %}",
+              '<input type="submit" class="button--primary" value="' + buttonName + '"/>',
+              '</form',
+          ].join('');
       }
 
-      if (data.registerUrl) {
-        content.push(buildButton(data.registerUrl, 'Register', 'button--secondary'));
+      function buildButton(url, buttonName, buttonClass) {
+          return [
+              '<a href="' + url + '">',
+              '<button class="' + (buttonClass || "") + '">',
+              buttonName,
+              '</button>',
+              '</a>'
+          ].join('');
       }
 
-      if (data.unregisterUrl) {
-        content.push(buildButton(data.unregisterUrl, 'Unregister', 'button--secondary'));
+      function renderCustomService(td, data) {
+          var content = ['<div class="orchester__edit__custom">'];
+
+          if (data.instructionUrl) {
+              content.push(buildButton('/media/' + data.instructionUrl, 'Instructions', 'button--primary'));
+          }
+
+          if (data.registerUrl) {
+              content.push(buildButton(data.registerUrl, 'Register', 'button--secondary'));
+          }
+
+          if (data.unregisterUrl) {
+              content.push(buildButton(data.unregisterUrl, 'Unregister', 'button--secondary'));
+          }
+
+          content.push('</div>');
+          td.innerHTML = content.join('');
       }
 
-      content.push('</div>');
-      return content.join('');
-    }
-    
-    var columnsDef = [
-      {
-        field: "displayName",
-      },
-      {
-        field: "username"
-      }, {
-        field: "status"
-      },
-      {
-        field: "actions",
-        suppressSizeToFit: true,
-        width: 420,
-        cellRenderer: function (params) {
-          var data = params.data;
-          return data.isCustomService
-            ? renderCustomService(data)
-            : renderNormalService(data);
-        }
-      }
-    ];
-    $(document).ready(function () {
+      var columns = [
+          {
+              data: "displayName",
+          },
+          {
+              data: "username",
+              renderer: function (instance, td, row, col, prop, value, cellProperties) {
+                  var rowData = data[row];
 
-      // let the grid know which columns and what data to use
-      var gridOptions = {
-        defaultColDef: {
-          filter: true,
-          sortable: true,
-          resizable: true
-        },
-        domLayout: 'autoHeight',
-        columnDefs: columnsDef,
-        rowData: {{ service_info|safe }},
-        onFirstDataRendered: function () {
-          $(".orchester__edit__buttonForm").submit(function () {
-            $(".loading").addClass("loading--visible");
-          });
-        }
-      };
+                  if (rowData.warning) {
+                      cellProperties.comment = {value: rowData.warning};
+                  }
+                  td.innerText = value;
+              }
+          }, {
+              data: "status",
+          },
+          {
+              data: "actions",
+              width: 420,
+              renderer: function (instance, td, row, col, prop, value, cellProperties) {
+                  var rowData = data[row];
+                  rowData.isCustomService ? renderCustomService(td, rowData) : renderNormalService(td, rowData);
+              }
+          }
+      ];
 
-      // lookup the container we want the Grid to use
-      var eGridDiv = document.querySelector('#orchesterTable');
+      var columnHeaders = [
+          "Display name",
+          "Username",
+          "Status",
+          "Actions"
+      ];
 
-      // create the grid passing in the div to use together with the columns & data we want to use
-      new agGrid.Grid(eGridDiv, gridOptions);
-    });
+      $(document).ready(function () {
+
+          // let the grid know which columns and what data to use
+          var gridOptions = {
+              data: data,
+              columns: columns,
+              colHeaders: columnHeaders,
+              columnSorting: true,
+              readOnly: true,
+              comments: true,
+              licenseKey: 'non-commercial-and-evaluation'
+          };
+
+          // lookup the container we want the Grid to use
+          var gridElement = document.querySelector('#orchesterTable');
+
+          var grid = new Handsontable(gridElement, gridOptions);
+
+          // Register hooks
+          Handsontable.hooks.add('afterInit', function () {
+              $(".orchester__edit__buttonForm").submit(function () {
+                  $(".loading").addClass("loading--visible");
+              });
+          }, grid);
+      });
   </script>
 {% endblock %}
 

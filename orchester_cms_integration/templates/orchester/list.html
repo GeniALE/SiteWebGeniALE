@@ -21,69 +21,163 @@
   </p>
 
   <p>
-    <label>Show active members only: <input type="checkbox" checked="true" onclick="externalFilterChanged();"/></label>
+    <label>Show active members only: <input id="btnActiveMemberFilter" type="checkbox" checked="true"/></label>
   </p>
 
-  <div id="orchesterTable" style="height: 100%;width:100%;" class="ag-theme-balham"></div>
+  <div id="orchesterTable" style="height: 100%;width:100%;"></div>
 
-   <div>
+  <div>
     <a class="link" href="{{ HTTP_HOST }}/admin/teamModule/member/add">
       <button class="inputs button button--primary">Add member</button>
     </a>
+    <button id="exportBtn" class="inputs button button--secondary">Export data</button>
+
   </div>
 
   <script type="text/javascript" charset="utf-8">
-    var filterIsActiveDefault = true;
-    // External filters
-    var filterIsActive = filterIsActiveDefault;
+      var data = {{ memberList|safe }};
 
-    // let the grid know which columns and what data to use
-    var gridOptions = {
-      defaultColDef: {
-        filter: true,
-        sortable: true
-      },
-      domLayout: 'autoHeight',
-      animateRows: true,
-      columnDefs: {{ memberColumnsDef|safe }},
-      rowData: {{ memberList|safe }},
-      onRowClicked: function (event) {
-        $(".loading").addClass("loading--visible");
-        window.location.href = "{% url 'orchester:index' %}" + event.data.id;
-      },
-      isExternalFilterPresent: isExternalFilterPresent,
-      doesExternalFilterPass: isActiveFilter
-    };
+      //
+      // Utility functions
+      //
 
-    function isExternalFilterPresent() {
-      return filterIsActive;
-    }
-
-    function isActiveFilter(node) {
-      if (!node.data.date_left) {
-        return true;
+      function onRowClick(id) {
+          $(".loading").addClass("loading--visible");
+          window.location.href = "{% url 'orchester:index' %}" + id;
       }
 
-      try {
-        var date = new Date(node.data.date_left);
-        return date.getTime() > new Date().getTime();
-      } catch (err) {
-        console.warn("Error parsing filter date: ", err);
+      function buildEditButton(id) {
+          return [
+              '<div style="text-align:center">',
+              '<button class="' + "button--primary" + '" onClick="onRowClick(' + id + ')">',
+              "Edit",
+              '</button>',
+              '</div>'
+          ].join('');
       }
-      return false;
-    }
 
-    function externalFilterChanged() {
-      filterIsActive = !filterIsActive;
-      gridOptions.api.onFilterChanged();
-    }
 
-    $(document).ready(function () {
-      // lookup the container we want the Grid to use
-      var eGridDiv = document.querySelector('#orchesterTable');
+      // Grid creation
 
-      // create the grid passing in the div to use together with the columns & data we want to use
-      new agGrid.Grid(eGridDiv, gridOptions);
-    });
+      var extraColumns = {{ memberColumns|safe }};
+      var extraColHeaders = {{ memberColumnNames|safe }};
+
+      var columns = [
+          {
+              renderer: function (instance, td, row, col, prop, value, cellProperties) {
+                  var rowData = data[row];
+                  td.innerHTML = buildEditButton(rowData.id);
+              }
+          },
+          {
+              data: 'id',
+          },
+          {
+              data: 'first_name',
+          }, {
+              data: 'last_name'
+          }, {
+              data: 'email',
+          },
+          {
+              data: 'formation'
+          },
+          {
+              data: 'date_joined',
+              type: 'date',
+              dateFormat: 'MM/DD/YYYY',
+          },
+          {
+              data: 'date_left',
+              type: 'date',
+              dateFormat: 'MM/DD/YYYY',
+              correctFormat: true
+          }
+      ];
+
+      var columnHeaders = [
+          'Actions',
+          'Id',
+          'First name',
+          'Last name',
+          'Email',
+          'Formation',
+          'Date joined',
+          'Date left'
+      ];
+
+      // let the grid know which columns and what data to use
+      var gridOptions = {
+          data: data,
+          columns: columns.concat(extraColumns),
+          colHeaders: columnHeaders.concat(extraColHeaders),
+          columnSorting: true,
+          filters: true,
+          comments: true,
+          readOnly: true,
+          dropdownMenu: true,
+
+          width: '100%',
+          preventOverflow: 'horizontal',
+          rowHeaders: true,
+          licenseKey: 'non-commercial-and-evaluation'
+      };
+
+
+      $(document).ready(function () {
+          // lookup the container we want the Grid to use
+          var gridElement = document.querySelector('#orchesterTable');
+
+          // create the grid passing in the div to use together with the columns & data we want to use
+          var grid = new Handsontable(gridElement, gridOptions);
+
+          var filtersPlugin = grid.getPlugin('filters');
+          var exportPlugin1 = grid.getPlugin('exportFile');
+
+
+           applyFilter(true);
+           
+          setTimeout(function () {
+
+              //grid.render();
+             // grid.validateCells();
+          }, 50);
+
+
+          function applyFilter(isChecked) {
+              var dateLeftColumnIndex = 7;
+
+              filtersPlugin.clearConditions(dateLeftColumnIndex);
+
+              if (isChecked) {
+                  const now = new Date();
+                  filtersPlugin.addCondition(dateLeftColumnIndex, 'empty', [], 'disjunction');
+                  filtersPlugin.addCondition(dateLeftColumnIndex, 'gt', [now.toISOString()], 'disjunction');
+              }
+
+
+              filtersPlugin.filter();
+          }
+
+          $("#exportBtn").on('click', function () {
+              exportPlugin1.downloadFile('csv', {
+                  bom: false,
+                  columnDelimiter: ',',
+                  columnHeaders: true,
+                  exportHiddenColumns: true,
+                  exportHiddenRows: true,
+                  fileExtension: 'csv',
+                  filename: 'GeniALE_membres_[YYYY]-[MM]-[DD]',
+                  mimeType: 'text/csv',
+                  rowDelimiter: '\r\n',
+                  rowHeaders: true
+              });
+          });
+
+          $("#btnActiveMemberFilter").on('click', function (event) {
+              var value = event.target.checked;
+              applyFilter(value);
+          });
+      });
   </script>
 {% endblock %}

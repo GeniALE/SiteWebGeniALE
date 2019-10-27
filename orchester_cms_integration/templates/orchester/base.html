@@ -1,21 +1,20 @@
 {% load sekizai_tags compress static %}
 {% block style %}
-  {% compress css %}
-    <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}">
-    <link rel="stylesheet" type="text/x-scss" href="{% static "style/modules/orchester.scss" %}">
-  {% endcompress %}
-  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
-  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
+    {% compress css %}
+      <link rel="stylesheet" type="text/x-scss" href="{% static "style/style.scss" %}">
+      <link rel="stylesheet" type="text/x-scss" href="{% static "style/modules/orchester.scss" %}">
+    {% endcompress %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
 {% endblock %}
 
 {% block script %}
   <script src="{% static "lib/jquery/jquery-3.4.0.min.js" %}"></script>
-  <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
 {% endblock %}
 
 <div class="orchester">
-  {% block orchester_content %}
-  {% endblock %}
+    {% block orchester_content %}
+    {% endblock %}
 </div>
 
 

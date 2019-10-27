@@ -22,13 +22,20 @@ class IndexView(generic.ListView):
   def get_queryset(self):
     return Member.objects.all()
 
-  def get_member_layout(self):
+  def get_member_columns(self):
     opts = Member._meta
-    return [{'field': field.name} for field in opts.concrete_fields]
+    return [{'data': field.name} for field in opts.concrete_fields]
 
-  def get_extra_info_type_layout(self):
-    extra_info_types = set(map(lambda x: x.code, MemberExtraInfoType.objects.all()))
-    return [{'field': EXTRA_VALUE_PREFIX + code, 'headerName': code.capitalize()} for code in extra_info_types]
+  def get_member_column_names(self):
+    opts = Member._meta
+    return list(map(lambda x: x.name.capitalize().replace('_', ' '), opts.concrete_fields))
+
+  def get_extra_info_type_columns(self):
+    extra_info_types = list(set(map(lambda x: x.code, MemberExtraInfoType.objects.all())))
+    return [{'data': EXTRA_VALUE_PREFIX + code} for code in extra_info_types]
+
+  def get_extra_info_Type_column_names(self):
+    return list(set(map(lambda x: x.code.capitalize(), MemberExtraInfoType.objects.all())))
 
   def get_flatten_members_list(self):
     members = Member.objects.prefetch_related(
@@ -39,7 +46,14 @@ class IndexView(generic.ListView):
     result = []
     for member in members:
       member_as_dict = to_dict(member)
+
       member_as_dict['formation'] = str(member.formation)
+
+      # Convert datetime to dates
+      member_as_dict['date_joined'] = member_as_dict['date_joined'].date()
+      if 'date_left' in member_as_dict:
+        member_as_dict['date_left'] = member_as_dict['date_left'].date()
+
       for extra in member.memberextrainfo_set.all():
         member_as_dict[EXTRA_VALUE_PREFIX + extra.info_type.code] = extra.value
       result.append(member_as_dict)
@@ -49,10 +63,13 @@ class IndexView(generic.ListView):
   def get_context_data(self, **kwargs):
     # Call the base implementation first to get a context
     context = super().get_context_data(**kwargs)
-    # Add in a QuerySet of all the books
-    member_layout = self.get_member_layout() + self.get_extra_info_type_layout()
 
-    context['memberColumnsDef'] = json.dumps(member_layout, cls=DjangoJSONEncoder)
+    # Add in a QuerySet of all the books
+    member_columns = self.get_extra_info_type_columns()
+    member_column_names = self.get_extra_info_Type_column_names()
+
+    context['memberColumns'] = json.dumps(member_columns, cls=DjangoJSONEncoder)
+    context['memberColumnNames'] = json.dumps(member_column_names, cls=DjangoJSONEncoder)
     context['memberList'] = json.dumps(self.get_flatten_members_list(), cls=DjangoJSONEncoder)
     return context
 
