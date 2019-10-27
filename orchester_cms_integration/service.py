@@ -46,10 +46,14 @@ def get_user_status_list(member):
     username_getter = MEMBER_CONNECTOR_FIELD_GETTERS.get(connector_type)
 
     username = default_username
+    service_error = None
     try:
       is_active = do_action('check', connector_type, member)
       username = username_getter(member)
-    except:
+    except Exception as error:
+      service_error = f"Failed to check if the user({member.id}) is valid for {connector_type}"
+      logger.error(service_error, error)
+
       is_active = False
 
     service_info.append({
@@ -57,6 +61,7 @@ def get_user_status_list(member):
       'name': connector_type.value,
       'displayName': connector_type.name,
       'status': is_active,
+      'warning': service_error,
       'isCustomService': False
     })
 
