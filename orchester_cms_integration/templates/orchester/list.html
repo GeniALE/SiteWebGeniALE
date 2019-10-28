@@ -64,9 +64,9 @@
 
       var columns = [
           {
+            data:'id',
               renderer: function (instance, td, row, col, prop, value, cellProperties) {
-                  var rowData = data[row];
-                  td.innerHTML = buildEditButton(rowData.id);
+                  td.innerHTML = buildEditButton(value);
               }
           },
           {
