@@ -18,7 +18,7 @@ from orchester_cms_integration import service
 
 
 def remove_duplicates(array, field):
-  grouped_values = {val.code: val for val in array}
+  grouped_values = {getattr(val, field): val for val in array}
   return grouped_values.values()
 
 

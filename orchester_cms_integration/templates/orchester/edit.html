@@ -36,18 +36,15 @@
   </div>
 
   <script type="text/javascript" charset="utf-8">
-    function groupby(list, key) {
-      var acc = {};
-      for (var i = 0; i < list.length; i++) {
-        var entry = list[i];
-        acc[entry[key]] = entry;
-      }
-      return acc;
+    function groupBy(list, key) {
+      return list.reduce(function (acc, val) {
+        acc[val[key]] = val;
+        return acc;
+      }, {});
     }
 
-
     var data = {{ service_info|safe }};
-    var dataByName = groupby(data, 'name');
+    var dataByName = groupBy(data, 'name');
     var unregisterUrl = "{% url 'orchester:unregister' member.id %}";
     var registerUrl = "{% url 'orchester:register' member.id %}";
 
