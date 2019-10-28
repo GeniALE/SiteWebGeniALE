@@ -51,7 +51,8 @@ def get_user_status_list(member):
       is_active = do_action('check', connector_type, member)
       username = username_getter(member)
     except Exception as error:
-      service_error = f"Failed to check if the user({member.id}) is valid for {connector_type}"
+      error_template = "Failed to check if the user({}) is valid for {}"
+      service_error = error_template.format(member.id,connector_type)
       logger.error(service_error, error)
 
       is_active = False
