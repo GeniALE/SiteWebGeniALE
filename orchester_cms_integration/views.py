@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
+
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponseRedirect, HttpResponseBadRequest, HttpResponseServerError
 from django.urls import reverse
@@ -51,7 +53,7 @@ class IndexView(generic.ListView):
 
       # Convert datetime to dates
       member_as_dict['date_joined'] = member_as_dict['date_joined'].date()
-      if 'date_left' in member_as_dict:
+      if 'date_left' in member_as_dict and isinstance(member_as_dict['date_left'], datetime):
         member_as_dict['date_left'] = member_as_dict['date_left'].date()
 
       for extra in member.memberextrainfo_set.all():
