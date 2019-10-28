@@ -17,6 +17,11 @@ from teamModule.models import Member, MemberExtraInfoType
 from orchester_cms_integration import service
 
 
+def remove_duplicates(array, field):
+  grouped_values = {getattr(val, field): val for val in array}
+  return grouped_values.values()
+
+
 @method_decorator(login_required, name='dispatch')
 class IndexView(generic.ListView):
   template_name = 'orchester/list.html'
@@ -32,12 +37,18 @@ class IndexView(generic.ListView):
     opts = Member._meta
     return list(map(lambda x: x.name.capitalize().replace('_', ' '), opts.concrete_fields))
 
-  def get_extra_info_type_columns(self):
-    extra_info_types = list(set(map(lambda x: x.code, MemberExtraInfoType.objects.all())))
-    return [{'data': EXTRA_VALUE_PREFIX + code} for code in extra_info_types]
+  def get_member_column_names(self):
+    opts = Member._meta
+    return list(map(lambda x: x.name.capitalize().replace('_', ' '), opts.concrete_fields))
 
-  def get_extra_info_Type_column_names(self):
-    return list(set(map(lambda x: x.code.capitalize(), MemberExtraInfoType.objects.all())))
+  def get_extra_info_columns(self):
+    return remove_duplicates(MemberExtraInfoType.objects.all(), 'code')
+
+  def get_extra_info_type_columns(self, columns):
+    return [{'data': EXTRA_VALUE_PREFIX + column.code} for column in columns]
+
+  def get_extra_info_type_column_names(self, columns):
+    return [column.code.capitalize() for column in columns]
 
   def get_flatten_members_list(self):
     members = Member.objects.prefetch_related(
@@ -67,8 +78,10 @@ class IndexView(generic.ListView):
     context = super().get_context_data(**kwargs)
 
     # Add in a QuerySet of all the books
-    member_columns = self.get_extra_info_type_columns()
-    member_column_names = self.get_extra_info_Type_column_names()
+    extra_columns = self.get_extra_info_columns()
+
+    member_columns = self.get_extra_info_type_columns(extra_columns)
+    member_column_names = self.get_extra_info_type_column_names(extra_columns)
 
     context['memberColumns'] = json.dumps(member_columns, cls=DjangoJSONEncoder)
     context['memberColumnNames'] = json.dumps(member_column_names, cls=DjangoJSONEncoder)

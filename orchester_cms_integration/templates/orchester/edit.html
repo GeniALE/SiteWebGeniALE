@@ -36,110 +36,118 @@
   </div>
 
   <script type="text/javascript" charset="utf-8">
-      var data = {{ service_info|safe }};
-      var unregisterUrl = "{% url 'orchester:unregister' member.id %}";
-      var registerUrl = "{% url 'orchester:register' member.id %}";
+    function groupBy(list, key) {
+      return list.reduce(function (acc, val) {
+        acc[val[key]] = val;
+        return acc;
+      }, {});
+    }
 
-      function renderNormalService(td, data) {
-          const url = data.status ? unregisterUrl : registerUrl;
-          const buttonName = data.status ? 'Unregister' : 'Register';
-          td.innerHTML = [
-              '<form class="orchester__edit__buttonForm" action="' + url + '" method="post">',
-              '<input type="hidden" name="connector_name" value="' + data.name + '" />',
-              "{% csrf_token %}",
-              '<input type="submit" class="button--primary" value="' + buttonName + '"/>',
-              '</form',
-          ].join('');
+    var data = {{ service_info|safe }};
+    var dataByName = groupBy(data, 'name');
+    var unregisterUrl = "{% url 'orchester:unregister' member.id %}";
+    var registerUrl = "{% url 'orchester:register' member.id %}";
+
+    function renderNormalService(td, data) {
+      const url = data.status ? unregisterUrl : registerUrl;
+      const buttonName = data.status ? 'Unregister' : 'Register';
+      td.innerHTML = [
+        '<form class="orchester__edit__buttonForm" action="' + url + '" method="post">',
+        '<input type="hidden" name="connector_name" value="' + data.name + '" />',
+        "{% csrf_token %}",
+        '<input type="submit" class="button--primary" value="' + buttonName + '"/>',
+        '</form',
+      ].join('');
+    }
+
+    function buildButton(url, buttonName, buttonClass) {
+      return [
+        '<a href="' + url + '">',
+        '<button class="' + (buttonClass || "") + '">',
+        buttonName,
+        '</button>',
+        '</a>'
+      ].join('');
+    }
+
+    function renderCustomService(td, data) {
+      var content = ['<div class="orchester__edit__custom">'];
+
+      if (data.instructionUrl) {
+        content.push(buildButton('/media/' + data.instructionUrl, 'Instructions', 'button--primary'));
       }
 
-      function buildButton(url, buttonName, buttonClass) {
-          return [
-              '<a href="' + url + '">',
-              '<button class="' + (buttonClass || "") + '">',
-              buttonName,
-              '</button>',
-              '</a>'
-          ].join('');
+      if (data.registerUrl) {
+        content.push(buildButton(data.registerUrl, 'Register', 'button--secondary'));
       }
 
-      function renderCustomService(td, data) {
-          var content = ['<div class="orchester__edit__custom">'];
-
-          if (data.instructionUrl) {
-              content.push(buildButton('/media/' + data.instructionUrl, 'Instructions', 'button--primary'));
-          }
-
-          if (data.registerUrl) {
-              content.push(buildButton(data.registerUrl, 'Register', 'button--secondary'));
-          }
-
-          if (data.unregisterUrl) {
-              content.push(buildButton(data.unregisterUrl, 'Unregister', 'button--secondary'));
-          }
-
-          content.push('</div>');
-          td.innerHTML = content.join('');
+      if (data.unregisterUrl) {
+        content.push(buildButton(data.unregisterUrl, 'Unregister', 'button--secondary'));
       }
 
-      var columns = [
-          {
-              data: "displayName",
-          },
-          {
-              data: "username",
-              renderer: function (instance, td, row, col, prop, value, cellProperties) {
-                  var rowData = data[row];
+      content.push('</div>');
+      td.innerHTML = content.join('');
+    }
 
-                  if (rowData.warning) {
-                      cellProperties.comment = {value: rowData.warning};
-                  }
-                  td.innerText = value;
-              }
-          }, {
-              data: "status",
-          },
-          {
-              data: "actions",
-              width: 420,
-              renderer: function (instance, td, row, col, prop, value, cellProperties) {
-                  var rowData = data[row];
-                  rowData.isCustomService ? renderCustomService(td, rowData) : renderNormalService(td, rowData);
-              }
+    var columns = [
+      {
+        data: "displayName",
+      },
+      {
+        data: "username",
+        renderer: function (instance, td, row, col, prop, value, cellProperties) {
+          var rowData = data[row];
+
+          if (rowData.warning) {
+            cellProperties.comment = {value: rowData.warning};
           }
-      ];
+          td.innerText = value;
+        }
+      }, {
+        data: "status",
+      },
+      {
+        data: "name",
+        width: 420,
+        renderer: function (instance, td, row, col, prop, value, cellProperties) {
+          var rowData = dataByName[value];
+          rowData.isCustomService ? renderCustomService(td, rowData) : renderNormalService(td, rowData);
+        }
+      }
+    ];
 
-      var columnHeaders = [
-          "Display name",
-          "Username",
-          "Status",
-          "Actions"
-      ];
+    var columnHeaders = [
+      "Display name",
+      "Username",
+      "Status",
+      "Actions"
+    ];
 
-      $(document).ready(function () {
+    $(document).ready(function () {
 
-          // let the grid know which columns and what data to use
-          var gridOptions = {
-              data: data,
-              columns: columns,
-              colHeaders: columnHeaders,
-              columnSorting: true,
-              readOnly: true,
-              comments: true,
-              licenseKey: 'non-commercial-and-evaluation'
-          };
+      // let the grid know which columns and what data to use
+      var gridOptions = {
+        data: data,
+        columns: columns,
+        colHeaders: columnHeaders,
+        columnSorting: true,
+        readOnly: true,
+        comments: true,
+        licenseKey: 'non-commercial-and-evaluation'
+      };
 
-          // lookup the container we want the Grid to use
-          var gridElement = document.querySelector('#orchesterTable');
+      // lookup the container we want the Grid to use
+      var gridElement = document.querySelector('#orchesterTable');
 
-          var grid = new Handsontable(gridElement, gridOptions);
+      var grid = new Handsontable(gridElement, gridOptions);
 
-          // Register hooks
-          Handsontable.hooks.add('afterInit', function () {
-              $(".orchester__edit__buttonForm").submit(function () {
-                  $(".loading").addClass("loading--visible");
-              });
-          }, grid);
-      });
+      // Register hooks
+      Handsontable.hooks.add('afterInit', function () {
+        $(".orchester__edit__buttonForm").submit(function () {
+          $(".loading").addClass("loading--visible");
+        });
+      }, grid);
+    });
   </script>
 {% endblock %}
 
