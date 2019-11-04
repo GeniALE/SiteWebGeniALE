@@ -40,7 +40,7 @@ google-auth-httplib2==0.0.3
 gspread==3.0.1
 gunicorn==19.9.0
 html5lib==0.999999999
-httplib2==0.11.3
+httplib2==0.14.0
 idna==2.7
 jsonfield==2.0.2
 libsass==0.13.7
