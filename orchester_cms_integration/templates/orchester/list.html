@@ -108,6 +108,8 @@
 
       // let the grid know which columns and what data to use
       var gridOptions = {
+          rowHeights: 26,
+          autoColumnSize: true,
           data: data,
           columns: columns.concat(extraColumns),
           colHeaders: columnHeaders.concat(extraColHeaders),
@@ -116,10 +118,9 @@
           comments: true,
           readOnly: true,
           dropdownMenu: true,
-
+          rowHeaders:true,
           width: '100%',
           preventOverflow: 'horizontal',
-          rowHeaders: true,
           licenseKey: 'non-commercial-and-evaluation'
       };
 
