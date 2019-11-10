@@ -95,7 +95,9 @@
       },
       {
         data: "username",
-        renderer: function (instance, td, row, col, prop, value, cellProperties) {
+      }, {
+        data: "status",
+             renderer: function (instance, td, row, col, prop, value, cellProperties) {
           var rowData = data[row];
 
           if (rowData.warning) {
@@ -103,8 +105,6 @@
           }
           td.innerText = value;
         }
-      }, {
-        data: "status",
       },
       {
         data: "name",

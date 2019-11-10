@@ -178,6 +178,7 @@ proper credentials. For more details, refers to that documentation: https://gith
 - [**Docker**](docs/DOCKER.md)
 - [**Pycharm**](docs/PYCHARM.md)
 - [**Translations**](docs/TRANSLATIONS.md)
+- [**Orchester**](docs/ORCHESTER.md)
 
 # Authors
 
