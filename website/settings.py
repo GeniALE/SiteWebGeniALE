@@ -39,9 +39,8 @@ ALLOWED_HOSTS = [
   "geniale-dev.herokuapp.com",
   "geniale-cms.herokuapp.com",
   "geniale-prod.herokuapp.com",
-  "cms.geniale.ca",
+  "geniale.cedille.site",
   'geniale.ca',
-  "web.geniale.ca",
   "localhost",
   "127.0.0.1"
 ]
