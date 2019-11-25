@@ -17,13 +17,21 @@ def get_g_drive_user(member: Member):
 def get_trello_user(member: Member):
   q_filter = Q(member_id__exact=member.id) & Q(info_type__code=ConnectorType.TRELLO.value)
   extra_infos = MemberExtraInfo.objects.filter(q_filter).first()
-  return extra_infos.value
+
+  if extra_infos:
+    return extra_infos.value
+  else:
+    return None
 
 
 def get_github_user(member: Member):
   q_filter = Q(member_id__exact=member.id) & Q(info_type__code=ConnectorType.GITHUB.value)
   extra_infos = MemberExtraInfo.objects.filter(q_filter).first()
-  return extra_infos.value
+
+  if extra_infos:
+    return extra_infos.value
+  else:
+    return None
 
 
 MEMBER_CONNECTOR_FIELD_GETTERS = {
