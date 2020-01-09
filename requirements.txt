@@ -33,7 +33,7 @@ djangocms-picture==2.1.1
 djangocms-snippet==2.1.0
 djangocms-style==2.1.0
 djangocms-text-ckeditor==3.6.1
-djangocms-video==2.1.0
+djangocms-video==2.2.0
 easy-thumbnails==2.5
 google-auth==1.5.0
 google-auth-httplib2==0.0.3
