@@ -30,7 +30,7 @@ djangocms-file==2.1.0
 djangocms-googlemap==1.2.0
 djangocms-link==2.2.1
 djangocms-picture==2.1.1
-djangocms-snippet==2.1.0
+djangocms-snippet==2.2.0
 djangocms-style==2.1.0
 djangocms-text-ckeditor==3.6.1
 djangocms-video==2.2.0
