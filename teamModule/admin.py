@@ -40,20 +40,25 @@ class ProjectAdmin(TranslatableAdmin):
 class ExtraInfoInlineFormSet(BaseInlineFormSet):
   model = MemberExtraInfo
 
+  def __init__(self, *args, **kwargs):
+    # We get the default values that are not already assigned.
+    member_extra_info = get_member_extra_info(kwargs['instance'])
+    default_extra_info = []
+    already_defined_info_types = [x.info_type.id for x in member_extra_info]
+
+    for x in get_default_extra_types():
+      if not x['info_type'] in already_defined_info_types:
+        default_extra_info.append(x)
+
+    kwargs['initial'] = default_extra_info
+    super(ExtraInfoInlineFormSet, self).__init__(*args, **kwargs)
+
 
 class ExtraInfoInline(admin.TabularInline):
   model = MemberExtraInfo
   fk_name = 'member'
   extra = 3
   formset = ExtraInfoInlineFormSet
-
-  def get_formset(self, request, obj=None, **kwargs):
-    initial = []
-    if request.method == "GET":
-      initial = get_default_extra_types()
-    formset = super(ExtraInfoInline, self).get_formset(request, obj, **kwargs)
-    formset.__init__ = curry(formset.__init__, initial=initial)
-    return formset
 
   def get_extra(self, request, obj=None, **kwargs):
     member_extra_infos = get_member_extra_info(obj)
