@@ -250,12 +250,14 @@ $smLargeDivHeight: 225px;
 
     &__picture {
       margin-top: 2em;
-      max-height: calc(90vh - 8em);
+      height: calc(90vh - 8em);
       width: 100%;
 
       .owl-carousel .owl-item &__container {
         max-height: 100%;
         max-width: 100%;
+        object-fit: contain;
+        object-position: center;
         vertical-align: middle;
       }
 
