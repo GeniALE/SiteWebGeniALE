@@ -31,7 +31,7 @@ class ProjectAdmin(TranslatableAdmin):
   model = Project
   inlines = (ProjectPictureInline,)
 
-  important_fields = ('name',)
+  important_fields = ('name', 'visible', 'display_order', 'display_banner_height')
   search_fields = important_fields
   list_display = important_fields
 

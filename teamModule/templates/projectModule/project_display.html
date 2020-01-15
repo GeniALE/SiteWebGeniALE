@@ -14,14 +14,11 @@
       //Data from the backend
       var projects = {{ projectsAsJson|safe}};
       //Init the required modules with unique identifier
-      {{ uniqueName }}
-      = new ProjectModuleClass(projects, "{{ uniqueName }}");
+      {{ uniqueName }} = new ProjectModuleClass(projects, "{{ uniqueName }}");
     })();
 
   </script>
 {% endaddtoblock %}
-
-
 
 
 <section class="projectModule row" id="{{ uniqueName }}">

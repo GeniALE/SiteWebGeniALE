@@ -115,7 +115,7 @@ class ProjectModulePlugin(CMSPluginBase):
   cache = False
 
   def get_projects(self):
-    projects = Project.objects.language().order_by('display_order').prefetch_related(
+    projects = Project.objects.language().filter(visible=True).order_by('display_order').prefetch_related(
       'status', 'images'
     )
     return projects
