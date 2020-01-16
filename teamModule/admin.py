@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.forms import BaseInlineFormSet, Textarea
-from django.utils.functional import curry
 from hvad.admin import TranslatableAdmin
 
 from .models import Formation, Team, Project, Member, ProjectStatus, TeamRole, MemberExtraInfo, MemberExtraInfoType, \
