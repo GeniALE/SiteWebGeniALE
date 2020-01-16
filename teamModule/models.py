@@ -62,6 +62,7 @@ class Project(TranslatableModel):
     description=models.TextField(null=True)
   )
 
+  visible = models.BooleanField(default=True)
   status = models.ForeignKey(ProjectStatus, default=0, on_delete=models.SET_DEFAULT)
   website = models.CharField(max_length=200, blank=True, null=True)
   display_order = models.IntegerField(blank=False, null=False, default=0)
