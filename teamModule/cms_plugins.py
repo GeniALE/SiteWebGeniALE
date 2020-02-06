@@ -43,7 +43,7 @@ class TeamModulePlugin(CMSPluginBase):
             new_member = to_dict(member, ['bio'])
             team_roles = member.teamRoles.all()
             new_member['teamRoles'] = [to_dict(teamRole, ['role']) for teamRole in team_roles]
-            new_member['projects'] = [to_dict(project, ['description']) for project in member.projects.all()]
+            new_member['projects'] = [to_dict(project, ['description']) for project in member.projects.filter(visible=True)]
             new_member['formation'] = to_dict(member.formation, ['name', 'url'])
             members_as_dict.append(new_member)
 
