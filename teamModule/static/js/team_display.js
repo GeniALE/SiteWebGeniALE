@@ -248,8 +248,7 @@ if (!TeamModuleClass.prototype._loadMemberDetails) {
       } else {
         projectTitle.classList.add(this.hiddenClass);
       }
-
-
+      
       projectElement.innerHTML = '';
 
       for (var i = 0; i < member.projects.length; i++) {
