@@ -3,7 +3,7 @@ from django.contrib import admin
 
 
 class ServiceInstructionsAdmin(admin.ModelAdmin):
-  model = ServiceInstructions
+    model = ServiceInstructions
 
 
 admin.site.register(ServiceInstructions, ServiceInstructionsAdmin)
