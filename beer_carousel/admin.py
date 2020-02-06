@@ -2,31 +2,31 @@ from django.contrib import admin
 from hvad.admin import TranslatableAdmin
 
 from .models import BeerCarouselPluginModel, BeerModel, BeerTranslationsModel, BeerCarouselPluginTranslationModel, \
-  BeerContainer
+    BeerContainer
 
 
 class BeerCarouselTranslationModelAdmin(TranslatableAdmin, admin.ModelAdmin):
-  pass
+    pass
 
 
 class BeerTranslationsAdmin(TranslatableAdmin, admin.ModelAdmin):
-  pass
+    pass
 
 
 class BeerAdmin(admin.ModelAdmin):
-  model = BeerModel
+    model = BeerModel
 
-  important_fields = ('name', 'type', 'alcohol_percent', 'ibu', 'created_at')
-  search_fields = important_fields
-  list_display = important_fields
+    important_fields = ('name', 'type', 'alcohol_percent', 'ibu', 'created_at')
+    search_fields = important_fields
+    list_display = important_fields
 
 
 class BeerPluginAdmin(admin.ModelAdmin):
-  pass
+    pass
 
 
 class BeerContainerAdmin(admin.ModelAdmin):
-  pass
+    pass
 
 
 admin.site.register(BeerModel, BeerAdmin)

@@ -5,27 +5,27 @@ from hvad.admin import TranslatableAdmin
 
 
 class SponsorAdmin(admin.ModelAdmin):
-  model = Sponsor
+    model = Sponsor
 
-  important_fields = ('title', 'url', 'score')
-  search_fields = important_fields
-  list_display = important_fields
+    important_fields = ('title', 'url', 'score')
+    search_fields = important_fields
+    list_display = important_fields
 
 
 class SponsorsDisplayViewAdmin(admin.ModelAdmin):
-  filter_horizontal = ("categories",)
+    filter_horizontal = ("categories",)
 
 
 class CategoryAdmin(admin.ModelAdmin):
-  pass
+    pass
 
 
 class CategoryTranslationAdmin(TranslatableAdmin, admin.ModelAdmin):
-  pass
+    pass
 
 
 class SponsorsDisplayViewTranslationsAdmin(TranslatableAdmin, admin.ModelAdmin):
-  pass
+    pass
 
 
 admin.site.register(Sponsor, SponsorAdmin)
