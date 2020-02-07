@@ -71,6 +71,7 @@ if (!window.TeamModuleClass) {
       fullName: this.rootNode.querySelector(".teamModule__details__fullname"),
       bio: this.rootNode.querySelector(".teamModule__details__bio"),
       projects: this.rootNode.querySelector(".teamModule__details__projects"),
+      projectsTitle: this.rootNode.querySelector('.teamModule__details__section__title--projects'),
       teamRoles: this.rootNode.querySelector(".teamModule__details__teams"),
       formation: this.rootNode.querySelector(".teamModule__details__formation"),
       blur: this.rootNode.querySelector(".teamModule__details__blur")
@@ -240,6 +241,14 @@ if (!TeamModuleClass.prototype._loadMemberDetails) {
 
       //Add projects
       var projectElement = mapping.projects;
+      var projectTitle = mapping.projectsTitle;
+
+      if (member.projects.length > 0) {
+        projectTitle.classList.remove(this.hiddenClass);
+      } else {
+        projectTitle.classList.add(this.hiddenClass);
+      }
+      
       projectElement.innerHTML = '';
 
       for (var i = 0; i < member.projects.length; i++) {
