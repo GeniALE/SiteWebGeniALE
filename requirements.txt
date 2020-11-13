@@ -47,7 +47,7 @@ tornado==5.0
 tzlocal==1.5.1
 Unidecode==0.4.21
 uritemplate==3.0.0
-urllib3==1.25.7
+urllib3==1.26.2
 webencodings==0.5.1
 orchester==0.0.4
 slimit==0.8.1
