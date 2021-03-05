@@ -90,6 +90,8 @@ class Member(TranslatableModel):
     teamRoles = models.ManyToManyField(TeamRole)
     projects = models.ManyToManyField(Project)
 
+    old_member = models.BooleanField(blank=False, default=False)
+
     date_joined = models.DateTimeField(auto_now_add=True, )
     date_left = models.DateTimeField(blank=True, null=True)
 
