@@ -13,9 +13,10 @@
       (function () {
         //Data from the backend
         var members = {{ membersAsJson|safe}};
+        var all_members = {{ allMembersAsJson|safe}};
         var teams = {{  teamsAsJson|safe }};
         //Init the required modules with unique identifier
-        team_{{ uniqueName }} = new TeamModuleClass(members,teams, "{{ uniqueName }}");
+        team_{{ uniqueName }} = new TeamModuleClass(all_members ,teams, "{{ uniqueName }}");
         var allMembersTeam = team_{{ uniqueName }}.rootNode.querySelector(".teamModule__team");
         team_{{ uniqueName }}.setActiveTeam(-1, allMembersTeam);
       })();
@@ -48,6 +49,7 @@
             {% endfor %}
           </select>
         </div>
+
       </div>
 
       <div class="teamModule__members">
@@ -72,7 +74,38 @@
           </div>
         </div>
       </div>
+
+      <!-- Section de test pour les anciens membres !-->
+      <div class="teamModule__members">
+        <h1 class="teamModule__title">Ancien membres</h1>
+        <div class="row">
+
+          <div class="teamModule__memberpanel col-xs-0 col-md-4">
+            {% for member in old_members %}
+              <div class="teamModule__team__member teamModule__team__member{{ member.id }}"
+                   onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},this)">
+                {{ member.first_name }} {{ member.last_name }}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="teamModule__memberpanel teamModule__memberpanel--avatars col-md-8 col-xs-12">
+            {% for member in old_members %}
+              <img class="teamModule__memberpanel__icon teamModule__memberpanel__icon{{ member.id }}"
+                   src="{{ member.image }}"
+                   alt="{{ member.firstName }}"
+                   onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},null,this)"/>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+
     </div>
+
+
+
+
+
     <div class="teamModule__details__blur teamModule--invisible "
          onclick="team_{{ uniqueName }}.modalClose()"></div>
     <div class="teamModule__details teamModule--invisible col-xs-12 col-sm-3 col-md-3 col-lg-2">

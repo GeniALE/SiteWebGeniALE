@@ -12,6 +12,7 @@ from teamModule.helpers import to_dict
 from .models import TeamBannerModel, Team, Member, TeamDisplayView, Project, ProjectDisplayView
 
 get_member_filter = Q(date_left__isnull=True) | Q(date_left__gt=timezone.now())
+get_oldmember_filter = Q(date_left__lt=timezone.now())
 
 
 @plugin_pool.register_plugin
@@ -22,12 +23,27 @@ class TeamModulePlugin(CMSPluginBase):
     cache = False
 
     def get_members(self):
-        members = Member.objects.language().filter(get_member_filter).prefetch_related(
+        return Member.objects.language().filter(get_member_filter).prefetch_related(
             'teamRoles__team',
             'formation',
             'translations'
         ).order_by("first_name")
-        return members
+
+    # TODO : A function get_old_members() that uses the get_oldmember_filter.
+    def get_old_members(self):
+        return Member.objects.language().filter(get_oldmember_filter).prefetch_related(
+            'teamRoles__team',
+            'formation',
+            'translations'
+        ).order_by("first_name")
+
+
+    def get_activeAndOldMembers(self):
+        return Member.objects.language().prefetch_related(
+            'teamRoles__team',
+            'formation',
+            'translations'
+        ).order_by("first_name")
 
     def get_teams(self, instance):
         teams = list(Team.objects.language().all().order_by("team_name"))
@@ -50,6 +66,9 @@ class TeamModulePlugin(CMSPluginBase):
         return members_as_dict
 
     def teams_to_dict(self, teams, members):
+        print(f'Teams: {teams}')
+        print(f'Members: {members}')
+
         teams_as_dict = {team.id: to_dict(team, ['team_name']) for team in teams}
         for (team_id, team) in teams_as_dict.items():
             teams_as_dict[team_id]['members_count'] = 0
@@ -77,6 +96,10 @@ class TeamModulePlugin(CMSPluginBase):
 
         # Get some data
         members = self.get_members()
+        old_members = self.get_old_members()
+        all_members = self.get_activeAndOldMembers()
+
+        print(f'Tous les membres: {all_members}')
 
         # Check for default avatar
         for member in members:
@@ -85,8 +108,24 @@ class TeamModulePlugin(CMSPluginBase):
             else:
                 member.image = member.image.url
 
+        # do the same for old member
+        for old_member in old_members:
+            if not old_member.image:
+                old_member.image = static("image/default_avatar.png")
+            else:
+                old_member.image = member.image.url
+
+        # do the same for old member
+        for allMember in all_members:
+            if not allMember.image:
+                allMember.image = static("image/default_avatar.png")
+            else:
+                allMember.image = allMember.image.url
+
         teams = self.get_teams(instance)
         members_as_dict = self.members_to_dict(members)
+        old_members_as_dict = self.members_to_dict(old_members)
+
         teams_as_dict = self.teams_to_dict(teams, members)
         ordered_teams_for_ui = sorted(list(teams_as_dict.values()), key=lambda team: team['team_name'])
 
@@ -95,9 +134,14 @@ class TeamModulePlugin(CMSPluginBase):
         ordered_teams_for_ui.remove(all_team)
         ordered_teams_for_ui.insert(0, all_team)
 
+        #print(f'Tout les membres: {all_members}')
+        #all_members_as_dict = members_as_dict(all_members)
+
         context.update({
             'teams': ordered_teams_for_ui,
             'members': members,
+            'old_members': old_members,
+            'allMembersAsJson': json.dumps(list(members_as_dict) + list(old_members_as_dict), cls=DjangoJSONEncoder),
             'teamsAsJson': json.dumps(list(teams_as_dict.values())),
             'membersAsJson': json.dumps(members_as_dict, cls=DjangoJSONEncoder),
             'uniqueName': 'teamModuleDisplay' + '__' + str(instance.id),

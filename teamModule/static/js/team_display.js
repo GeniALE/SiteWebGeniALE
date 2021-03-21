@@ -93,6 +93,9 @@ if (!window.TeamModuleClass) {
     };
 
     this.members = members;
+    console.log('Members: ' + members);
+    //this.allMembers = all_members
+    this.old_members = members;
     this.teams = teams;
     this.teamsById = TeamModuleHelper.indexArrayByKey(teams, 'id');
     this.membersById = TeamModuleHelper.indexArrayByKey(members, 'id');
@@ -184,7 +187,6 @@ if (!TeamModuleClass.prototype.setMemberVisibility) {
       }
     }
   };
-
 }
 
 if (!TeamModuleClass.prototype.isPartOfTeam) {
@@ -248,7 +250,7 @@ if (!TeamModuleClass.prototype._loadMemberDetails) {
       } else {
         projectTitle.classList.add(this.hiddenClass);
       }
-      
+
       projectElement.innerHTML = '';
 
       for (var i = 0; i < member.projects.length; i++) {
