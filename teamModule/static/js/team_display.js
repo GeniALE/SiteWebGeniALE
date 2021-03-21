@@ -55,7 +55,7 @@ if (!window.TeamModuleHelper) {
 
 // Register the instance only if not registered
 if (!window.TeamModuleClass) {
-  function TeamModuleClass(members, teams, rootId) {
+  function TeamModuleClass(members, teams, rootId, all_members) {
     //This node is the only thing that makes this module unique
     this.rootNode = document.getElementById(rootId);
     this.classByType = {
@@ -94,11 +94,11 @@ if (!window.TeamModuleClass) {
 
     this.members = members;
     console.log('Members: ' + members);
-    //this.allMembers = all_members
+    this.all_members = all_members
     this.old_members = members;
     this.teams = teams;
     this.teamsById = TeamModuleHelper.indexArrayByKey(teams, 'id');
-    this.membersById = TeamModuleHelper.indexArrayByKey(members, 'id');
+    this.membersById = TeamModuleHelper.indexArrayByKey(all_members, 'id');
     this.hiddenClass = "teamModule--hidden";
     this.invisibleClass = "teamModule--invisible";
     this.modalOpenClass = "modal-open-mobile-only";
