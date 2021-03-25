@@ -89,7 +89,6 @@ class Member(TranslatableModel):
     formation = models.ForeignKey(Formation, null=True, on_delete=models.SET_NULL)
     teamRoles = models.ManyToManyField(TeamRole)
     projects = models.ManyToManyField(Project)
-
     date_joined = models.DateTimeField(auto_now_add=True, )
     date_left = models.DateTimeField(blank=True, null=True)
 
@@ -129,6 +128,7 @@ class TeamDisplayTranslationModel(TranslatableModel):
         teams_title=models.CharField(max_length=255, default="Teams"),
         all=models.CharField(max_length=255, default="All"),
         members_title=models.CharField(max_length=255, default="Members"),
+        old_members_title=models.CharField(max_length=255, default="Former Members"),
         projects_title=models.CharField(max_length=255, default="Projects"),
         formation_title=models.CharField(max_length=255, default="Formation"),
     )
