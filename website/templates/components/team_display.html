@@ -15,7 +15,7 @@
         var members = {{ membersAsJson|safe}};
         var teams = {{  teamsAsJson|safe }};
         //Init the required modules with unique identifier
-        team_{{ uniqueName }} = new TeamModuleClass(members,teams, "{{ uniqueName }}");
+        team_{{ uniqueName }} = new TeamModuleClass(members, teams, "{{ uniqueName }}", members);
         var allMembersTeam = team_{{ uniqueName }}.rootNode.querySelector(".teamModule__team");
         team_{{ uniqueName }}.setActiveTeam(-1, allMembersTeam);
       })();

@@ -66,9 +66,6 @@ class TeamModulePlugin(CMSPluginBase):
         return members_as_dict
 
     def teams_to_dict(self, teams, members):
-        print(f'Teams: {teams}')
-        print(f'Members: {members}')
-
         teams_as_dict = {team.id: to_dict(team, ['team_name']) for team in teams}
         for (team_id, team) in teams_as_dict.items():
             teams_as_dict[team_id]['members_count'] = 0
@@ -98,8 +95,6 @@ class TeamModulePlugin(CMSPluginBase):
         members = self.get_members()
         old_members = self.get_old_members()
         all_members = self.get_activeAndOldMembers()
-
-        print(f'Tous les membres: {all_members}')
 
         # Check for default avatar
         for member in members:
@@ -133,9 +128,6 @@ class TeamModulePlugin(CMSPluginBase):
         all_team = next(x for x in ordered_teams_for_ui if x['id'] == -1)
         ordered_teams_for_ui.remove(all_team)
         ordered_teams_for_ui.insert(0, all_team)
-
-        #print(f'Tout les membres: {all_members}')
-        #all_members_as_dict = members_as_dict(all_members)
 
         context.update({
             'teams': ordered_teams_for_ui,
