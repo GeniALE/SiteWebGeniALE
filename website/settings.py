@@ -265,7 +265,8 @@ STATICFILES_FINDERS = (
 TEAMMODULE_TEAMDISPLAY_TEMPLATES = [
     ('teamModule/team_display.html', 'Default'),
     ('components/member_count.html', 'Total member count'),
-    ('components/team_display.html', 'Team member display')
+    ('components/team_display.html', 'Team member display'),
+    ('components/honorable_members_display.html', 'Honorable member display')
 ]
 
 TEAMMODULE_TEAMBANNER_TEMPLATES = [

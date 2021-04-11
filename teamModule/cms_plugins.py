@@ -13,6 +13,7 @@ from .models import TeamBannerModel, Team, Member, TeamDisplayView, Project, Pro
 
 get_member_filter = Q(date_left__isnull=True) | Q(date_left__gt=timezone.now())
 get_oldmember_filter = Q(date_left__lt=timezone.now())
+get_honorable_member_filter = Q(honorable_member=True)
 
 
 @plugin_pool.register_plugin
@@ -32,6 +33,13 @@ class TeamModulePlugin(CMSPluginBase):
     # TODO : A function get_old_members() that uses the get_oldmember_filter.
     def get_old_members(self):
         return Member.objects.language().filter(get_oldmember_filter).prefetch_related(
+            'teamRoles__team',
+            'formation',
+            'translations'
+        ).order_by("first_name")
+
+    def get_honorable_member(self):
+        return Member.objects.language().filter(get_honorable_member_filter).prefetch_related(
             'teamRoles__team',
             'formation',
             'translations'
@@ -85,6 +93,13 @@ class TeamModulePlugin(CMSPluginBase):
         teams_as_dict = OrderedDict(sorted(teams_as_dict.items(), key=lambda t: t[0]))
         return teams_as_dict
 
+    def setMembersImages(self, members):
+        for member in members:
+            if not member.image:
+                member.image = static("image/default_avatar.png")
+            else:
+                member.image = member.image.url
+
     def render(self, context, instance, placeholder):
         if instance and instance.template:
             self.render_template = instance.template
@@ -93,33 +108,18 @@ class TeamModulePlugin(CMSPluginBase):
 
         # Get some data
         members = self.get_members()
+        self.setMembersImages(members)
         old_members = self.get_old_members()
+        self.setMembersImages(old_members)
         all_members = self.get_activeAndOldMembers()
-
-        # Check for default avatar
-        for member in members:
-            if not member.image:
-                member.image = static("image/default_avatar.png")
-            else:
-                member.image = member.image.url
-
-        # do the same for old member
-        for old_member in old_members:
-            if not old_member.image:
-                old_member.image = static("image/default_avatar.png")
-            else:
-                old_member.image = member.image.url
-
-        # do the same for old member
-        for allMember in all_members:
-            if not allMember.image:
-                allMember.image = static("image/default_avatar.png")
-            else:
-                allMember.image = allMember.image.url
+        self.setMembersImages(all_members)
+        honorable_members = self.get_honorable_member()
+        self.setMembersImages(honorable_members)
 
         teams = self.get_teams(instance)
         members_as_dict = self.members_to_dict(members)
         old_members_as_dict = self.members_to_dict(old_members)
+        honorable_members_as_dict = self.members_to_dict(honorable_members)
 
         teams_as_dict = self.teams_to_dict(teams, members)
         ordered_teams_for_ui = sorted(list(teams_as_dict.values()), key=lambda team: team['team_name'])
@@ -129,12 +129,24 @@ class TeamModulePlugin(CMSPluginBase):
         ordered_teams_for_ui.remove(all_team)
         ordered_teams_for_ui.insert(0, all_team)
 
+        honorable_teams_as_dict = self.teams_to_dict(teams, honorable_members)
+        ordered_honorables_teams_for_ui = sorted(list(honorable_teams_as_dict.values()), key=lambda team: team['team_name'])
+
+        # Replace the all_team to the first place
+        all_team_honorable = next(x for x in ordered_honorables_teams_for_ui if x['id'] == -1)
+        ordered_honorables_teams_for_ui.remove(all_team_honorable)
+        ordered_honorables_teams_for_ui.insert(0, all_team_honorable)
+
         context.update({
             'teams': ordered_teams_for_ui,
+            'honorable_teams': ordered_honorables_teams_for_ui,
             'members': members,
             'old_members': old_members,
+            'honorable_members': honorable_members,
             'allMembersAsJson': json.dumps(list(members_as_dict) + list(old_members_as_dict), cls=DjangoJSONEncoder),
+            'honorableMembersAsJson': json.dumps(honorable_members_as_dict, cls=DjangoJSONEncoder),
             'teamsAsJson': json.dumps(list(teams_as_dict.values())),
+            'honorable_teamsAsJson': json.dumps(list(honorable_teams_as_dict.values())),
             'membersAsJson': json.dumps(members_as_dict, cls=DjangoJSONEncoder),
             'uniqueName': 'teamModuleDisplay' + '__' + str(instance.id),
             'translations': instance.translations,
