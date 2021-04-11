@@ -12,10 +12,10 @@
       var team_{{ uniqueName }};
       (function () {
         //Data from the backend
-        var members = {{ membersAsJson|safe}};
-        var teams = {{  teamsAsJson|safe }};
+        var members = {{ honorableMembersAsJson|safe}};
+        var h_teams = {{  honorable_teamsAsJson|safe }};
         //Init the required modules with unique identifier
-        team_{{ uniqueName }} = new TeamModuleClass(members, teams, "{{ uniqueName }}", members);
+        team_{{ uniqueName }} = new TeamModuleClass(members, h_teams, "{{ uniqueName }}", members);
         var allMembersTeam = team_{{ uniqueName }}.rootNode.querySelector(".teamModule__team");
         team_{{ uniqueName }}.setActiveTeam(-1, allMembersTeam);
       })();
@@ -40,7 +40,7 @@
         </label>
         <div class="row">
           <select id="team_{{ uniqueName }}_dropdown" name="state" class="col-xs-12 col-md-4">
-            {% for team in teams %}
+            {% for team in honorable_teams %}
               <option value="{{ team.id }}"
                       onClick="team_{{ uniqueName }}.setActiveTeam({{ team.id }},this)">
                 {{ team.team_name }} ({{ team.members_count }})
@@ -55,7 +55,7 @@
         <div class="row">
 
           <div class="teamModule__memberpanel col-xs-0 col-md-4">
-            {% for member in members %}
+            {% for member in honorable_members %}
               <div class="teamModule__team__member teamModule__team__member{{ member.id }}"
                    onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},this)">
                 {{ member.first_name }} {{ member.last_name }}
@@ -63,9 +63,9 @@
             {% endfor %}
           </div>
           <div class="teamModule__memberpanel teamModule__memberpanel--avatars col-md-8 col-xs-12">
-            {% for member in members %}
+            {% for member in honorable_members %}
               <img class="teamModule__memberpanel__icon teamModule__memberpanel__icon{{ member.id }}"
-                   src="{{ member.image.url }}"
+                   src="{{ member.image }}"
                    alt="{{ member.firstName }}"
                    onclick="team_{{ uniqueName }}.setActiveMember({{ member.id }},null,this)"/>
             {% endfor %}

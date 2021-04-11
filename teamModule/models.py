@@ -91,6 +91,7 @@ class Member(TranslatableModel):
     projects = models.ManyToManyField(Project)
     date_joined = models.DateTimeField(auto_now_add=True, )
     date_left = models.DateTimeField(blank=True, null=True)
+    honorable_member = models.BooleanField(default=False)
 
     translations = TranslatedFields(
         bio=models.CharField(max_length=1200, blank=True)
