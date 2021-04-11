@@ -99,6 +99,7 @@ class TeamModulePlugin(CMSPluginBase):
                 member.image = static("image/default_avatar.png")
             else:
                 member.image = member.image.url
+        return members
 
     def render(self, context, instance, placeholder):
         if instance and instance.template:
@@ -107,14 +108,10 @@ class TeamModulePlugin(CMSPluginBase):
         context = super(TeamModulePlugin, self).render(context, instance, placeholder)
 
         # Get some data
-        members = self.get_members()
-        self.setMembersImages(members)
-        old_members = self.get_old_members()
-        self.setMembersImages(old_members)
-        all_members = self.get_activeAndOldMembers()
-        self.setMembersImages(all_members)
-        honorable_members = self.get_honorable_member()
-        self.setMembersImages(honorable_members)
+        members = self.setMembersImages(self.get_members())
+        old_members = self.setMembersImages(self.get_old_members())
+        all_members = self.setMembersImages(self.get_activeAndOldMembers())
+        honorable_members = self.setMembersImages(self.get_honorable_member())
 
         teams = self.get_teams(instance)
         members_as_dict = self.members_to_dict(members)
