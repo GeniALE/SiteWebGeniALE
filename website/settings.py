@@ -100,6 +100,9 @@ STATICFILES_DIRS = (
 )
 SITE_ID = 1
 
+RECAPTCHA_PUBLIC_KEY = os.getenv('CAPTCHA_PUBLIC_KEY', '6Ld-4iocAAAAAGOsuYnAHTCzDo0oq9hk8IlXVLJD')
+RECAPTCHA_PRIVATE_KEY = os.getenv('CAPTCHA_SECRET_KEY', '6Ld-4iocAAAAAIkCps2epI0HZrFOWYIw7gbrZeTR')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -176,6 +179,7 @@ INSTALLED_APPS = (
     'sponsorsModule',
     'beer_carousel',
     'orchester_cms_integration',
+    'captcha'
 )
 
 LANGUAGES = (
